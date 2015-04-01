@@ -36,7 +36,7 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-user"></i>
 												</span> 
-												<input class="form-control" placeholder="Username" name="loginname" type="text" autofocus>
+												<input class="form-control" placeholder="Usuario" name="loginname" type="text" autofocus>
 											</div>
 										</div>
 										<div class="form-group">
@@ -44,11 +44,11 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-lock"></i>
 												</span>
-												<input class="form-control" placeholder="Password" name="password" type="password" value="">
+												<input class="form-control" placeholder="Clave" name="password" type="password" value="">
 											</div>
 										</div>
 										<div class="form-group">
-											<input type="submit" class="btn btn-lg btn-primary btn-block" value="Sign in">
+											<input type="submit" class="btn btn-lg btn-primary btn-block" value="Entrar">
 										</div>
 									</div>
 								</div>
