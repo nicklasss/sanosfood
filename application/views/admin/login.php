@@ -48,8 +48,7 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<button id="btn-enviar" class="btn btn-lg btn-primary btn-block">Entrar</button>
-											<!-- <input type="submit" class="btn btn-lg btn-primary btn-block" value="Entrar"> -->
+											<button id="btn-enviar" type="button" class="btn btn-lg btn-primary btn-block">Entrar</button>
 										</div>
 									</div>
 								</div>
@@ -81,9 +80,10 @@
           context: document.body,
           dataType: "json",
           type: "POST",
-          data: {usuario  : $("#usuario").val(), clave : $("clave").val()} })
+          data: {usuario  : $("#usuario").val(), clave : $("#clave").val()} })
          .done(function(data) {                                // respuesta del servidor
-            if(data.res=="ok") {alert('todo bien en el servidor'); }
+            if(data.res=="ok") {
+              window.location= "<?php print base_url();?>admin/home";}
             else{alert(data.msj) } })          
          .error(function(){alert('error en el servidor'); });  // error generado
     }
