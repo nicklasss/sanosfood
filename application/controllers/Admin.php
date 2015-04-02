@@ -11,7 +11,8 @@ class Admin extends CI_Controller {
 	}
 
 	public function validarusuario(){
-		$this->load->model('admin/leerusuario');
+		$this->load->model('Admin_model');
+		$this->load->view('admin/validarusuario', array('resultado'=>$this->Admin_model->validarUsuario()), FALSE);
 	}
 
 }
