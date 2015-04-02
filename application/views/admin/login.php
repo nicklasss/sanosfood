@@ -27,7 +27,7 @@
 						<strong>Iniciar sesión</strong>
 					</div>
 					<div class="panel-body">
-						<form role="form" action="#" method="POST">
+						<form role="form">
 							<fieldset>
 								<div class="row">
 									<div class="col-sm-12 col-md-10  col-md-offset-1 ">
@@ -36,7 +36,7 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-user"></i>
 												</span> 
-												<input class="form-control" placeholder="Usuario" name="loginname" type="text" autofocus>
+												<input class="form-control" placeholder="Usuario" name="usuario" type="text" autofocus>
 											</div>
 										</div>
 										<div class="form-group">
@@ -44,11 +44,12 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-lock"></i>
 												</span>
-												<input class="form-control" placeholder="Clave" name="password" type="password" value="">
+												<input class="form-control" placeholder="Clave" name="clave" type="password" value="">
 											</div>
 										</div>
 										<div class="form-group">
-											<input type="submit" class="btn btn-lg btn-primary btn-block" value="Entrar">
+											<button id="btn-enviar" class="btn btn-lg btn-primary btn-block">Entrar</button>
+											<!-- <input type="submit" class="btn btn-lg btn-primary btn-block" value="Entrar"> -->
 										</div>
 									</div>
 								</div>
@@ -59,4 +60,34 @@
 			</div>
 		</div>
 	</div>
+ 
+
+
+    <!-- Scripts y Funciones de Javascript  -->
+    <script type="text/javascript">
+
+    //-- garantiza que el siguiente Javascript se ejecuta despues de haberse cargado completamente la pagina
+	$(document).ready(function() {$('#btn-enviar').click(enviar); });
+            
+    //-- Funcion enviar datos del misionero al servidor al misioneros/crear.php quien los recibe
+    function enviar() {
+        if($("#usuario").val()=="") { alert('Usuario no puede ser vacio');
+          $("#usuario").focus(); return false; }
+        if($("#clave").val()=="") { alert('Clave no puede ser vacia');
+          $("#clave").focus(); return false; }
+
+        $.ajax({                                               // envio de los datos
+          url: "<?php print base_url();?>admin/validarusuario",
+          context: document.body,
+          dataType: "json",
+          type: "POST",
+          data: {usuario  : $("#usuario").val(), clave : $("clave").val()} })
+         .done(function(data) {                                // respuesta del servidor
+            if(data.res=="ok") {alert('todo bien en el servidor'); }
+            else{alert(data.msj) } })          
+         .error(function(){alert('error en el servidor'); });  // error generado
+    }
+    
+	</script>
+
 </body>
