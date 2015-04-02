@@ -15,4 +15,8 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/validarusuario', array('resultado'=>$this->Admin_model->validarUsuario()), FALSE);
 	}
 
+	public function home(){
+		$this->load->view('admin/home');
+	}
+
 }
