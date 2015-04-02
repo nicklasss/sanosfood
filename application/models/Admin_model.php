@@ -16,7 +16,7 @@ class Admin_model extends CI_Model {
         if(strlen($clave)<6 or strlen($usuario)<4){
         return false;}
 
-        $this->db->select('clave')->from('sanosadminfood')->where('usuario', $usuario)->limit(1, 0);
+        $this->db->select('clave,tipo')->from('sanosadminfood')->where('usuario', $usuario)->limit(1, 0);
         $query = $this->db->get();
 
         if ($query->num_rows() == 0) {
@@ -25,6 +25,8 @@ class Admin_model extends CI_Model {
         $row = $query->row();
 
         if($row->clave== sha1(sha1($usuario).'sal sanosfood'.sha1($clave))){
+            $this->session->set_userdata('usuario',$usuario);
+            $this->session->set_userdata('tipo',$row->tipo);
             return true; }
 
         return false;
