@@ -50,7 +50,7 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">Productos</a></li>
+            <li><a href="<?php print base_url(); ?>admin/productos">Productos</a></li>
             <li><a href="#contact">Usuarios</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pedidos <span class="caret"></span></a>
