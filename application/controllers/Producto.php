@@ -15,6 +15,10 @@ class Producto extends CI_Controller {
 		$this->load->view('producto/listar', $data, FALSE);
 	}
 	public function editar(){
+		if(!$this->session->userdata('logeado_admin')){
+			$data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
+			$this->load->view('producto/editar', $data, FALSE);
+		}
 		$id = $this->input->post('id',TRUE);
 		$atributo = @$this->input->post('atributo',TRUE);
 		$valor = @$this->input->post('valor',TRUE);

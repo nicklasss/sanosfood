@@ -25,6 +25,7 @@ class Admin_model extends CI_Model {
         $row = $query->row();
 
         if($row->clave== sha1(sha1($usuario).'sal sanosfood'.sha1($clave))){
+            $this->session->set_userdata('logeado_admin',true);
             $this->session->set_userdata('usuario',$usuario);
             $this->session->set_userdata('tipo',$row->tipo);
             return true; }
