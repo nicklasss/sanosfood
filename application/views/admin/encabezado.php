@@ -18,6 +18,9 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
       body{
         padding-top: 60px;
       }
+      .escondido{
+        display: none;
+      }
     </style>
 
     <title>Fixed Top Navbar Example for Bootstrap</title>
