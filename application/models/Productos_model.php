@@ -18,12 +18,28 @@ class Productos_model extends CI_Model {
 		$this->db->from('productos');
 		$this->db->limit($cant,$cant*($pag-1));
 		$query = $this->db->get();
-		return $query->result();
+		return $query->row();
     }
     function producto($id = null){
     	$this->db->where('id', $id);
     	$query = $this->db->get('productos', 1, 0);
     	return $query->result();
+    }
+    function editar($id = NULL, $atributo = NULL, $valor = NULL){
+        if($id != NULL AND $atribut != NULL AND $valor != NULL){
+            $this->db->trans_start();
+            $object = array($atributo => $valor);
+            $this->db->where('id', $id);
+            $this->db->update('productos', $object);
+            $this->db->trans_complete();
+
+            if ($this->db->trans_status() === FALSE)
+            {
+                return array('res'=>'bad','msj'=>'Error en la edición.');
+            }else{
+                return array('res'=>'ok');
+            }
+        }
     }
 
 }
