@@ -18,12 +18,12 @@ class Productos_model extends CI_Model {
 		$this->db->from('productos');
 		$this->db->limit($cant,$cant*($pag-1));
 		$query = $this->db->get();
-		return $query->row();
+		return $query->result();
     }
     function producto($id = null){
     	$this->db->where('id', $id);
     	$query = $this->db->get('productos', 1, 0);
-    	return $query->result();
+    	return $query->row();
     }
     function editar($id = NULL, $atributo = NULL, $valor = NULL){
         if($id != NULL AND $atribut != NULL AND $valor != NULL){
