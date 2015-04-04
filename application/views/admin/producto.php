@@ -46,6 +46,7 @@ $(document).ready(function() {
 });
 
 function guardar (atributo, valor) {
+  var retorno = false;
   $.ajax({                                               // envio de los datos
     url: "<?php print base_url();?>producto/editar",
     context: document.body,
@@ -53,10 +54,10 @@ function guardar (atributo, valor) {
     type: "POST",
     data: {id : <?php print $this->uri->segment(3);?>, atributo  : atributo, valor : valor } })
    .done(function(data) {                               // respuesta del servidor
-    if(data.res=="ok") {return true;}
-    else {alert(data.msj);
-    	return false; }
+    if(data.res=="ok") {retorno = true;}
+    else {alert(data.msj);}
     })
-   .error(function(){alert('No hay conexion'); return false;})
+   .error(function(){alert('No hay conexion');})
+   return retorno;
 }
 </script>
