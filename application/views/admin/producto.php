@@ -36,28 +36,27 @@ $(document).ready(function() {
 	});
 	$('.btn-guardar').click( function(event){
 		valor = $(event.target).parent().parent().find("input").val();
-		rta = guardar($(event.target).attr("data-atributo"), valor);
-		if(rta) {
-			$(event.target).parent().parent().parent().find('.mostrado').html(valor); 
-			$(event.target).parent().parent().parent().find('.mostrable').show();
-			$(event.target).parent().parent().hide();
-		}
+		rta = guardar( $(event.target).attr("data-atributo") , valor ,function(rta){
+			if(rta) {
+				$(event.target).parent().parent().parent().find('.mostrado').html(valor); 
+				$(event.target).parent().parent().parent().find('.mostrable').show();
+				$(event.target).parent().parent().hide();
+			}
+		});
 	});
 });
 
-function guardar (atributo, valor) {
-  var retorno = false;
+function guardar (atributo, valor, callback) {
   $.ajax({                                               // envio de los datos
-    url: "<?php print base_url();?>producto/editar",
-    context: document.body,
-    dataType: "json",
-    type: "POST",
-    data: {id : <?php print $this->uri->segment(3);?>, atributo  : atributo, valor : valor } })
+	    url: "<?php print base_url();?>producto/editar",
+	    context: document.body,
+	    dataType: "json",
+	    type: "POST",
+	    data: {id : <?php print $this->uri->segment(3);?>, atributo  : atributo, valor : valor } })
    .done(function(data) {                               // respuesta del servidor
-    if(data.res=="ok") {retorno = true;}
-    else {alert(data.msj);}
+    if(data.res=="ok") {callback(true)}
+    else {alert(data.msj);callback(false)}
     })
-   .error(function(){alert('No hay conexion');})
-   return retorno;
+   .error(function(){alert('No hay conexion');callback(false);})
 }
 </script>
