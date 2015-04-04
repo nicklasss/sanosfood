@@ -26,7 +26,7 @@ class Productos_model extends CI_Model {
     	return $query->row();
     }
     function editar($id = NULL, $atributo = NULL, $valor = NULL){
-        if($id != NULL AND $atribut != NULL AND $valor != NULL){
+        if($id != NULL AND $atributo != NULL AND $valor != NULL){
             $this->db->trans_start();
             $object = array($atributo => $valor);
             $this->db->where('id', $id);
