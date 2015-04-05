@@ -203,7 +203,11 @@
 	    	<div class="col-md-8">
 				<select class="form-control entrada">
 					<?php foreach ($estados as $estado) {
-						print '<option value="'.$estado->id.'">'.$estado->nombre.'</option>'; }?>
+						if ($estado->nombre == $producto->estado) {
+							print '<option value="'.$estado->id.'" selected>'.$estado->nombre.'</option>'; }
+						else {
+							print '<option value="'.$estado->nombre.'">'.$estado->nombre.'</option>'; }
+						}?>
 				</select>    		
     		</div>
 	    	<div class="col-md-4">
