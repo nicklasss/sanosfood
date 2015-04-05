@@ -18,7 +18,9 @@ class Productos_model extends CI_Model {
 		$this->db->from('productos');
 		$this->db->limit($cant,$cant*($pag-1));
 		$query = $this->db->get();
-		return $query->result();
+        $data['cant'] = $query->num_rows();
+        $data['productos'] = $query->result();
+		return $data;
     }
     function producto($id = null){
     	$this->db->where('id', $id);

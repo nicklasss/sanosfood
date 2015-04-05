@@ -11,7 +11,7 @@ class Producto extends CI_Controller {
 		$cant = @$this->input->post('cant');
 		$pagina = @$this->input->post('pagina');
 		$this->load->model('Productos_model');
-		$data['resultado'] = $this->Productos_model->listar($cant,$pagina);
+		$data = $this->Productos_model->listar($cant,$pagina);
 		$this->load->view('producto/listar', $data, FALSE);
 	}
 	public function editar(){

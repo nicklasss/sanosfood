@@ -32,7 +32,7 @@ class Admin extends CI_Controller {
 			$data['estados'] = $this->Estados_model->listar();
 			$this->load->view('admin/producto', $data, FALSE);
 		}else{
-			$data['productos'] = $this->Productos_model->listar();
+			$data = $this->Productos_model->listar();
 			$this->load->view('admin/productos',$data,FALSE);
 		}
 		$this->load->view('admin/piedepagina');

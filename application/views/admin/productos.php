@@ -19,8 +19,8 @@
                                 <div class="dataTables_length">
                                 <label>Show 
                                     <select id="select-cant" aria-controls="dataTables-example" class="form-control input-sm">
-                                        <option value="1">10</option>
-                                        <option value="2">25</option>
+                                        <option value="10">10</option>
+                                        <option value="25">25</option>
                                         <option value="50">50</option>
                                         <option value="100">100</option>
                                     </select> entries</label>
@@ -61,25 +61,17 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-                                    <ul class="pagination">
-                                        <li class="paginate_button previous disabled" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_previous">
-                                            <a href="#">Previous</a>
-                                        </li>
+                                    <ul class="pagination" id="paginas">
                                         <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
                                             <a href="#">1</a>
                                         </li>
-                                        <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                            <a href="#">2</a>
-                                        </li>
-                                        <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                            <a href="#">3</a>
-                                        </li>
-                                        <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                            <a href="#">4</a>
-                                        </li>
-                                        <li class="paginate_button next" aria-controls="dataTables-example" tabindex="0" id="dataTables-example_next">
-                                            <a href="#">Next</a>
-                                        </li>
+                                        <?php
+                                        for ($i=2; $i < floor($cant/10)+2; $i++) { 
+                                            print'  <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
+                                                        <a data-pag="'.$i.'" href="javascript:void(0)">'.$i.'</a>
+                                                    </li>';
+                                        }
+                                        ?>
                                     </ul>
                                 </div>
                             </div>
@@ -101,6 +93,10 @@
             cant = $("#select-cant").val();
             listar();
         });
+        $(".paginate_button a").click(function(e){
+            e.preventDefault();
+            $(e.target).attr('data-pag');
+        })
     })
     function listar(){
         $.ajax({                                               // envio de los datos
