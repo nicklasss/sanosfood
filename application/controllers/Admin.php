@@ -37,4 +37,12 @@ class Admin extends CI_Controller {
 		}
 		$this->load->view('admin/piedepagina');
 	}
+	public function caracteristicas(){
+		$data= array();
+		$this->load->view('admin/caracteristicas', $data, FALSE);
+	}
+	public function categorias(){
+		$data= array();
+		$this->load->view('admin/categorias', $data, FALSE);
+	}
 }
