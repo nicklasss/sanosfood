@@ -8,7 +8,7 @@
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
-		    	<input type="text" class="form-control" value="<?php print $producto->nombre;?>"/>
+		    	<input type="text" class="form-control entrada" value="<?php print $producto->nombre;?>"/>
     		</div>
 	    	<div class="col-md-4">
         		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="nombre">Guardar</button>
@@ -32,7 +32,7 @@
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
-		    	<input type="text" class="form-control" value="<?php print $producto->descripcion;?>"/>
+		    	<input type="text" class="form-control entrada" value="<?php print $producto->descripcion;?>"/>
     		</div>
 	    	<div class="col-md-4">
         		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="descripcion">Guardar</button>
@@ -57,7 +57,7 @@
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
-		    	<input type="text" class="form-control" value="<?php print $producto->precio;?>"/>
+		    	<input type="text" class="form-control entrada" value="<?php print $producto->precio;?>"/>
     		</div>
 	    	<div class="col-md-4">
         		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="precio">Guardar</button>
@@ -81,7 +81,7 @@
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
-		    	<input type="text" class="form-control" value="<?php print $producto->peso;?>"/>
+		    	<input type="text" class="form-control entrada" value="<?php print $producto->peso;?>"/>
     		</div>
 	    	<div class="col-md-4">
         		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="peso">Guardar</button>
@@ -105,7 +105,7 @@
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
-		    	<input type="text" class="form-control" value="<?php print $producto->largo;?>"/>
+		    	<input type="text" class="form-control entrada" value="<?php print $producto->largo;?>"/>
     		</div>
 	    	<div class="col-md-4">
         		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="largo">Guardar</button>
@@ -129,7 +129,7 @@
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
-		    	<input type="text" class="form-control" value="<?php print $producto->ancho;?>"/>
+		    	<input type="text" class="form-control entrada" value="<?php print $producto->ancho;?>"/>
     		</div>
 	    	<div class="col-md-4">
         		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="ancho">Guardar</button>
@@ -153,7 +153,7 @@
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
-		    	<input type="text" class="form-control" value="<?php print $producto->alto;?>"/>
+		    	<input type="text" class="form-control entrada" value="<?php print $producto->alto;?>"/>
     		</div>
 	    	<div class="col-md-4">
         		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="alto">Guardar</button>
@@ -177,7 +177,7 @@
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
-		    	<input type="text" class="form-control" value="<?php print $producto->existencias;?>"/>
+		    	<input type="text" class="form-control entrada" value="<?php print $producto->existencias;?>"/>
     		</div>
 	    	<div class="col-md-4">
         		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="existencias">Guardar</button>
@@ -201,7 +201,11 @@
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
-		    	<input type="text" class="form-control entrada" value="<?php print $producto->estado;?>"/>
+				<select class="form-control entrada">
+					<?php foreach ($estados as $estado) {
+						print '<option value="'.$estado->id.'">'.$estado->nombre.'</option>';
+					}?>
+				</select>    		
     		</div>
 	    	<div class="col-md-4">
         		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="estado">Guardar</button>
