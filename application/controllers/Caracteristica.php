@@ -14,7 +14,7 @@ class Caracteristica extends CI_Controller {
 		$id = $this->input->post('id',TRUE);
 		$atributo = @$this->input->post('atributo',TRUE);
 		$valor = @$this->input->post('valor',TRUE);
-		$this->load->model('Caracteristica_model');
+		$this->load->model('Caracteristicas_model');
 		$data['resultado'] = $this->Caracteristica_model->editar($id,$atributo,$valor);
 		$this->load->view('caracteristica/editar', $data, FALSE);
 	}
