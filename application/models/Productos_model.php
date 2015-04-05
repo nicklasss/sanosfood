@@ -23,11 +23,7 @@ class Productos_model extends CI_Model {
     function producto($id = null){
     	$this->db->where('id', $id);
     	$query = $this->db->get('productos', 1, 0);
-        $row = $query->row();
-        $this->db->where('id', $row->estado);
-        $estado = $this->db->get('estados', 1, 0);
-        $row->estado = $estado->row()->nombre;
-    	return $row;
+    	return $query->row();
     }
     function editar($id = NULL, $atributo = NULL, $valor = NULL){
         if($id != NULL AND $atributo != NULL AND $valor != NULL){
