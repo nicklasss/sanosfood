@@ -77,7 +77,7 @@ $(document).ready(function() {
 
 function guardar (id, atributo, valor, callback) {
   $.ajax({                                               // envio de los datos
-	    url: "<?php print base_url();?>caracteristicas/editar",
+	    url: "<?php print base_url();?>caracteristica/editar",
 	    context: document.body,
 	    dataType: "json",
 	    type: "POST",
