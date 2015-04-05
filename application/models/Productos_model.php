@@ -28,7 +28,13 @@ class Productos_model extends CI_Model {
     function editar($id = NULL, $atributo = NULL, $valor = NULL){
         if($id != NULL AND $atributo != NULL AND $valor != NULL){
             $this->db->trans_start();
-            $object = array($atributo => $valor);
+            if($atributo=='nombre'){
+                $slug = url_title($valor, 'dash', true);
+                $object = array($atributo => $valor,
+                                'slug' => $slug);
+            }else{
+                $object = array($atributo => $valor);
+            }
             $this->db->where('id', $id);
             $this->db->update('productos', $object);
             $this->db->trans_complete();
