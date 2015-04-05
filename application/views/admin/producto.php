@@ -32,7 +32,7 @@
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
-		    	<input type="text" class="form-control entrada" value="<?php print $producto->descripcion;?>"/>
+		    	<textarea type="text" class="form-control entrada"><?php print $producto->descripcion;?></textarea>
     		</div>
 	    	<div class="col-md-4">
         		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="descripcion">Guardar</button>
