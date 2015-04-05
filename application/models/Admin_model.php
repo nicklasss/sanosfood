@@ -9,8 +9,7 @@ class Admin_model extends CI_Model {
         parent::__construct();
     }
     
-    function validarUsuario()
-    {
+    function validarUsuario() {
         $usuario = @$this->input->post('usuario',TRUE);
         $clave = @$this->input->post('clave',TRUE);
         if(strlen($clave)<6 or strlen($usuario)<4){
@@ -24,7 +23,7 @@ class Admin_model extends CI_Model {
 
         $row = $query->row();
 
-        if($row->clave== sha1(sha1($usuario).'sal sanosfood'.sha1($clave))){
+        if($row->clave== sha1(sha1($usuario).'sal sanosfood'.sha1($clave))) {
             $this->session->set_userdata('logeado_admin',true);
             $this->session->set_userdata('usuario',$usuario);
             $this->session->set_userdata('tipo',$row->tipo);

@@ -32,21 +32,15 @@ class Productos_model extends CI_Model {
             $this->db->trans_start();
             if($atributo=='nombre'){
                 $slug = url_title($valor, 'dash', true);
-                $object = array($atributo => $valor,
-                                'slug' => $slug);
-            }else{
-                $object = array($atributo => $valor);
-            }
+                $object = array($atributo => $valor, 'slug' => $slug); }
+            else {$object = array($atributo => $valor); }
             $this->db->where('id', $id);
             $this->db->update('productos', $object);
             $this->db->trans_complete();
 
-            if ($this->db->trans_status() === FALSE)
-            {
-                return array('res'=>'bad','msj'=>'Error en la edición.');
-            }else{
-                return array('res'=>'ok');
-            }
+            if ($this->db->trans_status() === FALSE) {
+                return array('res'=>'bad','msj'=>'Error en la edición.'); }
+            else {return array('res'=>'ok'); }
         }
     }
 

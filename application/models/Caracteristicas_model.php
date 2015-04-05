@@ -20,12 +20,9 @@ class Caracteristicas_model extends CI_Model {
             $this->db->update('caracteristicas', $object);
             $this->db->trans_complete();
 
-            if ($this->db->trans_status() === FALSE)
-            {
-                return array('res'=>'bad','msj'=>'Error en la edición.');
-            }else{
-                return array('res'=>'ok');
-            }
+            if ($this->db->trans_status() === FALSE) {
+                return array('res'=>'bad','msj'=>'Error en la edición.'); }
+            else {return array('res'=>'ok'); }
         }
     }
 
