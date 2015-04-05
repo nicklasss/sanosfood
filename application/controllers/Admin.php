@@ -38,11 +38,15 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/piedepagina');
 	}
 	public function caracteristicas(){
+		$this->load->view('admin/encabezado');
 		$data= array();
 		$this->load->view('admin/caracteristicas', $data, FALSE);
+		$this->load->view('admin/piedepagina');
 	}
 	public function categorias(){
+		$this->load->view('admin/encabezado');
 		$data= array();
 		$this->load->view('admin/categorias', $data, FALSE);
+		$this->load->view('admin/piedepagina');
 	}
 }
