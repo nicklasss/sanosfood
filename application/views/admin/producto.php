@@ -1,5 +1,5 @@
 
-<h1 >PRODUCTOS</h1>
+<h2>PRODUCTOS</h2>
 <form class="form-horizontal" role="form">
 
 <!------------------------------------- edicion del campo NOMBRE --> 
@@ -201,7 +201,7 @@
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
-		    	<input type="text" class="form-control" value="<?php print $producto->estado;?>"/>
+		    	<input type="text" class="form-control entrada" value="<?php print $producto->estado;?>"/>
     		</div>
 	    	<div class="col-md-4">
         		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="estado">Guardar</button>
@@ -232,7 +232,7 @@ $(document).ready(function() {
 		$(event.target).parent().parent().hide();
 	});
 	$('.btn-guardar').click( function(event){
-		valor = $(event.target).parent().parent().find("input").val();
+		valor = $(event.target).parent().parent().find('.entrada').val();
 		rta = guardar( $(event.target).attr("data-atributo") , valor ,function(rta){
 			if(rta) {
 				$(event.target).parent().parent().parent().find('.mostrado').html(valor); 
