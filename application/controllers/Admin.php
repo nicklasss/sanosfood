@@ -40,14 +40,14 @@ class Admin extends CI_Controller {
 	public function caracteristicas(){
 		$this->load->view('admin/encabezado');
 		$this->load->model('Caracteristicas_model');
-		$data= $this->Caracteristicas_model->listar();
+		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
 		$this->load->view('admin/caracteristicas', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
 	public function categorias(){
 		$this->load->view('admin/encabezado');
 		$this->load->model('Categorias_model');
-		$data= $this->Categorias_model->listar();
+		$data['categorias'] = $this->Categorias_model->listar();
 		$this->load->view('admin/categorias', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
