@@ -4,7 +4,7 @@
 
 <!------------------------------------- edicion del campo NOMBRE --> 
   <div class="form-group" style="border-bottom: 1px solid lightgrey">
-	<label for="ejemplo_email_3" class="col-md-2 control-label">Nombre:</label>
+	<label class="col-md-2 control-label">Nombre:</label>
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
@@ -28,7 +28,7 @@
 
 <!------------------------------------- edicion del campo DESCRIPCION --> 
   <div class="form-group" style="border-bottom: 1px solid lightgrey">
-	<label for="ejemplo_email_3" class="col-md-2 control-label">Descripción:</label>
+	<label class="col-md-2 control-label">Descripción:</label>
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
@@ -53,7 +53,7 @@
 
 <!------------------------------------- edicion del campo PRECIO --> 
   <div class="form-group" style="border-bottom: 1px solid lightgrey">
-	<label for="ejemplo_email_3" class="col-md-2 control-label">Precio:</label>
+	<label class="col-md-2 control-label">Precio:</label>
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
@@ -77,7 +77,7 @@
 
 <!------------------------------------- edicion del campo PESO --> 
   <div class="form-group" style="border-bottom: 1px solid lightgrey">
-	<label for="ejemplo_email_3" class="col-md-2 control-label">Peso:</label>
+	<label class="col-md-2 control-label">Peso:</label>
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
@@ -101,7 +101,7 @@
 
 <!------------------------------------- edicion del campo LARGO --> 
   <div class="form-group" style="border-bottom: 1px solid lightgrey">
-	<label for="ejemplo_email_3" class="col-md-2 control-label">Largo:</label>
+	<label class="col-md-2 control-label">Largo:</label>
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
@@ -125,7 +125,7 @@
 
 <!------------------------------------- edicion del campo ANCHO --> 
   <div class="form-group" style="border-bottom: 1px solid lightgrey">
-	<label for="ejemplo_email_3" class="col-md-2 control-label">Ancho:</label>
+	<label class="col-md-2 control-label">Ancho:</label>
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
@@ -149,7 +149,7 @@
 
 <!------------------------------------- edicion del campo ALTO --> 
   <div class="form-group" style="border-bottom: 1px solid lightgrey">
-	<label for="ejemplo_email_3" class="col-md-2 control-label">Alto:</label>
+	<label class="col-md-2 control-label">Alto:</label>
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
@@ -173,7 +173,7 @@
 
 <!------------------------------------- edicion del campo EXISTENCIAS --> 
   <div class="form-group" style="border-bottom: 1px solid lightgrey">
-	<label for="ejemplo_email_3" class="col-md-2 control-label">Existencias:</label>
+	<label class="col-md-2 control-label">Existencias:</label>
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
@@ -197,14 +197,13 @@
 
   <!------------------------------------- edicion del campo ESTADO --> 
   <div class="form-group" style="border-bottom: 1px solid lightgrey">
-	<label for="ejemplo_email_3" class="col-md-2 control-label">Estado:</label>
+	<label class="col-md-2 control-label">Estado:</label>
     <div class="col-md-10 contenedor">
 	    <div class="editable row escondido">
 	    	<div class="col-md-8">
 				<select class="form-control entrada">
 					<?php foreach ($estados as $estado) {
-						print '<option value="'.$estado->id.'">'.$estado->nombre.'</option>';
-					}?>
+						print '<option value="'.$estado->id.'">'.$estado->nombre.'</option>'; }?>
 				</select>    		
     		</div>
 	    	<div class="col-md-4">
