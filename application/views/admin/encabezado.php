@@ -54,7 +54,13 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="<?php print base_url(); ?>admin/productos">Productos</a></li>
-            <li><a href="#contact">Usuarios</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usuarios <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Administradores</a></li>
+                <li><a href="#">Usuarios</a></li>
+              </ul>
+            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pedidos <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -65,8 +71,9 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
                 <li><a href="#">Todos</a></li>
               </ul>
             </li>
-            <li><a href="#">Características</a></li>
-            <li><a href="#">Categorías</a></li>
+            <li><a href="<?php print base_url(); ?>admin/caracteristicas">Características</a></li>
+            <li><a href="<?php print base_url(); ?>admin/categorias">Categorías</a></li>
+            <li><a href="<?php print base_url(); ?>admin/estados">Estados</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
