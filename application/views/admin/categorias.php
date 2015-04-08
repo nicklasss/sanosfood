@@ -30,7 +30,7 @@ print '
 	</div>
    	<div class="col-md-2">
    		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-   		<button type="button" class="btn btn-xs btn-danger btn-eliminar"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
+   		<button type="button" class="btn btn-xs btn-danger btn-eliminar" data-id="'.$categoria->id.'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
    	</div>	
   </div>
 </div>';
