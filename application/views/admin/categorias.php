@@ -1,5 +1,5 @@
 <h2>CATEGORIAS</h2>
-<form class="form-horizontal" role="form">
+<form class="form-horizontal form-contenedor" role="form">
 
 <div class="row" style="border-bottom: 3px solid #999">
 	<div class="col-md-3"><h4><strong>Nombre</strong></h4></div>
@@ -76,17 +76,17 @@ $(document).ready(function() {
 	   }
 	});
 
-	$('.btn-editar').click( function(event){
+	$('.form-contenedor').on('click','.btn-editar',function(event){
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
 	});
 
-	$('.btn-cancelar').click( function(event){
+	$('.form-contenedor').on('click','.btn-cancelar',function(event){
 		$(event.target).parent().parent().parent().find('.mostrable').show();
 		$(event.target).parent().parent().parent().find('.editable').hide();
 	});
 
-	$('.btn-eliminar').click( function(event){
+	$('.form-contenedor').on('click','.btn-eliminar',function(event){
 		rta = confirm("presione ACEPTAR para confirmar borrado, o CANCEL para no borrar");
 		if (rta) {
 		   rta = eliminar( $(event.target).attr("data-id") ,function(rta){
@@ -114,8 +114,7 @@ $(document).ready(function() {
 			});
 		};
 	});
-
-	$('.btn-guardar').click( function(event){
+	$('.form-contenedor').on('click','.btn-guardar',function(event){
 		enombre = $(event.target).parent().parent().parent().find('.entnombre').val();
 		snombre = $(event.target).parent().parent().parent().find('.salnombre').html();
 		if(enombre !== snombre) {
