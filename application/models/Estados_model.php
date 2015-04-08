@@ -24,6 +24,28 @@ class Estados_model extends CI_Model {
             else { return array('res'=>'ok'); }
         }
     }
+    function crear($nombre = null, $descripcion = null){
+        if($nombre == NULL OR $descripcion == null){
+            return array('res'=>'bad','msj'=>'Error en la creación.'); }
+
+        if(strlen($nombre)<3){
+            return array('res'=>'bad','msj'=>'Ingresa un nombre adecuado'); }
+
+        $this->db->where('nombre', $nombre);
+        if($this->db->count_all_results('estados')>0){
+            return array('res'=>'bad','msj'=>'Ya existe un estado con este nombre'); }
+
+        $object = array('nombre' => $nombre, 'descripcion' => $descripcion);
+        $this->db->insert('estados', $object);
+        return array('res'=>'ok','id'=>$this->db->insert_id());
+    }
+    function eliminar($id = null){
+        if($id == null){
+            return array('res'=>'bad','msj'=>'Error en la inserción.'); }
+        $this->db->where('id', $id);
+        $this->db->delete('estados');
+        return array('res'=>'ok');
+    }
 }
 
 /* End of file Estados_model.php */
