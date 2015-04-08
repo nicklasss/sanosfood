@@ -38,7 +38,7 @@ print '
 
 
 
-<div class="row registro ultimo" style="border-top: 3px solid #999">
+<div class="row ultimo" style="border-top: 3px solid #999">
   <div class="editable escondido">
  	<div class="col-md-3 contenedor">
     	<input type="text" class="form-control entnombre" placeholder="Nombre"/>
@@ -110,7 +110,7 @@ $(document).ready(function() {
 	});
 
 	$('.btn-agregar').click( function(event){
-		$(".ultimo").append('<h2>nuevo registro</h2>')
+		$(".registro").last().append('<h2>nuevo registro</h2>')
 		$(event.target).parent().parent().parent().find('.mostrable').show();
 		$(event.target).parent().parent().parent().find('.editable').hide();
 	
