@@ -10,30 +10,30 @@
 <?php foreach ($categorias as $categoria) {
 print '
 <div class="row registro">
-  <div class="editable escondido">
- 	<div class="col-md-3 contenedor">
-    	<input type="text" class="form-control entnombre" value="'.$categoria->nombre.'"/>
+	<div class="editable escondido">
+		<div class="col-md-3 contenedor">
+	    	<input type="text" class="form-control entnombre" value="'.$categoria->nombre.'"/>
+		</div>
+	 	<div class="col-md-7 contenedor">
+	    	<textarea type="text" class="form-control entdescripcion">'.$categoria->descripcion.'</textarea>
+		</div>
+	 	<div class="col-md-2 contenedor">
+	  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'.$categoria->id.'">Guardar</button>
+	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+	  	</div>	
 	</div>
- 	<div class="col-md-7 contenedor">
-    	<textarea type="text" class="form-control entdescripcion">'.$categoria->descripcion.'</textarea>
-	</div>
- 	<div class="col-md-2 contenedor">
-   		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'.$categoria->id.'">Guardar</button>
-   		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-   	</div>	
-  </div>
-  <div class="mostrable">
-	<div class="col-md-3">
-    	<h4 class="salnombre" value="'.$categoria->nombre.'">'.$categoria->nombre.'</h4>
-    </div>
- 	<div class="col-md-7">
-    	<h4 class="saldescripcion">'.$categoria->descripcion.'</h4>
-	</div>
+  	<div class="mostrable">
+		<div class="col-md-3">
+    		<h4 class="salnombre" value="'.$categoria->nombre.'">'.$categoria->nombre.'</h4>
+    	</div>
+ 		<div class="col-md-7">
+    		<h4 class="saldescripcion">'.$categoria->descripcion.'</h4>
+		</div>
    	<div class="col-md-2">
    		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
    		<button type="button" class="btn btn-xs btn-danger btn-eliminar" data-id="'.$categoria->id.'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
    	</div>	
-  </div>
+  	</div>
 </div>';
 }?>
 
@@ -103,9 +103,6 @@ $(document).ready(function() {
 	});
 
 	$('.btn-agregar').click( function(event){
-		$(".registro").last().append('<h2>nuevo registro</h2>')
-		$(event.target).parent().parent().parent().find('.mostrable').show();
-		$(event.target).parent().parent().parent().find('.editable').hide();
 		enombre = $(event.target).parent().parent().parent().find('.entnombre').val();
 		edescripcion = $(event.target).parent().parent().parent().find('.entdescripcion').val();
 		if(enombre !== "" && edescripcion !== "") {
@@ -113,16 +110,38 @@ $(document).ready(function() {
 			   if(rta) {
 				  $(event.target).parent().parent().parent().find('.salnombre').html(enombre); 
 				  $(event.target).parent().parent().parent().find('.saldescripcion').html(edescripcion); 
+					$(".registro").last().append(
+						'<div class="row registro">'+
+						'	<div class="editable escondido">'+
+						'		<div class="col-md-3 contenedor">'+
+						'	    	<input type="text" class="form-control entnombre" value="'+ enombre +'"/>'+
+						'		</div>'+
+						'	 	<div class="col-md-7 contenedor">'+
+						'	    	<textarea type="text" class="form-control entdescripcion">'+ edescripcion +'</textarea>'+
+						'		</div>'+
+						'	 	<div class="col-md-2 contenedor">'+
+						'	  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'+ data.id +'">Guardar</button>'+
+						'	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>'+
+						'	  	</div>'+
+						'	</div>'+
+						'  	<div class="mostrable">'+
+						'		<div class="col-md-3">'+
+						'    		<h4 class="salnombre" value="'+ enombre +'">'+ enombre +'</h4>'+
+						'    	</div>'+
+						' 		<div class="col-md-7">'+
+						'    		<h4 class="saldescripcion">'+ edescripcion +'</h4>'+
+						'		</div>'+
+						'   	<div class="col-md-2">'+
+						'   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>'+
+						'   		<button type="button" class="btn btn-xs btn-danger btn-eliminar" data-id="'+ data.id +'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>'+
+						'   	</div>'+
+						'  </div>'+
+						'</div>');
+					$(event.target).parent().parent().parent().find('.mostrable').show();
+					$(event.target).parent().parent().parent().find('.editable').hide();
 			   };
-		   });
+			});
 		};
-
-
-
-
-
-
-
 	});
 
 	$('.btn-guardar').click( function(event){
