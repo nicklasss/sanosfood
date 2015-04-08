@@ -135,8 +135,8 @@ $(document).ready(function() {
 			   };
 		   });
 		};
+		$(event.target).parent().parent().parent().find('.editable').hide();
 		$(event.target).parent().parent().parent().find('.mostrable').show();
-		$(event.target).parent().parent().hide();
 	});
 
 });
