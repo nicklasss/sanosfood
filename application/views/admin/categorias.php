@@ -1,5 +1,6 @@
 <h2>CATEGORIAS</h2>
 <form class="form-horizontal" role="form">
+
 <div class="row" style="border-bottom: 3px solid #999">
 	<div class="col-md-3"><h4><strong>Nombre</strong></h4></div>
 	<div class="col-md-6"><h4><strong>Descripción</strong></h4></div>
@@ -99,21 +100,22 @@ $(document).ready(function() {
 	$('.btn-nuevo').click( function(event){
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
-
-
-
-
-
-
-
-
 	});
 
 	$('.btn-agregar').click( function(event){
 		$(".registro").last().append('<h2>nuevo registro</h2>')
 		$(event.target).parent().parent().parent().find('.mostrable').show();
 		$(event.target).parent().parent().parent().find('.editable').hide();
-	
+		enombre = $(event.target).parent().parent().parent().find('.entnombre').val();
+		edescripcion = $(event.target).parent().parent().parent().find('.entdescripcion').val();
+		if(enombre !== "" && edescripcion !== "") {
+		   rta = crear( enombre , edescripcion , function(rta){
+			   if(rta) {
+				  $(event.target).parent().parent().parent().find('.salnombre').html(enombre); 
+				  $(event.target).parent().parent().parent().find('.saldescripcion').html(edescripcion); 
+			   };
+		   });
+		};
 
 
 
@@ -175,4 +177,19 @@ function eliminar (id, callback) {
 	  })
 	 .error(function(){alert('No hay conexion');callback(false);})
 }
+
+function crear (nombre, descripcion, callback) {
+	$.ajax({                                               // envio de los datos
+	  url: "<?php print base_url();?>categoria/crear",
+	  context: document.body,
+	  dataType: "json",
+	  type: "POST",
+	  data: {nombre : nombre, descripcion : descripcion } })
+	 .done(function(data) {                               // respuesta del servidor
+	  if(data.res=="ok") {callback(true)}
+	  else {alert(data.msj);callback(false)}
+	  })
+	 .error(function(){alert('No hay conexion');callback(false);})
+}
+
 </script>
