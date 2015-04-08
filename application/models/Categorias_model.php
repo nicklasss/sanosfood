@@ -38,7 +38,7 @@ class Categorias_model extends CI_Model {
 
         $object = array('nombre' => $nombre, 'descripcion' => $descripcion);
         $this->db->insert('categorias', $object);
-        return array('res'=>'ok');
+        return array('res'=>'ok','id'=>$this->db->insert_id());
     }
     function eliminar($id = null){
         if($id == null){
