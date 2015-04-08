@@ -98,6 +98,8 @@ $(document).ready(function() {
 	});
 
 	$('.btn-nuevo').click( function(event){
+		$(event.target).parent().parent().parent().find('.entnombre').val("");
+		$(event.target).parent().parent().parent().find('.entdescripcion').val("");
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
 	});
