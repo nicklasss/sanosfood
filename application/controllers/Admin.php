@@ -64,4 +64,11 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/estados', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
+	public function marcas() {
+		$this->load->view('admin/encabezado');
+		$this->load->model('Marcas_model');
+		$data['marcas'] = $this->Marcas_model->listar();
+		$this->load->view('admin/marcas', $data, FALSE);
+		$this->load->view('admin/piedepagina');
+	}
 }
