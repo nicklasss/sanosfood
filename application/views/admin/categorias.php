@@ -59,7 +59,7 @@ print '
    		<button type="button" class="btn btn-xs btn-success btn-nuevo"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
    	</div>	
   </div>
-</div>'
+</div>
 
 
 
