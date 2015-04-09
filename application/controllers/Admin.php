@@ -22,6 +22,11 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/home');
 		$this->load->view('admin/piedepagina');
 	}
+	public function crearproducto(){
+		$this->load->view('admin/encabezado');
+		$this->load->view('admin/crearproducto');
+		$this->load->view('admin/piedepagina');
+	}
 
 	public function productos($id = null) {
 		$this->load->view('admin/encabezado');
