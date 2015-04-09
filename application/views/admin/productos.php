@@ -63,12 +63,12 @@
                                 <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
                                     <ul class="pagination" id="paginas">
                                         <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
-                                            <a href="#">1</a>
+                                            <a href="javascript:void(0)" data-pag="1" class="link-a-pagina">1</a>
                                         </li>
                                         <?php
                                         for ($i=2; $i < floor($cant/10)+2; $i++) { 
                                             print'  <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                                        <a data-pag="'.$i.'" href="javascript:void(0)">'.$i.'</a>
+                                                        <a data-pag="'.$i.'" class="link-a-pagina" href="javascript:void(0)">'.$i.'</a>
                                                     </li>';
                                         }
                                         ?>
@@ -91,9 +91,10 @@
     $(document).ready(function(){
         $("#select-cant").change(function(){
             cant = $("#select-cant").val();
+            pagina = 1;
             listar();
         });
-        $(".paginate_button a").click(function(e){
+        $("#paginas").on('click','.link-a-pagina',function(e){
             e.preventDefault();
             pagina = $(e.target).attr('data-pag');
             listar();
@@ -122,8 +123,42 @@
                                 '   </tr>';
                     $("#lista").html(resultado);
                 };
+                resultado = '';
+                for (var i = 0; i < Math.floor((data.cant-1)/cant)+1; i++) {
+                    resultado += '  <li class="paginate_button ';
+                    if((i+1)==pagina){
+                        resultado+= ' active';
+                    }
+                    resultado += '" aria-controls="dataTables-example" tabindex="0">'+
+                                        '<a data-pag="'+(i+1)+'" class="link-a-pagina" href="javascript:void(0)">'+(i+1)+'</a>'+
+                                    '</li>';
+                };
+                $("#paginas").html(resultado);
               }
             else{alert(data.msj) } })          
             .error(function(){alert('error en el servidor'); });  // error generado
+    }
+    function buscar(query){
+        $.ajax({
+            url: "<?php print base_url();?>producto/buscar",
+            context: document.body,
+            dataType: "json",
+            type: "POST",
+            data: {
+                    query : query
+                }
+        })
+        .done(function(data){
+            if(data.res=="ok"){
+
+            }else{
+                alert('Sin resultados')
+            }
+        })
+        .error(function(){
+            alert('Sin resultados')
+        })
+
+        });
     }
 </script>

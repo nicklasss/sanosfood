@@ -9,6 +9,7 @@ class Productos_model extends CI_Model {
     }
 
     function listar($cant = 10, $pag = 1, $cat = null, $car = null){
+        $data['cant'] = $this->db->count_all_results('productos');
     	if($cat!= null){
     			}
 
@@ -18,7 +19,6 @@ class Productos_model extends CI_Model {
 		$this->db->from('productos');
 		$this->db->limit($cant,$cant*($pag-1));
 		$query = $this->db->get();
-        $data['cant'] = $query->num_rows();
         $data['productos'] = $query->result();
 		return $data;
     }
