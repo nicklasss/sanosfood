@@ -46,6 +46,36 @@
   	</div>
 </div>
 
+<!------------------------------------- edicion del campo MARCA --> 
+<div class="row registro" style="border-bottom: 1px solid lightgrey">
+	<label class="col-md-2 control-label">Marca:</label>
+	<div class="editable escondido">
+		<div class="col-md-8 contenedor">
+			<select class="form-control entvalor">
+				<?php foreach ($marcas as $marca) {
+					if ($marca->nombre == $producto->marca) {
+						print '<option value="'.$marca->id.'" selected>'.$marca->nombre.'</option>'; }
+					else {
+						print '<option value="'.$marca->nombre.'">'.$marca->nombre.'</option>'; }
+					}?>
+			</select>    		
+		</div>
+	 	<div class="col-md-2 contenedor">
+	  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="marca">Guardar</button>
+	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+	  	</div>	
+	</div>
+  	<div class="mostrable">
+		<div class="col-md-8">
+    		<h4 class="salvalor"><?php print $producto->marca;?></h4>
+    	</div>
+   	<div class="col-md-2">
+   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+   	</div>	
+  	</div>
+</div>
+
+
 <!------------------------------------- edicion del campo PRECIO --> 
 <div class="row registro" style="border-bottom: 1px solid lightgrey">
 	<label class="col-md-2 control-label">Precio:</label>
