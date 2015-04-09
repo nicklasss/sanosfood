@@ -24,7 +24,8 @@ class Admin extends CI_Controller {
 	}
 	public function crearproducto(){
 		$this->load->view('admin/encabezado');
-		$this->load->view('admin/crearproducto');
+		$data['estados'] = $this->Estados_model->listar();
+		$this->load->view('admin/crearproducto',$data,FALSE);
 		$this->load->view('admin/piedepagina');
 	}
 

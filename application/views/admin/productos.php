@@ -95,8 +95,9 @@
         });
         $(".paginate_button a").click(function(e){
             e.preventDefault();
-            $(e.target).attr('data-pag');
-        })
+            pagina = $(e.target).attr('data-pag');
+            listar();
+        });
     })
     function listar(){
         $.ajax({                                               // envio de los datos
