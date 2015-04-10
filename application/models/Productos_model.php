@@ -25,7 +25,11 @@ class Productos_model extends CI_Model {
     function producto($id = null){
     	$this->db->where('id', $id);
     	$query = $this->db->get('productos', 1, 0);
-    	return $query->row();
+        $producto = $query->row();
+        $this->db->select('nombre');
+        $this->db->where('id', $producto->id_marca);
+        $producto->marca = $this->db->get('marcas', 1, 0)->row()->nombre;
+    	return $producto;
     }
     function editar($id = NULL, $atributo = NULL, $valor = NULL){
         if($id != NULL AND $atributo != NULL AND $valor != NULL){
