@@ -26,6 +26,8 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/encabezado');
 		$this->load->model('Estados_model');
 		$data['estados'] = $this->Estados_model->listar();
+		$this->load->model('Marcas_model');
+		$data['marcas'] = $this->Marcas_model->listar();
 		$this->load->view('admin/crearproducto',$data,FALSE);
 		$this->load->view('admin/piedepagina');
 	}
@@ -35,6 +37,8 @@ class Admin extends CI_Controller {
 		$this->load->model('Productos_model');
 		if($id != null) { 
 			$this->load->model('Estados_model');
+			$this->load->model('Marcas_model');
+			$data['marcas'] = $this->Marcas_model->listar();
 			$data['producto'] = $this->Productos_model->producto($id);
 			$data['estados'] = $this->Estados_model->listar();
 			$this->load->view('admin/producto', $data, FALSE); }
