@@ -239,10 +239,13 @@
 
 
 
+
 <script type="text/javascript">
 $(document).ready(function() { 
 
 	$('.form-contenedor').on('click','.btn-editar',function(event){
+		svalor = $(event.target).parent().parent().parent().find('.salvalor').html();
+		$(event.target).parent().parent().parent().find('.entvalor').val(svalor);
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
 	});
@@ -255,6 +258,35 @@ $(document).ready(function() {
 	$('.form-contenedor').on('click','.btn-guardar',function(event){
 		evalor = $(event.target).parent().parent().parent().find('.entvalor').val();
 		svalor = $(event.target).parent().parent().parent().find('.salvalor').html();
+		campo = $(event.target).attr("data-atributo");
+
+		if (campo == "nombre") {
+			if (evalor == ""){ alert("el NOMBRE del producto no puede estar vacio"); return false;}
+		}
+		if (campo == "descripcion") {
+			if (evalor == ""){ alert("la DESCRIPCION del producto no puede estar vacia"); return false;}
+		}
+		if (campo == "precio") { 
+			if (evalor == "") {alert("el PRECIO del producto no puede estar vaciO"); return false;}
+			if(validarnumerodecimal(evalor, "PRECIO")  == false) {return false;}
+		}
+		if (campo == "peso") {
+			if(evalor != "") {if(validarnumeroentero(evalor, "PESO")  == false) {return false;}}
+		}
+		if (campo == "largo") {
+			if(evalor != "") {if(validarnumeroentero(evalor, "LARGO")  == false) {return false;}}
+		}
+		if (campo == "ancho") {
+			if(evalor != "") {if(validarnumeroentero(evalor, "ANCHO")  == false) {return false;}}
+		}
+		if (campo == "alto") {
+			if(evalor != "") {if(validarnumeroentero(evalor, "ALTO")  == false) {return false;}}
+		}
+		if (campo == "existencias") {
+			if(validarnumeroentero(evalor, "EXISTENCIAS")  == false) {return false;}
+		}
+
+
 		if(evalor !== svalor) {
 		   rta = guardar( $(event.target).attr("data-atributo") , evalor ,function(rta){
 				if(rta) {
@@ -263,8 +295,11 @@ $(document).ready(function() {
 					$(event.target).parent().parent().parent().find('.editable').hide();
 			   };
 		   });
+		}else {
+			$(event.target).parent().parent().parent().find('.salvalor').html(evalor); 
+			$(event.target).parent().parent().parent().find('.mostrable').show();
+			$(event.target).parent().parent().parent().find('.editable').hide(); 
 		};
-
 	});
 });
 
@@ -281,6 +316,30 @@ function guardar (atributo, valor, callback) {
     else {alert(data.msj);callback(false)}
     })
    .error(function(){alert('No hay conexion');callback(false);})
+}
+
+function validarnumerodecimal (valor, campo) {
+	var yavapunto = 0;
+	for(var i = 0; i<valor.length;i++){
+		if(valor.charCodeAt(i) == 46 && yavapunto == 1) {
+			alert(campo + " debe tener solamente un punto decimal");
+			return false;
+		}
+		if(valor.charCodeAt(i) == 46) {yavapunto = 1;}
+		if((valor.charCodeAt(i) < 48 || valor.charCodeAt(i) > 57) && valor.charCodeAt(i) != 46) {
+			alert(campo + " debe ser un número positivo, puede tener decimales");
+			return false;
+		}
+	}
+}
+
+function validarnumeroentero (valor, campo) {
+	for(var i = 0; i<valor.length;i++){
+		if(valor.charCodeAt(i)<48 || valor.charCodeAt(i)>57) {
+			alert(campo + " debe ser un número entero positivo");
+			return false;
+		}
+	}
 }
 
 </script>
