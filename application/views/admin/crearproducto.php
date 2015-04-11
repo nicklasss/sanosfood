@@ -73,19 +73,71 @@
 
 
 <div class="row registro">
-	<div class="col-md-4">
-		<div class="row registro" id="listacaracteristicas" style="border:1px solid green; widht:120px; height:100px; overflow-y:scroll">
-			<div class="col-md-8">caracteristica 1</div>
-			<div class="col-md-2">
-				<label  class= "radio-inline" > 
-					<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1">
-				</label> 
-  			</div>
-			<div class="col-md-2">
-				<label  class= "radio-inline" > 
-					<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio2"  value= "option2">
-				</label>
-  			</div>
+	<label class="col-md-2 control-label">Caracteristicas:</label>
+	<div class="col-md-5">
+		<div class="row registro" id="listacaracteristicas">
+			<div class="col-md-12">
+				<div class="panel panel-default panel-caracteristicas">
+					<table class="table table-striped">
+			        <tbody>
+			          <tr>
+			            <th scope="row">Caracteristica 1</th>
+			            <td>
+			            	<label  class= "radio-inline" > 
+								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							</label> 
+			            </td>
+			            <td>
+			            	<label  class= "radio-inline" > 
+								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							</label> 
+						</td>
+			            <td>
+			            	<label  class= "radio-inline" > 
+								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+							</label> 
+						</td>
+			          </tr>
+			          <tr>
+			            <th scope="row">Caracteristica 1</th>
+			            <td>
+			            	<label  class= "radio-inline" > 
+								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							</label> 
+			            </td>
+			            <td>
+			            	<label  class= "radio-inline" > 
+								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							</label> 
+						</td>
+			            <td>
+			            	<label  class= "radio-inline" > 
+								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+							</label> 
+						</td>
+			          </tr>
+			          <tr>
+			            <th scope="row">Caracteristica 1</th>
+			            <td>
+			            	<label  class= "radio-inline" > 
+								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							</label> 
+			            </td>
+			            <td>
+			            	<label  class= "radio-inline" > 
+								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							</label> 
+						</td>
+			            <td>
+			            	<label  class= "radio-inline" > 
+								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+							</label> 
+						</td>
+			          </tr>
+			        </tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

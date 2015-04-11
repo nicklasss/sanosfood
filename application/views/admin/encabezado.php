@@ -21,6 +21,28 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
       .escondido{
         display: none;
       }
+      .panel-caracteristicas{
+        overflow-y:scroll;
+        height: 250px; 
+      }
+      .panel-caracteristicas .radio-inline{
+        padding-top: 0 !important;
+      }
+      div .registro{
+        margin-bottom: 5px;
+      }
+      div .registro textarea{
+        resize:vertical;
+      }
+      .registro .glyphicon-ok{
+        color:lightgreen;
+      }
+      .registro .glyphicon-remove{
+        color:red;
+      }
+      .registro .glyphicon-asterisk{
+        color:lightblue;
+      }
     </style>
 
     <title>Fixed Top Navbar Example for Bootstrap</title>

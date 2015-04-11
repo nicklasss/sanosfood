@@ -17,6 +17,9 @@ class Producto extends CI_Controller {
 		$alto = @$this->input->post('alto',TRUE);
 		$existencias = @$this->input->post('existencias',TRUE);
 		$estado = @$this->input->post('estado',TRUE);
+		$this->load->model('Productos_model');
+		$data = $this->Productos_model->crear($nombre,$descripcion,$precio,$peso,$largo,$ancho,$alto,$existencias,$estado);
+		$this->load->view('producto/crear', $data, FALSE);
 	}
 
 	public function listar(){
