@@ -8,6 +8,10 @@ class Productos_model extends CI_Model {
         parent::__construct();
     }
 
+    function crear(){
+
+    }
+
     function listar($cant = 10, $pag = 1, $cat = null, $car = null){
         $data['cant'] = $this->db->count_all_results('productos');
     	if($cat!= null){
@@ -29,6 +33,10 @@ class Productos_model extends CI_Model {
         $this->db->select('nombre');
         $this->db->where('id', $producto->id_marca);
         $producto->marca = $this->db->get('marcas', 1, 0)->row()->nombre;
+        $this->db->where('idProducto', $producto->id);
+        $producto->caracteristicas = $this->db->get('pro_car')->result();
+        $this->db->where('idProducto', $producto->id);
+        $producto->categorias = $this->db->get('pro_cat')->result();
     	return $producto;
     }
     function editar($id = NULL, $atributo = NULL, $valor = NULL){

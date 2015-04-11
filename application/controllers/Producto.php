@@ -7,6 +7,18 @@ class Producto extends CI_Controller {
 		
 	}
 
+	public function crear(){
+		$nombre = @$this->input->post('nombre',TRUE);
+		$descripcion = @$this->input->post('descripcion',TRUE);
+		$precio = @$this->input->post('precio',TRUE);
+		$peso = @$this->input->post('peso',TRUE);
+		$largo = @$this->input->post('largo',TRUE);
+		$ancho = @$this->input->post('ancho',TRUE);
+		$alto = @$this->input->post('alto',TRUE);
+		$existencias = @$this->input->post('existencias',TRUE);
+		$estado = @$this->input->post('estado',TRUE);
+	}
+
 	public function listar(){
 		$cant = @$this->input->post('cant');
 		$pagina = @$this->input->post('pagina');

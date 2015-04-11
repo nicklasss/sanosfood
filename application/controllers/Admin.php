@@ -26,6 +26,10 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/encabezado');
 		$this->load->model('Estados_model');
 		$data['estados'] = $this->Estados_model->listar();
+		$this->load->model('Caracteristicas_model');
+		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
+		$this->load->model('Categorias_model');
+		$data['categorias'] = $this->Categorias_model->listar();
 		$this->load->model('Marcas_model');
 		$data['marcas'] = $this->Marcas_model->listar();
 		$this->load->view('admin/crearproducto',$data,FALSE);
@@ -39,6 +43,10 @@ class Admin extends CI_Controller {
 			$this->load->model('Estados_model');
 			$this->load->model('Marcas_model');
 			$data['marcas'] = $this->Marcas_model->listar();
+			$this->load->model('Caracteristicas_model');
+			$data['caracteristicas'] = $this->Caracteristicas_model->listar();
+			$this->load->model('Categorias_model');
+			$data['categorias'] = $this->Categorias_model->listar();
 			$data['producto'] = $this->Productos_model->producto($id);
 			$data['estados'] = $this->Estados_model->listar();
 			$this->load->view('admin/producto', $data, FALSE); }
