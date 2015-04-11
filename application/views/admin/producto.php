@@ -268,7 +268,7 @@ $(document).ready(function() {
 		}
 		if (campo == "precio") { 
 			if (evalor == "") {alert("el PRECIO del producto no puede estar vaciO"); return false;}
-			if(validarnumerodecimal(evalor, "PRECIO")  == false) {return false;}
+			if(validarnumeroentero(evalor, "PRECIO")  == false) {return false;}
 		}
 		if (campo == "peso") {
 			if(evalor != "") {if(validarnumeroentero(evalor, "PESO")  == false) {return false;}}

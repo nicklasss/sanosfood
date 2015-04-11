@@ -16,6 +16,13 @@
 </div>
 
 <div class="row registro">
+	<label class="col-md-2 control-label">Ingredientes:</label>
+	<div class="col-md-8">
+    	<textarea type="text" class="form-control entingredientes"></textarea>
+  	</div>
+</div>
+
+<div class="row registro">
 	<div class="col-md-2"></div>
 	<div class="col-md-2">Marca</div>
 	<div class="col-md-2">Precio</div>
@@ -47,6 +54,7 @@
 <div class="row registro">
 	<div class="col-md-2"></div>
 	<div class="col-md-1">Peso</div>
+	<div class="col-md-1">Peso Neto</div>
 	<div class="col-md-1">Largo</div>
 	<div class="col-md-1">Ancho</div>
 	<div class="col-md-1">Alto</div>
@@ -54,11 +62,38 @@
 
 <div class="row registro">
 	<label class="col-md-2 control-label">Dimensiones:</label>
-	<div class="col-md-1"><input type="text" class="form-control entpeso"></div>
+	<div class="col-md-1"><input type="text" class="form-control entpeso" placeholder="obligatorio"></div>
+	<div class="col-md-1"><input type="text" class="form-control entpesoneto" placeholder="obligatorio"></div>
 	<div class="col-md-1"><input type="text" class="form-control entlargo"></div>
 	<div class="col-md-1"><input type="text" class="form-control entancho"></div>
 	<div class="col-md-1"><input type="text" class="form-control entalto"></div>
 </div>
+
+
+
+
+<div class="row registro">
+	<div class="col-md-4">
+		<div class="row registro" id="listacaracteristicas" style="border:1px solid green; widht:120px; height:100px; overflow-y:scroll">
+			<div class="col-md-8">caracteristica 1</div>
+			<div class="col-md-2">
+				<label  class= "radio-inline" > 
+					<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1">
+				</label> 
+  			</div>
+			<div class="col-md-2">
+				<label  class= "radio-inline" > 
+					<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio2"  value= "option2">
+				</label>
+  			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
 
 <div class="row registro">
 	<div class="col-md-2"></div>
@@ -75,20 +110,22 @@ $(document).ready(function() {
 	$('.form-contenedor').on('click','.btn-guardar',function(event){
 		enombre = $('.form-contenedor').find('.entnombre').val();
 		edescripcion = $('.form-contenedor').find('.entdescripcion').val();
+		eingredientes = $('.form-contenedor').find('.entingredientes').val();
 		emarca = $('.form-contenedor').find('.entmarca').val();
 		eprecio = $('.form-contenedor').find('.entprecio').val();
 		epeso = $('.form-contenedor').find('.entpeso').val();
+		epesoneto = $('.form-contenedor').find('.entpesoneto').val();
 		elargo = $('.form-contenedor').find('.entlargo').val();
 		eancho = $('.form-contenedor').find('.entancho').val();
 		ealto = $('.form-contenedor').find('.entalto').val();
 		eexistencias = $('.form-contenedor').find('.entexistencias').val();
 		eestado = $('.form-contenedor').find('.entestado').val();
 
-		if(enombre == "" || edescripcion == "" || emarca == "" || eprecio == "" || eexistencias == "" || eestado == "") {
+		if(enombre == "" || edescripcion == "" || emarca == "" || eprecio == "" || epeso == "" || epesoneto == "" || eexistencias == "" || eestado == "") {
 			alert("Los campos obligatorios deben estar diligenciados");
 			return false; }
 
-		if(validarnumerodecimal(eprecio, "PRECIO")  == false) {return false;}
+		if(validarnumeroentero(eprecio, "PRECIO")  == false) {return false;}
 		if(epeso != "")  {if(validarnumeroentero(epeso, "PESO")  == false) {return false;}}
 		if(elargo != "") {if(validarnumeroentero(elargo, "LARGO") == false) {return false;}}
 		if(eancho != "") {if(validarnumeroentero(eancho, "ANCHO") == false) {return false;}}
@@ -97,8 +134,8 @@ $(document).ready(function() {
 		
 		alert("SE CREA EL PRODUCTO");
 
-//	   rta = guardar( enombre, edescripcion, eprecio, epeso, elargo, ealto, eancho, eexistencias, eestado,function(rta){
-//			if(rta) {
+		rta = crear( enombre, edescripcion, eprecio, epeso, elargo, ealto, eancho, eexistencias, eestado,function(rta){
+			if(rta) {
 				$('.form-contenedor').find('.entnombre').val("");
 				$('.form-contenedor').find('.entdescripcion').val("");
 				$('.form-contenedor').find('.entprecio').val("");
@@ -108,43 +145,43 @@ $(document).ready(function() {
 				$('.form-contenedor').find('.entalto').val("");
 				$('.form-contenedor').find('.entexistencias').val("");
 				$('.form-contenedor').find('.entestado').val("");
-//		   };
-//	   });
+		   };
+	   });
 	});
 });
 
-function validarnumeroentero (valor, campo) {
-   for(var i = 0; i<valor.length;i++){
-    	if(valor.charCodeAt(i)<48 || valor.charCodeAt(i)>57) {
-    		alert(campo + " debe ser un número entero positivo");
-   		return false;
-   	}
-   }
-}
-
 function validarnumerodecimal (valor, campo) {
 	var yavapunto = 0;
-   for(var i = 0; i<valor.length;i++){
-    	if(valor.charCodeAt(i) == 46 && yavapunto == 1) {
-    		alert(campo + " debe tener solamente un punto decimal");
-   		return false;
-   	}
-    	if(valor.charCodeAt(i) == 46) {yavapunto = 1;}
-    	if((valor.charCodeAt(i) < 48 || valor.charCodeAt(i) > 57) && valor.charCodeAt(i) != 46) {
-    		alert(campo + " debe ser un número positivo, puede tener decimales");
-   		return false;
-   	}
-   }
+	for(var i = 0; i<valor.length;i++){
+		if(valor.charCodeAt(i) == 46 && yavapunto == 1) {
+			alert(campo + " debe tener solamente un punto decimal");
+			return false;
+		}
+		if(valor.charCodeAt(i) == 46) {yavapunto = 1;}
+		if((valor.charCodeAt(i) < 48 || valor.charCodeAt(i) > 57) && valor.charCodeAt(i) != 46) {
+			alert(campo + " debe ser un número positivo, puede tener decimales");
+			return false;
+		}
+	}
 }
 
-function guardar (nombre, descripcion, marca, precio, peso, largo, alto, ancho, existencias, estado, callback) {
+function validarnumeroentero (valor, campo) {
+	for(var i = 0; i<valor.length;i++){
+		if(valor.charCodeAt(i)<48 || valor.charCodeAt(i)>57) {
+			alert(campo + " debe ser un número entero positivo");
+			return false;
+		}
+	}
+}
+
+function crear (nombre, descripcion, ingredientes, marca, precio, peso, pesoneto, largo, alto, ancho, existencias, estado, callback) {
   $.ajax({                                               // envio de los datos
-	    url: "<?php print base_url();?>producto/editar",
+	    url: "<?php print base_url();?>producto/crear",
 	    context: document.body,
 	    dataType: "json",
 	    type: "POST",
-	    data: {"nombre" : nombre, "descripcion" : descripcion, "precio" : precio, "marca" : marca, "peso" : peso, 
-	           "largo" : largo, "alto"   : alto, "ancho" : ancho, "existencias" : existencias, "estado" : estado } })
+	    data: {nombre : nombre, descripcion : descripcion, ingredientes : ingredientes, precio : precio, marca : marca, peso : peso, 
+	           pesoneto : pesoneto, largo : largo, alto : alto, ancho : ancho, existencias : existencias, estado : estado } })
    .done(function(data) {                               // respuesta del servidor
     if(data.res=="ok") {callback(true)}
     else {alert(data.msj);callback(false)}
