@@ -70,70 +70,39 @@
 </div>
 
 
-
-
 <div class="row registro">
 	<label class="col-md-2 control-label">Caracteristicas:</label>
 	<div class="col-md-5">
 		<div class="row registro" id="listacaracteristicas">
 			<div class="col-md-12">
 				<div class="panel panel-default panel-caracteristicas">
-					<table class="table table-striped">
+					<table class="table table-condensed">
 			        <tbody>
-			          <tr>
-			            <th scope="row">Caracteristica 1</th>
-			            <td>
-			            	<label  class= "radio-inline" > 
-								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-							</label> 
-			            </td>
-			            <td>
-			            	<label  class= "radio-inline" > 
-								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-							</label> 
-						</td>
-			            <td>
-			            	<label  class= "radio-inline" > 
-								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
-							</label> 
-						</td>
-			          </tr>
-			          <tr>
-			            <th scope="row">Caracteristica 1</th>
-			            <td>
-			            	<label  class= "radio-inline" > 
-								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-							</label> 
-			            </td>
-			            <td>
-			            	<label  class= "radio-inline" > 
-								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-							</label> 
-						</td>
-			            <td>
-			            	<label  class= "radio-inline" > 
-								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
-							</label> 
-						</td>
-			          </tr>
-			          <tr>
-			            <th scope="row">Caracteristica 1</th>
-			            <td>
-			            	<label  class= "radio-inline" > 
-								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-							</label> 
-			            </td>
-			            <td>
-			            	<label  class= "radio-inline" > 
-								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-							</label> 
-						</td>
-			            <td>
-			            	<label  class= "radio-inline" > 
-								<input  type= "radio"  name= "inlineRadioOptions"  id= "inlineRadio1"  value= "option1"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
-							</label> 
-						</td>
-			          </tr>
+<?php 
+$numero = count($caracteristicas);
+echo '<script>nrocaracteristicas = '.$numero.'</script>';
+foreach ($caracteristicas as $caracteristica) {
+	print '<tr>';
+	print '<th scope="row">'.$caracteristica->nombre.'</th>';
+	print '<td>
+	     		<label  class= "radio-inline" > 
+					<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+				</label> 
+			</td>
+			<td>
+				<label  class= "radio-inline" > 
+					<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</label> 
+			</td>
+			<td>
+			  	<label  class= "radio-inline" > 
+					<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+				</label> 
+			</td>
+			</tr>';
+}			            
+?>
+			          
 			        </tbody>
 					</table>
 				</div>
@@ -141,7 +110,6 @@
 		</div>
 	</div>
 </div>
-
 
 
 
@@ -157,9 +125,26 @@
 
 
 <script type="text/javascript">
+var nrocaracteristicas;
 $(document).ready(function() { 
-
 	$('.form-contenedor').on('click','.btn-guardar',function(event){
+
+		for (var i = 1; i < nrocaracteristicas+1; i++) {
+			tipocaracteristica = $('input[name="linea'+i+'"]:checked').val();
+			if ( tipocaracteristica != "chulo") {
+				alert("idcaracteristica : " + i + ", tipo : " + tipocaracteristica);
+			};
+
+		};
+
+
+
+
+
+		alert("SE CREA EL PRODUCTO");
+		return false;
+		
+
 		enombre = $('.form-contenedor').find('.entnombre').val();
 		edescripcion = $('.form-contenedor').find('.entdescripcion').val();
 		eingredientes = $('.form-contenedor').find('.entingredientes').val();
