@@ -237,10 +237,109 @@
   	</div>
 </div>
 
+<div class="row registro">
+	<label class="col-md-2 control-label">Caracteristicas:</label>
+	<div class="col-md-5">
+		<div class="row registro" id="listacaracteristicas">
+			<div class="col-md-12">
+				<div class="panel panel-default panel-caracteristicas">
+					<table class="table table-condensed">
+			        <tbody>
+<?php
+$id = array();
+$i = 0;
+foreach ($caracteristicas as $caracteristica) {
+	$id[$i] = $caracteristica->id;
+	$i = $i + 1;
+	print '<tr>';
+	print '<th scope="row">'.$caracteristica->nombre.'</th>';
+	$entra = 0;
+	foreach ($producto->caracteristicas as $procar) {
+		if ($caracteristica->id == $procar->idcaracteristica) {
+			$entra = 1;
+			switch ($procar->tipo) {
+				case "remove":
+					print '<td>
+			   	        	<label  class= "radio-inline" > 
+									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+								</label>
+			            </td>
+			            <td>
+			            	<label  class= "radio-inline" > 
+									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "remove" checked> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</label> 
+							</td>
+			            <td>
+			            	<label  class= "radio-inline" > 
+									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+								</label> 
+							</td>
+							</tr>';
+					break;
+				case "asterisk":
+					print '<td>
+			            	<label  class= "radio-inline" > 
+									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+								</label> 
+			            </td>
+			            <td>
+			            	<label  class= "radio-inline" > 
+									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</label> 
+							</td>
+			            <td>
+			            	<label  class= "radio-inline" > 
+									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "asterisk" checked> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+								</label> 
+							</td>
+							</tr>';
+					break;
+			}
+		}
+	}
+	if ($entra == 0) {
+					print '<td>
+			            	<label  class= "radio-inline" > 
+									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+								</label> 
+			            </td>
+			            <td>
+			            	<label  class= "radio-inline" > 
+									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								</label> 
+							</td>
+			            <td>
+			            	<label  class= "radio-inline" > 
+									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+								</label> 
+							</td>
+							</tr>';
+	}
+}			            
+$numero = count($caracteristicas);
+echo '<script>nrocaracteristicas = '.$numero.'</script>';
+$myarreglo = json_encode($id);
+?>
+			        </tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
 
 
 
 <script type="text/javascript">
+var nrocaracteristicas;
+var arreglo;
+
 $(document).ready(function() { 
 
 	$('.form-contenedor').on('click','.btn-editar',function(event){
@@ -256,36 +355,40 @@ $(document).ready(function() {
 	});
 
 	$('.form-contenedor').on('click','.btn-guardar',function(event){
+
+		arreglo = eval(<?php echo json_encode($myarreglo);?>);
+		for (var i = 0; i < nrocaracteristicas; i++) {
+			tipocaracteristica = $('input[name="linea'+arreglo[i]+'"]:checked').val();
+			if ( tipocaracteristica != "chulo") {
+				alert("idcaracteristica : " + arreglo[i] + ", tipo : " + tipocaracteristica);
+			};
+		};
+
+		alert("SE GUARDA EL PRODUCTO");
+		return false;
+
+
+
+
 		evalor = $(event.target).parent().parent().parent().find('.entvalor').val();
 		svalor = $(event.target).parent().parent().parent().find('.salvalor').html();
 		campo = $(event.target).attr("data-atributo");
 
-		if (campo == "nombre") {
-			if (evalor == ""){ alert("el NOMBRE del producto no puede estar vacio"); return false;}
-		}
-		if (campo == "descripcion") {
-			if (evalor == ""){ alert("la DESCRIPCION del producto no puede estar vacia"); return false;}
-		}
+		if (campo == "nombre") {if (evalor == ""){ alert("el NOMBRE del producto no puede estar vacio"); return false;}}
+		if (campo == "descripcion") {if (evalor == ""){ alert("la DESCRIPCION del producto no puede estar vacia"); return false;}}
 		if (campo == "precio") { 
-			if (evalor == "") {alert("el PRECIO del producto no puede estar vaciO"); return false;}
-			if(validarnumeroentero(evalor, "PRECIO")  == false) {return false;}
-		}
-		if (campo == "peso") {
-			if(evalor != "") {if(validarnumeroentero(evalor, "PESO")  == false) {return false;}}
-		}
-		if (campo == "largo") {
-			if(evalor != "") {if(validarnumeroentero(evalor, "LARGO")  == false) {return false;}}
-		}
-		if (campo == "ancho") {
-			if(evalor != "") {if(validarnumeroentero(evalor, "ANCHO")  == false) {return false;}}
-		}
-		if (campo == "alto") {
-			if(evalor != "") {if(validarnumeroentero(evalor, "ALTO")  == false) {return false;}}
-		}
-		if (campo == "existencias") {
-			if(validarnumeroentero(evalor, "EXISTENCIAS")  == false) {return false;}
-		}
-
+			if (evalor == "") {alert("el PRECIO del producto no puede estar vacio"); return false;}
+			if(validarnumeroentero(evalor, "PRECIO")  == false) {return false;}}
+		if (campo == "peso") { 
+			if (evalor == "") {alert("el PESO del producto no puede estar vacio"); return false;}
+			if(validarnumeroentero(evalor, "PESO")  == false) {return false;}}
+		if (campo == "pesoneto") { 
+			if (evalor == "") {alert("el PESO NETO del producto no puede estar vacio"); return false;}
+			if(validarnumeroentero(evalor, "PESO NETO")  == false) {return false;}}
+		if (campo == "largo") {if(evalor != "") {if(validarnumeroentero(evalor, "LARGO")  == false) {return false;}}}
+		if (campo == "ancho") {if(evalor != "") {if(validarnumeroentero(evalor, "ANCHO")  == false) {return false;}}}
+		if (campo == "alto") {if(evalor != "") {if(validarnumeroentero(evalor, "ALTO")  == false) {return false;}}}
+		if (campo == "existencias") {if(validarnumeroentero(evalor, "EXISTENCIAS")  == false) {return false;}}
 
 		if(evalor !== svalor) {
 		   rta = guardar( $(event.target).attr("data-atributo") , evalor ,function(rta){
