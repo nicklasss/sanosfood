@@ -76,47 +76,31 @@
 		<div class="row registro" id="listacaracteristicas">
 			<div class="col-md-12">
 				<div class="panel panel-default panel-caracteristicas">
-					<table class="table table-condensed">
-					<thead>
-					<tr>
-					<th>Característica</th>
-					<th><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></th>
-					<th><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
-					<th><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></th>
-					</tr>
-					</thead>
+					<table class="table table-condensed table-striped">
 					<tbody>
 <?php 
 
-$id = array();
-$i = 0;
+
 foreach ($caracteristicas as $caracteristica) {
-	$id[$i] = $caracteristica->id;
-	$i = $i + 1;
 	print '<tr>';
-	print '<td>'.$caracteristica->id.'</td>';
 	print '<th scope="row">'.$caracteristica->nombre.'</th>';
 	print '<td>
-	     		<label  class= "radio-inline" > 
-					<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+	     		<label  class= "radio-inline radio-car" > 
+					<input  type= "radio" data-id="'.$caracteristica->id.'"  name= "linea'.$caracteristica->id.'" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 				</label> 
 			</td>
 			<td>
-				<label  class= "radio-inline" > 
-					<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				<label  class= "radio-inline radio-car" > 
+					<input  type= "radio" data-id="'.$caracteristica->id.'"  name= "linea'.$caracteristica->id.'" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				</label> 
 			</td>
 			<td>
-			  	<label  class= "radio-inline" > 
-					<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+			  	<label  class= "radio-inline radio-car" > 
+					<input  type= "radio" data-id="'.$caracteristica->id.'" name= "linea'.$caracteristica->id.'" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 				</label> 
 			</td>
 			</tr>';
-}			            
-$numero = count($caracteristicas);
-echo '<script>nrocaracteristicas = '.$numero.'</script>';
-
-$myarreglo = json_encode($id);
+}
 ?>
 			        </tbody>
 					</table>
@@ -140,19 +124,16 @@ $myarreglo = json_encode($id);
 
 
 <script type="text/javascript">
-var nrocaracteristicas;
-var arreglo;
 
 $(document).ready(function() { 
 	$('.form-contenedor').on('click','.btn-guardar',function(event){
 
-		arreglo = eval(<?php echo json_encode($myarreglo);?>);
-		for (var i = 0; i < nrocaracteristicas; i++) {
-			tipocaracteristica = $('input[name="linea'+arreglo[i]+'"]:checked').val();
-			if ( tipocaracteristica != "chulo") {
-				alert("idcaracteristica : " + arreglo[i] + ", tipo : " + tipocaracteristica);
-			};
-		};
+		$('input[name*="linea"]:checked').each(function(){
+			if($(this).val()!=='chulo'){
+				alert('id : '+$(this).attr('data-id')+' , valor : '+$(this).val());
+			}
+		});
+
 
 		alert("SE CREA EL PRODUCTO");
 		return false;

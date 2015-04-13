@@ -43,16 +43,6 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
       .registro .glyphicon-asterisk{
         color:lightblue;
       }
-      tbody {
-        display: block;
-        height: 200px;
-        min-height: 200px;
-        overflow-y: scroll; 
-      }
-      tr {
-        display: block;
-        overflow: hidden;
-      }
     </style>
 
     <title>Fixed Top Navbar Example for Bootstrap</title>
