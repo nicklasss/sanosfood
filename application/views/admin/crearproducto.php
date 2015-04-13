@@ -127,10 +127,11 @@ foreach ($caracteristicas as $caracteristica) {
 
 $(document).ready(function() { 
 	$('.form-contenedor').on('click','.btn-guardar',function(event){
-
+		var datacaracteristicas = [];
 		$('input[name*="linea"]:checked').each(function(){
 			if($(this).val()!=='chulo'){
-				alert('id : '+$(this).attr('data-id')+' , valor : '+$(this).val());
+				var caracteristica = { "idCaracteristica" : $(this).attr('data-id') , "valor" : $(this).val() };
+				datacaracteristicas.push(caracteristica);
 			}
 		});
 
@@ -165,7 +166,7 @@ $(document).ready(function() {
 		
 		alert("SE CREA EL PRODUCTO");
 
-		rta = crear( enombre, edescripcion, eprecio, epeso, elargo, ealto, eancho, eexistencias, eestado,function(rta){
+		crear( enombre, edescripcion, eprecio, epeso, elargo, ealto, eancho, eexistencias, eestado,function(rta){
 			if(rta) {
 				$('.form-contenedor').find('.entnombre').val("");
 				$('.form-contenedor').find('.entdescripcion').val("");
