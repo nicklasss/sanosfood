@@ -77,12 +77,24 @@
 			<div class="col-md-12">
 				<div class="panel panel-default panel-caracteristicas">
 					<table class="table table-condensed">
-			        <tbody>
+					<thead>
+					<tr>
+					<th>Característica</th>
+					<th><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></th>
+					<th><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
+					<th><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></th>
+					</tr>
+					</thead>
+					<tbody>
 <?php 
-$numero = count($caracteristicas);
-echo '<script>nrocaracteristicas = '.$numero.'</script>';
+
+$id = array();
+$i = 0;
 foreach ($caracteristicas as $caracteristica) {
+	$id[$i] = $caracteristica->id;
+	$i = $i + 1;
 	print '<tr>';
+	print '<td>'.$caracteristica->id.'</td>';
 	print '<th scope="row">'.$caracteristica->nombre.'</th>';
 	print '<td>
 	     		<label  class= "radio-inline" > 
@@ -101,8 +113,11 @@ foreach ($caracteristicas as $caracteristica) {
 			</td>
 			</tr>';
 }			            
+$numero = count($caracteristicas);
+echo '<script>nrocaracteristicas = '.$numero.'</script>';
+
+$myarreglo = json_encode($id);
 ?>
-			          
 			        </tbody>
 					</table>
 				</div>
@@ -126,24 +141,21 @@ foreach ($caracteristicas as $caracteristica) {
 
 <script type="text/javascript">
 var nrocaracteristicas;
+var arreglo;
+
 $(document).ready(function() { 
 	$('.form-contenedor').on('click','.btn-guardar',function(event){
 
-		for (var i = 1; i < nrocaracteristicas+1; i++) {
-			tipocaracteristica = $('input[name="linea'+i+'"]:checked').val();
+		arreglo = eval(<?php echo json_encode($myarreglo);?>);
+		for (var i = 0; i < nrocaracteristicas; i++) {
+			tipocaracteristica = $('input[name="linea'+arreglo[i]+'"]:checked').val();
 			if ( tipocaracteristica != "chulo") {
-				alert("idcaracteristica : " + i + ", tipo : " + tipocaracteristica);
+				alert("idcaracteristica : " + arreglo[i] + ", tipo : " + tipocaracteristica);
 			};
-
 		};
-
-
-
-
 
 		alert("SE CREA EL PRODUCTO");
 		return false;
-		
 
 		enombre = $('.form-contenedor').find('.entnombre').val();
 		edescripcion = $('.form-contenedor').find('.entdescripcion').val();
@@ -158,16 +170,17 @@ $(document).ready(function() {
 		eexistencias = $('.form-contenedor').find('.entexistencias').val();
 		eestado = $('.form-contenedor').find('.entestado').val();
 
-		if(enombre == "" || edescripcion == "" || emarca == "" || eprecio == "" || epeso == "" || epesoneto == "" || eexistencias == "" || eestado == "") {
+		if(enombre == "" || edescripcion == "" || emarca == "" || eprecio == "" || epeso == "" || epesoneto == "" || eestado == "") {
 			alert("Los campos obligatorios deben estar diligenciados");
 			return false; }
 
 		if(validarnumeroentero(eprecio, "PRECIO")  == false) {return false;}
-		if(epeso != "")  {if(validarnumeroentero(epeso, "PESO")  == false) {return false;}}
+		if(validarnumeroentero(epeso, "PESO")  == false) {return false;}
+		if(validarnumeroentero(epesoneto, "PESO NETO")  == false) {return false;}
 		if(elargo != "") {if(validarnumeroentero(elargo, "LARGO") == false) {return false;}}
 		if(eancho != "") {if(validarnumeroentero(eancho, "ANCHO") == false) {return false;}}
 		if(ealto != "")  {if(validarnumeroentero(ealto, "ALTO")  == false) {return false;}}
-		if(validarnumeroentero(eexistencias, "EXISTENCIAS")  == false) {return false;}
+		if(eexistencias != "")  {if(validarnumeroentero(eexistencias, "EXISTENCIAS")  == false) {return false;}}
 		
 		alert("SE CREA EL PRODUCTO");
 
@@ -186,6 +199,21 @@ $(document).ready(function() {
 	   });
 	});
 });
+
+function crear (nombre, descripcion, ingredientes, marca, precio, peso, pesoneto, largo, alto, ancho, existencias, estado, callback) {
+  $.ajax({                                               
+	    url: "<?php print base_url();?>producto/crear",
+	    context: document.body,
+	    dataType: "json",
+	    type: "POST",
+	    data: {nombre : nombre, descripcion : descripcion, ingredientes : ingredientes, precio : precio, marca : marca, peso : peso, 
+	           pesoneto : pesoneto, largo : largo, alto : alto, ancho : ancho, existencias : existencias, estado : estado } })
+   .done(function(data) {                               // respuesta del servidor
+    if(data.res=="ok") {callback(true)}
+    else {alert(data.msj);callback(false)}
+    })
+   .error(function(){alert('No hay conexion');callback(false);})
+}
 
 function validarnumerodecimal (valor, campo) {
 	var yavapunto = 0;
@@ -209,21 +237,6 @@ function validarnumeroentero (valor, campo) {
 			return false;
 		}
 	}
-}
-
-function crear (nombre, descripcion, ingredientes, marca, precio, peso, pesoneto, largo, alto, ancho, existencias, estado, callback) {
-  $.ajax({                                               // envio de los datos
-	    url: "<?php print base_url();?>producto/crear",
-	    context: document.body,
-	    dataType: "json",
-	    type: "POST",
-	    data: {nombre : nombre, descripcion : descripcion, ingredientes : ingredientes, precio : precio, marca : marca, peso : peso, 
-	           pesoneto : pesoneto, largo : largo, alto : alto, ancho : ancho, existencias : existencias, estado : estado } })
-   .done(function(data) {                               // respuesta del servidor
-    if(data.res=="ok") {callback(true)}
-    else {alert(data.msj);callback(false)}
-    })
-   .error(function(){alert('No hay conexion');callback(false);})
 }
 
 </script>
