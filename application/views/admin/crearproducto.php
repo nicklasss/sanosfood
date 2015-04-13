@@ -85,17 +85,17 @@ foreach ($caracteristicas as $caracteristica) {
 	print '<th scope="row">'.$caracteristica->nombre.'</th>';
 	print '<td>
 	     		<label  class= "radio-inline" > 
-					<input  type= "radio" data-id="'.$caracteristica->id.'"  name= "linea'.$caracteristica->id.'" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+					<input  type= "radio" data-id="'.$caracteristica->id.'"  name= "car'.$caracteristica->id.'" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 				</label> 
 			</td>
 			<td>
 				<label  class= "radio-inline" > 
-					<input  type= "radio" data-id="'.$caracteristica->id.'" name= "linea'.$caracteristica->id.'" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				</label> 
 			</td>
 			<td>
 			  	<label  class= "radio-inline" > 
-					<input  type= "radio" data-id="'.$caracteristica->id.'" name= "linea'.$caracteristica->id.'" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+					<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 				</label> 
 			</td>
 			</tr>';
@@ -109,10 +109,6 @@ foreach ($caracteristicas as $caracteristica) {
 	</div>
 </div>
 
-
-
-
-
 <div class="row registro">
 	<div class="col-md-2"></div>
 	<div class="col-md-2">
@@ -125,15 +121,6 @@ foreach ($caracteristicas as $caracteristica) {
 <script type="text/javascript">
 $(document).ready(function() { 
 	$('.form-contenedor').on('click','.btn-guardar',function(event){
-
-		var datacaracteristicas = [];
-		$('input[name*="linea"]:checked').each(function(){
-			if($(this).val()!=='chulo'){
-				var caracteristica = { "idCaracteristica" : $(this).attr('data-id') , "valor" : $(this).val() };
-				datacaracteristicas.push(caracteristica);
-			}
-		});
-		
 
 		alert("SE CREA EL PRODUCTO");
 		return false;
@@ -163,9 +150,7 @@ $(document).ready(function() {
 		if(ealto != "")  {if(validarnumeroentero(ealto, "ALTO")  == false) {return false;}}
 		if(eexistencias != "")  {if(validarnumeroentero(eexistencias, "EXISTENCIAS")  == false) {return false;}}
 		
-		alert("SE CREA EL PRODUCTO");
-
-		rta = crear( enombre, edescripcion, eprecio, epeso, elargo, ealto, eancho, eexistencias, eestado,function(rta){
+		rta = crear( enombre, edescripcion, eprecio, epeso, epesoneto, elargo, ealto, eancho, eexistencias, eestado, function(rta){
 			if(rta) {
 				$('.form-contenedor').find('.entnombre').val("");
 				$('.form-contenedor').find('.entdescripcion').val("");
@@ -182,13 +167,21 @@ $(document).ready(function() {
 });
 
 function crear (nombre, descripcion, ingredientes, marca, precio, peso, pesoneto, largo, alto, ancho, existencias, estado, callback) {
+	var datacaracteristicas = [];
+	$('input[name*="car"]:checked').each(function(){
+		if($(this).val()!=='chulo'){
+			var caracteristica = { "idcaracteristica" : $(this).attr('data-id') , "valor" : $(this).val() };
+			datacaracteristicas.push(caracteristica);
+		}
+	});
   $.ajax({                                               
 	    url: "<?php print base_url();?>producto/crear",
 	    context: document.body,
 	    dataType: "json",
 	    type: "POST",
 	    data: {nombre : nombre, descripcion : descripcion, ingredientes : ingredientes, precio : precio, marca : marca, peso : peso, 
-	           pesoneto : pesoneto, largo : largo, alto : alto, ancho : ancho, existencias : existencias, estado : estado } })
+	           pesoneto : pesoneto, largo : largo, alto : alto, ancho : ancho, existencias : existencias, estado : estado,
+	           datacaracteristicas : JSON.stringify(datacaracteristicas) } })
    .done(function(data) {                               // respuesta del servidor
     if(data.res=="ok") {callback(true)}
     else {alert(data.msj);callback(false)}

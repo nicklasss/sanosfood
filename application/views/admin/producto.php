@@ -243,14 +243,10 @@
 		<div class="row registro" id="listacaracteristicas">
 			<div class="col-md-12">
 				<div class="panel panel-default panel-caracteristicas">
-					<table class="table table-condensed">
+					<table class="table table-condensed table-striped">
 			        <tbody>
 <?php
-$id = array();
-$i = 0;
 foreach ($caracteristicas as $caracteristica) {
-	$id[$i] = $caracteristica->id;
-	$i = $i + 1;
 	print '<tr>';
 	print '<th scope="row">'.$caracteristica->nombre.'</th>';
 	$entra = 0;
@@ -261,17 +257,17 @@ foreach ($caracteristicas as $caracteristica) {
 				case "remove":
 					print '<td>
 			   	        	<label  class= "radio-inline" > 
-									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 								</label>
 			            </td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "remove" checked> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove" checked> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								</label> 
 							</td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 								</label> 
 							</td>
 							</tr>';
@@ -279,17 +275,17 @@ foreach ($caracteristicas as $caracteristica) {
 				case "asterisk":
 					print '<td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 								</label> 
 			            </td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								</label> 
 							</td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "asterisk" checked> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk" checked> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 								</label> 
 							</td>
 							</tr>';
@@ -300,25 +296,22 @@ foreach ($caracteristicas as $caracteristica) {
 	if ($entra == 0) {
 					print '<td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 								</label> 
 			            </td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 								</label> 
 							</td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio"  name= "linea'.$caracteristica->id.'" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 								</label> 
 							</td>
 							</tr>';
 	}
 }			            
-$numero = count($caracteristicas);
-echo '<script>nrocaracteristicas = '.$numero.'</script>';
-$myarreglo = json_encode($id);
 ?>
 			        </tbody>
 					</table>
@@ -326,6 +319,18 @@ $myarreglo = json_encode($id);
 			</div>
 		</div>
 	</div>
+	<div class="editable escondido">
+	 	<div class="col-md-2 contenedor">
+	  		<button type="button" class="btn btn-xs btn-success btn-guardar-car" data-atributo="estado">Guardar</button>
+	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar-car">Cancelar</button>
+	  	</div>	
+	</div>
+  	<div class="mostrable">
+   	<div class="col-md-2">
+   		<button type="button" class="btn btn-xs btn-primary btn-editar-car"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+   	</div>	
+  	</div>
+
 </div>
 
 
@@ -337,10 +342,40 @@ $myarreglo = json_encode($id);
 
 
 <script type="text/javascript">
-var nrocaracteristicas;
-var arreglo;
 
 $(document).ready(function() { 
+
+	$('.form-contenedor').on('click','.btn-editar-car',function(event){
+		$(event.target).parent().parent().parent().find('.editable').show();
+		$(event.target).parent().parent().parent().find('.mostrable').hide();
+		$('input[name*="car"]').each(function(){
+			$(this).attr('disabled', false);
+		});
+	});
+	$('.form-contenedor').on('click','.btn-cancelar-car',function(event){
+		$(event.target).parent().parent().parent().find('.mostrable').show();
+		$(event.target).parent().parent().parent().find('.editable').hide();
+		$('input[name*="car"]').each(function(){
+			$(this).attr('disabled', true);
+		});
+	});
+	$('.form-contenedor').on('click','.btn-guardar-car',function(event){
+	   rta = guardar_car(function(rta){
+			if(rta) {
+				$(event.target).parent().parent().parent().find('.mostrable').show();
+				$(event.target).parent().parent().parent().find('.editable').hide();
+				$('input[name*="car"]').each(function(){
+					$(this).attr('disabled', true);
+				});
+		   };
+//	   });
+	});
+
+	
+
+
+
+
 
 	$('.form-contenedor').on('click','.btn-editar',function(event){
 		svalor = $(event.target).parent().parent().parent().find('.salvalor').html();
@@ -348,27 +383,16 @@ $(document).ready(function() {
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
 	});
-
 	$('.form-contenedor').on('click','.btn-cancelar',function(event){
 		$(event.target).parent().parent().parent().find('.mostrable').show();
 		$(event.target).parent().parent().parent().find('.editable').hide();
 	});
 
-	$('.form-contenedor').on('click','.btn-guardar',function(event){
 
-		arreglo = eval(<?php echo json_encode($myarreglo);?>);
-		for (var i = 0; i < nrocaracteristicas; i++) {
-			tipocaracteristica = $('input[name="linea'+arreglo[i]+'"]:checked').val();
-			if ( tipocaracteristica != "chulo") {
-				alert("idcaracteristica : " + arreglo[i] + ", tipo : " + tipocaracteristica);
-			};
-		};
+	$('.form-contenedor').on('click','.btn-guardar',function(event){
 
 		alert("SE GUARDA EL PRODUCTO");
 		return false;
-
-
-
 
 		evalor = $(event.target).parent().parent().parent().find('.entvalor').val();
 		svalor = $(event.target).parent().parent().parent().find('.salvalor').html();
@@ -414,6 +438,27 @@ function guardar (atributo, valor, callback) {
 	    dataType: "json",
 	    type: "POST",
 	    data: {id : <?php print $this->uri->segment(3);?>, atributo  : atributo, valor : valor } })
+   .done(function(data) {                               // respuesta del servidor
+    if(data.res=="ok") {callback(true)}
+    else {alert(data.msj);callback(false)}
+    })
+   .error(function(){alert('No hay conexion');callback(false);})
+}
+
+function guardar_car (callback) {
+	var datacaracteristicas = [];
+	$('input[name*="car"]:checked').each(function(){
+		if($(this).val()!=='chulo'){
+			var caracteristica = { "idcaracteristica" : $(this).attr('data-id') , "valor" : $(this).val() };
+			datacaracteristicas.push(caracteristica);
+		}
+	});
+  $.ajax({                                               // envio de los datos
+	    url: "<?php print base_url();?>producto/editarcar",
+	    context: document.body,
+	    dataType: "json",
+	    type: "POST",
+	    data: {datacaracteristicas : JSON.stringify(datacaracteristicas) } })
    .done(function(data) {                               // respuesta del servidor
     if(data.res=="ok") {callback(true)}
     else {alert(data.msj);callback(false)}
