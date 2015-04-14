@@ -69,33 +69,38 @@
 	<div class="col-md-1"><input type="text" class="form-control entalto"></div>
 </div>
 
-
+<!----------------------------------- edicion del campo CARACTERISTICAS--> 
 <div class="row registro">
-	<label class="col-md-2 control-label">Caracteristicas:</label>
-	<div class="col-md-5">
+	<div class="col-md-2"> </div>
+	<label class="col-md-4"><h3>Características:</h3></label>
+	<div class="col-md-1"></div>
+	<label class="col-md-3"><h3>Categorías:</h3></label> 
+</div>
+<div class="row registro">
+	<div class="col-md-2"></div>
+	<div class="col-md-4">
 		<div class="row registro" id="listacaracteristicas">
 			<div class="col-md-12">
 				<div class="panel panel-default panel-caracteristicas">
 					<table class="table table-condensed table-striped">
 					<tbody>
 <?php 
-
 foreach ($caracteristicas as $caracteristica) {
 	print '<tr>';
 	print '<th scope="row">'.$caracteristica->nombre.'</th>';
 	print '<td>
 	     		<label  class= "radio-inline" > 
-					<input  type= "radio" data-id="'.$caracteristica->id.'"  name= "car'.$caracteristica->id.'" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+					<input  type= "radio" data-id="'.$caracteristica->id.'"  name="car'.$caracteristica->id.'" value="chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 				</label> 
 			</td>
 			<td>
 				<label  class= "radio-inline" > 
-					<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+					<input  type= "radio" data-id="'.$caracteristica->id.'" name="car'.$caracteristica->id.'" value="remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				</label> 
 			</td>
 			<td>
 			  	<label  class= "radio-inline" > 
-					<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+					<input  type= "radio" data-id="'.$caracteristica->id.'" name="car'.$caracteristica->id.'" value="asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 				</label> 
 			</td>
 			</tr>';
@@ -107,8 +112,39 @@ foreach ($caracteristicas as $caracteristica) {
 			</div>
 		</div>
 	</div>
-</div>
+<!--</div> -->
 
+
+
+<!----------------------------------- edicion del campo CATEGORIAS --> 
+<!--<div class="row registro">
+	<label class="col-md-2 control-label">Categorias:</label> --> 
+	<div class="col-md-1"></div>
+	<div class="col-md-3">
+		<div class="row registro" id="listacategorias">
+			<div class="col-md-12">
+				<div class="panel panel-default panel-categorias">
+					<table class="table table-condensed table-striped">
+					<tbody>
+<?php 
+foreach ($categorias as $categoria) {
+	print '<tr>';
+	print '<th scope="row">'.$categoria->nombre.'</th>';
+	print '<td>
+	     		<label  class= "checkbox" > 
+					<input  type= "checkbox" data-id="'.$categoria->id.'"  name= "cat'.$categoria->id.'" value= "">
+				</label> 
+			</td>
+			</tr>';
+}
+?>
+			        </tbody>
+					</table>
+				</div>
+			</div>
+		</div> 
+	</div>
+</div>
 <div class="row registro">
 	<div class="col-md-2"></div>
 	<div class="col-md-2">
@@ -118,13 +154,15 @@ foreach ($caracteristicas as $caracteristica) {
 </div>
 
 
+
 <script type="text/javascript">
 $(document).ready(function() { 
+
+	$('.form-contenedor').on('click','.btn-limpiar',function(event){
+		limpiarpantalla();
+	});
+
 	$('.form-contenedor').on('click','.btn-guardar',function(event){
-
-		alert("SE CREA EL PRODUCTO");
-		return false;
-
 		enombre = $('.form-contenedor').find('.entnombre').val();
 		edescripcion = $('.form-contenedor').find('.entdescripcion').val();
 		eingredientes = $('.form-contenedor').find('.entingredientes').val();
@@ -150,19 +188,11 @@ $(document).ready(function() {
 		if(ealto != "")  {if(validarnumeroentero(ealto, "ALTO")  == false) {return false;}}
 		if(eexistencias != "")  {if(validarnumeroentero(eexistencias, "EXISTENCIAS")  == false) {return false;}}
 		
-		rta = crear( enombre, edescripcion, eprecio, epeso, epesoneto, elargo, ealto, eancho, eexistencias, eestado, function(rta){
-			if(rta) {
-				$('.form-contenedor').find('.entnombre').val("");
-				$('.form-contenedor').find('.entdescripcion').val("");
-				$('.form-contenedor').find('.entprecio').val("");
-				$('.form-contenedor').find('.entpeso').val("");
-				$('.form-contenedor').find('.entlargo').val("");
-				$('.form-contenedor').find('.entancho').val("");
-				$('.form-contenedor').find('.entalto').val("");
-				$('.form-contenedor').find('.entexistencias').val("");
-				$('.form-contenedor').find('.entestado').val("");
-		   };
-	   });
+//		rta = crear( enombre, edescripcion, eprecio, epeso, epesoneto, elargo, ealto, eancho, eexistencias, eestado, function(rta){
+//			if(rta) {
+				limpiarpantalla();
+//		   };
+//	   });
 	});
 });
 
@@ -174,6 +204,11 @@ function crear (nombre, descripcion, ingredientes, marca, precio, peso, pesoneto
 			datacaracteristicas.push(caracteristica);
 		}
 	});
+	var datacategorias = [];
+	$('input[name*="cat"]:checked').each(function(){
+		var categoria = { "idcategoria" : $(this).attr('data-id') };
+		datacategorias.push(categoria);
+	});
   $.ajax({                                               
 	    url: "<?php print base_url();?>producto/crear",
 	    context: document.body,
@@ -181,27 +216,12 @@ function crear (nombre, descripcion, ingredientes, marca, precio, peso, pesoneto
 	    type: "POST",
 	    data: {nombre : nombre, descripcion : descripcion, ingredientes : ingredientes, precio : precio, marca : marca, peso : peso, 
 	           pesoneto : pesoneto, largo : largo, alto : alto, ancho : ancho, existencias : existencias, estado : estado,
-	           datacaracteristicas : JSON.stringify(datacaracteristicas) } })
+	           datacaracteristicas : JSON.stringify(datacaracteristicas), datacategorias : JSON.stringify(datacategorias) } })
    .done(function(data) {                               // respuesta del servidor
     if(data.res=="ok") {callback(true)}
     else {alert(data.msj);callback(false)}
     })
    .error(function(){alert('No hay conexion');callback(false);})
-}
-
-function validarnumerodecimal (valor, campo) {
-	var yavapunto = 0;
-	for(var i = 0; i<valor.length;i++){
-		if(valor.charCodeAt(i) == 46 && yavapunto == 1) {
-			alert(campo + " debe tener solamente un punto decimal");
-			return false;
-		}
-		if(valor.charCodeAt(i) == 46) {yavapunto = 1;}
-		if((valor.charCodeAt(i) < 48 || valor.charCodeAt(i) > 57) && valor.charCodeAt(i) != 46) {
-			alert(campo + " debe ser un número positivo, puede tener decimales");
-			return false;
-		}
-	}
 }
 
 function validarnumeroentero (valor, campo) {
@@ -211,6 +231,26 @@ function validarnumeroentero (valor, campo) {
 			return false;
 		}
 	}
+}
+
+function limpiarpantalla () {
+	$('.form-contenedor').find('.entnombre').val("");
+	$('.form-contenedor').find('.entdescripcion').val("");
+	$('.form-contenedor').find('.entingredientes').val("");
+	$('.form-contenedor').find('.entprecio').val("");
+	$('.form-contenedor').find('.entpeso').val("");
+	$('.form-contenedor').find('.entpesoneto').val("");
+	$('.form-contenedor').find('.entlargo').val("");
+	$('.form-contenedor').find('.entancho').val("");
+	$('.form-contenedor').find('.entalto').val("");
+	$('.form-contenedor').find('.entexistencias').val("");
+	$('.form-contenedor').find('.entestado').val("");
+	$('input[value*="chulo"]').each(function(){
+		$(this).prop("checked", true);
+	});
+	$('input[name*="cat"]').each(function(){
+		$(this).prop("checked", false);
+	});
 }
 
 </script>
