@@ -2,8 +2,8 @@
 <h2>PRODUCTOS</h2>
 <form class="form-horizontal form-contenedor" role="form">
 
-<!------------------------------------- edicion del campo NOMBRE--> 
-<div class="row registro" style="border-bottom: 1px solid lightgrey">
+<!------------------------------------- edicion del campo NOMBRE
+<div class="row registro">
 	<label class="col-md-2 control-label">Nombre:</label>
 	<div class="editable escondido">
 		<div class="col-md-8 contenedor">
@@ -22,10 +22,32 @@
    		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
    	</div>	
   	</div>
+</div>--> 
+
+<!------------------------------------- edicion del campo NOMBRE -->
+<div class="row registro">
+	<label class="col-md-2 control-label">Nombre:</label>
+	<div class="col-md-8 contenedor">
+    	<input type="text" class="form-control entvalor" readonly value="<?php print $producto->nombre;?>"/>
+	</div>
+	<div class="editable escondido">
+	 	<div class="col-md-2 contenedor">
+	  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="nombre">Guardar</button>
+	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+	  	</div>	
+	</div>
+  	<div class="mostrable">
+   	<div class="col-md-2">
+   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+   	</div>	
+  	</div>
 </div>
 
+
+
+
 <!------------------------------------- edicion del campo DESCRIPCION --> 
-<div class="row registro" style="border-bottom: 1px solid lightgrey">
+<div class="row registro">
 	<label class="col-md-2 control-label">Descripción:</label>
 	<div class="editable escondido">
 		<div class="col-md-8 contenedor">
@@ -46,8 +68,30 @@
   	</div>
 </div>
 
+<!------------------------------------- edicion del campo INGREDIENTES --> 
+<div class="row registro">
+	<label class="col-md-2 control-label">Ingredientes:</label>
+	<div class="editable escondido">
+		<div class="col-md-8 contenedor">
+	    	<textarea type="text" class="form-control entvalor"><?php print $producto->ingredientes;?></textarea>
+		</div>
+	 	<div class="col-md-2 contenedor">
+	  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="ingredientes">Guardar</button>
+	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+	  	</div>	
+	</div>
+  	<div class="mostrable">
+		<div class="col-md-8">
+    		<h4 class="salvalor"><?php print $producto->ingredientes;?></h4>
+    	</div>
+   	<div class="col-md-2">
+   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+   	</div>	
+  	</div>
+</div>
+
 <!------------------------------------- edicion del campo MARCA --> 
-<div class="row registro" style="border-bottom: 1px solid lightgrey">
+<div class="row registro">
 	<label class="col-md-2 control-label">Marca:</label>
 	<div class="editable escondido">
 		<div class="col-md-8 contenedor">
@@ -77,7 +121,7 @@
 
 
 <!------------------------------------- edicion del campo PRECIO --> 
-<div class="row registro" style="border-bottom: 1px solid lightgrey">
+<div class="row registro">
 	<label class="col-md-2 control-label">Precio:</label>
 	<div class="editable escondido">
 		<div class="col-md-8 contenedor">
@@ -99,7 +143,7 @@
 </div>
 
 <!------------------------------------- edicion del campo PESO --> 
-<div class="row registro" style="border-bottom: 1px solid lightgrey">
+<div class="row registro">
 	<label class="col-md-2 control-label">Peso:</label>
 	<div class="editable escondido">
 		<div class="col-md-8 contenedor">
@@ -120,8 +164,30 @@
   	</div>
 </div>
 
+<!------------------------------------- edicion del campo PESO NETO --> 
+<div class="row registro">
+	<label class="col-md-2 control-label">Peso Neto:</label>
+	<div class="editable escondido">
+		<div class="col-md-8 contenedor">
+	    	<input type="text" class="form-control entvalor" value="<?php print $producto->pesoneto;?>"/>
+		</div>
+	 	<div class="col-md-2 contenedor">
+	  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="pesoneto">Guardar</button>
+	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+	  	</div>	
+	</div>
+  	<div class="mostrable">
+		<div class="col-md-8">
+    		<h4 class="salvalor"><?php print $producto->pesoneto;?></h4>
+    	</div>
+   	<div class="col-md-2">
+   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+   	</div>	
+  	</div>
+</div>
+
 <!------------------------------------- edicion del campo LARGO-->
-<div class="row registro" style="border-bottom: 1px solid lightgrey">
+<div class="row registro">
 	<label class="col-md-2 control-label">Largo:</label>
 	<div class="editable escondido">
 		<div class="col-md-8 contenedor">
@@ -143,7 +209,7 @@
 </div>
 
 <!------------------------------------- edicion del campo ANCHO --> 
-<div class="row registro" style="border-bottom: 1px solid lightgrey">
+<div class="row registro">
 	<label class="col-md-2 control-label">Ancho:</label>
 	<div class="editable escondido">
 		<div class="col-md-8 contenedor">
@@ -165,7 +231,7 @@
 </div>
 
 <!------------------------------------- edicion del campo ALTO-->
-<div class="row registro" style="border-bottom: 1px solid lightgrey">
+<div class="row registro">
 	<label class="col-md-2 control-label">Alto:</label>
 	<div class="editable escondido">
 		<div class="col-md-8 contenedor">
@@ -187,7 +253,7 @@
 </div>
 
 <!----------------------------------- edicion del campo EXISTENCIAS--> 
-<div class="row registro" style="border-bottom: 1px solid lightgrey">
+<div class="row registro">
 	<label class="col-md-2 control-label">Existencias:</label>
 	<div class="editable escondido">
 		<div class="col-md-8 contenedor">
@@ -209,7 +275,7 @@
 </div>
 
 <!------------------------------------- edicion del campo ESTADO --> 
-<div class="row registro" style="border-bottom: 1px solid lightgrey">
+<div class="row registro">
 	<label class="col-md-2 control-label">Estado:</label>
 	<div class="editable escondido">
 		<div class="col-md-8 contenedor">
@@ -368,7 +434,7 @@ $(document).ready(function() {
 					$(this).attr('disabled', true);
 				});
 		   };
-//	   });
+	   });
 	});
 
 	
@@ -378,10 +444,11 @@ $(document).ready(function() {
 
 
 	$('.form-contenedor').on('click','.btn-editar',function(event){
-		svalor = $(event.target).parent().parent().parent().find('.salvalor').html();
-		$(event.target).parent().parent().parent().find('.entvalor').val(svalor);
+//		svalor = $(event.target).parent().parent().parent().find('.salvalor').html();
+//		$(event.target).parent().parent().parent().find('.entvalor').val(svalor);
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
+		$(event.target).parent().parent().parent().find('.entvalor').prop("readonly", false);
 	});
 	$('.form-contenedor').on('click','.btn-cancelar',function(event){
 		$(event.target).parent().parent().parent().find('.mostrable').show();
