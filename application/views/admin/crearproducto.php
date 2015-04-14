@@ -1,4 +1,9 @@
-<h2>NUEVOS PRODUCTOS</h2>
+<div class="row registro">
+	<div class="col-md-2"></div>
+	<div class="col-md-8">
+		<h2>NUEVOS PRODUCTOS</h2>
+	</div>
+</div>
 <form class="form-horizontal form-contenedor" role="form">
 
 <div class="row registro">
@@ -188,11 +193,11 @@ $(document).ready(function() {
 		if(ealto != "")  {if(validarnumeroentero(ealto, "ALTO")  == false) {return false;}}
 		if(eexistencias != "")  {if(validarnumeroentero(eexistencias, "EXISTENCIAS")  == false) {return false;}}
 		
-//		rta = crear( enombre, edescripcion, eprecio, epeso, epesoneto, elargo, ealto, eancho, eexistencias, eestado, function(rta){
-//			if(rta) {
+		rta = crear( enombre, edescripcion, eprecio, epeso, epesoneto, elargo, ealto, eancho, eexistencias, eestado, function(rta){
+			if(rta) {
 				limpiarpantalla();
-//		   };
-//	   });
+		   };
+	   });
 	});
 });
 
