@@ -8,8 +8,89 @@ class Productos_model extends CI_Model {
         parent::__construct();
     }
 
-    function crear(){
+    function crear( $nombre = null,
+                    $descripcion = null,
+                    $ingredientes = null,
+                    $precio = null,
+                    $marca = null,
+                    $pesoneto = null,
+                    $peso = null,
+                    $largo = null,
+                    $ancho = null,
+                    $alto = null,
+                    $existencias = null,
+                    $estado = null,
+                    $datacaracteristicas = null,
+                    $datacategorias = null){
+        if($nombre == null OR strlen($nombre)<5){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Ingresa un nombre válido';
+            return $data;
+        }
+        if($descripcion == null OR strlen($descripcion)<20){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Ingresa una descripción con más de 20 caracteres';
+            return $data;
+        }
+        if($ingredientes == null OR strlen($ingredientes)<20){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Ingresa ingredientes con más de 20 caracteres';
+            return $data;
+        }
+        if($precio == null OR filter_var($precio, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Ingresa un precio válido';
+            return $data;
+        }
+        if($marca == null){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Debes asociar este producto a una marca.';
+            return $data;
+        }
+        if($pesoneto==null OR filter_var($pesoneto, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Ingresa un peso neto válido.';
+            return $data;
+        }
+        if($peso==null OR filter_var($peso, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Ingresa un peso válido.';
+            return $data;
+        }
+        if($estado == null){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Ingresa un estado válido';
+            return $data;
+        }
+        if(filter_var($largo, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null OR $largo == null){
+            $largo = 0;
+        }
+        if(filter_var($ancho, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null OR $ancho == null){
+            $ancho = 0;
+        }
+        if(filter_var($alto, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null OR $alto == null){
+            $alto = 0;
+        }
+        if(filter_var($existencias, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null OR $existencias == null){
+            $existencias = 0;
+        }
 
+        if(json_decode($datacaracteristicas) == null){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Ha ocurrido un error enviando los datos de caracteristicas.';
+            return $data;
+        }
+        $datacaracteristicas = json_decode($datacaracteristicas);
+
+        if(json_decode($datacategorias) == null){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Ha ocurrido un error enviando los datos de categorias.';
+            return $data;
+        }
+        $datacategorias = json_decode($datacategorias);
+
+        $data['res'] = 'ok';
+        return $data;
     }
 
     function listar($cant = 10, $pag = 1, $cat = null, $car = null){
