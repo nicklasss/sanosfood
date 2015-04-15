@@ -45,7 +45,7 @@
 		</select>    		
  	</div>
 	<div class="col-md-2"><input type="text" class="form-control entprecio" placeholder="obligatorio"></div>
-	<div class="col-md-2"><input type="text" class="form-control entexistencias" placeholder="obligatorio"></div>
+	<div class="col-md-2"><input type="text" class="form-control entexistencias"></div>
 	<div class="col-md-2">
 		<select class="form-control entestado"  placeholder="obligatorio">
 			<?php foreach ($estados as $estado) {
