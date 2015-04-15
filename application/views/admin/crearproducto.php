@@ -219,8 +219,8 @@ function crear (nombre, descripcion, ingredientes, marca, precio, peso, pesoneto
 	    context: document.body,
 	    dataType: "json",
 	    type: "POST",
-	    data: {nombre : nombre, descripcion : descripcion, ingredientes : ingredientes, marca : marca, precio : precio, peso : peso, 
-	           pesoneto : pesoneto, largo : largo, ancho : ancho, alto : alto, existencias : existencias, estado : estado,
+	    data: {nombre : nombre, descripcion : descripcion, ingredientes : ingredientes, precio : precio, marca : marca, pesoneto : pesoneto, 
+	    		  peso : peso, largo : largo, ancho : ancho, alto : alto, existencias : existencias, estado : estado,
 	           datacaracteristicas : JSON.stringify(datacaracteristicas), datacategorias : JSON.stringify(datacategorias) } })
    .done(function(data) {                               // respuesta del servidor
     if(data.res=="ok") {callback(true)}
