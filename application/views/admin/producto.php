@@ -509,10 +509,6 @@ $(document).ready(function() {
 
 
 	$('.form-contenedor').on('click','.btn-guardar',function(event){
-
-		alert("SE GUARDA EL PRODUCTO");
-		return false;
-
 		evalor = $(event.target).parent().parent().parent().find('.entvalor').val();
 		svalor = $(event.target).parent().parent().parent().find('.salvalor').html();
 		campo = $(event.target).attr("data-atributo");
@@ -573,7 +569,7 @@ function guardar_car (callback) {
 		}
 	});
   $.ajax({                                               // envio de los datos
-	    url: "<?php print base_url();?>producto/editarcar",
+	    url: "<?php print base_url();?>producto/guardarcar",
 	    context: document.body,
 	    dataType: "json",
 	    type: "POST",
