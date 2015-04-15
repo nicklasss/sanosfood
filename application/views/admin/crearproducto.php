@@ -193,7 +193,7 @@ $(document).ready(function() {
 		if(ealto != "")  {if(validarnumeroentero(ealto, "ALTO")  == false) {return false;}}
 		if(eexistencias != "")  {if(validarnumeroentero(eexistencias, "EXISTENCIAS")  == false) {return false;}}
 		
-		rta = crear( enombre, edescripcion, eprecio, epeso, epesoneto, elargo, ealto, eancho, eexistencias, eestado, function(rta){
+		rta = crear( enombre, edescripcion, eingredientes, emarca, eprecio, epeso, epesoneto, elargo, eancho, ealto, eexistencias, eestado, function(rta){
 			if(rta) {
 				limpiarpantalla();
 		   };
@@ -201,7 +201,7 @@ $(document).ready(function() {
 	});
 });
 
-function crear (nombre, descripcion, ingredientes, marca, precio, peso, pesoneto, largo, alto, ancho, existencias, estado, callback) {
+function crear (nombre, descripcion, ingredientes, marca, precio, peso, pesoneto, largo, ancho, alto, existencias, estado, callback) {
 	var datacaracteristicas = [];
 	$('input[name*="car"]:checked').each(function(){
 		if($(this).val()!=='chulo'){
@@ -219,8 +219,8 @@ function crear (nombre, descripcion, ingredientes, marca, precio, peso, pesoneto
 	    context: document.body,
 	    dataType: "json",
 	    type: "POST",
-	    data: {nombre : nombre, descripcion : descripcion, ingredientes : ingredientes, precio : precio, marca : marca, peso : peso, 
-	           pesoneto : pesoneto, largo : largo, alto : alto, ancho : ancho, existencias : existencias, estado : estado,
+	    data: {nombre : nombre, descripcion : descripcion, ingredientes : ingredientes, marca : marca, precio : precio, peso : peso, 
+	           pesoneto : pesoneto, largo : largo, ancho : ancho, alto : alto, existencias : existencias, estado : estado,
 	           datacaracteristicas : JSON.stringify(datacaracteristicas), datacategorias : JSON.stringify(datacategorias) } })
    .done(function(data) {                               // respuesta del servidor
     if(data.res=="ok") {callback(true)}
