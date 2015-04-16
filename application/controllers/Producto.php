@@ -23,7 +23,7 @@ class Producto extends CI_Controller {
 		$datacaracteristicas = @$this->input->post('datacaracteristicas',TRUE);
 		$datacategorias = @$this->input->post('datacategorias',TRUE);
 		$this->load->model('Productos_model');
-		$data = $this->Productos_model->crear($nombre,$descripcion,$precio,$peso,$largo,$ancho,$alto,$existencias,$estado);
+		$data = $this->Productos_model->crear($nombre,$descripcion,$ingredientes,$precio,$marca,$pesoneto,$peso,$largo,$ancho,$alto,$existencias,$estado,$datacaracteristicas,$datacategorias);
 		$this->load->view('producto/crear', $data, FALSE);
 	}
 
