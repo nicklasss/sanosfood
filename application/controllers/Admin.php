@@ -96,4 +96,9 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/crearusuario');
 		$this->load->view('admin/piedepagina');
 	}
+	public function buscarusuarios(){
+		$this->load->view('admin/encabezado');
+		$this->load->view('admin/buscarusuarios');
+		$this->load->view('admin/piedepagina');
+	}
 }
