@@ -83,4 +83,17 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/marcas', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
+	public function usuarios(){
+		$this->load->view('admin/encabezado');
+		$this->load->model('Usuarios_model');
+		$data['usuarios'] = $this->Usuarios_model->listar();
+		$this->load->view('admin/usuarios', $data, FALSE);
+		$this->load->view('admin/piedepagina');
+	}
+
+	public function crearusuario(){
+		$this->load->view('admin/encabezado');
+		$this->load->view('admin/crearusuario');
+		$this->load->view('admin/piedepagina');
+	}
 }
