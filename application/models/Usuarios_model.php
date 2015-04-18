@@ -47,6 +47,20 @@ class Usuarios_model extends CI_Model {
         $this->db->delete('usuarios');
         return array('res'=>'ok');
     }
+    function buscar($query = ''){
+        if($query ==""){
+            $data['usuarios'] = array();
+        }
+        $palabras = preg_split("/ (.| ) /", $query);
+        $against = "";
+        foreach ($palabras as $palabra) {
+            $against .= $palabra.'* ';
+        }
+        $query = $this->db->query(" SELECT id,nombres,apellidos,usuario,correo,ciudad
+                                    FROM usuarios
+                                    WHERE MATCH(nombres,apellidos,usuario,correo,ciudad) AGAINST ('$against' IN BOOLEAN MODE);");
+        return $query->result();
+    }
 }
 
 /* End of file Caracteristicas_model.php */
