@@ -83,11 +83,14 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/marcas', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
-	public function usuarios(){
+	public function usuarios($id = null){
+		if($id==null){
+			show_404();
+		}
 		$this->load->view('admin/encabezado');
 		$this->load->model('Usuarios_model');
-		$data['usuarios'] = $this->Usuarios_model->listar();
-		$this->load->view('admin/usuarios', $data, FALSE);
+		$data['usuario'] = $this->Usuarios_model->get($id);
+		$this->load->view('admin/usuario', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
 

@@ -8,6 +8,15 @@ class Usuarios_model extends CI_Model {
         parent::__construct();
     }
 
+    function get($id=null){
+        $this->db->where('id', $id);
+        $query = $this->db->get('usuarios', 1, 0);
+        if($query->num_rows()!=1){
+            return false;
+        }
+        return $query->row();
+    }
+
     function listar(){
     	$query = $this->db->get('usuarios');
     	return $query->result();
