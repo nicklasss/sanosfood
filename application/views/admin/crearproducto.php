@@ -158,7 +158,7 @@ foreach ($categorias as $categoria) {
 	</div>  		
 </div>
 
-
+</form>
 
 <script type="text/javascript">
 $(document).ready(function() { 

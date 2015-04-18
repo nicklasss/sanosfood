@@ -35,6 +35,11 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
       .panel-categorias .checkbox{
         padding-top: 0 !important;
       }
+      .panel-usuarios{
+        overflow-y:scroll;
+        height: 400px;
+        width: 1000px; 
+      }
       div .registro{
         margin-bottom: 5px;
       }
