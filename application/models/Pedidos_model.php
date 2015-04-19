@@ -27,7 +27,7 @@ class Pedidos_model extends CI_Model {
         $usuario = $this->db->get('usuarios', 1, 0)->row();
         $pedido->nombres = $usuario->nombres;
         $pedido->apellidos = $usuario->apellidos;
-        $this->db->where('id_pedido', $pedido->id_pedido);
+        $this->db->where('id_pedido', $pedido->id);
         $lineas = $this->db->get('lineaspedidos');
         $lineasarr = array();
         foreach ($lineas->result() as $linea) {
