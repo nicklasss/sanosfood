@@ -50,8 +50,6 @@
 
 <div class="row registro">
 	<div class="col-md-5"><h2>PEDIDOS</h2></div>
-	<div class="col-md-1"></div>
-	<div class="col-md-5"><h2>LINEAS DE PEDIDOS</h2></div>
 </div>
 <div class="row">
 	<div class="col-md-5">
@@ -74,34 +72,9 @@
 		}
 ?>
 				</tbody>
-			</table> <!--table-->
-		</div> <!--panel-->
-	</div> <!--col-md-8-->
-	<div class="col-md-2"></div>
-	<div class="col-md-5">
-		<div class="panel panel-default panel-usuarios">
-			<table class="table table-condensed table-striped">
-				<thead>
-				<tr role="row">
-				  <th>Producto</th>
-				  <th>Cantidad</th>
-				</tr>
-				</thead>
-				<tbody id="lista">
-<?php if (isset($lineaspedidos)) {
-			foreach ($lineaspedidos as $linea) {
-			print	'<tr role="row">
-						<td>'.$linea->producto.'</td>
-						<td>'.$linea->cantidad.'</td>
-					</tr>';
-			};
-		}
-?>
-				</tbody>
-			</table> <!--table-->
-		</div> <!--panel-->
-	</div> <!--col-md-8-->
-
+			</table> 
+		</div>
+	</div>
 </div>
 
 

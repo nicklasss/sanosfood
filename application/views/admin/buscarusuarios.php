@@ -61,7 +61,7 @@ function buscar (valor, callback) {
    		if(i == 0) { $("#listausuarios").html("<tr>"); }
          else { $("#listausuarios").append("<tr>"); }
          $("#listausuarios").append("<td>"+data.usuarios[i].nombres+" "+data.usuarios[i].apellidos+"</td>");  
-         $("#listausuarios").append("<td href='admin/usuarios/"+data.usuarios[i].id+"'>"+data.usuarios[i].usuario+"</td>");  
+         $("#listausuarios").append("<td><a href='admin/usuarios/"+data.usuarios[i].id+"'>"+data.usuarios[i].usuario+"</td>");  
          $("#listausuarios").append("<td>"+data.usuarios[i].correo+"</td>");  
          $("#listausuarios").append("<td>"+data.usuarios[i].ciudad+"</td>");  
          $("#listausuarios").append("</tr>");  
