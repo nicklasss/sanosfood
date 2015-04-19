@@ -58,10 +58,10 @@
 <?php 	
 if (isset($usuario->pedidos)) {
 	foreach ($usuario->pedidos as $pedido) {
-		print	'<tr role="row">
-				<td>'.$pedidos->fecha.'</td>
-				<td>'.$pedidos->estado.'</td>
-				</tr>';
+		print '<tr role="row">';
+		print '<td>'.$pedido->fecha.'</td>';
+		print '<td>'.$pedido->estado.'</td>';
+		print '</tr>';
 	};
 }
 ?>
