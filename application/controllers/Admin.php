@@ -99,6 +99,15 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/piedepagina');
 	}
 
+	public function pedido($id = null){
+		if($id==null){
+			show_404();
+		}
+		$this->load->model('Pedidos_model');
+		$data['pedido'] = $this->Pedidos_model->getPedido($id);
+		$this->load->view('admin/pedido', $data, FALSE);
+	}
+
 	public function crearusuario(){
 		$this->load->view('admin/encabezado');
 		$this->load->view('admin/crearusuario');

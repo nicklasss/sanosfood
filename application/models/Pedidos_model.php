@@ -14,6 +14,32 @@ class Pedidos_model extends CI_Model {
     	$query = $this->db->get('pedidos', 50, 0);
     	return $query->result();
     }
+
+    function getPedido($id = null){
+        $this->db->where('id', $id);
+        $query = $this->db->get('pedidos', 1, 0);
+        if($query->num_rows()==0){
+            show_404();
+        }
+        $pedido = $query->row();
+        $this->db->select('nombres,apellidos');
+        $this->db->where('id', $pedido->id_usuario);
+        $usuario = $this->db->get('usuarios', 1, 0)->row();
+        $pedido->nombres = $usuario->nombres;
+        $pedido->apellidos = $usuario->apellidos;
+        $this->db->where('id_pedido', $pedido->id_pedido);
+        $lineas = $this->db->get('lineaspedidos');
+        $lineasarr = array();
+        foreach ($lineas->result() as $linea) {
+            $this->db->select('nombre');
+            $this->db->where('id', $linea->id_producto);
+            $producto = $this->db->get('productos', 1, 0)->row();
+            $linea->nombre = $producto->nombre;
+            $lineasarr[] = $linea;
+        }
+        $pedido->lineas = $lineasarr;
+        return $pedido;
+    }
 }
 
 /* End of file pedidos_model.php */
