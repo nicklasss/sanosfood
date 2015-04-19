@@ -90,6 +90,11 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/encabezado');
 		$this->load->model('Usuarios_model');
 		$data['usuario'] = $this->Usuarios_model->get($id);
+		if(!$data['usuario']){
+			show_404();
+		}
+		$this->load->model('Pedidos_model');
+		$data['usuario']->pedidos = $this->Pedidos_model->pedidosUsuario($data['usuario']->id);
 		$this->load->view('admin/usuario', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
