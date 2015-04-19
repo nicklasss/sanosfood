@@ -27,20 +27,7 @@
 				  <th>Ciudad</th>
 				</tr>
 				</thead>
-				<tbody id="lista">
-<?php if (isset($usuarios)) {
-			foreach ($usuarios as $usuario) {
-			print	'<tr role="row">
-						<td>'.$usuario->id.'</td>
-						<td>'.$usuario->nombres." ".$usuario->apellidos.'</td>
-						<td>'.$usuario->usuario.'</td>
-						<td>'.$usuario->correo.'</td>
-						<td>'.$usuario->ciudad.'</td>
-						<td>fecha ultimo mvto</td>
-					</tr>';
-			};
-		}
-?>
+				<tbody id="listausuarios">
 				</tbody>
 			</table> <!--table-->
 		</div> <!--panel-->
@@ -52,15 +39,13 @@
 $(document).ready(function() { 
 
 	$('.container').on('click','.btn-buscar',function(event){
-		criterio = $('.container').find('.ecriterio').val();
-		if (criterio == null) {alert("es nulo");}
-		alert("entra");
-		return false;
+		criterio = $('.container').find('#ecriterio').val();
+		if (criterio == null) {alert("es nulo"); return false;}
 		rta = buscar( criterio, function(rta){
 			if(!rta) { alert("ha habido un error en la busqueda"); }
 	   })
 	})
-
+})
 
 function buscar (valor, callback) {
   $.ajax({                                               
@@ -70,10 +55,21 @@ function buscar (valor, callback) {
 	    type: "POST",
 	    data: {query : valor} })
    .done(function(data) {                               // respuesta del servidor
-    if(data.res=="ok") {callback(true)}
-    else {alert(data.msj);callback(false)}
+    if(data.res=="ok") {
+    	callback(true);
+      for (var i = 0; i < data.usuarios.length; i++) {
+   		if(i == 0) { $("#listausuarios").html("<tr>"); }
+         else { $("#listausuarios").append("<tr>"); }
+         $("#listausuarios").append("<td>"+data.usuarios[i].nombres+" "+data.usuarios[i].apellidos+"</td>");  
+         $("#listausuarios").append("<td href='admin/usuarios/"+data.usuarios[i].id+"'>"+data.usuarios[i].usuario+"</td>");  
+         $("#listausuarios").append("<td>"+data.usuarios[i].correo+"</td>");  
+         $("#listausuarios").append("<td>"+data.usuarios[i].ciudad+"</td>");  
+         $("#listausuarios").append("</tr>");  
+      } 
+	 }
+	 else {alert(data.msj);callback(false)}
     })
    .error(function(){alert('No hay conexion');callback(false);})
 }
-})
+
 </script>

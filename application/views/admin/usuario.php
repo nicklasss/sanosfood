@@ -17,32 +17,32 @@
 	<div class="col-md-4"><h4><?php print $usuario->nombres." ".$usuario->apellidos;?></h4></div>
 	<div class="col-md-1"><h4><?php print $usuario->tipo_identidad;?></h4></div>
 	<div class="col-md-2"><h4><?php print $usuario->nro_identidad;?></h4></div>
-	<div class="col-md-5"><h4><?php print $usuario->email;?></h4></div>
+	<div class="col-md-5"><h4><?php print $usuario->correo;?></h4></div>
 </div>
 
 <div class="row registro">
-	<div class="col-md-3">Usuario</div>
+	<div class="col-md-2">Usuario</div>
 	<div class="col-md-2">Fijo</div>
-	<div class="col-md-2">Celular</div>
+	<div class="col-md-3">Celular</div>
 	<div class="col-md-5">Dirección</div>
 </div>
 <div class="row registro">
 	<div class="col-md-2"><h4><?php print $usuario->usuario;?></h4></div>
-	<div class="col-md-4"><h4><?php print $usuario->telefono;?></h4></div>
-	<div class="col-md-1"><h4><?php print $usuario->movil;?></h4></div>
-	<div class="col-md-2"><h4><?php print $usuario->direccion;?></h4></div>
+	<div class="col-md-2"><h4><?php print $usuario->telefono;?></h4></div>
+	<div class="col-md-3"><h4><?php print $usuario->celular;?></h4></div>
+	<div class="col-md-5"><h4><?php print $usuario->direccion;?></h4></div>
 </div>
 
 <div class="row registro">
 	<div class="col-md-3">Barrio</div>
-	<div class="col-md-3">Municipio</div>
+	<div class="col-md-3">Ciudad</div>
 	<div class="col-md-3">Departamento</div>
 	<div class="col-md-3">Pais</div>
 </div>
 <div class="row registro">
 	<div class="col-md-3"><h4><?php print $usuario->barrio;?></h4></div>
-	<div class="col-md-3"><h4><?php print $usuario->municipio;?></h4></div>
-	<div class="col-md-3"><h4><?php print $usuario->departamento;?></h4></div>
+	<div class="col-md-3"><h4><?php print $usuario->ciudad;?></h4></div>
+	<div class="col-md-3"><h4><?php print $usuario->region;?></h4></div>
 	<div class="col-md-3"><h4><?php print $usuario->pais;?></h4></div>
 </div>
 
