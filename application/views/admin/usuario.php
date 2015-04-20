@@ -1,84 +1,95 @@
 <form class="form-horizontal form-contenedor">
 
 <div class="row registro">
-	<div class="col-md-4">Nombre</div>
-	<div class="col-md-1">dcto</div>
-	<div class="col-md-2">Número</div>
-	<div class="col-md-5">email</div>
-</div>
-<div class="row registro">
-	<div class="col-md-4"><h4><?php print $usuario->nombres." ".$usuario->apellidos;?></h4></div>
-	<div class="col-md-1"><h4><?php print $usuario->tipo_identidad;?></h4></div>
-	<div class="col-md-2"><h4><?php print $usuario->nro_identidad;?></h4></div>
-	<div class="col-md-5"><h4><?php print $usuario->correo;?></h4></div>
-</div>
-
-<div class="row registro">
-	<div class="col-md-2">Usuario</div>
-	<div class="col-md-2">Fijo</div>
-	<div class="col-md-3">Celular</div>
-	<div class="col-md-5">Dirección</div>
-</div>
-<div class="row registro">
-	<div class="col-md-2"><h4><?php print $usuario->usuario;?></h4></div>
-	<div class="col-md-2"><h4><?php print $usuario->telefono;?></h4></div>
-	<div class="col-md-3"><h4><?php print $usuario->celular;?></h4></div>
-	<div class="col-md-5"><h4><?php print $usuario->direccion;?></h4></div>
+	<div class="col-md-4">
+		<label for="exampleInputEmail1">Nombre del Usuario</label>
+		<input class="form-control" readonly value="<?php print $usuario->nombres." ".$usuario->apellidos;?>"/>
+	</div>
+	<div class="col-md-1">
+		<label for="exampleInputEmail1">Dcto</label>
+		<input class="form-control" readonly value="<?php print $usuario->tipo_identidad;?>"/>
+	</div>
+	<div class="col-md-2">
+		<label for="exampleInputEmail1">Número</label>
+		<input class="form-control" readonly value="<?php print $usuario->nro_identidad;?>"/>
+	</div>
+	<div class="col-md-5">
+		<label for="exampleInputEmail1">Correo Electrónico</label>
+		<input class="form-control" readonly value="<?php print $usuario->correo;?>"/>
+	</div>
 </div>
 
 <div class="row registro">
-	<div class="col-md-3">Barrio</div>
-	<div class="col-md-3">Ciudad</div>
-	<div class="col-md-3">Departamento</div>
-	<div class="col-md-3">Pais</div>
+	<div class="col-md-2">
+		<label for="exampleInputEmail1">Usuario</label>
+		<input class="form-control" readonly value="<?php print $usuario->usuario;?>"/>
+	</div>
+	<div class="col-md-2">
+		<label for="exampleInputEmail1">Teléfono</label>
+		<input class="form-control" readonly value="<?php print $usuario->telefono;?>"/>
+	</div>
+	<div class="col-md-3">
+		<label for="exampleInputEmail1">Celular</label>
+		<input class="form-control" readonly value="<?php print $usuario->celular;?>"/>
+	</div>
+	<div class="col-md-5">
+		<label for="exampleInputEmail1">Dirección</label>
+		<input class="form-control" readonly value="<?php print $usuario->direccion;?>"/>
+	</div>
 </div>
+
 <div class="row registro">
-	<div class="col-md-3"><h4><?php print $usuario->barrio;?></h4></div>
-	<div class="col-md-3"><h4><?php print $usuario->ciudad;?></h4></div>
-	<div class="col-md-3"><h4><?php print $usuario->region;?></h4></div>
-	<div class="col-md-3"><h4><?php print $usuario->pais;?></h4></div>
+	<div class="col-md-2">
+		<label for="exampleInputEmail1">Barrio</label>
+		<input class="form-control" readonly value="<?php print $usuario->barrio;?>"/>
+	</div>
+	<div class="col-md-2">
+		<label for="exampleInputEmail1">Ciudad</label>
+		<input class="form-control" readonly value="<?php print $usuario->ciudad;?>"/>
+	</div>
+	<div class="col-md-3">
+		<label for="exampleInputEmail1">Región</label>
+		<input class="form-control" readonly value="<?php print $usuario->region;?>"/>
+	</div>
+	<div class="col-md-5">
+		<label for="exampleInputEmail1">País</label>
+		<input class="form-control" readonly value="<?php print $usuario->pais;?>"/>
+	</div>
 </div>
 
 </form>
 
-<div class="row registro">
-	<div class="col-md-5"><h2>PEDIDOS</h2></div>
+<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-5"><h2>Pedidos</h2></div>
 </div>
 <div class="row">
-	<div class="col-md-5">
-		<div class="panel panel-default panel-usuarios">
-			<table class="table table-condensed table-striped">
-				<thead>
-				<tr role="row">
-				  <th>Fecha</th>
-				  <th>Estado</th>
-				</tr>
-				</thead>
-				<tbody id="lista">
+	<div class="col-md-3"></div>
+	<div class="col-md-6 panel panel-default panel-usuarios">
+		<table class="table table-condensed table-striped">
+			<thead>
+			<tr role="row">
+			  <th>Producto</th>
+			  <th>Estado</th>
+			</tr>
+			</thead>
+			<tbody>
 <?php 	
 if (isset($usuario->pedidos)) {
 	foreach ($usuario->pedidos as $pedido) {
 		print '<tr role="row">';
-		print '<td>'.$pedido->fecha.'</td>';
+		print '<td><a href="pedido/'.$pedido->id.'">'.$pedido->fecha.'</a></td>';
 		print '<td>'.$pedido->estado.'</td>';
 		print '</tr>';
 	};
 }
 ?>
-				</tbody>
-			</table> 
-		</div>
+			</tbody>
+		</table> 
 	</div>
 </div>
 
 
 <script type="text/javascript">
-$(document).ready(function() { 
-
-	$('.form-contenedor').on('click','.btn-limpiar',function(event){
-		limpiarpantalla();
-	});
-});
-
 
 </script>
