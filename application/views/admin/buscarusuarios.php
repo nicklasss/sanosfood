@@ -10,7 +10,7 @@
    <div class="col-lg-8">
 		<div class="input-group input-group-lg">
 		  <span class="input-group-addon" id="sizing-addon1">Criterio de Busqueda</span>
-		  <input type="text" class="form-control" id="ecriterio" aria-describedby="sizing-addon1">
+		  <input type="text" class="form-control input-lg" id="ecriterio" aria-describedby="sizing-addon1">
 		</div>
 	</div>
 	<div class="col-md-2">

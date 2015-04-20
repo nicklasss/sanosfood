@@ -1,58 +1,61 @@
 <form class="form-horizontal form-contenedor">
 
 <div class="row registro">
+	<div class="col-md-1"></div>
 	<div class="col-md-4">
-		<label for="exampleInputEmail1">Nombre del Usuario</label>
-		<input class="form-control" readonly value="<?php print $usuario->nombres." ".$usuario->apellidos;?>"/>
+		<label>Nombre del Usuario</label>
+		<input class="form-control input-lg" readonly value="<?php print $usuario->nombres." ".$usuario->apellidos;?>"/>
 	</div>
 	<div class="col-md-1">
-		<label for="exampleInputEmail1">Dcto</label>
+		<label>Dcto</label>
 		<input class="form-control" readonly value="<?php print $usuario->tipo_identidad;?>"/>
 	</div>
 	<div class="col-md-2">
-		<label for="exampleInputEmail1">Número</label>
-		<input class="form-control" readonly value="<?php print $usuario->nro_identidad;?>"/>
+		<label>Número</label>
+		<input class="form-control" readonly value="<?php print number_format($usuario->nro_identidad, 0, ",", ".");?>"/>
 	</div>
-	<div class="col-md-5">
-		<label for="exampleInputEmail1">Correo Electrónico</label>
+	<div class="col-md-3">
+		<label>Correo Electrónico</label>
 		<input class="form-control" readonly value="<?php print $usuario->correo;?>"/>
 	</div>
 </div>
 
 <div class="row registro">
+	<div class="col-md-1"></div>
 	<div class="col-md-2">
-		<label for="exampleInputEmail1">Usuario</label>
-		<input class="form-control" readonly value="<?php print $usuario->usuario;?>"/>
+		<label>Usuario</label>
+		<input class="form-control input-lg" readonly value="<?php print $usuario->usuario;?>"/>
 	</div>
 	<div class="col-md-2">
-		<label for="exampleInputEmail1">Teléfono</label>
+		<label>Teléfono</label>
 		<input class="form-control" readonly value="<?php print $usuario->telefono;?>"/>
 	</div>
-	<div class="col-md-3">
-		<label for="exampleInputEmail1">Celular</label>
+	<div class="col-md-2">
+		<label>Celular</label>
 		<input class="form-control" readonly value="<?php print $usuario->celular;?>"/>
 	</div>
-	<div class="col-md-5">
-		<label for="exampleInputEmail1">Dirección</label>
+	<div class="col-md-4">
+		<label>Dirección</label>
 		<input class="form-control" readonly value="<?php print $usuario->direccion;?>"/>
 	</div>
 </div>
 
 <div class="row registro">
+	<div class="col-md-1"></div>
 	<div class="col-md-2">
-		<label for="exampleInputEmail1">Barrio</label>
+		<label>Barrio</label>
 		<input class="form-control" readonly value="<?php print $usuario->barrio;?>"/>
 	</div>
 	<div class="col-md-2">
-		<label for="exampleInputEmail1">Ciudad</label>
+		<label>Ciudad</label>
 		<input class="form-control" readonly value="<?php print $usuario->ciudad;?>"/>
 	</div>
 	<div class="col-md-3">
-		<label for="exampleInputEmail1">Región</label>
+		<label>Región</label>
 		<input class="form-control" readonly value="<?php print $usuario->region;?>"/>
 	</div>
-	<div class="col-md-5">
-		<label for="exampleInputEmail1">País</label>
+	<div class="col-md-3">
+		<label>País</label>
 		<input class="form-control" readonly value="<?php print $usuario->pais;?>"/>
 	</div>
 </div>

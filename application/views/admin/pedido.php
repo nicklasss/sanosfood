@@ -3,15 +3,15 @@
 <div class="row registro">
 	<div class="col-md-2"></div>
 	<div class="col-md-3">
-		<label for="exampleInputEmail1">Nombre del Usuario</label>
+		<label>Nombre del Usuario</label>
 		<input class="form-control" readonly value="<?php print $pedido->nombres." ".$pedido->apellidos;?>"/>
 	</div>
 	<div class="col-md-3">
-		<label for="exampleInputEmail1">Fecha y Hora</label>
+		<label>Fecha y Hora</label>
 		<input class="form-control" readonly value="<?php print $pedido->fecha;?>"/>
 	</div>
 	<div class="col-md-2">
-		<label for="exampleInputEmail1">Estado</label>
+		<label>Estado</label>
 		<input class="form-control" readonly value="<?php print $pedido->estado;?>"/>
 	</div>
 </div>
