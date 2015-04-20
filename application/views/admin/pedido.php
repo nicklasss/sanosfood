@@ -21,7 +21,7 @@
 
 <div class="row">
 	<div class="col-md-3"></div>
-	<div class="col-md-4"><h2>Lineas del Pedido</h2></div>
+	<div class="col-md-4"><h2>Lineas del Pedido</a></h2></div>
 </div>
 <div class="row">
 	<div class="col-md-3"></div>
