@@ -109,6 +109,41 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/pedido', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
+	public function pedidos($estado = null,$pag = 1){
+		if($estado==null){
+			show_404();
+		}
+		$this->load->view('admin/encabezado');
+		$this->load->model('Pedidos_model');
+		$data['pedidos'] = $this->Pedidos_model->getPedidosPorEstado($estado,$pag);
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'pedidos/'.$estado.'/';
+		$config['total_rows'] = count($data['pedidos']);//$data['doctor']->respondidas;
+		$config['per_page'] = 10;
+		$config['num_links'] = 3;
+		$config['use_page_numbers'] = TRUE;
+		$config['full_tag_open'] = '<nav class="text-center"><ul class="pagination pagination-sm">';
+		$config['full_tag_close'] = '</ul></nav>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="disabled"><span>';
+		$config['cur_tag_close'] = '</span></li>';
+		$config['next_link'] = '&rsaquo;';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_link'] = '&raquo;';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['first_link'] = '&laquo;';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = '&lsaquo;';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$this->pagination->initialize($config);
+		$this->load->view('admin/pedidosxestado', $data, FALSE);
+		$this->load->view('admin/piedepagina');
+	}
 
 	public function crearusuario(){
 		$this->load->view('admin/encabezado');
