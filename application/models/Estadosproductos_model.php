@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Estados_model extends CI_Model {
+class Estadosproductos_model extends CI_Model {
 
 	function __construct()
     {
@@ -9,7 +9,7 @@ class Estados_model extends CI_Model {
     }
 
     function listar(){
-    	$query = $this->db->get('estados');
+    	$query = $this->db->get('estadosproductos');
     	return $query->result();
     }	
 	function editar($id = NULL, $atributo = NULL, $valor = NULL){
@@ -17,7 +17,7 @@ class Estados_model extends CI_Model {
             $this->db->trans_start();
             $object = array($atributo => $valor);
             $this->db->where('id', $id);
-            $this->db->update('estados', $object);
+            $this->db->update('estadosproductos', $object);
             $this->db->trans_complete();
             if ($this->db->trans_status() === FALSE) {
                 return array('res'=>'bad','msj'=>'Error en la edición.'); }
@@ -32,18 +32,18 @@ class Estados_model extends CI_Model {
             return array('res'=>'bad','msj'=>'Ingresa un nombre adecuado'); }
 
         $this->db->where('nombre', $nombre);
-        if($this->db->count_all_results('estados')>0){
+        if($this->db->count_all_results('estadosproductos')>0){
             return array('res'=>'bad','msj'=>'Ya existe un estado con este nombre'); }
 
         $object = array('nombre' => $nombre, 'descripcion' => $descripcion);
-        $this->db->insert('estados', $object);
+        $this->db->insert('estadosproductos', $object);
         return array('res'=>'ok','id'=>$this->db->insert_id());
     }
     function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'Error en la inserción.'); }
         $this->db->where('id', $id);
-        $this->db->delete('estados');
+        $this->db->delete('estadosproductos');
         return array('res'=>'ok');
     }
 }

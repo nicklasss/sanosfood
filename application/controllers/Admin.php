@@ -69,11 +69,11 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/categorias', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
-	public function estados() {
+	public function estadosproductos() {
 		$this->load->view('admin/encabezado');
-		$this->load->model('Estados_model');
-		$data['estados'] = $this->Estados_model->listar();
-		$this->load->view('admin/estados', $data, FALSE);
+		$this->load->model('Estadosproductos_model');
+		$data['estadosproductos'] = $this->Estadosproductos_model->listar();
+		$this->load->view('admin/estadosproductos', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
 	public function marcas() {

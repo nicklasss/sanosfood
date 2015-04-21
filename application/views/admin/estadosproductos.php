@@ -7,7 +7,7 @@
 </div>
 <div class="todosregistros">
 
-<?php foreach ($estados as $estado) {
+<?php foreach ($estadosproductos as $estado) {
 print '
 <div class="row registro">
 	<div class="editable escondido">
@@ -143,7 +143,7 @@ $(document).ready(function() {
 
 function guardar (id, atributo, valor, callback) {
 	$.ajax({                                               // envio de los datos
-	  url: "<?php print base_url();?>estado/editar",
+	  url: "<?php print base_url();?>estadoproducto/editar",
 	  context: document.body,
 	  dataType: "json",
 	  type: "POST",
@@ -157,7 +157,7 @@ function guardar (id, atributo, valor, callback) {
 
 function eliminar (id, callback) {
 	$.ajax({                                               // envio de los datos
-	  url: "<?php print base_url();?>estado/eliminar",
+	  url: "<?php print base_url();?>estadoproducto/eliminar",
 	  context: document.body,
 	  dataType: "json",
 	  type: "POST",
@@ -171,7 +171,7 @@ function eliminar (id, callback) {
 
 function crear (nombre, descripcion, callback) {
 	$.ajax({                                               // envio de los datos
-	  url: "<?php print base_url();?>estado/crear",
+	  url: "<?php print base_url();?>estadoproducto/crear",
 	  context: document.body,
 	  dataType: "json",
 	  type: "POST",
