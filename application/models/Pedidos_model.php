@@ -43,7 +43,7 @@ class Pedidos_model extends CI_Model {
 
     function getPedidosPorEstado($estado = null, $pag = 1){
         $this->db->where('nombre', $estado);
-        if($this->db->count_all_results()==0){
+        if($this->db->count_all_results('estados')==0){
             show_404();
         }
         $this->db->where('estado', $estado);
