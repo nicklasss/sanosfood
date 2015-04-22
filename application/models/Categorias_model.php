@@ -9,6 +9,7 @@ class Categorias_model extends CI_Model {
     }
 
     function listar() {
+        $this->db->order_by('nombre', 'asc');
     	$query = $this->db->get('categorias');
     	return $query->result();
     }	

@@ -9,6 +9,7 @@ class Caracteristicas_model extends CI_Model {
     }
 
     function listar(){
+        $this->db->order_by('nombre', 'asc');
     	$query = $this->db->get('caracteristicas');
     	return $query->result();
     }

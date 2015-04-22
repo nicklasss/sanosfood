@@ -49,6 +49,7 @@ class Pedidos_model extends CI_Model {
         if($estado != 'todos'){
             $this->db->where('estado', $estado);
         }
+        $this->db->order_by('id', 'desc');
         $query = $this->db->get('pedidos', 10, (($pag-1)*10));
         $resultado = array();
         foreach ($query->result() as $row) {

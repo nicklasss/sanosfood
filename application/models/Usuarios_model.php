@@ -18,6 +18,7 @@ class Usuarios_model extends CI_Model {
     }
 
     function listar(){
+        $this->db->order_by('nombres', 'asc');
     	$query = $this->db->get('usuarios');
     	return $query->result();
     }
