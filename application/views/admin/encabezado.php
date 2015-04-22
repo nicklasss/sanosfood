@@ -106,12 +106,18 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
                 }
                 ?>
                 <li class="divider"></li>
-                <li><a href="#">Todos</a></li>
+                <li><a href="<?php print base_url().'admin/pedidos/todos';?>">Todos</a></li>
               </ul>
             </li>
             <li><a href="<?php print base_url(); ?>admin/caracteristicas">Características</a></li>
             <li><a href="<?php print base_url(); ?>admin/categorias">Categorías</a></li>
-            <li><a href="<?php print base_url(); ?>admin/estados">Estados</a></li>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estados <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="<?php print base_url().'admin/estadospedidos';?>">Pedidos</a></li>
+                <li><a href="<?php print base_url().'admin/estadosproductos';?>">Productos</a></li>
+              </ul>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
