@@ -31,8 +31,13 @@
 	</div>
 </div>
 <div class="row">
+<<<<<<< HEAD
 	<div class="col-md-12 center-text">
 		<?php print $this->pagination->create_links();?>
+=======
+	<div class="col-md-12" center-text>
+	<?php print $this->pagination->create_links();?>
+>>>>>>> origin/master
 	</div>
 </div>
 

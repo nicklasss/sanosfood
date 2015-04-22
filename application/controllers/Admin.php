@@ -91,9 +91,9 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/piedepagina');
 	}
 	public function estadospedidos() {
-		$this->load->view('admin/encabezado');
 		$this->load->model('Estadospedidos_model');
-		$data['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->view('admin/estadospedidos', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
