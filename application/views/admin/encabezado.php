@@ -112,12 +112,13 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
             <li><a href="<?php print base_url(); ?>admin/caracteristicas">Características</a></li>
             <li><a href="<?php print base_url(); ?>admin/categorias">Categorías</a></li>
             <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estados <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estados <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="<?php print base_url().'admin/estadospedidos';?>">Pedidos</a></li>
                 <li><a href="<?php print base_url().'admin/estadosproductos';?>">Productos</a></li>
               </ul>
             </li>
+            <li><a href="<?php print base_url(); ?>admin/marcas">Marcas</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
