@@ -11,8 +11,9 @@
 		<table class="table table-condensed table-striped">
 			<thead>
 			<tr role="row">
-			  <th>Producto</th>
-			  <th>Estado</th>
+			  <th>Fecha y Hora</th>
+			  <th>Ciudad</th>
+			  <th>correo</th>
 			</tr>
 			</thead>
 			<tbody>
@@ -20,8 +21,9 @@
 if (isset($pedidos)) {
 	foreach ($pedidos as $pedido) {
 		print '<tr role="row">';
-		print '<td><a href="../pedido/'.$pedido->id.'">'.$pedido->fecha.'</a></td>';
-		print '<td>'.$pedido->estado.'</td>';
+		print '<td>'.$pedido->fecha.'</td>';
+		print '<td>'.$pedido->ciudad.'</td>';
+		print '<td>'.$pedido->correo.'</td>';
 		print '</tr>';
 	};
 }
