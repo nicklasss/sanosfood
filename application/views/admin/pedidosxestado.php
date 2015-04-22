@@ -15,24 +15,24 @@
 			</tr>
 			</thead>
 			<tbody>
-<?php 	
-if (isset($pedidos)) {
-	foreach ($pedidos as $pedido) {
-		print '<tr role="row">';
-		print '<td>'.$pedido->fecha.'</td>';
-		print '<td>'.$pedido->ciudad.'</td>';
-		print '<td>'.$pedido->correo.'</td>';
-		print '</tr>';
-	};
-}
-?>
+				<?php 	
+				if (isset($pedidos)) {
+					foreach ($pedidos as $pedido) {
+						print '<tr role="row">';
+						print '<td>'.$pedido->fecha.'</td>';
+						print '<td>'.$pedido->ciudad.'</td>';
+						print '<td>'.$pedido->correo.'</td>';
+						print '</tr>';
+					};
+				}
+				?>
 			</tbody>
 		</table> 
 	</div>
 </div>
 <div class="row">
 	<div class="col-md-12 center-text">
-	<?php print $this->pagination->create_links();?>
+		<?php print $this->pagination->create_links();?>
 	</div>
 </div>
 
