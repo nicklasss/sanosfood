@@ -31,7 +31,7 @@ if (isset($pedidos)) {
 	</div>
 </div>
 <div class="row">
-	<div class="col-md-12" center-text>
+	<div class="col-md-12 center-text">
 	<?php print $this->pagination->create_links();?>
 	</div>
 </div>

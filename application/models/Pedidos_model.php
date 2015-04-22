@@ -60,6 +60,11 @@ class Pedidos_model extends CI_Model {
         }
         return $resultado;
     }
+
+    function contarPedidos($estado = null){
+        $this->db->where('estado', $estado);
+        return $this->db->count_all_results('pedidos');
+    }
 }
 
 /* End of file pedidos_model.php */
