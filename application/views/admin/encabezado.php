@@ -98,9 +98,13 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pedidos <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Pedidos</a></li>
-                <li><a href="#">Despachados</a></li>
-                <li><a href="#">Entregados</a></li>
+                <?php
+                foreach ($estadospedidos as $estados) { ?>
+                  <li><a href="<?php print base_url().'admin/pedidos/'.$estados->nombre;?>"><?php print $estados->nombre; ?></a></li>
+                
+                  <?php
+                }
+                ?>
                 <li class="divider"></li>
                 <li><a href="#">Todos</a></li>
               </ul>

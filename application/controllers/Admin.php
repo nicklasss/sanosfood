@@ -4,7 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller {
 
 	public function index() {
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->view('admin/home');
 		$this->load->view('admin/piedepagina');
 	}
@@ -18,12 +20,16 @@ class Admin extends CI_Controller {
 	}
 
 	public function home() {
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->view('admin/home');
 		$this->load->view('admin/piedepagina');
 	}
 	public function crearproducto(){
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Estados_model');
 		$data['estados'] = $this->Estados_model->listar();
 		$this->load->model('Caracteristicas_model');
@@ -37,7 +43,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function productos($id = null) {
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Productos_model');
 		if($id != null) { 
 			$this->load->model('Estados_model');
@@ -56,21 +64,27 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/piedepagina');
 	}
 	public function caracteristicas() {
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Caracteristicas_model');
 		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
 		$this->load->view('admin/caracteristicas', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
 	public function categorias() {
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Categorias_model');
 		$data['categorias'] = $this->Categorias_model->listar();
 		$this->load->view('admin/categorias', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
 	public function estadosproductos() {
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Estadosproductos_model');
 		$data['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/estadosproductos', $data, FALSE);
@@ -84,7 +98,9 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/piedepagina');
 	}
 	public function marcas() {
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Marcas_model');
 		$data['marcas'] = $this->Marcas_model->listar();
 		$this->load->view('admin/marcas', $data, FALSE);
@@ -94,7 +110,9 @@ class Admin extends CI_Controller {
 		if($id==null){
 			show_404();
 		}
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Usuarios_model');
 		$data['usuario'] = $this->Usuarios_model->get($id);
 		if(!$data['usuario']){
@@ -110,7 +128,9 @@ class Admin extends CI_Controller {
 		if($id==null){
 			show_404();
 		}
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Pedidos_model');
 		$data['pedido'] = $this->Pedidos_model->getPedido($id);
 		$this->load->view('admin/pedido', $data, FALSE);
@@ -120,7 +140,9 @@ class Admin extends CI_Controller {
 		if($estado==null){
 			show_404();
 		}
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Pedidos_model');
 		$data['pedidos'] = $this->Pedidos_model->getPedidosPorEstado($estado,$pag);
 		$this->load->library('pagination');
@@ -153,12 +175,16 @@ class Admin extends CI_Controller {
 	}
 
 	public function crearusuario(){
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->view('admin/crearusuario');
 		$this->load->view('admin/piedepagina');
 	}
 	public function buscarusuarios(){
-		$this->load->view('admin/encabezado');
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->view('admin/buscarusuarios');
 		$this->load->view('admin/piedepagina');
 	}

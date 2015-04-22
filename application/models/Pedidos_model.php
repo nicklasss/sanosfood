@@ -46,9 +46,19 @@ class Pedidos_model extends CI_Model {
         if($this->db->count_all_results('estadospedidos')==0){
             show_404();
         }
-        $this->db->where('estado', $estado);
+        if($estado != 'todos'){
+            $this->db->where('estado', $estado);
+        }
         $query = $this->db->get('pedidos', 10, (($pag-1)*10));
-        return $query->result();
+        $resultado = array();
+        foreach ($query->result() as $row) {
+            $this->db->where('id', $row->id_usuario);
+            $usuario = $this->db->get('usuarios', 1, 0)->row();
+            $row->correo = $usuario->corrreo;
+            $row->ciudad = $usuario->ciudad;
+            $resultado[] = $row;
+        }
+        return $resultado;
     }
 }
 
