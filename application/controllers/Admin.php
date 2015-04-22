@@ -94,6 +94,7 @@ class Admin extends CI_Controller {
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
+		$data['estadospedidos'] = $this->Estadospedidos_model->listar();
 		$this->load->view('admin/estadospedidos', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
