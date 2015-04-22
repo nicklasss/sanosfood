@@ -54,7 +54,7 @@ class Pedidos_model extends CI_Model {
         foreach ($query->result() as $row) {
             $this->db->where('id', $row->id_usuario);
             $usuario = $this->db->get('usuarios', 1, 0)->row();
-            $row->correo = $usuario->corrreo;
+            $row->correo = $usuario->correo;
             $row->ciudad = $usuario->ciudad;
             $resultado[] = $row;
         }
