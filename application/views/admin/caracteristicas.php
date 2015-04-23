@@ -1,12 +1,8 @@
 <div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-6"><h2>Características de los Productos</a></h2></div>
-</div>
-
-<div class="row">
 	<div class="col-md-1"></div>
-	<div class="col-md-10">
-		<table class="table table-condensed table-striped">
+	<div class="col-md-10 panel panel-default">
+		<div class="panel-heading text-center"><h2>Características de los Productos</h2></div>
+		<table class="table table-condensed table-striped" id="tabla-car">
 			<thead>
 			<tr role="row">
 			  <th>Nombre</th>
@@ -49,33 +45,33 @@ foreach ($caracteristicas as $caracteristica) {
 }
 ?>
 
+			<tr id="ultima">
+				<td>
+			    	<div class="editable escondido">
+						<input type="text" class="form-control entnombre" value="'.$caracteristica->nombre.'"/>
+			    	</div>
+				</td>
+			 	<td>
+			    	<div class="editable escondido">
+						<textarea type="text" class="form-control entdescripcion">'.$caracteristica->descripcion.'</textarea>
+			    	</div>
+				</td>
+				<td>
+			    	<div class="editable escondido">
+				  		<button type="button" class="btn btn-xs btn-success btn-agregar" data-id="'.$caracteristica->id.'">Agregar</button>
+				  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+			    	</div>
+			    	<div class="mostrable">
+				   		<button type="button" class="btn btn-xs btn-success text-center btn-nuevo"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
+			    	</div>
+				</td>	
+			</tr>
+
+
 			</tbody>
 		</table> 
 	</div>
 </div>
-
-
-<div class="row ultimo" style="border-top: 1px solid #999">
-  <div class="editable escondido">
- 	<div class="col-md-3 contenedor">
-    	<input type="text" class="form-control entnombre" placeholder="Nombre"/>
-	</div>
- 	<div class="col-md-7 contenedor">
-    	<textarea type="text" class="form-control entdescripcion" placeholder="Descripción"></textarea>
-	</div>
- 	<div class="col-md-2 contenedor">
-   		<button type="button" class="btn btn-xs btn-success btn-agregar">Agregar</button>
-   		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-   	</div>	
-  </div>
-  <div class="mostrable">
-	<div class="col-md-10"></div>
-   	<div class="col-md-2">
-   		<button type="button" class="btn btn-xs btn-success btn-nuevo"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
-   	</div>	
-  </div>
-</div>
-
 
 <script type="text/javascript">
 $(document).ready(function() { 
@@ -101,14 +97,14 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.btn-nuevo').click( function(event){
+	$('.container').on('click','.btn-nuevo',function(event){
 		$(event.target).parent().parent().parent().find('.entnombre').val("");
 		$(event.target).parent().parent().parent().find('.entdescripcion').val("");
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
 	});
 
-	$('.btn-agregar').click( function(event){
+	$('.container').on('click','.btn-agregar',function(event){
 		enombre = $(event.target).parent().parent().parent().find('.entnombre').val();
 		edescripcion = $(event.target).parent().parent().parent().find('.entdescripcion').val();
 		if(enombre !== "" && edescripcion !== "") {
@@ -183,7 +179,7 @@ function crear (nombre, descripcion, callback) {
 	 .done(function(data) {                               // respuesta del servidor
 	  if(data.res=="ok") {
 	  	callback(true);
-		$(".table").last().append(
+		$("#ultima").before(
 		'<tr>'+
 		'	<td>'+
 		'    	<div class="editable escondido">'+
