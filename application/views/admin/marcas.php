@@ -1,92 +1,91 @@
-<h2>MARCAS</h2>
-<form class="form-horizontal form-contenedor" role="form">
+<div class="row">
+	<div class="col-md-12">
+        <div class="panel panel-default">
+			<div class="panel-heading text-center"><h2>Marcas</h2></div>
+			<table class="table table-condensed table-striped" id="tabla-car">
+				<thead>
+				<tr role="row">
+				  <th>Nombre</th>
+				  <th>Descripción</th>
+				</tr role="row">
+				</thead>
+				<tbody>
 
-<div class="row" style="border-bottom: 3px solid #999">
-	<div class="col-md-3"><h4><strong>Nombre</strong></h4></div>
-	<div class="col-md-6"><h4><strong>Descripción</strong></h4></div>
+<?php
+foreach ($marcas as $marca) {
+	print '
+				<tr>
+					<td width="18%">
+				    	<div class="editable escondido">
+							<input type="text" class="form-control entnombre" value="'.$marca->nombre.'"/>
+				    	</div>
+				    	<div class="mostrable">
+							<h4 class="salnombre mostrable" value="'.$marca->nombre.'">'.$marca->nombre.'</h4>
+				    	</div>
+					</td>
+				 	<td>
+				    	<div class="editable escondido">
+							<textarea type="text" class="form-control entdescripcion">'.$marca->descripcion.'</textarea>
+				    	</div>
+				    	<div class="mostrable">
+							<h5 class="saldescripcion">'.$marca->descripcion.'</h5>
+				    	</div>
+					</td>
+					<td width="15%">
+				    	<div class="editable escondido">
+					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'.$marca->id.'">Guardar</button>
+					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+				    	</div>
+				    	<div class="mostrable">
+					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+					   		<button type="button" class="btn btn-xs btn-danger btn-eliminar" data-id="'.$marca->id.'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
+				    	</div>
+					</td>	
+				</tr>';
+}
+?>
+
+				<tr id="ultima">
+					<td>
+				    	<div class="editable escondido">
+							<input type="text" class="form-control entnombre" value="'.$marca->nombre.'"/>
+				    	</div>
+					</td>
+				 	<td>
+				    	<div class="editable escondido">
+							<textarea type="text" class="form-control entdescripcion">'.$marca->descripcion.'</textarea>
+				    	</div>
+					</td>
+					<td>
+				    	<div class="editable escondido">
+					  		<button type="button" class="btn btn-xs btn-success btn-agregar" data-id="'.$marca->id.'">Agregar</button>
+					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+				    	</div>
+				    	<div class="mostrable">
+					   		<button type="button" class="btn btn-xs btn-success text-center btn-nuevo"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
+				    	</div>
+					</td>	
+				</tr>
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
+	</div>
 </div>
-<div class="todosregistros">
-
-<?php foreach ($marcas as $marca) {
-print '
-<div class="row registro">
-	<div class="editable escondido">
-		<div class="col-md-3 contenedor">
-	    	<input type="text" class="form-control entnombre" value="'.$marca->nombre.'"/>
-		</div>
-	 	<div class="col-md-7 contenedor">
-	    	<textarea type="text" class="form-control entdescripcion">'.$marca->descripcion.'</textarea>
-		</div>
-	 	<div class="col-md-2 contenedor">
-	  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'.$marca->id.'">Guardar</button>
-	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-	  	</div>	
-	</div>
-  	<div class="mostrable">
-		<div class="col-md-3">
-    		<h4 class="salnombre" value="'.$marca->nombre.'">'.$marca->nombre.'</h4>
-    	</div>
- 		<div class="col-md-7">
-    		<h4 class="saldescripcion">'.$marca->descripcion.'</h4>
-		</div>
-   	<div class="col-md-2">
-   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-   		<button type="button" class="btn btn-xs btn-danger btn-eliminar" data-id="'.$marca->id.'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
-   	</div>	
-  	</div>
-</div>';
-}?>
-</div>
-
-
-<div class="row ultimo" style="border-top: 3px solid #999">
-  <div class="editable escondido">
- 	<div class="col-md-3 contenedor">
-    	<input type="text" class="form-control entnombre" placeholder="Nombre"/>
-	</div>
- 	<div class="col-md-7 contenedor">
-    	<textarea type="text" class="form-control entdescripcion" placeholder="Descripción"></textarea>
-	</div>
- 	<div class="col-md-2 contenedor">
-   		<button type="button" class="btn btn-xs btn-success btn-agregar">Agregar</button>
-   		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-   	</div>	
-  </div>
-  <div class="mostrable">
-	<div class="col-md-10">
-	</div>
-   	<div class="col-md-2">
-   		<button type="button" class="btn btn-xs btn-success btn-nuevo"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
-   	</div>	
-  </div>
-</div>
-
-
-
-</form>
 
 <script type="text/javascript">
 $(document).ready(function() { 
 
-	$(".registro").each(function(i){
-	   if(i%2==0){
-	      $(this).css("background-color", "#eee");
-	   }else{
-	      $(this).css("background-color", "#ddd");
-	   }
-	});
-
-	$('.form-contenedor').on('click','.btn-editar',function(event){
+	$('.container').on('click','.btn-editar',function(event){
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
 	});
 
-	$('.form-contenedor').on('click','.btn-cancelar',function(event){
+	$('.container').on('click','.btn-cancelar',function(event){
 		$(event.target).parent().parent().parent().find('.mostrable').show();
 		$(event.target).parent().parent().parent().find('.editable').hide();
 	});
 
-	$('.form-contenedor').on('click','.btn-eliminar',function(event){
+	$('.container').on('click','.btn-eliminar',function(event){
 		rta = confirm("presione ACEPTAR para confirmar borrado, o CANCEL para no borrar");
 		if (rta) {
 		   rta = eliminar( $(event.target).attr("data-id") ,function(rta){
@@ -97,14 +96,14 @@ $(document).ready(function() {
 		}
 	});
 
-	$('.btn-nuevo').click( function(event){
+	$('.container').on('click','.btn-nuevo',function(event){
 		$(event.target).parent().parent().parent().find('.entnombre').val("");
 		$(event.target).parent().parent().parent().find('.entdescripcion').val("");
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
 	});
 
-	$('.btn-agregar').click( function(event){
+	$('.container').on('click','.btn-agregar',function(event){
 		enombre = $(event.target).parent().parent().parent().find('.entnombre').val();
 		edescripcion = $(event.target).parent().parent().parent().find('.entdescripcion').val();
 		if(enombre !== "" && edescripcion !== "") {
@@ -116,7 +115,7 @@ $(document).ready(function() {
 			});
 		};
 	});
-	$('.form-contenedor').on('click','.btn-guardar',function(event){
+	$('.container').on('click','.btn-guardar',function(event){
 		enombre = $(event.target).parent().parent().parent().find('.entnombre').val();
 		snombre = $(event.target).parent().parent().parent().find('.salnombre').html();
 		if(enombre !== snombre) {
@@ -177,34 +176,37 @@ function crear (nombre, descripcion, callback) {
 	  type: "POST",
 	  data: {nombre : nombre, descripcion : descripcion } })
 	 .done(function(data) {                               // respuesta del servidor
-	  if(data.res=="ok") {callback(true);
-			$(".todosregistros").last().append(
-				'<div class="row registro">'+
-				'	<div class="editable escondido">'+
-				'		<div class="col-md-3 contenedor">'+
-				'	    	<input type="text" class="form-control entnombre" value="'+ enombre +'"/>'+
-				'		</div>'+
-				'	 	<div class="col-md-7 contenedor">'+
-				'	    	<textarea type="text" class="form-control entdescripcion">'+ edescripcion +'</textarea>'+
-				'		</div>'+
-				'	 	<div class="col-md-2 contenedor">'+
-				'	  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'+ data.id +'">Guardar</button>'+
-				'	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>'+
-				'	  	</div>'+
-				'	</div>'+
-				'  	<div class="mostrable">'+
-				'		<div class="col-md-3">'+
-				'    		<h4 class="salnombre" value="'+ enombre +'">'+ enombre +'</h4>'+
-				'    	</div>'+
-				' 		<div class="col-md-7">'+
-				'    		<h4 class="saldescripcion">'+ edescripcion +'</h4>'+
-				'		</div>'+
-				'   	<div class="col-md-2">'+
-				'   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>'+
-				'   		<button type="button" class="btn btn-xs btn-danger btn-eliminar" data-id="'+ data.id +'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>'+
-				'   	</div>'+
-				'  </div>'+
-				'</div>');
+	  if(data.res=="ok") {
+	  	callback(true);
+		$("#ultima").before(
+		'<tr>'+
+		'	<td>'+
+		'    	<div class="editable escondido">'+
+		'			<input type="text" class="form-control entnombre" value="'+ enombre +'"/>'+
+		'    	</div>'+
+		'    	<div class="mostrable">'+
+		'			<h4 class="salnombre mostrable" value="'+ enombre +'">'+ enombre +'</h4>'+
+		'    	</div>'+
+		'	</td>'+
+		' 	<td>'+
+		'    	<div class="editable escondido">'+
+		'			<textarea type="text" class="form-control entdescripcion">'+ edescripcion +'</textarea>'+
+		'    	</div>'+
+		'    	<div class="mostrable">'+
+		'			<h5 class="saldescripcion">'+ edescripcion +'</h5>'+
+		'    	</div>'+
+		'	</td>'+
+		'	<td>'+
+		'    	<div class="editable escondido">'+
+		'	  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'+ data.id +'">Guardar</button>'+
+		'	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>'+
+		'    	</div>'+
+		'    	<div class="mostrable">'+
+		'	   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>'+
+		'	   		<button type="button" class="btn btn-xs btn-danger btn-eliminar" data-id="'+ data.id +'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>'+
+		'    	</div>'+
+		'	</td>'+	
+		'</tr>');
 	  }
 	  else {alert(data.msj);callback(false)}
 	  })

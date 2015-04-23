@@ -1,75 +1,74 @@
 <div class="row">
-	<div class="col-md-1"></div>
-	<div class="col-md-10 panel panel-default">
-		<div class="panel-heading text-center"><h2>Características de los Productos</h2></div>
-		<table class="table table-condensed table-striped" id="tabla-car">
-			<thead>
-			<tr role="row">
-			  <th>Nombre</th>
-			  <th>Descripción</th>
-			</tr role="row">
-			</thead>
-			<tbody>
+	<div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+			<div class="panel-heading text-center"><h2>Características de los Productos</h2></div>
+			<table class="table table-condensed table-striped" id="tabla-car">
+				<thead>
+				<tr role="row">
+				  <th>Nombre</th>
+				  <th>Descripción</th>
+				</tr role="row">
+				</thead>
+				<tbody>
 
 <?php
 foreach ($caracteristicas as $caracteristica) {
 	print '
-			<tr>
-				<td>
-			    	<div class="editable escondido">
-						<input type="text" class="form-control entnombre" value="'.$caracteristica->nombre.'"/>
-			    	</div>
-			    	<div class="mostrable">
-						<h4 class="salnombre mostrable" value="'.$caracteristica->nombre.'">'.$caracteristica->nombre.'</h4>
-			    	</div>
-				</td>
-			 	<td>
-			    	<div class="editable escondido">
-						<textarea type="text" class="form-control entdescripcion">'.$caracteristica->descripcion.'</textarea>
-			    	</div>
-			    	<div class="mostrable">
-						<h5 class="saldescripcion">'.$caracteristica->descripcion.'</h5>
-			    	</div>
-				</td>
-				<td>
-			    	<div class="editable escondido">
-				  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'.$caracteristica->id.'">Guardar</button>
-				  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-			    	</div>
-			    	<div class="mostrable">
-				   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				   		<button type="button" class="btn btn-xs btn-danger btn-eliminar" data-id="'.$caracteristica->id.'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
-			    	</div>
-				</td>	
-			</tr>';
+				<tr>
+					<td>
+				    	<div class="editable escondido">
+							<input type="text" class="form-control entnombre" value="'.$caracteristica->nombre.'"/>
+				    	</div>
+				    	<div class="mostrable">
+							<h4 class="salnombre mostrable" value="'.$caracteristica->nombre.'">'.$caracteristica->nombre.'</h4>
+				    	</div>
+					</td>
+				 	<td>
+				    	<div class="editable escondido">
+							<textarea type="text" class="form-control entdescripcion">'.$caracteristica->descripcion.'</textarea>
+				    	</div>
+				    	<div class="mostrable">
+							<h5 class="saldescripcion">'.$caracteristica->descripcion.'</h5>
+				    	</div>
+					</td>
+					<td>
+				    	<div class="editable escondido">
+					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'.$caracteristica->id.'">Guardar</button>
+					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+				    	</div>
+				    	<div class="mostrable">
+					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+					   		<button type="button" class="btn btn-xs btn-danger btn-eliminar" data-id="'.$caracteristica->id.'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
+				    	</div>
+					</td>	
+				</tr>';
 }
 ?>
 
-			<tr id="ultima">
-				<td>
-			    	<div class="editable escondido">
-						<input type="text" class="form-control entnombre" value="'.$caracteristica->nombre.'"/>
-			    	</div>
-				</td>
-			 	<td>
-			    	<div class="editable escondido">
-						<textarea type="text" class="form-control entdescripcion">'.$caracteristica->descripcion.'</textarea>
-			    	</div>
-				</td>
-				<td>
-			    	<div class="editable escondido">
-				  		<button type="button" class="btn btn-xs btn-success btn-agregar" data-id="'.$caracteristica->id.'">Agregar</button>
-				  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-			    	</div>
-			    	<div class="mostrable">
-				   		<button type="button" class="btn btn-xs btn-success text-center btn-nuevo"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
-			    	</div>
-				</td>	
-			</tr>
-
-
-			</tbody>
-		</table> 
+				<tr id="ultima">
+					<td>
+				    	<div class="editable escondido">
+							<input type="text" class="form-control entnombre" value="'.$caracteristica->nombre.'"/>
+				    	</div>
+					</td>
+				 	<td>
+				    	<div class="editable escondido">
+							<textarea type="text" class="form-control entdescripcion">'.$caracteristica->descripcion.'</textarea>
+				    	</div>
+					</td>
+					<td>
+				    	<div class="editable escondido">
+					  		<button type="button" class="btn btn-xs btn-success btn-agregar" data-id="'.$caracteristica->id.'">Agregar</button>
+					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+				    	</div>
+				    	<div class="mostrable">
+					   		<button type="button" class="btn btn-xs btn-success text-center btn-nuevo"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
+				    	</div>
+					</td>	
+				</tr>
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
 	</div>
 </div>
 
