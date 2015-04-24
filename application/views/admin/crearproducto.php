@@ -1,94 +1,145 @@
 <div class="row registro">
-	<div class="col-md-2"></div>
-	<div class="col-md-8">
-		<h2>NUEVOS PRODUCTOS</h2>
+	<div class="col-md-12">
+        <div class="panel panel-default">
+			<div class="panel-heading text-center"><h2>Nuevo Producto</h2></div>
+			<table class="table table-condensed table-striped">
+				<tbody>
+
+<!------------------------------------- edicion del campo NOMBRE--> 
+				<tr>
+					<td width="10%"><h4 class="text-right">Nombre:</h4></td>
+				 	<td><div><input type="text" class="form-control entnombre" placeholder="obligatorio"></div></td>
+				</tr>
+
+<!------------------------------------- edicion del campo DESCRIPCION--> 
+				<tr>
+					<td><h4 class="text-right">Descripción:</h4></td>
+				 	<td><div><textarea type="text" class="form-control entdescripcion" placeholder="obligatorio"></textarea></div></td>
+				</tr>
+
+<!------------------------------------- edicion del campo INGREDIENTES--> 
+				<tr>
+					<td><h4 class="text-right">Ingredientes:</h4></td>
+				 	<td><div><textarea type="text" class="form-control entingredientes"></textarea></div></td>
+				</tr>
+
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
 	</div>
 </div>
-<form class="form-horizontal form-contenedor" role="form">
+
 
 <div class="row registro">
-	<label class="col-md-2 control-label">Nombre:</label>
-	<div class="col-md-8">
-    	<input type="text" class="form-control entnombre" placeholder="obligatorio">
+	<div class="col-md-4">
+        <div class="panel panel-default">
+			<table class="table table-condensed table-striped">
+				<tbody>
+
+<!------------------------------------- edicion del campo PESO--> 
+				<tr>
+					<td width="30%"><h4 class="text-right">Peso:</h4></td>
+				 	<td><div><input type="text" class="form-control entpeso" placeholder="obligatorio"></div></td>
+				</tr>
+
+<!------------------------------------- edicion del campo PESO NETO--> 
+				<tr>
+					<td><h4 class="text-right">Peso Neto:</h4></td>
+				 	<td><div><input type="text" class="form-control entpesoneto" placeholder="obligatorio"></div></td>
+				</tr>
+
+<!------------------------------------- edicion del campo MARCA--> 
+				<tr>
+					<td><h4 class="text-right">Marca:</h4></td>
+				 	<td>
+				 		<div>
+						<select class="form-control entmarca"  placeholder="obligatorio">
+							<?php foreach ($marcas as $marca) {
+									print '<option value="'.$marca->id.'">'.$marca->nombre.'</option>'; }
+							?>
+						</select>   				 		
+						</div>
+				 	</td>
+				</tr>
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
+	</div>
+
+
+	<div class="col-md-4">
+        <div class="panel panel-default">
+			<table class="table table-condensed table-striped">
+				<tbody>
+
+<!------------------------------------- edicion del campo LARGO--> 
+				<tr>
+					<td width="30%"><h4 class="text-right">Largo:</h4></td>
+				 	<td><div><input type="text" class="form-control entlargo"></div></td>
+				</tr>
+<!------------------------------------- edicion del campo ANCHO--> 
+				<tr>
+					<td><h4 class="text-right">Ancho:</h4></td>
+				 	<td><div><input type="text" class="form-control entancho"></div></td>
+				</tr>
+
+<!------------------------------------- edicion del campo ALTO--> 
+				<tr>
+					<td><h4 class="text-right">Alto:</h4></td>
+				 	<td><div><input type="text" class="form-control entalto"></div></td>
+				</tr>
+
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
+	</div>
+
+
+	<div class="col-md-4">
+        <div class="panel panel-default">
+			<table class="table table-condensed table-striped">
+				<tbody>
+
+<!------------------------------------- edicion del campo PRECIO--> 
+				<tr>
+					<td width="30%"><h4 class="text-right">Precio:</h4></td>
+				 	<td><div><input type="text" class="form-control entprecio" placeholder="obligatorio"></div></td>
+				</tr>
+
+<!------------------------------------- edicion del campo EXISTENCIAS--> 
+				<tr>
+					<td><h4 class="text-right">Existencias:</h4></td>
+				 	<td><div><input type="text" class="form-control entexistencias"></div></td>
+				</tr>
+
+<!------------------------------------- edicion del campo ESTADO--> 
+				<tr>
+					<td><h4 class="text-right">Estado:</h4></td>
+				 	<td>
+				 		<div>
+						<select class="form-control entestado"  placeholder="obligatorio">
+							<?php foreach ($estados as $estado) {
+									print '<option value="'.$estado->id.'">'.$estado->nombre.'</option>'; }
+							?>
+						</select> 
+						</div>
+				 	</td>
+				</tr>
+
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
 	</div>
 </div>
 
-<div class="row registro">
-	<label class="col-md-2 control-label">Descripción:</label>
-	<div class="col-md-8">
-    	<textarea type="text" class="form-control entdescripcion" placeholder="obligatorio"></textarea>
-  	</div>
-</div>
-
-<div class="row registro">
-	<label class="col-md-2 control-label">Ingredientes:</label>
-	<div class="col-md-8">
-    	<textarea type="text" class="form-control entingredientes"></textarea>
-  	</div>
-</div>
-
-<div class="row registro">
-	<div class="col-md-2"></div>
-	<div class="col-md-2">Marca</div>
-	<div class="col-md-2">Precio</div>
-	<div class="col-md-2">Existencias</div>
-	<div class="col-md-2">Estado</div>
-</div>
-
-<div class="row registro">
-	<div class="col-md-2"></div>
-	<div class="col-md-2">
-		<select class="form-control entmarca"  placeholder="obligatorio">
-			<?php foreach ($marcas as $marca) {
-					print '<option value="'.$marca->id.'">'.$marca->nombre.'</option>'; }
-			?>
-		</select>    		
- 	</div>
-	<div class="col-md-2"><input type="text" class="form-control entprecio" placeholder="obligatorio"></div>
-	<div class="col-md-2"><input type="text" class="form-control entexistencias"></div>
-	<div class="col-md-2">
-		<select class="form-control entestado"  placeholder="obligatorio">
-			<?php foreach ($estados as $estado) {
-					print '<option value="'.$estado->id.'">'.$estado->nombre.'</option>'; }
-			?>
-		</select>    		
- 	</div>
-</div>
-
-
-<div class="row registro">
-	<div class="col-md-2"></div>
-	<div class="col-md-1">Peso</div>
-	<div class="col-md-1">Peso Neto</div>
-	<div class="col-md-1">Largo</div>
-	<div class="col-md-1">Ancho</div>
-	<div class="col-md-1">Alto</div>
-</div>
-
-<div class="row registro">
-	<label class="col-md-2 control-label">Dimensiones:</label>
-	<div class="col-md-1"><input type="text" class="form-control entpeso" placeholder="obligatorio"></div>
-	<div class="col-md-1"><input type="text" class="form-control entpesoneto" placeholder="obligatorio"></div>
-	<div class="col-md-1"><input type="text" class="form-control entlargo"></div>
-	<div class="col-md-1"><input type="text" class="form-control entancho"></div>
-	<div class="col-md-1"><input type="text" class="form-control entalto"></div>
-</div>
 
 <!----------------------------------- edicion del campo CARACTERISTICAS--> 
 <div class="row registro">
-	<div class="col-md-2"> </div>
-	<label class="col-md-4"><h3>Características:</h3></label>
-	<div class="col-md-1"></div>
-	<label class="col-md-3"><h3>Categorías:</h3></label> 
-</div>
-<div class="row registro">
-	<div class="col-md-2"></div>
-	<div class="col-md-4">
-		<div class="row registro" id="listacaracteristicas">
-			<div class="col-md-12">
-				<div class="panel panel-default panel-caracteristicas">
-					<table class="table table-condensed table-striped">
-					<tbody>
+	<div class="col-md-4 col-md-offset-1">
+        <div class="panel panel-default">
+			<div class="panel-heading text-center"><h3>Características</h3></div>
+			<table class="table table-condensed table-striped">
+				<tbody>
 <?php 
 foreach ($caracteristicas as $caracteristica) {
 	print '<tr>';
@@ -111,26 +162,20 @@ foreach ($caracteristicas as $caracteristica) {
 			</tr>';
 }
 ?>
-			        </tbody>
-					</table>
-				</div>
-			</div>
-		</div>
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
 	</div>
 <!--</div> -->
 
 
 
 <!----------------------------------- edicion del campo CATEGORIAS --> 
-<!--<div class="row registro">
-	<label class="col-md-2 control-label">Categorias:</label> --> 
-	<div class="col-md-1"></div>
-	<div class="col-md-3">
-		<div class="row registro" id="listacategorias">
-			<div class="col-md-12">
-				<div class="panel panel-default panel-categorias">
-					<table class="table table-condensed table-striped">
-					<tbody>
+	<div class="col-md-4 col-md-offset-1">
+        <div class="panel panel-default">
+			<div class="panel-heading text-center"><h3>Categorias</h3></div>
+			<table class="table table-condensed table-striped">
+				<tbody>
 <?php 
 foreach ($categorias as $categoria) {
 	print '<tr>';
@@ -143,22 +188,15 @@ foreach ($categorias as $categoria) {
 			</tr>';
 }
 ?>
-			        </tbody>
-					</table>
-				</div>
-			</div>
-		</div> 
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
 	</div>
-</div>
-<div class="row registro">
-	<div class="col-md-2"></div>
 	<div class="col-md-2">
-  		<button type="button" class="btn btn-xs btn-success btn-guardar">Guardar</button>
-  		<button type="button" class="btn btn-xs btn-warning btn-limpiar">Limpiar</button>
+  		<button type="button" class="btn btn-md btn-success btn-guardar">Guardar</button>
+  		<button type="button" class="btn btn-md btn-warning btn-limpiar">Limpiar</button>
 	</div>  		
 </div>
-
-</form>
 
 <script type="text/javascript">
 $(document).ready(function() { 
