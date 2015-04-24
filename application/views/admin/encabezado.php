@@ -23,14 +23,14 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
       }
       .panel-caracteristicas{
         overflow-y:scroll;
-        height: 200px; 
+        height: 340px; 
       }
       .panel-caracteristicas .radio-inline{
         padding-top: 0 !important;
       }
       .panel-categorias{
         overflow-y:scroll;
-        height: 200px; 
+        height: 340px; 
       }
       .panel-categorias .checkbox{
         padding-top: 0 !important;

@@ -63,36 +63,31 @@
 </form>
 
 <div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-5"><h2>Pedidos</h2></div>
-</div>
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-6 panel panel-default panel-usuarios">
-		<table class="table table-condensed table-striped">
-			<thead>
-			<tr role="row">
-			  <th>Producto</th>
-			  <th>Estado</th>
-			</tr>
-			</thead>
-			<tbody>
+	<div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+			<div class="panel-heading text-center"><h2>Pedidos</h2></div>
+			<table class="table table-condensed table-striped" id="tabla-car">
+				<thead>
+				<tr role="row">
+				  <th>Estado</th>
+				  <th>Fecha y Hora</th>
+				  <th>Estado</th>
+				</tr role="row">
+				</thead>
+				<tbody>
 <?php 	
 if (isset($usuario->pedidos)) {
 	foreach ($usuario->pedidos as $pedido) {
 		print '<tr role="row">';
+		print '<td>'.$pedido->id.'</td>';
 		print '<td><a href="../pedido/'.$pedido->id.'">'.$pedido->fecha.'</a></td>';
 		print '<td>'.$pedido->estado.'</td>';
 		print '</tr>';
 	};
 }
 ?>
-			</tbody>
-		</table> 
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
 	</div>
 </div>
-
-
-<script type="text/javascript">
-
-</script>

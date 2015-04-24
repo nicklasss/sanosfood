@@ -1,5 +1,4 @@
 <form class="form-horizontal form-contenedor">
-
 <div class="row registro">
 	<div class="col-md-2"></div>
 	<div class="col-md-3">
@@ -15,26 +14,21 @@
 		<input class="form-control" readonly value="<?php print $pedido->estado;?>"/>
 	</div>
 </div>
-
-
 </form>
 
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-4"><h2>Lineas del Pedido</a></h2></div>
-</div>
-<div class="row">
-	<div class="col-md-3"></div>
-	<div class="col-md-6 panel panel-default panel-usuarios">
-		<table class="table table-condensed table-striped">
-			<thead>
-			<tr role="row">
-			  <th>Producto</th>
-			  <th>Estado</th>
-			  <th>Precio Unitario</th>
-			</tr>
-			</thead>
-			<tbody>
+<div class="row registro">
+	<div class="col-md-6 col-md-offset-3">
+        <div class="panel panel-default">
+			<div class="panel-heading text-center"><h2>Pedidos</h2></div>
+			<table class="table table-condensed table-striped" id="tabla-car">
+				<thead>
+				<tr role="row">
+				  <th width="50%">Producto</th>
+				  <th width="20%">Unidades</th>
+				  <th width="30%">Precio Unitario</th>
+				</tr role="row">
+				</thead>
+				<tbody>
 <?php 	
 if (isset($pedido->lineas)) {
 	foreach ($pedido->lineas as $linea) {
@@ -46,12 +40,8 @@ if (isset($pedido->lineas)) {
 	};
 }
 ?>
-			</tbody>
-		</table> 
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
 	</div>
 </div>
-
-
-<script type="text/javascript">
-
-</script>
