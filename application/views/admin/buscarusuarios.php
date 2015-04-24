@@ -1,38 +1,42 @@
 <div class="row">
-	<div class="col-md-1"></div>
-   <div class="col-lg-8">
-      <h1 class="page-header">Buscar Usuarios</h1>
+   <div class="col-md-9 col-md-offset-1">
+      <h2 class="text-center">Buscar Usuarios</h2>
    </div>
 </div>
 
 <div class="row registro">
 	<div class="col-md-1"></div>
-   <div class="col-lg-8">
+	<div class="col-lg-8">
 		<div class="input-group input-group-lg">
 		  <span class="input-group-addon" id="sizing-addon1">Criterio de Busqueda</span>
 		  <input type="text" class="form-control input-lg" id="ecriterio" aria-describedby="sizing-addon1">
 		</div>
 	</div>
 	<div class="col-md-2">
-	  		<button type="button" class="btn btn-sm btn-primary btn-buscar">Buscar</button>
+  		<button type="button" class="btn btn-sm btn-primary btn-buscar">Buscar</button>
 	</div>
 </div>
 
+
+
+
+
 <div class="row">
-	<div class="col-md-1"></div>
-	<div class="col-md-9 panel panel-default panel-usuarios">
-		<table class="table table-condensed table-striped">
-			<thead>
-			<tr role="row">
-			  <th>Nombre</th>
-			  <th>Usuario</th>
-			  <th>correo</th>
-			  <th>Ciudad</th>
-			</tr role="row">
-			</thead>
-			<tbody id="listausuarios">
-			</tbody>
-		</table> 
+	<div class="col-md-9 col-md-offset-1">
+        <div class="panel panel-default">
+			<table class="table table-condensed table-striped">
+				<thead>
+				<tr role="row">
+				  <th width="30%">Nombre</th>
+				  <th width="15%">Usuario</th>
+				  <th width="30%">correo</th>
+				  <th width="25%">Ciudad</th>
+				</tr role="row">
+				</thead>
+				<tbody id="listausuarios">
+				</tbody>
+			</table> 
+		</div>
 	</div>
 </div>
 

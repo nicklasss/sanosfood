@@ -50,7 +50,7 @@
                                                         <td>'.$row->nombre.'</td>
                                                         <td>'.$row->existencias.'</td>
                                                         <td>'.$row->estado.'</td>
-                                                        <td class="center">'.$row->precio.'</td>
+                                                        <td class="center">'.number_format($row->precio , 0, ",", ".").'</td> 
                                                     </tr>';
                                         }
                                         ?>
