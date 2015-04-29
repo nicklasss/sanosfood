@@ -179,7 +179,7 @@ function crear (nombre, descripcion, callback) {
 	  if(data.res=="ok") {
 	  	callback(true);
 		$("#ultima").before(
-		'<tr>'+
+		'<tr class="success">'+
 		'	<td>'+
 		'    	<div class="editable escondido">'+
 		'			<input type="text" class="form-control entnombre" value="'+ enombre +'"/>'+

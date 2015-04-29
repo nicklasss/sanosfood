@@ -230,7 +230,7 @@
 							<input type="text" class="form-control entvalor" value="<?php print $producto->precio;?>"/>
 				    	</div>
 				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->precio;?></h5>
+							<h5 class="salvalor"><?php print number_format($producto->precio , 0, ",", ".");?></h5>
 				    	</div>
 					</td>
 					<td width="30%">
@@ -340,9 +340,10 @@
 <div class="row registro">
 	<div class="col-md-4 col-md-offset-1">
         <div class="panel panel-default">
-			<div class="panel-heading text-center"><h2>Características</h2></div>
+			<div class="panel-heading text-center"><h3>Características</h3></div>
 			<table class="table table-condensed table-striped">
 				<tbody>
+
 <?php
 foreach ($caracteristicas as $caracteristica) {
 	print '<tr>';
@@ -428,7 +429,7 @@ foreach ($caracteristicas as $caracteristica) {
 <!----------------------------------- edicion del campo CATEGORIAS --> 
 	<div class="col-md-4">
         <div class="panel panel-default">
-			<div class="panel-heading text-center"><h2>Categorias</h2></div>
+			<div class="panel-heading text-center"><h3>Categorias</h3></div>
 			<table class="table table-condensed table-striped">
 				<tbody>
 
@@ -474,7 +475,18 @@ foreach ($categorias as $categoria) {
 	   		<button type="button" class="btn btn-xs btn-primary btn-editar-cat"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
 	   	</div>	
   	</div>
+</div>
 
+<div class="row registro">
+	<div class="col-md-12">
+        <div class="panel panel-default">
+			<div><h6><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Indica que el producto no contiene el alérgeno o trazas del mismo.</h6></div>
+			<div><h6><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Indica que el alérgeno se añade directamente o indirectamente a través de otros ingredientes. Según lo declarado en la etiqueta del producto.</h6></div>
+			<div><h6><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Indica que puede contener trazas del alérgeno por contaminación cruzada, según lo declarado en la etiqueta del producto. Esta información
+					es correcta en el momento de la impresión, mayo de 2013. Para más información ponerse en contacto con Orgran.</h6></div>			
+
+	   	</div>	
+  	</div>
 </div>
 
 
