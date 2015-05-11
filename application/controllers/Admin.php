@@ -146,6 +146,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Pedidos_model');
 		$data['pedidos'] = $this->Pedidos_model->getPedidosPorEstado($estado,$pag);
+		$data['estados'] = $dataencabezado['estadospedidos'];
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'admin/pedidos/'.$estado.'/';
 		$config['total_rows'] = $this->Pedidos_model->contarPedidos($estado);//$data['doctor']->respondidas;
