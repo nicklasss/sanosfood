@@ -22,11 +22,15 @@ class Pedidos_model extends CI_Model {
             show_404();
         }
         $pedido = $query->row();
-        $this->db->select('nombres,apellidos');
+        $this->db->select('nombres,apellidos,usuario,correo,telefono,celular');
         $this->db->where('id', $pedido->id_usuario);
         $usuario = $this->db->get('usuarios', 1, 0)->row();
         $pedido->nombres = $usuario->nombres;
         $pedido->apellidos = $usuario->apellidos;
+        $pedido->usuario = $usuario->usuario;
+        $pedido->correo = $usuario->correo;
+        $pedido->telefono = $usuario->telefono;
+        $pedido->celular = $usuario->celular;
         $this->db->where('id_pedido', $pedido->id);
         $lineas = $this->db->get('lineaspedidos');
         $lineasarr = array();
