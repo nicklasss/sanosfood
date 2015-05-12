@@ -8,17 +8,17 @@
 <!------------------------------------- edicion del campo NOMBRE--> 
 				<tr>
 					<td width="10%">
-						<h4 class="text-right">Nombre:</h4>
+						<h5 class="text-right"><strong>Nombre:</strong></h5>
 					</td>
 				 	<td>
 				    	<div class="editable escondido">
 							<input type="text" class="form-control entvalor" value="<?php print $producto->nombre;?>"/>
 				    	</div>
 				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->nombre;?></h5>
+							<h4 class="salvalor"><strong><?php print $producto->nombre;?></strong></h4>
 				    	</div>
 					</td>
-					<td width="14%">
+					<td width="13%">
 				    	<div class="editable escondido">
 					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="nombre">Guardar</button>
 					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
@@ -32,7 +32,7 @@
 <!------------------------------------- edicion del campo DESCRIPCION--> 
 				<tr>
 					<td>
-						<h4 class="text-right">Descripción:</h4>
+						<h5 class="text-right"><strong>Descripción:</strong></h5>
 					</td>
 				 	<td>
 				    	<div class="editable escondido">
@@ -56,7 +56,7 @@
 <!------------------------------------- edicion del campo INGREDIENTES--> 
 				<tr>
 					<td>
-						<h4 class="text-right">Ingredientes:</h4>
+						<h5 class="text-right"><strong>Ingredientes:</strong></h5>
 					</td>
 				 	<td>
 				    	<div class="editable escondido">
@@ -84,15 +84,15 @@
 </div>
 
 <div class="row registro">
-	<div class="col-md-6">
+	<div class="col-md-4">
         <div class="panel panel-default">
 			<table class="table table-condensed table-striped">
 				<tbody>
 
 <!------------------------------------- edicion del campo PESOS--> 
 				<tr>
-					<td width="21%">
-						<h4 class="text-right">Peso:</h4>
+					<td width="25%">
+						<h5 class="text-right"><strong>Peso:<strong></h5>
 					</td>
 				 	<td>
 				    	<div class="editable escondido">
@@ -102,7 +102,7 @@
 							<h5 class="salvalor"><?php print $producto->peso;?></h5>
 				    	</div>
 					</td>
-					<td width="30%">
+					<td width="40%">
 				    	<div class="editable escondido">
 					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="peso">Guardar</button>
 					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
@@ -116,7 +116,7 @@
 <!------------------------------------- edicion del campo PESO NETO--> 
 				<tr>
 					<td>
-						<h4 class="text-right">Peso Neto:</h4>
+						<h5 class="text-right"><strong>Peso Neto:</strong></h5>
 					</td>
 				 	<td>
 				    	<div class="editable escondido">
@@ -137,141 +137,10 @@
 					</td>	
 				</tr>
 
-<!------------------------------------- edicion del campo LARGO--> 
-				<tr>
-					<td>
-						<h4 class="text-right">Largo:</h4>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->largo;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->largo;?></h5>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="largo">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-<!------------------------------------- edicion del campo ANCHO--> 
-				<tr>
-					<td>
-						<h4 class="text-right">Ancho:</h4>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->ancho;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->ancho;?></h5>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="ancho">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-<!------------------------------------- edicion del campo ALTO--> 
-				<tr>
-					<td>
-						<h4 class="text-right">Alto:</h4>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->alto;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->alto;?></h5>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="alto">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-				</tbody>
-			</table> <!-- tabla--> 
-		</div> <!-- Panel-->
-	</div>
-
-
-	<div class="col-md-6">
-        <div class="panel panel-default">
-			<table class="table table-condensed table-striped">
-				<tbody>
-
-<!------------------------------------- edicion del campo PRECIO--> 
-				<tr>
-					<td width="21%">
-						<h4 class="text-right">Precio:</h4>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->precio;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->precio;?></h5>
-				    	</div>
-					</td>
-					<td width="30%">
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="precio">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-<!------------------------------------- edicion del campo EXISTENCIAS--> 
-				<tr>
-					<td>
-						<h4 class="text-right">Existencias:</h4>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->existencias;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->existencias;?></h5>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="existencias">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
 <!------------------------------------- edicion del campo MARCA--> 
 				<tr>
 					<td>
-						<h4 class="text-right">Marca:</h4>
+						<h5 class="text-right"><strong>Marca:</strong></h5>
 					</td>
 				 	<td>
 				    	<div class="editable escondido">
@@ -298,10 +167,153 @@
 					</td>	
 				</tr>
 
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
+	</div>
+
+
+	<div class="col-md-4">
+        <div class="panel panel-default">
+			<table class="table table-condensed table-striped">
+				<tbody>
+
+<!------------------------------------- edicion del campo LARGO--> 
+				<tr>
+					<td width="25%">
+						<h5 class="text-right"><strong>Largo:</strong></h5>
+					</td>
+				 	<td>
+				    	<div class="editable escondido">
+							<input type="text" class="form-control entvalor" value="<?php print $producto->largo;?>"/>
+				    	</div>
+				    	<div class="mostrable">
+							<h5 class="salvalor"><?php print $producto->largo;?></h5>
+				    	</div>
+					</td>
+					<td width="40%">
+				    	<div class="editable escondido">
+					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="largo">Guardar</button>
+					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+				    	</div>
+				    	<div class="mostrable">
+					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+				    	</div>
+					</td>	
+				</tr>
+
+<!------------------------------------- edicion del campo ANCHO--> 
+				<tr>
+					<td>
+						<h5 class="text-right"><strong>Ancho:</strong></h5>
+					</td>
+				 	<td>
+				    	<div class="editable escondido">
+							<input type="text" class="form-control entvalor" value="<?php print $producto->ancho;?>"/>
+				    	</div>
+				    	<div class="mostrable">
+							<h5 class="salvalor"><?php print $producto->ancho;?></h5>
+				    	</div>
+					</td>
+					<td>
+				    	<div class="editable escondido">
+					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="ancho">Guardar</button>
+					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+				    	</div>
+				    	<div class="mostrable">
+					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+				    	</div>
+					</td>	
+				</tr>
+
+<!------------------------------------- edicion del campo ALTO--> 
+				<tr>
+					<td>
+						<h5 class="text-right"><strong>Alto:</strong></h5>
+					</td>
+				 	<td>
+				    	<div class="editable escondido">
+							<input type="text" class="form-control entvalor" value="<?php print $producto->alto;?>"/>
+				    	</div>
+				    	<div class="mostrable">
+							<h5 class="salvalor"><?php print $producto->alto;?></h5>
+				    	</div>
+					</td>
+					<td>
+				    	<div class="editable escondido">
+					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="alto">Guardar</button>
+					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+				    	</div>
+				    	<div class="mostrable">
+					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+				    	</div>
+					</td>	
+				</tr>
+
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
+	</div>
+
+
+	<div class="col-md-4">
+        <div class="panel panel-default">
+			<table class="table table-condensed table-striped">
+				<tbody>
+
+<!------------------------------------- edicion del campo PRECIO--> 
+				<tr>
+					<td width="25%">
+						<h5 class="text-right"><strong>Precio:</strong></h5>
+					</td>
+				 	<td>
+				    	<div class="editable escondido">
+							<input type="text" class="form-control entvalor" value="<?php print $producto->precio;?>"/>
+				    	</div>
+				    	<div class="mostrable">
+							<h5 class="salvalor"><?php print $producto->precio;?></h5>
+				    	</div>
+					</td>
+					<td width="40%">
+				    	<div class="editable escondido">
+					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="precio">Guardar</button>
+					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+				    	</div>
+				    	<div class="mostrable">
+					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+				    	</div>
+					</td>	
+				</tr>
+
+<!------------------------------------- edicion del campo EXISTENCIAS--> 
+				<tr>
+					<td>
+						<h5 class="text-right"><strong>Existencias:</strong></h5>
+					</td>
+				 	<td>
+				    	<div class="editable escondido">
+							<input type="text" class="form-control entvalor" value="<?php print $producto->existencias;?>"/>
+				    	</div>
+				    	<div class="mostrable">
+							<h5 class="salvalor"><?php print $producto->existencias;?></h5>
+				    	</div>
+					</td>
+					<td>
+				    	<div class="editable escondido">
+					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="existencias">Guardar</button>
+					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+				    	</div>
+				    	<div class="mostrable">
+					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+				    	</div>
+					</td>	
+				</tr>
+
+
 <!------------------------------------- edicion del campo ESTADO--> 
 				<tr>
 					<td>
-						<h4 class="text-right">Estado:</h4>
+						<h5 class="text-right"><strong>Estado:</strong></h5>
 					</td>
 				 	<td>
 				    	<div class="editable escondido">
