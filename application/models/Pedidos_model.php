@@ -67,7 +67,9 @@ class Pedidos_model extends CI_Model {
     }
 
     function contarPedidos($estado = null){
-        $this->db->where('estado', $estado);
+        if($estado !='todos'){
+            $this->db->where('estado', $estado);
+        }
         return $this->db->count_all_results('pedidos');
     }
     function cambiarEstado($id = null,$estado = null,$observacion =""){

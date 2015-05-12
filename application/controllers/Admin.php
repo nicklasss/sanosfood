@@ -149,7 +149,7 @@ class Admin extends CI_Controller {
 		$data['estados'] = $dataencabezado['estadospedidos'];
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'admin/pedidos/'.$estado.'/';
-		$config['total_rows'] = $this->Pedidos_model->contarPedidos($estado);//$data['doctor']->respondidas;
+		$config['total_rows'] = $this->Pedidos_model->contarPedidos($estado);
 		$config['per_page'] = 10;
 		$config['num_links'] = 3;
 		$config['use_page_numbers'] = TRUE;
