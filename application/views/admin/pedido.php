@@ -6,11 +6,11 @@
 				<label>Nombre del Usuario</label>
 				<input class="form-control" readonly value="<?php print $pedido->nombres." ".$pedido->apellidos;?>"/>
 			</div>
-			<div class="col-md-2"> de 
+			<div class="col-md-2">
 				<label>Usuario</label>
 				<input class="form-control" readonly value="<?php print $pedido->usuario;?>"/>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<label>Correo</label>
 				<input class="form-control" readonly value="<?php print $pedido->correo;?>"/>
 			</div>
@@ -55,51 +55,45 @@
 </div>
 
 
-
-
 <div class="row registro">
 	<div class="col-md-10 col-md-offset-1">
 
-<div class="panel panel-default">
-	<div class="panel-heading text-center"><h4>Cambio del estado del pedido</h4></div>
-	<form class="form-horizontal form-contenedor">
-		<div class="row">
+		<div class="panel panel-default">
+			<div class="panel-heading text-center"><h4>Cambio del estado del pedido</h4></div>
+			<form class="form-horizontal form-contenedor">
+				<div class="row">
 
-			<div class="col-md-3">
-				<label>Estado</label>
-				<select class="form-control estado" disabled="disabled">
-					<?php foreach ($estadospedidos as $estado) {
-						if ($estado->nombre == $pedido->estado) {
-							print '<option value="'.$estado->id.'" selected>'.$estado->nombre.'</option>'; }
-						else {
-							print '<option value="'.$estado->nombre.'">'.$estado->nombre.'</option>'; }
-					}?>
-				</select>    		
-	    	</div>
-			<div class="col-md-3">
-		    	<div class="editable escondido">
-					<label>Cambiar Estado pedido</label>
-			  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="nombre">Guardar</button>
-			  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-		    	</div>
-		    	<div class="mostrable">
-					<label>Cambiar Estado pedido</label>
-			   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-		    	</div>
-	    	</div>
-			<div class="col-md-6">
-				<label>Observación por cambio de estado</label>
-				<textarea type="text" class="form-control observacion" readonly ></textarea>
-			</div>
+					<div class="col-md-3">
+						<label>Estado</label>
+						<select class="form-control estado" disabled="disabled">
+							<?php foreach ($estadospedidos as $estado) {
+								if ($estado->nombre == $pedido->estado) {
+									print '<option value="'.$estado->id.'" selected>'.$estado->nombre.'</option>'; }
+								else {
+									print '<option value="'.$estado->nombre.'">'.$estado->nombre.'</option>'; }
+							}?>
+						</select>    		
+			    	</div>
+					<div class="col-md-3">
+				    	<div class="editable escondido">
+							<label>Cambiar Estado pedido</label>
+					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="nombre">Guardar</button>
+					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+				    	</div>
+				    	<div class="mostrable">
+							<label>Cambiar Estado pedido</label>
+					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+				    	</div>
+			    	</div>
+					<div class="col-md-6">
+						<label>Observación por cambio de estado</label>
+						<textarea type="text" class="form-control observacion" readonly ></textarea>
+					</div>
+				</div>
+			</form>
 		</div>
-	</form>
+	</div>
 </div>
-</div>
-
-</div>
-
-
-
 
 <div class="row registro">
 	<div class="col-md-6 col-md-offset-3">
@@ -130,7 +124,6 @@ if (isset($pedido->lineas)) {
 		</div> <!-- Panel-->
 	</div>
 </div>
-
 
 
 <script type="text/javascript">
