@@ -67,10 +67,7 @@
 						<label>Estado</label>
 						<select class="form-control estado" disabled="disabled">
 							<?php foreach ($estadospedidos as $estado) {
-								if ($estado->nombre == $pedido->estado) {
-									print '<option value="'.$estado->id.'" selected>'.$estado->nombre.'</option>'; }
-								else {
-									print '<option value="'.$estado->nombre.'">'.$estado->nombre.'</option>'; }
+								print '<option value="'.$estado->nombre.'">'.$estado->nombre.'</option>';
 							}?>
 						</select>    		
 			    	</div>
@@ -175,5 +172,9 @@ function guardar (estado, observacion, callback) {
    .error(function(){alert('No hay conexion');callback(false);})
 }
 
+//								if ($estado->nombre == $pedido->estado) {
+//									print '<option value="'.$estado->id.'" selected>'.$estado->nombre.'</option>'; }
+//								else {
+//									print '<option value="'.$estado->nombre.'">'.$estado->nombre.'</option>'; }
 
 </script>
