@@ -230,7 +230,7 @@
 							<input type="text" class="form-control entvalor" value="<?php print $producto->precio;?>"/>
 				    	</div>
 				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print number_format($producto->precio , 0, ",", ".");?></h5>
+							<h5 class="salvalor"><?php print $producto->precio;?></h5>
 				    	</div>
 					</td>
 					<td width="30%">
