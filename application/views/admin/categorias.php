@@ -20,7 +20,7 @@ foreach ($categorias as $categoria) {
 							<input type="text" class="form-control entnombre" value="'.$categoria->nombre.'"/>
 				    	</div>
 				    	<div class="mostrable">
-							<h4 class="salnombre mostrable" value="'.$categoria->nombre.'">'.$categoria->nombre.'</h4>
+							<h5 class="salnombre mostrable" value="'.$categoria->nombre.'"><strong>'.$categoria->nombre.'</strong></h5>
 				    	</div>
 					</td>
 				 	<td>

@@ -128,6 +128,7 @@ $(document).ready(function() {
 		$('.observacion').each(function() {$(this).attr('readonly', false);});
 	});
 	$('.container').on('click','.btn-cancelar',function(event){
+		$(event.target).parent().parent().parent().find('.estado').val(svalor);
 		$(event.target).parent().parent().parent().find('.observacion').val("");
 		$(event.target).parent().parent().parent().find('.mostrable').show();
 		$(event.target).parent().parent().parent().find('.editable').hide();

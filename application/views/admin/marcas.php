@@ -20,7 +20,7 @@ foreach ($marcas as $marca) {
 							<input type="text" class="form-control entnombre" value="'.$marca->nombre.'"/>
 				    	</div>
 				    	<div class="mostrable">
-							<h4 class="salnombre mostrable" value="'.$marca->nombre.'">'.$marca->nombre.'</h4>
+							<h5 class="salnombre mostrable" value="'.$marca->nombre.'"><strong>'.$marca->nombre.'</strong></h5>
 				    	</div>
 					</td>
 				 	<td>

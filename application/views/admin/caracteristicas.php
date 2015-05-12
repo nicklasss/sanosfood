@@ -20,7 +20,7 @@ foreach ($caracteristicas as $caracteristica) {
 							<input type="text" class="form-control entnombre" value="'.$caracteristica->nombre.'"/>
 				    	</div>
 				    	<div class="mostrable">
-							<h4 class="salnombre mostrable" value="'.$caracteristica->nombre.'">'.$caracteristica->nombre.'</h4>
+							<h5 class="salnombre mostrable" value="'.$caracteristica->nombre.'"><strong>'.$caracteristica->nombre.'</strong></h5>
 				    	</div>
 					</td>
 				 	<td>
