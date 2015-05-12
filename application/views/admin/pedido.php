@@ -141,7 +141,7 @@ $(document).ready(function() {
 		$(event.target).parent().parent().parent().find('.observacion').val("");
 		$(event.target).parent().parent().parent().find('.mostrable').show();
 		$(event.target).parent().parent().parent().find('.editable').hide();
-		$('.estado').each(function() {$(this).attr('readonly', true);});
+		$('.estado').each(function() {$(this).attr('disabled', true);});
 		$('.observacion').each(function() {$(this).attr('readonly', true);});
 		if (svalor === evalor) {return false;}
 		rta = guardar( evalor , eobservacion ,function(rta){
