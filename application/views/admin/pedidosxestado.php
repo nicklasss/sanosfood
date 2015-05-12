@@ -20,11 +20,11 @@
 if (isset($pedidos)) {
 	foreach ($pedidos as $pedido) {
 		print '<tr role="row">';
-        print '<td width="10%"><a href="../../pedido/'.$pedido->id.'">'.$pedido->id.'</a></td>';  
-        print '<td width="15%"><a href="../../pedido/'.$pedido->id.'">'.$pedido->estado.'</a></td>';  
-        print '<td width="25%"><a href="../../pedido/'.$pedido->id.'">'.$pedido->fecha.'</a></td>';  
-        print '<td width="15%"><a href="../../pedido/'.$pedido->id.'">'.$pedido->ciudad.'</a></td>';  
-        print '<td width="35%"><a href="../../pedido/'.$pedido->id.'">'.$pedido->correo.'</a></td>';  
+        print '<td width="10%"><a href="'.base_url().'admin/pedido/'.$pedido->id.'">'.$pedido->id.'</a></td>';  
+        print '<td width="15%"><a href="'.base_url().'admin/pedido/'.$pedido->id.'">'.$pedido->estado.'</a></td>';  
+        print '<td width="25%"><a href="'.base_url().'admin/pedido/'.$pedido->id.'">'.$pedido->fecha.'</a></td>';  
+        print '<td width="15%"><a href="'.base_url().'admin/pedido/'.$pedido->id.'">'.$pedido->ciudad.'</a></td>';  
+        print '<td width="35%"><a href="'.base_url().'admin/pedido/'.$pedido->id.'">'.$pedido->correo.'</a></td>';  
 		print '</tr>';
 	};
 }
