@@ -70,6 +70,20 @@ class Pedidos_model extends CI_Model {
         $this->db->where('estado', $estado);
         return $this->db->count_all_results('pedidos');
     }
+    function cambiarEstado($id = null,$estado = null,$observacion =""){
+        $this->db->where('id', $id);
+        $query = $this->db->get('pedidos', 1, 0);
+        if($query->num_rows()!=1){
+            return false;
+        }
+        $pedido = $query->row();
+        $object = array('idPedido' => $id, 'idUsuario' =>$pedido->id_usuario,'fecha' =>  date('Y-m-d H:i:s'),'accion'=>'cambiar estado de '.$pedido->estado.' a '.$estado,'observacion'=>$observacion);
+        $this->db->insert('log_pedidos', $object);
+        $object = array('estado' => $estado );
+        $this->db->where('id', $id);
+        $this->db->update('pedidos', $object);
+        return true;
+    }
 }
 
 /* End of file pedidos_model.php */
