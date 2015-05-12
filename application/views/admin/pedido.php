@@ -74,6 +74,10 @@
 							}?>
 						</select>    		
 			    	</div>
+					<div class="col-md-6">
+						<label>Observación por cambio de estado</label>
+						<textarea type="text" class="form-control observacion" readonly ></textarea>
+					</div>
 					<div class="col-md-3">
 				    	<div class="editable escondido">
 							<label>Cambiar Estado pedido</label>
@@ -85,10 +89,6 @@
 					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
 				    	</div>
 			    	</div>
-					<div class="col-md-6">
-						<label>Observación por cambio de estado</label>
-						<textarea type="text" class="form-control observacion" readonly ></textarea>
-					</div>
 				</div>
 			</form>
 		</div>
