@@ -17,7 +17,7 @@ class Caracteristicas_model extends CI_Model {
         if($id != NULL AND $atributo != NULL AND $valor != NULL){
             if($atributo =="nombre"){
                 $this->db->where('nombre', $valor);
-                if($this->db->count_all_results()>0){
+                if($this->db->count_all_results('caracteristicas')>0){
                     return array('res'=>'bad','msj'=>'Error en la edición. Ya existe una característica con ese nombre.'); }
             }
             $this->db->trans_start();
@@ -50,7 +50,7 @@ class Caracteristicas_model extends CI_Model {
         if($id == null){
             return array('res'=>'bad','msj'=>'Error en la inserción.'); }
         $this->db->where('idCaracteristica', $id);
-        if($this->db->count_all_results()>0){
+        if($this->db->count_all_results('pro_car')>0){
             return array('res'=>'bad','msj'=>'Error en la inserción. Hay productos asociados a esta característica.'); }
         $this->db->where('id', $id);
         $this->db->delete('caracteristicas');
