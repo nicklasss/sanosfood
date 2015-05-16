@@ -43,11 +43,11 @@
 				<input class="form-control" readonly value="<?php print $pedido->ciudad;?>"/>
 			</div>
 			<div class="col-md-2">
-				<label>Region</label>
+				<label>Región</label>
 				<input class="form-control" readonly value="<?php print $pedido->region;?>"/>
 			</div>
 			<div class="col-md-2">
-				<label>Pais</label>
+				<label>País</label>
 				<input class="form-control" readonly value="<?php print $pedido->pais;?>"/>
 			</div>
 		</div>	
@@ -67,7 +67,10 @@
 						<label>Estado</label>
 						<select class="form-control estado" disabled="disabled">
 							<?php foreach ($estadospedidos as $estado) {
-								print '<option value="'.$estado->nombre.'">'.$estado->nombre.'</option>';
+								if ($estado->id == $pedido->idestadopedido) {
+									print '<option value="'.$estado->id.'" selected>'.$estado->nombre.'</option>'; }
+								else {
+									print '<option value="'.$estado->id.'">'.$estado->nombre.'</option>'; }
 							}?>
 						</select>    		
 			    	</div>
@@ -122,9 +125,10 @@ if (isset($pedido->lineas)) {
 	</div>
 </div>
 
-
+<!---------------------------------------------------------------------------------------------------------------------->
 <script type="text/javascript">
 $(document).ready(function() { 
+
 	$('.container').on('click','.btn-editar',function(event){
 		svalor = $(event.target).parent().parent().parent().find('.estado').val();
 		$(event.target).parent().parent().parent().find('.editable').show();
@@ -164,17 +168,12 @@ function guardar (estado, observacion, callback) {
 	    context: document.body,
 	    dataType: "json",
 	    type: "POST",
-	    data: {id : <?php print $pedido->id;?>, estado : estado, observacion : observacion } })
+	    data: {id : <?php print $pedido->id;?>, idestadopedido : estado, observacion : observacion } })
    .done(function(data) {                               // respuesta del servidor
     if(data.res=="ok") {callback(true)}
     else {alert(data.msj);callback(false)}
     })
    .error(function(){alert('No hay conexion');callback(false);})
 }
-
-//								if ($estado->nombre == $pedido->estado) {
-//									print '<option value="'.$estado->id.'" selected>'.$estado->nombre.'</option>'; }
-//								else {
-//									print '<option value="'.$estado->nombre.'">'.$estado->nombre.'</option>'; }
 
 </script>

@@ -7,19 +7,19 @@
 
 <!------------------------------------- edicion del campo NOMBRE--> 
 				<tr>
-					<td width="10%"><h4 class="text-right">Nombre:</h4></td>
+					<td width="10%"><h5 class="text-right"><strong>Nombre:</strong></h5></td>
 				 	<td><div><input type="text" class="form-control entnombre" placeholder="obligatorio"></div></td>
 				</tr>
 
 <!------------------------------------- edicion del campo DESCRIPCION--> 
 				<tr>
-					<td><h4 class="text-right">Descripción:</h4></td>
+					<td><h5 class="text-right"><strong>Descripción:</strong></h5></td>
 				 	<td><div><textarea type="text" class="form-control entdescripcion" placeholder="obligatorio"></textarea></div></td>
 				</tr>
 
 <!------------------------------------- edicion del campo INGREDIENTES--> 
 				<tr>
-					<td><h4 class="text-right">Ingredientes:</h4></td>
+					<td><h5 class="text-right"><strong>Ingredientes:</strong></h5></td>
 				 	<td><div><textarea type="text" class="form-control entingredientes"></textarea></div></td>
 				</tr>
 
@@ -38,19 +38,19 @@
 
 <!------------------------------------- edicion del campo PESO--> 
 				<tr>
-					<td width="30%"><h4 class="text-right">Peso:</h4></td>
+					<td width="30%"><h5 class="text-right"><strong>Peso:</strong></h5></td>
 				 	<td><div><input type="text" class="form-control entpeso" placeholder="obligatorio"></div></td>
 				</tr>
 
 <!------------------------------------- edicion del campo PESO NETO--> 
 				<tr>
-					<td><h4 class="text-right">Peso Neto:</h4></td>
+					<td><h5 class="text-right"><strong>Peso Neto:</strong></h5></td>
 				 	<td><div><input type="text" class="form-control entpesoneto" placeholder="obligatorio"></div></td>
 				</tr>
 
 <!------------------------------------- edicion del campo MARCA--> 
 				<tr>
-					<td><h4 class="text-right">Marca:</h4></td>
+					<td><h5 class="text-right"><strong>Marca:</strong></h5></td>
 				 	<td>
 				 		<div>
 						<select class="form-control entmarca"  placeholder="obligatorio">
@@ -74,18 +74,18 @@
 
 <!------------------------------------- edicion del campo LARGO--> 
 				<tr>
-					<td width="30%"><h4 class="text-right">Largo:</h4></td>
+					<td width="30%"><h5 class="text-right"><strong>Largo:</strong></h5></td>
 				 	<td><div><input type="text" class="form-control entlargo"></div></td>
 				</tr>
 <!------------------------------------- edicion del campo ANCHO--> 
 				<tr>
-					<td><h4 class="text-right">Ancho:</h4></td>
+					<td><h5 class="text-right"><strong>Ancho:</strong></h5></td>
 				 	<td><div><input type="text" class="form-control entancho"></div></td>
 				</tr>
 
 <!------------------------------------- edicion del campo ALTO--> 
 				<tr>
-					<td><h4 class="text-right">Alto:</h4></td>
+					<td><h5 class="text-right"><strong>Alto:</strong></h5></td>
 				 	<td><div><input type="text" class="form-control entalto"></div></td>
 				</tr>
 
@@ -102,19 +102,19 @@
 
 <!------------------------------------- edicion del campo PRECIO--> 
 				<tr>
-					<td width="30%"><h4 class="text-right">Precio:</h4></td>
+					<td width="30%"><h5 class="text-right"><strong>Precio:</strong></h5></td>
 				 	<td><div><input type="text" class="form-control entprecio" placeholder="obligatorio"></div></td>
 				</tr>
 
 <!------------------------------------- edicion del campo EXISTENCIAS--> 
 				<tr>
-					<td><h4 class="text-right">Existencias:</h4></td>
+					<td><h5 class="text-right"><strong>Existencias:</strong></h5></td>
 				 	<td><div><input type="text" class="form-control entexistencias"></div></td>
 				</tr>
 
 <!------------------------------------- edicion del campo ESTADO--> 
 				<tr>
-					<td><h4 class="text-right">Estado:</h4></td>
+					<td><h5 class="text-right"><strong>Estado:</strong></h5></td>
 				 	<td>
 				 		<div>
 						<select class="form-control entestado"  placeholder="obligatorio">
@@ -198,27 +198,31 @@ foreach ($categorias as $categoria) {
 	</div>  		
 </div>
 
+<!------------------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
 $(document).ready(function() { 
 
-	$('.form-contenedor').on('click','.btn-limpiar',function(event){
+	window.onload = function() {
+	    $('.container').find('.entnombre').focus();
+	};
+
+	$('.container').on('click','.btn-limpiar',function(event){
 		limpiarpantalla();
 	});
 
-	$('.form-contenedor').on('click','.btn-guardar',function(event){
-		enombre = $('.form-contenedor').find('.entnombre').val();
-		edescripcion = $('.form-contenedor').find('.entdescripcion').val();
-		eingredientes = $('.form-contenedor').find('.entingredientes').val();
-		emarca = $('.form-contenedor').find('.entmarca').val();
-		eprecio = $('.form-contenedor').find('.entprecio').val();
-		epeso = $('.form-contenedor').find('.entpeso').val();
-		epesoneto = $('.form-contenedor').find('.entpesoneto').val();
-		elargo = $('.form-contenedor').find('.entlargo').val();
-		eancho = $('.form-contenedor').find('.entancho').val();
-		ealto = $('.form-contenedor').find('.entalto').val();
-		eexistencias = $('.form-contenedor').find('.entexistencias').val();
-		eestado = $('.form-contenedor').find('.entestado').val();
-
+	$('.container').on('click','.btn-guardar',function(event){
+		enombre = $('.container').find('.entnombre').val();
+		edescripcion = $('.container').find('.entdescripcion').val();
+		eingredientes = $('.container').find('.entingredientes').val();
+		emarca = $('.container').find('.entmarca').val();
+		eprecio = $('.container').find('.entprecio').val();
+		epeso = $('.container').find('.entpeso').val();
+		epesoneto = $('.container').find('.entpesoneto').val();
+		elargo = $('.container').find('.entlargo').val();
+		eancho = $('.container').find('.entancho').val();
+		ealto = $('.container').find('.entalto').val();
+		eexistencias = $('.container').find('.entexistencias').val();
+		eestado = $('.container').find('.entestado').val();
 		if(enombre == "" || edescripcion == "" || emarca == "" || eprecio == "" || epeso == "" || epesoneto == "" || eestado == "") {
 			alert("Los campos obligatorios deben estar diligenciados");
 			return false; }
@@ -231,11 +235,13 @@ $(document).ready(function() {
 		if(ealto != "")  {if(validarnumeroentero(ealto, "ALTO")  == false) {return false;}}
 		if(eexistencias != "")  {if(validarnumeroentero(eexistencias, "EXISTENCIAS")  == false) {return false;}}
 		
-		rta = crear( enombre, edescripcion, eingredientes, emarca, eprecio, epeso, epesoneto, elargo, eancho, ealto, eexistencias, eestado, function(rta){
+		rta = crear( enombre, edescripcion, eingredientes, emarca, eprecio, epeso, epesoneto, elargo, eancho, ealto, eexistencias, eestado, function(rta) {
 			if(rta) {
 				limpiarpantalla();
-		   };
-	   });
+			} else {
+				$(event.target).parent().parent().parent().find('.entnombre').focus();
+			};
+		});
 	});
 });
 
@@ -277,23 +283,25 @@ function validarnumeroentero (valor, campo) {
 }
 
 function limpiarpantalla () {
-	$('.form-contenedor').find('.entnombre').val("");
-	$('.form-contenedor').find('.entdescripcion').val("");
-	$('.form-contenedor').find('.entingredientes').val("");
-	$('.form-contenedor').find('.entprecio').val("");
-	$('.form-contenedor').find('.entpeso').val("");
-	$('.form-contenedor').find('.entpesoneto').val("");
-	$('.form-contenedor').find('.entlargo').val("");
-	$('.form-contenedor').find('.entancho').val("");
-	$('.form-contenedor').find('.entalto').val("");
-	$('.form-contenedor').find('.entexistencias').val("");
-	$('.form-contenedor').find('.entestado').val("");
+	$('.container').find('.entnombre').val("");
+	$('.container').find('.entdescripcion').val("");
+	$('.container').find('.entingredientes').val("");
+	$('.container').find('.entprecio').val("");
+	$('.container').find('.entpeso').val("");
+	$('.container').find('.entpesoneto').val("");
+	$('.container').find('.entlargo').val("");
+	$('.container').find('.entancho').val("");
+	$('.container').find('.entalto').val("");
+	$('.container').find('.entexistencias').val("");
+	$('.container').find('.entestado').val("");
+	$('.container').find('.entnombre').focus();
 	$('input[value*="chulo"]').each(function(){
 		$(this).prop("checked", true);
 	});
 	$('input[name*="cat"]').each(function(){
 		$(this).prop("checked", false);
 	});
+
 }
 
 </script>

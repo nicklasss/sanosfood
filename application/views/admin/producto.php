@@ -146,19 +146,24 @@
 				    	<div class="editable escondido">
 							<select class="form-control entvalor">
 								<?php foreach ($marcas as $marca) {
-									if ($marca->nombre == $producto->marca) {
-										print '<option value="'.$marca->id.'" selected>'.$marca->nombre.'</option>'; }
-									else {
+									if ($marca->id == $producto->idmarca) {
 										print '<option value="'.$marca->nombre.'">'.$marca->nombre.'</option>'; }
+									else {
+										print '<option value="'.$marca->id.'">'.$marca->nombre.'</option>'; }
 									}?>
-							</select>   				    	</div>
+							</select>
+						</div>
 				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->marca;?></h5>
+							<?php foreach ($marcas as $marca) {
+								if ($marca->id == $producto->idmarca) {
+									print '<h5 class="salvalor">'.$marca->nombre.'</h5>';
+								};
+							}?>
 				    	</div>
 					</td>
 					<td>
 				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="marca">Guardar</button>
+					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="idmarca">Guardar</button>
 					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
 				    	</div>
 				    	<div class="mostrable">
@@ -319,20 +324,24 @@
 				    	<div class="editable escondido">
 							<select class="form-control entvalor">
 								<?php foreach ($estados as $estado) {
-									if ($estado->nombre == $producto->estado) {
-										print '<option value="'.$estado->id.'" selected>'.$estado->nombre.'</option>'; }
-									else {
+									if ($estado->id == $producto->idestadoproducto) {
 										print '<option value="'.$estado->nombre.'">'.$estado->nombre.'</option>'; }
+									else {
+										print '<option value="'.$estado->id.'">'.$estado->nombre.'</option>'; }
 									}?>
-							</select>    		
-				    	</div>
+							</select>
+						</div>
 				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->estado;?></h5>
+							<?php foreach ($estados as $estado) {
+								if ($estado->id == $producto->idestadoproducto) {
+									print '<h5 class="salvalor">'.$estado->nombre.'</h5>';
+								};
+							}?>
 				    	</div>
 					</td>
 					<td>
 				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="estado">Guardar</button>
+					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="idestadoproducto">Guardar</button>
 					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
 				    	</div>
 				    	<div class="mostrable">
@@ -507,6 +516,7 @@ foreach ($categorias as $categoria) {
 
 $(document).ready(function() { 
 
+//----------------------------------------------------------------------------------EDITAR CARACTERISTICAS
 	$('.container').on('click','.btn-editar-car',function(event){
 		$(event.target).parent().parent().parent().find('.editable-car').show();
 		$(event.target).parent().parent().parent().find('.mostrable-car').hide();
@@ -534,6 +544,8 @@ $(document).ready(function() {
 	   });
 	});
 
+
+//----------------------------------------------------------------------------------EDITAR CATEGORIAS
 	$('.container').on('click','.btn-editar-cat',function(event){
 		$(event.target).parent().parent().parent().find('.editable-cat').show();
 		$(event.target).parent().parent().parent().find('.mostrable-cat').hide();
@@ -562,8 +574,9 @@ $(document).ready(function() {
 	});
 	
 
+//----------------------------------------------------------------------------------EDITAR
 	$('.container').on('click','.btn-editar',function(event){
-		svalor = $(event.target).parent().parent().parent().find('.salvalor').html();
+		svalor = $(event.target).parent().parent().parent().find('.salvalor').text();
 		$(event.target).parent().parent().parent().find('.entvalor').val(svalor);
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
@@ -576,7 +589,7 @@ $(document).ready(function() {
 
 	$('.container').on('click','.btn-guardar',function(event){
 		evalor = $(event.target).parent().parent().parent().find('.entvalor').val();
-		svalor = $(event.target).parent().parent().parent().find('.salvalor').html();
+		svalor = $(event.target).parent().parent().parent().find('.salvalor').text();
 		campo = $(event.target).attr("data-atributo");
 
 		if (campo == "nombre") {if (evalor == ""){ alert("el NOMBRE del producto no puede estar vacio"); return false;}}
@@ -594,17 +607,16 @@ $(document).ready(function() {
 		if (campo == "ancho") {if(evalor != "") {if(validarnumeroentero(evalor, "ANCHO")  == false) {return false;}}}
 		if (campo == "alto") {if(evalor != "") {if(validarnumeroentero(evalor, "ALTO")  == false) {return false;}}}
 		if (campo == "existencias") {if(validarnumeroentero(evalor, "EXISTENCIAS")  == false) {return false;}}
-
 		if(evalor !== svalor) {
 		   rta = guardar( $(event.target).attr("data-atributo") , evalor ,function(rta){
 				if(rta) {
-					$(event.target).parent().parent().parent().find('.salvalor').html(evalor); 
+					$(event.target).parent().parent().parent().find('.salvalor').text(svalor); 
 					$(event.target).parent().parent().parent().find('.mostrable').show();
 					$(event.target).parent().parent().parent().find('.editable').hide();
 			   };
 		   });
 		}else {
-			$(event.target).parent().parent().parent().find('.salvalor').html(evalor); 
+			$(event.target).parent().parent().parent().find('.salvalor').text(evalor); 
 			$(event.target).parent().parent().parent().find('.mostrable').show();
 			$(event.target).parent().parent().parent().find('.editable').hide(); 
 		};
@@ -612,6 +624,7 @@ $(document).ready(function() {
 });
 
 
+//----------------------------------------------------------------------------------funcion guardar
 function guardar (atributo, valor, callback) {
   $.ajax({                                               // envio de los datos
 	    url: "<?php print base_url();?>producto/editar",
@@ -626,6 +639,7 @@ function guardar (atributo, valor, callback) {
    .error(function(){alert('No hay conexion');callback(false);})
 }
 
+//----------------------------------------------------------------------------------funcion guardar caracteristicas
 function guardar_car (callback) {
 	var datacaracteristicas = [];
 	$('input[name*="car"]:checked').each(function(){
@@ -647,6 +661,7 @@ function guardar_car (callback) {
    .error(function(){alert('No hay conexion');callback(false);})
 }
 
+//----------------------------------------------------------------------------------funcion guardar categorias
 function guardar_cat (callback) {
 	var datacategorias = [];
 	$('input[name*="cat"]:checked').each(function(){
@@ -666,6 +681,7 @@ function guardar_cat (callback) {
    .error(function(){alert('No hay conexion');callback(false);})
 }
 
+//----------------------------------------------------------------------------------funcion validarnumerodecimal
 function validarnumerodecimal (valor, campo) {
 	var yavapunto = 0;
 	for(var i = 0; i<valor.length;i++){
@@ -681,6 +697,7 @@ function validarnumerodecimal (valor, campo) {
 	}
 }
 
+//----------------------------------------------------------------------------------funcion validarnumeroentero
 function validarnumeroentero (valor, campo) {
 	for(var i = 0; i<valor.length;i++){
 		if(valor.charCodeAt(i)<48 || valor.charCodeAt(i)>57) {

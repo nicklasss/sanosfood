@@ -111,9 +111,9 @@ class Productos_model extends CI_Model {
     	$this->db->where('id', $id);
     	$query = $this->db->get('productos', 1, 0);
         $producto = $query->row();
-        $this->db->select('nombre');
-        $this->db->where('id', $producto->id_marca);
-        $producto->marca = $this->db->get('marcas', 1, 0)->row()->nombre;
+//        $this->db->select('nombre');
+//        $this->db->where('id', $producto->idmarca);
+//        $producto->marca = $this->db->get('marcas', 1, 0)->row()->nombre;
         $this->db->where('idProducto', $producto->id);
         $producto->caracteristicas = $this->db->get('pro_car')->result();
         $this->db->where('idProducto', $producto->id);
@@ -122,6 +122,16 @@ class Productos_model extends CI_Model {
     }
     function editar($id = NULL, $atributo = NULL, $valor = NULL){
         if($id != NULL AND $atributo != NULL AND $valor != NULL){
+ 
+
+            if($atributo =="nombre"){
+                $this->db->where('nombre', $valor);
+                if($this->db->count_all_results('productos')>0){
+                    return array('res'=>'bad','msj'=>'ERROR en edición. Ya existe un producto con ese nombre.'); }
+            }
+
+
+
             $this->db->trans_start();
             if($atributo=='nombre'){
                 $slug = url_title($valor, 'dash', true);

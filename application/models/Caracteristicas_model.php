@@ -13,12 +13,13 @@ class Caracteristicas_model extends CI_Model {
     	$query = $this->db->get('caracteristicas');
     	return $query->result();
     }
+    
     function editar($id = NULL, $atributo = NULL, $valor = NULL){
         if($id != NULL AND $atributo != NULL AND $valor != NULL){
             if($atributo =="nombre"){
                 $this->db->where('nombre', $valor);
                 if($this->db->count_all_results('caracteristicas')>0){
-                    return array('res'=>'bad','msj'=>'Error en la edición. Ya existe una característica con ese nombre.'); }
+                    return array('res'=>'bad','msj'=>'ERROR en edición. Ya existe una característica con ese nombre.'); }
             }
             $this->db->trans_start();
             $object = array($atributo => $valor);
@@ -27,31 +28,33 @@ class Caracteristicas_model extends CI_Model {
             $this->db->trans_complete();
 
             if ($this->db->trans_status() === FALSE) {
-                return array('res'=>'bad','msj'=>'Error en la edición.'); }
+                return array('res'=>'bad','msj'=>'ERROR en edición.'); }
             else {return array('res'=>'ok'); }
         }
     }
+    
     function crear($nombre = null, $descripcion = null){
         if($nombre == NULL OR $descripcion == null){
-            return array('res'=>'bad','msj'=>'Error en la creación.'); }
+            return array('res'=>'bad','msj'=>'ERROR en creación.'); }
 
         if(strlen($nombre)<3){
-            return array('res'=>'bad','msj'=>'Ingresa un nombre adecuado'); }
+            return array('res'=>'bad','msj'=>'ERROR, Ingresa un nombre adecuado'); }
 
         $this->db->where('nombre', $nombre);
         if($this->db->count_all_results('caracteristicas')>0){
-            return array('res'=>'bad','msj'=>'Ya existe una caracteristica con este nombre'); }
+            return array('res'=>'bad','msj'=>'ERROR, Ya existe una caracteristica con este nombre'); }
 
         $object = array('nombre' => $nombre, 'descripcion' => $descripcion);
         $this->db->insert('caracteristicas', $object);
         return array('res'=>'ok','id'=>$this->db->insert_id());
     }
+    
     function eliminar($id = null){
         if($id == null){
-            return array('res'=>'bad','msj'=>'Error en la inserción.'); }
-        $this->db->where('idCaracteristica', $id);
+            return array('res'=>'bad','msj'=>'ERROR en la inserción.'); }
+        $this->db->where('idcaracteristica', $id);
         if($this->db->count_all_results('pro_car')>0){
-            return array('res'=>'bad','msj'=>'Error en la inserción. Hay productos asociados a esta característica.'); }
+            return array('res'=>'bad','msj'=>'ERROR no se puede eliminar. Hay productos asociados a esta característica.'); }
         $this->db->where('id', $id);
         $this->db->delete('caracteristicas');
         return array('res'=>'ok');

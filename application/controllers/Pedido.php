@@ -12,7 +12,7 @@ class Pedido extends CI_Controller {
 			exit();
 		}
 		$idPedido = @$this->input->post('id',TRUE);
-		$estado = @$this->input->post('estado',TRUE);
+		$estado = @$this->input->post('idestadopedido',TRUE);
 		$observacion = @$this->input->post('observacion',TRUE);
 		$this->load->model('Pedidos_model');
 		if($this->Pedidos_model->cambiarestado($idPedido,$estado,$observacion)){

@@ -17,18 +17,18 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="dataTables_length">
-                                <label>Show 
+                                <label>Mostrar 
                                     <select id="select-cant" aria-controls="dataTables-example" class="form-control input-sm">
                                         <option value="10">10</option>
                                         <option value="25">25</option>
                                         <option value="50">50</option>
                                         <option value="100">100</option>
-                                    </select> entries</label>
+                                    </select> productos</label>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div id="dataTables-example_filter" class="dataTables_filter">
-                                    <label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTables-example"></label>
+                                    <label>Buscar:<input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTables-example"></label>
                                 </div>
                             </div>
                         </div>
@@ -37,20 +37,29 @@
                                 <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 150px;">Nombre</th>
-                                            <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 184px;">Existencias</th>
-                                            <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 171px;">Estado</th>
-                                            <th class="sorting" tabindex="0" rowspan="1" colspan="1" style="width: 129px;">Precio</th>
+                                            <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" >Nombre</th>
+                                            <th class="sorting" tabindex="0" rowspan="1" colspan="1" >Existencias</th>
+                                            <th class="sorting" tabindex="0" rowspan="1" colspan="1" >Estado</th>
+                                            <th class="sorting" tabindex="0" rowspan="1" colspan="1" >Precio</th>
                                         </tr>
                                     </thead>
                                     <tbody id="lista">
                                         <?php
-                                        foreach ($productos as $row) {
+                                        foreach ($productos as $producto) {
                                             print ' <tr role="row">
-                                                        <td>'.$row->nombre.'</td>
-                                                        <td>'.$row->existencias.'</td>
-                                                        <td>'.$row->estado.'</td>
-                                                        <td class="center">'.number_format($row->precio , 0, ",", ".").'</td> 
+                                    
+                                                        <td width="40%"><strong><a href="'.base_url().'admin/productos/'.$producto->id.'">'.$producto->nombre.'</a></strong></td>
+
+                                                        <td width="20%">'.$producto->existencias.'</td>
+                                                        <td width="20%">'.$producto->idestadoproducto.'</td>';
+
+//                                            foreach ($estados as $estado) {
+//                                               if ($estado->id == $producto->idestadoproducto) {
+//                                                    print '<td width="15%"><a href="'.base_url().'admin/productos/'.$producto->id.'">'.$estado->nombre.'</a></td>';
+//                                                };
+//                                            };
+
+                                            print '      <td class="center">'.number_format($producto->precio , 0, ",", ".").'</td> 
                                                     </tr>';
                                         }
                                         ?>

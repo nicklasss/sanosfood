@@ -1,10 +1,11 @@
 <div class="row">
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-md-12">
         <div class="panel panel-default">
 			<div class="panel-heading text-center"><h2>Características de los Productos</h2></div>
 			<table class="table table-condensed table-striped" id="tabla-car">
 				<thead>
 				<tr role="row">
+				  <th>Id</th>
 				  <th>Nombre</th>
 				  <th>Descripción</th>
 				</tr role="row">
@@ -15,7 +16,12 @@
 foreach ($caracteristicas as $caracteristica) {
 	print '
 				<tr>
-					<td>
+					<td width="5%">
+				    	<div>
+							<h5>'.$caracteristica->id.'</h5>
+				    	</div>
+					</td>
+					<td width="18%">
 				    	<div class="editable escondido">
 							<input type="text" class="form-control entnombre" value="'.$caracteristica->nombre.'"/>
 				    	</div>
@@ -31,7 +37,7 @@ foreach ($caracteristicas as $caracteristica) {
 							<h5 class="saldescripcion">'.$caracteristica->descripcion.'</h5>
 				    	</div>
 					</td>
-					<td>
+					<td width="15%">
 				    	<div class="editable escondido">
 					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'.$caracteristica->id.'">Guardar</button>
 					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
@@ -46,6 +52,11 @@ foreach ($caracteristicas as $caracteristica) {
 ?>
 
 				<tr id="ultima">
+					<td>
+				    	<div>
+							<h5></h5>
+				    	</div>
+					</td>
 					<td>
 				    	<div class="editable escondido">
 							<input type="text" class="form-control entnombre" value="'.$caracteristica->nombre.'"/>
@@ -72,66 +83,108 @@ foreach ($caracteristicas as $caracteristica) {
 	</div>
 </div>
 
+<!-------------------------------------------------------------------------------------------------------------------------------------->
 <script type="text/javascript">
 $(document).ready(function() { 
 
-	$('.container').on('click','.btn-editar',function(event){
+//----------------------------------------------------------------------------------EDITAR
+	$('.container').on('click','.btn-editar',function(event){														
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
 	});
 
+
+//----------------------------------------------------------------------------------CANCELAR
 	$('.container').on('click','.btn-cancelar',function(event){
+		snombre = $(event.target).parent().parent().parent().find('.salnombre').text();
+		$(event.target).parent().parent().parent().find('.entnombre').val(snombre);
+		sdescripcion = $(event.target).parent().parent().parent().find('.saldescripcion').text();
+		$(event.target).parent().parent().parent().find('.entdescripcion').val(sdescripcion);
 		$(event.target).parent().parent().parent().find('.mostrable').show();
 		$(event.target).parent().parent().parent().find('.editable').hide();
 	});
 
+
+//----------------------------------------------------------------------------------ELIMINAR
 	$('.container').on('click','.btn-eliminar',function(event){
 		rta = confirm("presione ACEPTAR para confirmar borrado, o CANCEL para no borrar");
 		if (rta) {
 		   rta = eliminar( $(event.target).attr("data-id") ,function(rta){
 			   if(rta) {
-				  $(event.target).parent().parent().parent().find('.mostrable').hide(); 
-			   };
+					$(event.target).parent().parent().parent().remove();
+				} else {
+					$(event.target).parent().parent().parent().find('.btn-eliminar').attr('disabled', true); 
+				};
 		   });
 		}
 	});
 
+
+//----------------------------------------------------------------------------------NUEVO
 	$('.container').on('click','.btn-nuevo',function(event){
 		$(event.target).parent().parent().parent().find('.entnombre').val("");
 		$(event.target).parent().parent().parent().find('.entdescripcion').val("");
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
+		$(event.target).parent().parent().parent().find('.entnombre').focus();
 	});
 
+
+//----------------------------------------------------------------------------------nuevo AGREGAR
 	$('.container').on('click','.btn-agregar',function(event){
 		enombre = $(event.target).parent().parent().parent().find('.entnombre').val();
+		if (enombre == "") {
+			alert ("el Nombre no puede estar vacio");
+			$(event.target).parent().parent().parent().find('.entnombre').focus();
+			return false;
+		};
 		edescripcion = $(event.target).parent().parent().parent().find('.entdescripcion').val();
-		if(enombre !== "" && edescripcion !== "") {
-		   rta = crear( enombre , edescripcion , function(rta){
-			   if(rta) {
- 					$(event.target).parent().parent().parent().find('.mostrable').show();
-					$(event.target).parent().parent().parent().find('.editable').hide();
-			   };
+		if (edescripcion == "") {
+			alert ("la Descripción no puede estar vacia");
+			$(event.target).parent().parent().parent().find('.entdescripcion').focus();
+			return false;
+		};
+		rta = crear( enombre , edescripcion , function(rta){
+			if(rta) {
+				$(event.target).parent().parent().parent().find('.mostrable').show();
+				$(event.target).parent().parent().parent().find('.editable').hide();
+			} else {
+				$(event.target).parent().parent().parent().find('.entnombre').focus();
+			};
+		});
+	});
+
+
+//----------------------------------------------------------------------------------editar GUARDAR
+	$('.container').on('click','.btn-guardar',function(event){
+		snombre = $(event.target).parent().parent().parent().find('.salnombre').text();
+		enombre = $(event.target).parent().parent().parent().find('.entnombre').val();
+		sdescripcion = $(event.target).parent().parent().parent().find('.saldescripcion').text();
+		edescripcion = $(event.target).parent().parent().parent().find('.entdescripcion').val();
+		if (edescripcion == "") {
+			alert ("la Descripción no puede estar vacia");
+			$(event.target).parent().parent().parent().find('.entdescripcion').focus();
+			return false;
+		};
+		if(edescripcion !== sdescripcion) {
+			rta = guardar( $(event.target).attr("data-id") , "descripcion" , edescripcion ,function(rta){
+				if(rta) {
+				  $(event.target).parent().parent().parent().find('.saldescripcion').html(edescripcion); 
+				};
 			});
 		};
-	});
-	$('.container').on('click','.btn-guardar',function(event){
-		enombre = $(event.target).parent().parent().parent().find('.entnombre').val();
-		snombre = $(event.target).parent().parent().parent().find('.salnombre').html();
+		if (enombre == "") {
+			alert ("el Nombre no puede estar vacio");
+			$(event.target).parent().parent().parent().find('.entnombre').focus();
+			return false;
+		};
 		if(enombre !== snombre) {
 		   rta = guardar( $(event.target).attr("data-id") , "nombre" , enombre ,function(rta){
 			   if(rta) {
-				  $(event.target).parent().parent().parent().find('.salnombre').html(enombre); 
-			   };
-		   });
-		};
-		edescripcion = $(event.target).parent().parent().parent().find('.entdescripcion').val();
-		sdescripcion = $(event.target).parent().parent().parent().find('.saldescripcion').html();
-		if(edescripcion !== sdescripcion) {
-		   rta = guardar( $(event.target).attr("data-id") , "descripcion" , edescripcion ,function(rta){
-			   if(rta) {
-				  $(event.target).parent().parent().parent().find('.saldescripcion').html(edescripcion); 
-			   };
+					$(event.target).parent().parent().parent().find('.salnombre').val(enombre); 
+				} else {
+					$(event.target).parent().parent().parent().find('.entnombre').focus();
+				};
 		   });
 		};
 		$(event.target).parent().parent().parent().find('.editable').hide();
@@ -140,6 +193,8 @@ $(document).ready(function() {
 
 });
 
+
+//----------------------------------------------------------------------------------funcion guardar
 function guardar (id, atributo, valor, callback) {
 	$.ajax({                                               // envio de los datos
 	  url: "<?php print base_url();?>caracteristica/editar",
@@ -154,6 +209,7 @@ function guardar (id, atributo, valor, callback) {
 	 .error(function(){alert('No hay conexion');callback(false);})
 }
 
+//----------------------------------------------------------------------------------funcion eliminar
 function eliminar (id, callback) {
 	$.ajax({                                               // envio de los datos
 	  url: "<?php print base_url();?>caracteristica/eliminar",
@@ -168,6 +224,7 @@ function eliminar (id, callback) {
 	 .error(function(){alert('No hay conexion');callback(false);})
 }
 
+//----------------------------------------------------------------------------------funcion crear
 function crear (nombre, descripcion, callback) {
 	$.ajax({                                               // envio de los datos
 	  url: "<?php print base_url();?>caracteristica/crear",
@@ -181,11 +238,16 @@ function crear (nombre, descripcion, callback) {
 		$("#ultima").before(
 		'<tr class="success">'+
 		'	<td>'+
+		'  		<div>'+
+		'			<h5>'+data.id+'</h5>'+
+		'	  	</div>'+
+		'	</td>'+
+		'	<td>'+
 		'    	<div class="editable escondido">'+
 		'			<input type="text" class="form-control entnombre" value="'+ enombre +'"/>'+
 		'    	</div>'+
 		'    	<div class="mostrable">'+
-		'			<h4 class="salnombre mostrable" value="'+ enombre +'">'+ enombre +'</h4>'+
+		'			<h5 class="salnombre mostrable" value="'+ enombre +'"><strong>'+ enombre +'</strong></h5>'+
 		'    	</div>'+
 		'	</td>'+
 		' 	<td>'+
