@@ -104,6 +104,11 @@ class Productos_model extends CI_Model {
 		$this->db->from('productos');
 		$this->db->limit($cant,$cant*($pag-1));
 		$query = $this->db->get();
+        foreach ($query->result() as $row) {
+            $this->db->select('nombre');
+            $this->db->where('id', $row->idestadoproducto);
+            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
+        }
         $data['productos'] = $query->result();
 		return $data;
     }
