@@ -50,7 +50,7 @@
                                     
                                                         <td width="40%"><strong><a href="'.base_url().'admin/productos/'.$producto->id.'">'.$producto->nombre.'</a></strong></td>
                                                         <td width="20%">'.$producto->existencias.'</td>
-                                                        <td width="20%">'.$producto->idestadoproducto.'</td>
+                                                        <td width="20%">'.$producto->nombreestado.'</td>
                                                         <td class="center">'.number_format($producto->precio , 0, ",", ".").'</td> 
                                                     </tr>';
                                         }
