@@ -53,11 +53,11 @@
                                                         <td width="20%">'.$producto->existencias.'</td>
                                                         <td width="20%">'.$producto->idestadoproducto.'</td>';
 
-//                                            foreach ($estados as $estado) {
-//                                               if ($estado->id == $producto->idestadoproducto) {
-//                                                    print '<td width="15%"><a href="'.base_url().'admin/productos/'.$producto->id.'">'.$estado->nombre.'</a></td>';
-//                                                };
-//                                            };
+                                            foreach ($estados as $estado) {
+                                               if ($estado->id == $producto->idestadoproducto) {
+                                                    print '<td width="15%"><a href="'.base_url().'admin/productos/'.$producto->id.'">'.$estado->nombre.'</a></td>';
+                                                };
+                                            };
 
                                             print '      <td class="center">'.number_format($producto->precio , 0, ",", ".").'</td> 
                                                     </tr>';
