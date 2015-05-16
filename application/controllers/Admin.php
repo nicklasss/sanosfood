@@ -48,6 +48,7 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Productos_model');
 		if($id != null) { 
+			$this->load->model('Estadosproductos_model');
 			$this->load->model('Marcas_model');
 			$data['marcas'] = $this->Marcas_model->listar();
 			$this->load->model('Caracteristicas_model');
