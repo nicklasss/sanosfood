@@ -74,20 +74,50 @@ class Productos_model extends CI_Model {
         if(filter_var($existencias, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null OR $existencias == null){
             $existencias = 0;
         }
+        $slug = url_title($nombre,'dash',TRUE);
 
-        if(json_decode($datacaracteristicas) == null){
+        if(json_decode($datacaracteristicas) == null && json_last_error() !== JSON_ERROR_NONE){
             $data['res'] = 'bad';
             $data['msj'] = 'Ha ocurrido un error enviando los datos de caracteristicas.';
             return $data;
         }
         $datacaracteristicas = json_decode($datacaracteristicas);
 
-        if(json_decode($datacategorias) == null){
+        if(json_decode($datacategorias) == null && json_last_error() !== JSON_ERROR_NONE){
             $data['res'] = 'bad';
             $data['msj'] = 'Ha ocurrido un error enviando los datos de categorias.';
             return $data;
         }
         $datacategorias = json_decode($datacategorias);
+
+        $object = array('nombre' => $nombre, 
+                        'descripcion' => $descripcion,
+                        'ingredientes' => $ingredientes,
+                        'idmarca' => $marca,
+                        'precio' => $precio,
+                        'peso' => $peso,
+                        'pesoneto' => $pesoneto,
+                        'largo' => $largo,
+                        'ancho' => $ancho,
+                        'alto' => $alto,
+                        'existencias' =>$existencias,
+                        'slug' => $slug,
+                        'idestadoproducto' => $estado);
+        $this->db->insert('productos', $object);
+
+        $id = $this->db->insert_id();
+
+        foreach ($datacaracteristicas as $caracteristica) {
+            $object = array('idproducto' => $id,
+                            'idcaracteristica' => $caracteristica->idcaracteristica,
+                            'tipo' => $caracteristica->valor);
+            $this->db->insert('pro_car', $object);
+        }
+        foreach ($datacategorias as $categoria) {
+            $object = array('idproducto' => $id,
+                            'idcategoria' => $categoria->idcategoria);
+            $this->db->insert('pro_cat', $object);
+        }
 
         $data['res'] = 'ok';
         return $data;
