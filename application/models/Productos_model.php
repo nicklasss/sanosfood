@@ -120,6 +120,7 @@ class Productos_model extends CI_Model {
         }
 
         $data['res'] = 'ok';
+        $data['id'] = $id;
         return $data;
     }
 
