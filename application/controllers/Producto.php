@@ -39,12 +39,24 @@ class Producto extends CI_Controller {
 			$data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
 			$this->load->view('producto/editar', $data, FALSE);
 		}
-		$id = $this->input->post('id',TRUE);
-		$atributo = @$this->input->post('atributo',TRUE);
-		$valor = @$this->input->post('valor',TRUE);
+		$dataproducto = @$this->input->post('dataproducto',TRUE);
+//		$atributo = @$this->input->post('atributo',TRUE);
+//		$valor = @$this->input->post('valor',TRUE);
 		$this->load->model('Productos_model');
-		$data['resultado'] = $this->Productos_model->editar($id,$atributo,$valor);
+//		$data['resultado'] = $this->Productos_model->editar($id,$atributo,$valor);
+		$data['resultado'] = $this->Productos_model->editar($dataproducto);
 		$this->load->view('producto/editar', $data, FALSE);
+	}
+
+	public function editarestado(){
+		if(!$this->session->userdata('logeado_admin')){
+			$data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
+			$this->load->view('producto/editar', $data, FALSE);
+		}
+		$id = @$this->input->post('id',TRUE);
+		$estado = @$this->input->post('estado',TRUE);
+		$this->load->model('Productos_model');
+		print json_encode($this->Productos_model->editarestado($id));
 	}
 
 }

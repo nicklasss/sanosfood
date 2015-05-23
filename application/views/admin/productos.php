@@ -101,6 +101,7 @@
             listar();
         });
     })
+
     function listar(){
         $.ajax({                                               // envio de los datos
             url: "<?php print base_url();?>producto/listar",
@@ -139,6 +140,7 @@
             else{alert(data.msj) } })          
             .error(function(){alert('error en el servidor'); });  // error generado
     }
+    
     function buscar(query){
         $.ajax({
             url: "<?php print base_url();?>producto/buscar",
@@ -160,6 +162,6 @@
             alert('Sin resultados')
         })
 
-        });
-    }
+    };
+    
 </script>

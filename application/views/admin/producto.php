@@ -1,370 +1,79 @@
-<div class="row registro">
-	<div class="col-md-12">
-        <div class="panel panel-default">
-			<div class="panel-heading text-center"><h2>Información del Producto</h2></div>
-			<table class="table table-condensed table-striped">
-				<tbody>
-
-<!------------------------------------- edicion del campo NOMBRE--> 
-				<tr>
-					<td width="10%">
-						<h5 class="text-right"><strong>Nombre:</strong></h5>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->nombre;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h4 class="salvalor"><strong><?php print $producto->nombre;?></strong></h4>
-				    	</div>
-					</td>
-					<td width="13%">
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="nombre">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-<!------------------------------------- edicion del campo DESCRIPCION--> 
-				<tr>
-					<td>
-						<h5 class="text-right"><strong>Descripción:</strong></h5>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-					    	<textarea type="text" class="form-control entvalor"><?php print $producto->descripcion;?></textarea>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->descripcion;?></h5>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="descripcion">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-<!------------------------------------- edicion del campo INGREDIENTES--> 
-				<tr>
-					<td>
-						<h5 class="text-right"><strong>Ingredientes:</strong></h5>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-					    	<textarea type="text" class="form-control entvalor"><?php print $producto->ingredientes;?></textarea>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->ingredientes;?></h5>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="ingredientes">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-				</tbody>
-			</table> <!-- tabla--> 
-		</div> <!-- Panel-->
-	</div>
+<div class="panel panel-default">
+	<div class="panel-heading text-center"><h2>Información del Producto</h2></div>
+	<form class="form-horizontal form-contenedor">
+		<div class="row registro">
+			<div class="col-md-6">
+				<label>Nombre del Producto</label>
+				<strong><input type="text" class="form-control editable" id="nombre" readonly value="<?php print $producto->nombre;?>"/></strong>
+			</div>
+			<div class="col-md-6">
+				<label>Ingredientes</label>
+				<textarea type="text" class="form-control editable" id="ingredientes" readonly><?php print $producto->ingredientes;?>"</textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<label>Descripción</label>
+				<textarea type="text" class="form-control editable" id="descripcion" readonly><?php print $producto->descripcion;?>"</textarea>
+			</div>
+		</div>
+	</form>
 </div>
 
-<div class="row registro">
-	<div class="col-md-4">
-        <div class="panel panel-default">
-			<table class="table table-condensed table-striped">
-				<tbody>
-
-<!------------------------------------- edicion del campo PESOS--> 
-				<tr>
-					<td width="25%">
-						<h5 class="text-right"><strong>Peso:<strong></h5>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->peso;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->peso;?></h5>
-				    	</div>
-					</td>
-					<td width="40%">
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="peso">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-<!------------------------------------- edicion del campo PESO NETO--> 
-				<tr>
-					<td>
-						<h5 class="text-right"><strong>Peso Neto:</strong></h5>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->pesoneto;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->pesoneto;?></h5>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="pesoneto">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-<!------------------------------------- edicion del campo MARCA--> 
-				<tr>
-					<td>
-						<h5 class="text-right"><strong>Marca:</strong></h5>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<select class="form-control entvalor">
-								<?php foreach ($marcas as $marca) {
-									if ($marca->id == $producto->idmarca) {
-										print '<option value="'.$marca->nombre.'">'.$marca->nombre.'</option>'; }
-									else {
-										print '<option value="'.$marca->id.'">'.$marca->nombre.'</option>'; }
-									}?>
-							</select>
-						</div>
-				    	<div class="mostrable">
-							<?php foreach ($marcas as $marca) {
-								if ($marca->id == $producto->idmarca) {
-									print '<h5 class="salvalor">'.$marca->nombre.'</h5>';
-								};
-							}?>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="idmarca">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-				</tbody>
-			</table> <!-- tabla--> 
-		</div> <!-- Panel-->
-	</div>
-
-
-	<div class="col-md-4">
-        <div class="panel panel-default">
-			<table class="table table-condensed table-striped">
-				<tbody>
-
-<!------------------------------------- edicion del campo LARGO--> 
-				<tr>
-					<td width="25%">
-						<h5 class="text-right"><strong>Largo:</strong></h5>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->largo;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->largo;?></h5>
-				    	</div>
-					</td>
-					<td width="40%">
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="largo">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-<!------------------------------------- edicion del campo ANCHO--> 
-				<tr>
-					<td>
-						<h5 class="text-right"><strong>Ancho:</strong></h5>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->ancho;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->ancho;?></h5>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="ancho">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-<!------------------------------------- edicion del campo ALTO--> 
-				<tr>
-					<td>
-						<h5 class="text-right"><strong>Alto:</strong></h5>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->alto;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->alto;?></h5>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="alto">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-				</tbody>
-			</table> <!-- tabla--> 
-		</div> <!-- Panel-->
-	</div>
-
-
-	<div class="col-md-4">
-        <div class="panel panel-default">
-			<table class="table table-condensed table-striped">
-				<tbody>
-
-<!------------------------------------- edicion del campo PRECIO--> 
-				<tr>
-					<td width="25%">
-						<h5 class="text-right"><strong>Precio:</strong></h5>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->precio;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->precio;?></h5>
-				    	</div>
-					</td>
-					<td width="40%">
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="precio">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-<!------------------------------------- edicion del campo EXISTENCIAS--> 
-				<tr>
-					<td>
-						<h5 class="text-right"><strong>Existencias:</strong></h5>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entvalor" value="<?php print $producto->existencias;?>"/>
-				    	</div>
-				    	<div class="mostrable">
-							<h5 class="salvalor"><?php print $producto->existencias;?></h5>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="existencias">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-
-<!------------------------------------- edicion del campo ESTADO--> 
-				<tr>
-					<td>
-						<h5 class="text-right"><strong>Estado:</strong></h5>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<select class="form-control entvalor">
-								<?php foreach ($estados as $estado) {
-									if ($estado->id == $producto->idestadoproducto) {
-										print '<option value="'.$estado->nombre.'">'.$estado->nombre.'</option>'; }
-									else {
-										print '<option value="'.$estado->id.'">'.$estado->nombre.'</option>'; }
-									}?>
-							</select>
-						</div>
-				    	<div class="mostrable">
-							<?php foreach ($estados as $estado) {
-								if ($estado->id == $producto->idestadoproducto) {
-									print '<h5 class="salvalor">'.$estado->nombre.'</h5>';
-								};
-							}?>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-atributo="idestadoproducto">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-				    	</div>
-					</td>	
-				</tr>
-
-				</tbody>
-			</table> <!-- tabla--> 
-		</div> <!-- Panel-->
-	</div>
+<div class="panel panel-default">
+	<form class="form-horizontal form-contenedor">
+		<div class="row registro">
+			<div class="col-md-1">
+				<label>Peso</label>
+				<input type="text" class="form-control editable" data-valor="<?php print $producto->peso;?>" id="peso" readonly value="<?php print $producto->peso;?>"/>
+			</div>
+			<div class="col-md-1">
+				<label>PesoNeto</label>
+				<input type="text" class="form-control editable" id="pesoneto" name="pesoneto" readonly value="<?php print $producto->pesoneto;?>"/>
+			</div>
+			<div class="col-md-1">
+				<label>Largo</label>
+				<input type="text" class="form-control editable" id="largo" readonly value="<?php print $producto->largo;?>"/>
+			</div>
+			<div class="col-md-1">
+				<label>Ancho</label>
+				<input type="text" class="form-control editable" id="ancho" readonly value="<?php print $producto->ancho;?>"/>
+			</div>
+			<div class="col-md-1">
+				<label>Alto</label>
+				<input type="text" class="form-control editable" id="alto" readonly value="<?php print $producto->alto;?>"/>
+			</div>
+			<div class="col-md-2">
+				<label>Marca</label>
+				<select class="form-control editable" id="marca" disabled="disabled">
+					<?php foreach ($marcas as $marca) {
+						if ($marca->id == $producto->idmarca) {
+							print '<option value="'.$marca->id.'" selected>'.$marca->nombre.'</option>'; }
+						else {
+							print '<option value="'.$marca->id.'">'.$marca->nombre.'</option>'; }
+					}?>
+				</select>
+			</div>
+			<div class="col-md-1">
+				<label>Existencias</label>
+				<input type="text" class="form-control editable" id="existencias" readonly value="<?php print $producto->existencias;?>"/>
+			</div>
+			<div class="col-md-2">
+				<label>Precio</label>
+				<input type="text" class="form-control editable" id="precio" readonly value="<?php print $producto->precio;?>"/>
+			</div>
+		</div>
+	</form>
 </div>
 
 
 <!------------------------------------- edicion del campo CARACTERISTICAS --> 
 <div class="row registro">
-	<div class="col-md-4 col-md-offset-1">
+	<div class="col-md-4">
         <div class="panel panel-default">
 			<div class="panel-heading text-center"><h3>Características</h3></div>
 			<table class="table table-condensed table-striped">
 				<tbody>
-
 <?php
 foreach ($caracteristicas as $caracteristica) {
 	print '<tr>';
@@ -377,38 +86,38 @@ foreach ($caracteristicas as $caracteristica) {
 				case "remove":
 					print '<td>
 			   	        	<label  class= "radio-inline" > 
-									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-								</label>
-			            </td>
+								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							</label>
+			        	</td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove" checked> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-								</label> 
-							</td>
+								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove" checked> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							</label> 
+						</td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
-								</label> 
-							</td>
-							</tr>';
+								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+							</label> 
+						</td>
+						</tr>';
 					break;
 				case "asterisk":
 					print '<td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-								</label> 
+								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							</label> 
 			            </td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-								</label> 
-							</td>
+								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							</label> 
+						</td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk" checked> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
-								</label> 
-							</td>
-							</tr>';
+								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk" checked> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+							</label> 
+						</td>
+						</tr>';
 					break;
 			}
 		}
@@ -416,20 +125,20 @@ foreach ($caracteristicas as $caracteristica) {
 	if ($entra == 0) {
 					print '<td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-								</label> 
+								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+							</label> 
 			            </td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-								</label> 
-							</td>
+								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							</label> 
+						</td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-									<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
-								</label> 
-							</td>
-							</tr>';
+								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+							</label> 
+						</td>
+						</tr>';
 	}
 }			            
 ?>
@@ -438,14 +147,6 @@ foreach ($caracteristicas as $caracteristica) {
 		</div> <!-- Panel-->
 	</div>
 
- 	<div class="col-md-1 editable-car escondido">
-  		<button type="button" class="btn btn-xs btn-success btn-guardar-car" data-atributo="estado">Guardar</button>
-  		<button type="button" class="btn btn-xs btn-warning btn-cancelar-car">Cancelar</button>
-  	</div>	
-	<div class="col-md-1 mostrable-car">
-		<button type="button" class="btn btn-xs btn-primary btn-editar-car"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-	</div>	
-
 
 <!----------------------------------- edicion del campo CATEGORIAS --> 
 	<div class="col-md-4">
@@ -453,7 +154,6 @@ foreach ($caracteristicas as $caracteristica) {
 			<div class="panel-heading text-center"><h3>Categorias</h3></div>
 			<table class="table table-condensed table-striped">
 				<tbody>
-
 <?php 
 foreach ($categorias as $categoria) {
 	print '<tr>';
@@ -485,19 +185,62 @@ foreach ($categorias as $categoria) {
 		</div> <!-- Panel-->
 	</div>
 
-	<div class="editable-cat escondido">
-	 	<div class="col-md-1 contenedor">
-	  		<button type="button" class="btn btn-xs btn-success btn-guardar-cat" data-atributo="estado">Guardar</button>
-	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar-cat">Cancelar</button>
-	  	</div>	
+<!----------------------------------- Botones--> 
+	<div class="col-md-4">
+ 
+       <div class="panel panel-default panel-danger">
+			<div class="panel-heading text-center"><h4>Modificación de la Información</h4></div>
+			<table class="table table-condensed table-striped">
+				<tbody>
+				<tr role="row">
+					<td>
+						<button type="button" class="btn btn-lg btn-primary" id="btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+					</td>  
+					<td>
+			  			<button type="button" class="btn btn-lg btn-success" id="btn-guardar">Guardar</button>
+					</td>  
+					<td>
+				  		<button type="button" class="btn btn-lg btn-warning" id="btn-cancelar">Cancelar</button>
+					</td>  
+				</tr>
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
+
+		<div class="panel panel-default panel-info">
+			<div class="panel-heading text-center"><h4>Cambio del Estado del Producto</h4></div>
+			<table class="table table-condensed table-striped">
+				<tbody>
+				<tr role="row">
+					<td width="50%">
+			    		<strong><select class="form-control" id="estado" disabled="disabled">
+							<?php foreach ($estados as $estado) {
+								if ($estado->id == $producto->idestadoproducto) {
+									print '<option value="'.$estado->id.'" selected>'.$estado->nombre.'</option>'; }
+								else {
+									print '<option value="'.$estado->id.'">'.$estado->nombre.'</option>'; }
+							}?>
+						</select></strong>
+					</td>  
+					<td width="20%">
+						<button type="button" class="btn btn-xs btn-primary" id="btn-editar-est"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+					</td>  
+					<td width="20%">
+			  			<button type="button" class="btn btn-xs btn-success" id="btn-guardar-est">Guardar</button>
+					</td>  
+					<td width="20%">
+				  		<button type="button" class="btn btn-xs btn-warning" id="btn-cancelar-est">Cancelar</button>
+					</td>  
+				</tr>
+				</tbody>
+			</table> <!-- tabla--> 
+		</div> <!-- Panel-->
 	</div>
-  	<div class="mostrable-cat">
-	   	<div class="col-md-1">
-	   		<button type="button" class="btn btn-xs btn-primary btn-editar-cat"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-	   	</div>	
-  	</div>
+
 </div>
 
+
+<!----------------------------------- Explicaciones--> 
 <div class="row registro">
 	<div class="col-md-12">
         <div class="panel panel-default">
@@ -510,137 +253,178 @@ foreach ($categorias as $categoria) {
   	</div>
 </div>
 
-
 <!--------------------------------------------------------------------------------------------------------------------- -->
 <script type="text/javascript">
 
 $(document).ready(function() { 
+	$('#btn-guardar').hide();
+	$('#btn-cancelar').hide();
+	$('#btn-guardar-est').hide();
+	$('#btn-cancelar-est').hide();
+//	 var hola = JSON.parse('<?php print json_encode($producto->caracteristicas);?>');
+//   console.log(hola);
 
-//----------------------------------------------------------------------------------EDITAR CARACTERISTICAS
-	$('.container').on('click','.btn-editar-car',function(event){
-		$(event.target).parent().parent().parent().find('.editable-car').show();
-		$(event.target).parent().parent().parent().find('.mostrable-car').hide();
+//----------------------------------------------------------------------------------EDITAR-EST
+	$('.container').on('click','#btn-editar-est',function(event){
+		sestado = $('#estado').val();
+		$('#estado').attr('disabled', false);
+		$('#btn-editar-est').hide();
+		$('#btn-guardar-est').show();
+		$('#btn-cancelar-est').show();
+		$('#btn-editar').attr('disabled', true);
+	});
+
+//----------------------------------------------------------------------------------CANCELAR-EST
+	$('.container').on('click','#btn-cancelar-est',function(event){
+		$('#btn-editar-est').show();
+		$('#btn-guardar-est').hide();
+		$('#btn-cancelar-est').hide();
+		$('#btn-editar').attr('disabled', false);
+
+		$('#estado').val(sestado);
+		$('#estado').attr('disabled', true);
+	});
+
+//----------------------------------------------------------------------------------GUARDAR-EST
+	$('.container').on('click','#btn-guardar-est',function(event){
+		eestado = $('#estado').val();
+		$('#btn-editar-est').show();
+		$('#btn-guardar-est').hide();
+		$('#btn-cancelar-est').hide();
+		$('#btn-editar').attr('disabled', false);
+
+		$('#estado').attr('disabled', true);
+		if (eestado == sestado) {return;}
+		rta = guardarest(function(rta){
+			if(rta) {
+				$('#btn-editar-est').show();
+				$('#btn-guardar-est').hide();
+				$('#btn-cancelar-est').hide();
+				$('#btn-editar').attr('disabled', false);
+			} else {
+				$('#estado').val(sestado);
+				
+			}
+		});
+	});
+
+//----------------------------------------------------------------------------------EDITAR
+	$('.container').on('click','#btn-editar',function(event){
+		$('#btn-editar').hide();
+		$('#btn-guardar').show();
+		$('#btn-cancelar').show();
+		$('#btn-editar-est').attr('disabled', true);
+
+		snombre = 		$('#nombre').val();
+		sdescripcion = 	$('#descripcion').val();
+		singredientes = $('#ingredientes').val();
+		speso = 		$('#peso').val();
+		spesoneto = 	$('#pesoneto').val();
+		smarca = 		$('#marca').val();
+		slargo = 		$('#largo').val();
+		sancho = 		$('#ancho').val();
+		salto = 		$('#alto').val();
+		sprecio = 		$('#precio').val();
+		sexistencias = 	$('#existencias').val();
+		sestado = 		$('#estado').val();
+
+		$('.editable').each(function() {$(this).attr('readonly', false);});
+		$('.editable').each(function() {$(this).attr('disabled', false);});
 		$('input[name*="car"]').each(function(){
 			$(this).attr('disabled', false);
 		});
+		$('input[name*="cat"]').each(function(){
+			$(this).attr('disabled', false);
+		});
+
 	});
-	$('.container').on('click','.btn-cancelar-car',function(event){
-		$(event.target).parent().parent().parent().find('.mostrable-car').show();
-		$(event.target).parent().parent().parent().find('.editable-car').hide();
+
+//----------------------------------------------------------------------------------CANCELAR
+	$('.container').on('click','#btn-cancelar',function(event){
 		location.reload();
+
+		$('#btn-editar').show();
+		$('#btn-guardar').hide();
+		$('#btn-cancelar').hide();
+		$('#btn-editar-est').attr('disabled', false);
+
+		$('#nombre').val(snombre);
+		$('#descripcion').val(sdescripcion);
+		$('#ingredientes').val(singredientes);
+		$('#peso').val(speso);
+		$('#pesoneto').val(spesoneto);
+		$('#marca').val(smarca);
+		$('#largo').val(slargo);
+		$('#ancho').val(sancho);
+		$('#alto').val(salto);
+		$('#precio').val(sprecio);
+		$('#existencias').val(sexistencias);
+		$('#estado').val(sestado);
+
+		$('.editable').each(function() {$(this).attr('disabled', true);});
+		$('.editable').each(function() {$(this).attr('readonly', true);});
 		$('input[name*="car"]').each(function(){
 			$(this).attr('disabled', true);
 		});
+		$('input[name*="cat"]').each(function(){
+			$(this).attr('disabled', true);
+		});
+
 	});
-	$('.container').on('click','.btn-guardar-car',function(event){
-	   rta = guardar_car(function(rta){
+
+
+//----------------------------------------------------------------------------------GUARDAR
+	$('.container').on('click','#btn-guardar',function(event){
+		enombre = 		$('#nombre').val();
+		edescripcion = 	$('#descripcion').val();
+		eingredientes = $('#ingredientes').val();
+		epeso = 		$('#peso').val();
+		epesoneto = 	$('#pesoneto').val();
+		emarca = 		$('#marca').val();
+		elargo = 		$('#largo').val();
+		eancho = 		$('#ancho').val();
+		ealto = 		$('#alto').val();
+		eprecio = 		$('#precio').val();
+		eexistencias = 	$('#existencias').val();
+		eestado = 		$('#estado').val();
+
+		rta = guardar(function(rta){
 			if(rta) {
-				$(event.target).parent().parent().parent().find('.mostrable-car').show();
-				$(event.target).parent().parent().parent().find('.editable-car').hide();
+				$('#btn-editar').show();
+				$('#btn-guardar').hide();
+				$('#btn-cancelar').hide();
+				$('#btn-editar-est').attr('disabled', false);
+
+				$('.editable').each(function() {$(this).attr('disabled', true);});
+				$('.editable').each(function() {$(this).attr('readonly', true);});
 				$('input[name*="car"]').each(function(){
 					$(this).attr('disabled', true);
 				});
-		   };
-	   });
-	});
-
-
-//----------------------------------------------------------------------------------EDITAR CATEGORIAS
-	$('.container').on('click','.btn-editar-cat',function(event){
-		$(event.target).parent().parent().parent().find('.editable-cat').show();
-		$(event.target).parent().parent().parent().find('.mostrable-cat').hide();
-		$('input[name*="cat"]').each(function(){
-			$(this).attr('disabled', false);
-		});
-	});
-	$('.container').on('click','.btn-cancelar-cat',function(event){
-		$(event.target).parent().parent().parent().find('.mostrable-cat').show();
-		$(event.target).parent().parent().parent().find('.editable-cat').hide();
-		location.reload();
-		$('input[name*="cat"]').each(function(){
-			$(this).attr('disabled', true);
-		});
-	});
-	$('.container').on('click','.btn-guardar-cat',function(event){
-	   rta = guardar_cat(function(rta){
-			if(rta) {
-				$(event.target).parent().parent().parent().find('.mostrable-cat').show();
-				$(event.target).parent().parent().parent().find('.editable-cat').hide();
 				$('input[name*="cat"]').each(function(){
 					$(this).attr('disabled', true);
 				});
-		   };
-	   });
-	});
-	
-
-//----------------------------------------------------------------------------------EDITAR
-	$('.container').on('click','.btn-editar',function(event){
-		svalor = $(event.target).parent().parent().parent().find('.salvalor').text();
-		$(event.target).parent().parent().parent().find('.entvalor').val(svalor);
-		$(event.target).parent().parent().parent().find('.editable').show();
-		$(event.target).parent().parent().parent().find('.mostrable').hide();
-	});
-	$('.container').on('click','.btn-cancelar',function(event){
-		$(event.target).parent().parent().parent().find('.mostrable').show();
-		$(event.target).parent().parent().parent().find('.editable').hide();
-	});
-
-
-	$('.container').on('click','.btn-guardar',function(event){
-		evalor = $(event.target).parent().parent().parent().find('.entvalor').val();
-		svalor = $(event.target).parent().parent().parent().find('.salvalor').text();
-		campo = $(event.target).attr("data-atributo");
-
-		if (campo == "nombre") {if (evalor == ""){ alert("el NOMBRE del producto no puede estar vacio"); return false;}}
-		if (campo == "descripcion") {if (evalor == ""){ alert("la DESCRIPCION del producto no puede estar vacia"); return false;}}
-		if (campo == "precio") { 
-			if (evalor == "") {alert("el PRECIO del producto no puede estar vacio"); return false;}
-			if(validarnumeroentero(evalor, "PRECIO")  == false) {return false;}}
-		if (campo == "peso") { 
-			if (evalor == "") {alert("el PESO del producto no puede estar vacio"); return false;}
-			if(validarnumeroentero(evalor, "PESO")  == false) {return false;}}
-		if (campo == "pesoneto") { 
-			if (evalor == "") {alert("el PESO NETO del producto no puede estar vacio"); return false;}
-			if(validarnumeroentero(evalor, "PESO NETO")  == false) {return false;}}
-		if (campo == "largo") {if(evalor != "") {if(validarnumeroentero(evalor, "LARGO")  == false) {return false;}}}
-		if (campo == "ancho") {if(evalor != "") {if(validarnumeroentero(evalor, "ANCHO")  == false) {return false;}}}
-		if (campo == "alto") {if(evalor != "") {if(validarnumeroentero(evalor, "ALTO")  == false) {return false;}}}
-		if (campo == "existencias") {if(validarnumeroentero(evalor, "EXISTENCIAS")  == false) {return false;}}
-		if(evalor !== svalor) {
-		   rta = guardar( $(event.target).attr("data-atributo") , evalor ,function(rta){
-				if(rta) {
-					$(event.target).parent().parent().parent().find('.salvalor').text(svalor); 
-					$(event.target).parent().parent().parent().find('.mostrable').show();
-					$(event.target).parent().parent().parent().find('.editable').hide();
-			   };
-		   });
-		}else {
-			$(event.target).parent().parent().parent().find('.salvalor').text(evalor); 
-			$(event.target).parent().parent().parent().find('.mostrable').show();
-			$(event.target).parent().parent().parent().find('.editable').hide(); 
-		};
+			};
+		});
 	});
 });
 
-
 //----------------------------------------------------------------------------------funcion guardar
-function guardar (atributo, valor, callback) {
-  $.ajax({                                               // envio de los datos
-	    url: "<?php print base_url();?>producto/editar",
-	    context: document.body,
-	    dataType: "json",
-	    type: "POST",
-	    data: {id : <?php print $this->uri->segment(3);?>, atributo  : atributo, valor : valor } })
-   .done(function(data) {                               // respuesta del servidor
-    if(data.res=="ok") {callback(true)}
-    else {alert(data.msj);callback(false)}
-    })
-   .error(function(){alert('No hay conexion');callback(false);})
-}
+function guardar (callback) {
+	var dataproducto = {};
+	dataproducto.id = <?php print $this->uri->segment(3);?>;
+	if(snombre !== enombre) {dataproducto.nombre = enombre;}
+    if(sdescripcion !== edescripcion) {dataproducto.descripcion = edescripcion;}
+	if(singredientes !== eingredientes)	{dataproducto.ingredientes = eingredientes;}
+	if(speso !== epeso) {dataproducto.peso = epeso;}
+	if(spesoneto !== epesoneto) {dataproducto.pesoneto = epesoneto;}
+	if(smarca !== emarca) {dataproducto.idmarca = emarca;}
+	if(slargo !== elargo) {dataproducto.largo = elargo;}
+	if(sancho !== eancho) {dataproducto.ancho = eancho;}
+	if(salto !== ealto) {dataproducto.alto = ealto;}
+	if(sprecio !== eprecio) {dataproducto.precio = eprecio;}
+	if(sexistencias !== eexistencias) {dataproducto.existencias = eexistencias;}
+	if(sestado !== eestado) {dataproducto.estado = eestado;}
 
-//----------------------------------------------------------------------------------funcion guardar caracteristicas
-function guardar_car (callback) {
 	var datacaracteristicas = [];
 	$('input[name*="car"]:checked').each(function(){
 		if($(this).val()!=='chulo'){
@@ -648,63 +432,44 @@ function guardar_car (callback) {
 			datacaracteristicas.push(caracteristica);
 		}
 	});
-  $.ajax({                                               // envio de los datos
-	    url: "<?php print base_url();?>producto/guardarcar",
-	    context: document.body,
-	    dataType: "json",
-	    type: "POST",
-	    data: {id : <?php print $this->uri->segment(3);?>, datacaracteristicas : JSON.stringify(datacaracteristicas) } })
-   .done(function(data) {                               // respuesta del servidor
-    if(data.res=="ok") {callback(true)}
-    else {alert(data.msj);callback(false)}
-    })
-   .error(function(){alert('No hay conexion');callback(false);})
-}
+	dataproducto.caracteristicas = datacaracteristicas;
 
-//----------------------------------------------------------------------------------funcion guardar categorias
-function guardar_cat (callback) {
 	var datacategorias = [];
 	$('input[name*="cat"]:checked').each(function(){
-		var categoria = { "idcategoria" : $(this).attr('data-id') , "valor" : $(this).val() };
+		var categoria = { "idcategoria" : $(this).attr('data-id') };
 		datacategorias.push(categoria);
 	});
+	dataproducto.categorias = datacategorias;
   $.ajax({                                               // envio de los datos
-	    url: "<?php print base_url();?>producto/editarcat",
+	    url: "<?php print base_url();?>producto/editar",
 	    context: document.body,
 	    dataType: "json",
 	    type: "POST",
-	    data: {id : <?php print $this->uri->segment(3);?>, datacategorias : JSON.stringify(datacategorias) } })
+	    data: {dataproducto : JSON.stringify(dataproducto) } })
    .done(function(data) {                               // respuesta del servidor
-    if(data.res=="ok") {callback(true)}
-    else {alert(data.msj);callback(false)}
+		if(data.res == "ok") {callback(true);}
+		else {
+   			alert(data.msj);
+			$('#'+data.cmp+'').focus();
+   			callback(false);
+   		};
     })
    .error(function(){alert('No hay conexion');callback(false);})
 }
 
-//----------------------------------------------------------------------------------funcion validarnumerodecimal
-function validarnumerodecimal (valor, campo) {
-	var yavapunto = 0;
-	for(var i = 0; i<valor.length;i++){
-		if(valor.charCodeAt(i) == 46 && yavapunto == 1) {
-			alert(campo + " debe tener solamente un punto decimal");
-			return false;
-		}
-		if(valor.charCodeAt(i) == 46) {yavapunto = 1;}
-		if((valor.charCodeAt(i) < 48 || valor.charCodeAt(i) > 57) && valor.charCodeAt(i) != 46) {
-			alert(campo + " debe ser un número positivo, puede tener decimales");
-			return false;
-		}
-	}
-}
-
-//----------------------------------------------------------------------------------funcion validarnumeroentero
-function validarnumeroentero (valor, campo) {
-	for(var i = 0; i<valor.length;i++){
-		if(valor.charCodeAt(i)<48 || valor.charCodeAt(i)>57) {
-			alert(campo + " debe ser un número entero positivo");
-			return false;
-		}
-	}
+//----------------------------------------------------------------------------------funcion guardar-est
+function guardarest (callback) {
+  $.ajax({                                               // envio de los datos
+	    url: "<?php print base_url();?>producto/editarestado",
+	    context: document.body,
+	    dataType: "json",
+	    type: "POST",
+	    data: {id : <?php print $this->uri->segment(3);?>} })
+   .done(function(data) {                               // respuesta del servidor
+		if(data.res == "ok") {callback(true);}
+		else {alert(data.msj);callback(false)}
+    })
+   .error(function(){alert('No hay conexion');callback(false);})
 }
 
 </script>
