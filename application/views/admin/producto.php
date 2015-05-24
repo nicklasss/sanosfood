@@ -56,11 +56,11 @@
 			</div>
 			<div class="col-md-1">
 				<label>Existencias</label>
-				<input type="text" class="form-control editable" id="existencias" readonly value="<?php print $producto->existencias;?>"/>
+				<input type="text" class="form-control editable input-lg text-center" id="existencias" readonly value="<?php print $producto->existencias;?>"/>
 			</div>
 			<div class="col-md-2">
 				<label>Precio</label>
-				<input type="text" class="form-control editable" id="precio" readonly value="<?php print $producto->precio;?>"/>
+				<input type="text" class="form-control editable input-lg text-center" id="precio" readonly value="<?php print $producto->precio;?>"/>
 			</div>
 		</div>
 	</form>
@@ -444,7 +444,7 @@ function guardar (callback) {
 	var dataproducto = {};
 	dataproducto.id = <?php print $this->uri->segment(3);?>;
 	if(snombre !== enombre) {dataproducto.nombre = enombre;}
-    if(sdescripcion !== edescripcion) {dataproducto.descripcion = edescripcion;}
+   if(sdescripcion !== edescripcion) {dataproducto.descripcion = edescripcion;}
 	if(singredientes !== eingredientes)	{dataproducto.ingredientes = eingredientes;}
 	if(speso !== epeso) {dataproducto.peso = epeso;}
 	if(spesoneto !== epesoneto) {dataproducto.pesoneto = epesoneto;}
@@ -471,6 +471,7 @@ function guardar (callback) {
 		datacategorias.push(categoria);
 	});
 	dataproducto.categorias = datacategorias;
+
   $.ajax({                                               // envio de los datos
 	    url: "<?php print base_url();?>producto/editar",
 	    context: document.body,
@@ -478,12 +479,11 @@ function guardar (callback) {
 	    type: "POST",
 	    data: {dataproducto : JSON.stringify(dataproducto) } })
    .done(function(data) {                               // respuesta del servidor
-		if(data.res == "ok") {callback(true);}
-		else {
+		if (data.res == "bad") {
    			alert(data.msj);
-			$('#'+data.cmp+'').focus();
+				$('#'+data.cmp+'').focus();
    			callback(false);
-   		};
+		}
     })
    .error(function(){alert('No hay conexion');callback(false);})
 }

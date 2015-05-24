@@ -125,15 +125,6 @@ class Productos_model extends CI_Model {
     }
 
 
-
-
-
-
-
-
-
-
-
 //--------------------------------Valida campos de Producto con estado diferente de DISPONIBLE
     function editar( $dataproducto = null){
 
@@ -145,6 +136,10 @@ class Productos_model extends CI_Model {
         $dataproducto = json_decode($dataproducto);
         $datacaracteristicas = $dataproducto->caracteristicas;
         $datacategorias = $dataproducto->categorias;
+
+        $data['est'] = ''; 
+        $data['cmp'] = ''; 
+        $data['res'] = ''; 
 
         $objeto = array();
         if (array_key_exists('nombre', $dataproducto)) {
@@ -205,8 +200,6 @@ class Productos_model extends CI_Model {
                 $data['res'] = 'bad'; $data['cmp'] = 'alto'; return $data; 
             } else { $objeto['alto'] = $alto; }
         }
-
-
         if (array_key_exists('idmarca', $dataproducto)) {
             $idmarca = $dataproducto->idmarca;
             $objeto['idmarca'] = $idmarca; 
@@ -220,15 +213,33 @@ class Productos_model extends CI_Model {
         }
         if (array_key_exists('existencias', $dataproducto)) {
             $existencias = $dataproducto->existencias;
-            if(filter_var($existencias, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null){$existencias = 0;}
             if ($existencias !== "" AND filter_var($existencias, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null) {
-                $data['msj'] = 'Existencias debe ser un número entero positivo';
+                $data['msj'] = 'Ingresa un valor de Existencias válido';
                 $data['res'] = 'bad'; $data['cmp'] = 'existencias'; return $data; 
             } else { $objeto['existencias'] = $existencias; }
         }
 
+        $this->db->select('idestadoproducto');
+        $this->db->where('id', $dataproducto->id);
+        $query = $this->db->get('productos', 1, 0);
+        $idestadoproducto = $query->row()->idestadoproducto;
+
+        $this->db->select('id');
+        $this->db->where('nombre', "inactivo");
+        $query = $this->db->get('estadosproductos', 1, 0);
+//        $query->num_rows();
+        $idinactivo = $query->row()->id;
+
+        $this->db->select('id');
+        $this->db->where('nombre', "disponible");
+        $query = $this->db->get('estadosproductos', 1, 0);
+//        $query->num_rows();
+        $iddisponible = $query->row()->id;
+
+        $this->db->trans_start();
+
         if (count($objeto) > 0) {
-            if ($dataproducto->idestadoproducto = 1) {
+            if ($idestadoproducto == 1) {
                 $objeto['idestadoproducto'] = 2;
             }
             $this->db->where('id', $dataproducto->id);
@@ -236,19 +247,12 @@ class Productos_model extends CI_Model {
         }
 
         //--------------------------------Borrado y grabado de nuevas categorias del producto
-        $this->db->trans_start();
         $this->db->where('idproducto', $dataproducto->id);
         $this->db->delete('pro_cat');
         foreach ($datacategorias as $categoria) {
             $object = array('idproducto' => $dataproducto->id,
                             'idcategoria' => $categoria->idcategoria);
             $this->db->insert('pro_cat', $object);
-        }
-        $this->db->trans_complete();
-        if ($this->db->trans_status() === FALSE) {
-            $data['msj'] = 'Error en borrado y creado de categorias en pro_cat.';
-            $data['res'] = 'bad'; 
-            return $data; 
         }
 
         //--------------------------------Borrado y grabado de nuevas caracteristicas del producto
@@ -262,12 +266,15 @@ class Productos_model extends CI_Model {
                             'tipo' => $caracteristica->valor);
             $this->db->insert('pro_car', $object);
         }
+
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
-            $data['msj'] = 'Error en borrado y creado de caracteristicas en pro_car.';
+            $data['msj'] = 'Error en borrado y creado de categorias en pro_cat.';
             $data['res'] = 'bad'; 
             return $data; 
         }
+
+
         $data['res'] = 'ok'; 
         return $data; 
 
