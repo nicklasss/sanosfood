@@ -149,8 +149,8 @@ class Productos_model extends CI_Model {
         $objeto = array();
         if (array_key_exists('nombre', $dataproducto)) {
             $nombre = $dataproducto->nombre;
-            if ($nombre !== "" AND strlen($nombre) < 5) {
-                $data['msj'] = 'El nombre del producto debe tener al menos 5 caracteres';
+            if ($nombre !== "" AND strlen($nombre) < 8) {
+                $data['msj'] = 'El nombre del producto debe tener al menos 8 caracteres';
                 $data['res'] = 'bad'; $data['cmp'] = 'nombre'; return $data; 
             } else { $objeto['nombre'] = $nombre;
                      $slug = url_title(limpiarString($nombre),'dash',TRUE);
@@ -173,44 +173,43 @@ class Productos_model extends CI_Model {
         if (array_key_exists('peso', $dataproducto)) {
             $peso = $dataproducto->peso;
             if ($peso !== "" AND filter_var($peso, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null) {
-                $data['msj'] = 'El Peso del producto debe ser un número entero positivo';
+                $data['msj'] = 'El Peso del producto debe ser un número entero';
                 $data['res'] = 'bad'; $data['cmp'] = 'peso'; return $data; 
             } else { $objeto['peso'] = $peso; }
         }
         if (array_key_exists('pesoneto', $dataproducto)) {
             $pesoneto = $dataproducto->pesoneto;
             if ($pesoneto !== "" AND filter_var($pesoneto, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null) {
-                $data['msj'] = 'El Peso Neto del producto debe ser un número entero positivo';
+                $data['msj'] = 'El Peso Neto del producto debe ser un número entero';
                 $data['res'] = 'bad'; $data['cmp'] = 'pesoneto'; return $data; 
             } else { $objeto['pesoneto'] = $pesoneto; }
         }
-        if (array_key_exists('idmarca', $dataproducto)) {
-            $idmarca = $dataproducto->idmarca;
-            $objeto['idmarca'] = $idmarca; 
-        }
         if (array_key_exists('largo', $dataproducto)) {
             $largo = $dataproducto->largo;
-            if(filter_var($largo, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null){$largo = 0;}
             if ($largo !== "" AND filter_var($largo, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null) {
-                $data['msj'] = 'El Largo del producto debe ser un número entero positivo';
+                $data['msj'] = 'El Largo del producto debe ser un número entero';
                 $data['res'] = 'bad'; $data['cmp'] = 'largo'; return $data; 
             } else { $objeto['largo'] = $largo; }
         }
         if (array_key_exists('ancho', $dataproducto)) {
             $ancho = $dataproducto->ancho;
-            if(filter_var($ancho, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null){$ancho = 0;}
             if ($ancho !== "" AND filter_var($ancho, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null) {
-                $data['msj'] = 'El Ancho del producto debe ser un número entero positivo';
+                $data['msj'] = 'El Ancho del producto debe ser un número entero';
                 $data['res'] = 'bad'; $data['cmp'] = 'ancho'; return $data; 
             } else { $objeto['ancho'] = $ancho; }
         }
         if (array_key_exists('alto', $dataproducto)) {
             $alto = $dataproducto->alto;
-            if(filter_var($alto, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null){$alto = 0;}
             if ($alto !== "" AND filter_var($alto, FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE) == null) {
-                $data['msj'] = 'El Alto del producto debe ser un número entero positivo';
+                $data['msj'] = 'El Alto del producto debe ser un número entero';
                 $data['res'] = 'bad'; $data['cmp'] = 'alto'; return $data; 
             } else { $objeto['alto'] = $alto; }
+        }
+
+
+        if (array_key_exists('idmarca', $dataproducto)) {
+            $idmarca = $dataproducto->idmarca;
+            $objeto['idmarca'] = $idmarca; 
         }
         if (array_key_exists('precio', $dataproducto)) {
             $precio = $dataproducto->precio;
@@ -229,6 +228,9 @@ class Productos_model extends CI_Model {
         }
 
         if (count($objeto) > 0) {
+            if ($dataproducto->idestadoproducto = 1) {
+                $objeto['idestadoproducto'] = 2;
+            }
             $this->db->where('id', $dataproducto->id);
             $this->db->update('productos', $objeto);
         }
@@ -336,15 +338,15 @@ class Productos_model extends CI_Model {
         }
 
         $this->db->where('idproducto', $producto->id);
-        if($this->db->count_all_results('pro_cat')==0){
-            return array('res'=>'bad','msj'=>'ERROR en inserción. Hay productos asociados a esta categoria.'); }
+        if($this->db->count_all_results('pro_cat') == 0){
             $data['msj'] = 'El Producto debe pertenecer a alguna Categoria';
             $data['res'] = 'bad'; $data['cmp'] = ''; 
             return $data; 
+        }
 
         $objeto = array();
         $objeto['idestadoproducto'] = 1;
-        $this->db->where('id', $dataproducto->id);
+        $this->db->where('id', $producto->id);
         $this->db->update('productos', $objeto);
         $data['res'] = 'ok'; 
         return $data; 

@@ -8,13 +8,13 @@
 			</div>
 			<div class="col-md-6">
 				<label>Ingredientes</label>
-				<textarea type="text" class="form-control editable" id="ingredientes" readonly><?php print $producto->ingredientes;?>"</textarea>
+				<textarea type="text" class="form-control editable" id="ingredientes" readonly><?php print $producto->ingredientes;?></textarea>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
 				<label>Descripción</label>
-				<textarea type="text" class="form-control editable" id="descripcion" readonly><?php print $producto->descripcion;?>"</textarea>
+				<textarea type="text" class="form-control editable" id="descripcion" readonly><?php print $producto->descripcion;?></textarea>
 			</div>
 		</div>
 	</form>
@@ -23,9 +23,9 @@
 <div class="panel panel-default">
 	<form class="form-horizontal form-contenedor">
 		<div class="row registro">
-			<div class="col-md-1">
+			<div class="col-md-1 col-md-offset-1">
 				<label>Peso</label>
-				<input type="text" class="form-control editable" data-valor="<?php print $producto->peso;?>" id="peso" readonly value="<?php print $producto->peso;?>"/>
+				<input type="text" class="form-control editable" id="peso" readonly value="<?php print $producto->peso;?>"/>
 			</div>
 			<div class="col-md-1">
 				<label>PesoNeto</label>
@@ -86,17 +86,17 @@ foreach ($caracteristicas as $caracteristica) {
 				case "remove":
 					print '<td>
 			   	        	<label  class= "radio-inline" > 
-								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+								<input  type= "radio" data-valor="0" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 							</label>
 			        	</td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove" checked> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								<input  type= "radio" data-valor="1" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove" checked> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 							</label> 
 						</td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+								<input  type= "radio" data-valor="0" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 							</label> 
 						</td>
 						</tr>';
@@ -104,17 +104,17 @@ foreach ($caracteristicas as $caracteristica) {
 				case "asterisk":
 					print '<td>
 			            	<label  class= "radio-inline" > 
-								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+								<input  type= "radio" data-valor="0" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo"> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 							</label> 
 			            </td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								<input  type= "radio" data-valor="0" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 							</label> 
 						</td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk" checked> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+								<input  type= "radio" data-valor="1" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk" checked> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 							</label> 
 						</td>
 						</tr>';
@@ -125,17 +125,17 @@ foreach ($caracteristicas as $caracteristica) {
 	if ($entra == 0) {
 					print '<td>
 			            	<label  class= "radio-inline" > 
-								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+								<input  type= "radio" data-valor="1" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "chulo" checked> <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 							</label> 
 			            </td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								<input  type= "radio" data-valor="0" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "remove"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 							</label> 
 						</td>
 			            <td>
 			            	<label  class= "radio-inline" > 
-								<input  type= "radio" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
+								<input  type= "radio" data-valor="0" data-id="'.$caracteristica->id.'" name= "car'.$caracteristica->id.'" disabled="disabled" value= "asterisk"> <span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span>
 							</label> 
 						</td>
 						</tr>';
@@ -164,7 +164,7 @@ foreach ($categorias as $categoria) {
 			$entra = 1;
 			print '<td>
 			     		<label  class= "checkbox" > 
-							<input  type= "checkbox" data-id="'.$categoria->id.'" name="cat'.$categoria->id.'" disabled="disabled" checked value="">
+							<input  type= "checkbox" data-valor="1" data-id="'.$categoria->id.'" name="cat'.$categoria->id.'" disabled="disabled" checked value="">
 						</label> 
 					</td>
 					</tr>';
@@ -173,7 +173,7 @@ foreach ($categorias as $categoria) {
 	if ($entra == 0) {
 		print '<td>
      		<label  class= "checkbox" > 
-				<input  type= "checkbox" data-id="'.$categoria->id.'" name="cat'.$categoria->id.'" disabled="disabled" value="">
+				<input  type= "checkbox" data-valor="0" data-id="'.$categoria->id.'" name="cat'.$categoria->id.'" disabled="disabled" value="">
 			</label> 
 		</td>
 		</tr>';
@@ -213,7 +213,7 @@ foreach ($categorias as $categoria) {
 				<tbody>
 				<tr role="row">
 					<td width="50%">
-			    		<strong><select class="form-control" id="estado" disabled="disabled">
+			    		<strong><select class="form-control input-lg" id="estado" disabled="disabled">
 							<?php foreach ($estados as $estado) {
 								if ($estado->id == $producto->idestadoproducto) {
 									print '<option value="'.$estado->id.'" selected>'.$estado->nombre.'</option>'; }
@@ -222,13 +222,13 @@ foreach ($categorias as $categoria) {
 							}?>
 						</select></strong>
 					</td>  
-					<td width="20%">
+					<td>
 						<button type="button" class="btn btn-xs btn-primary" id="btn-editar-est"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
 					</td>  
-					<td width="20%">
+					<td>
 			  			<button type="button" class="btn btn-xs btn-success" id="btn-guardar-est">Guardar</button>
 					</td>  
-					<td width="20%">
+					<td>
 				  		<button type="button" class="btn btn-xs btn-warning" id="btn-cancelar-est">Cancelar</button>
 					</td>  
 				</tr>
@@ -341,7 +341,22 @@ $(document).ready(function() {
 
 //----------------------------------------------------------------------------------CANCELAR
 	$('.container').on('click','#btn-cancelar',function(event){
-		location.reload();
+
+		$('input[name*="car"]').each(function(){
+			if ($(this).attr('data-valor') == "1") {
+				$(this).prop('checked', true);
+			} else {
+				$(this).prop('checked', false);
+			}
+		});
+
+		$('input[name*="cat"]').each(function(){
+			if ($(this).attr('data-valor') == "1") {
+				$(this).prop('checked', true);
+			} else {
+				$(this).prop('checked', false);
+			}
+		});
 
 		$('#btn-editar').show();
 		$('#btn-guardar').hide();
@@ -376,16 +391,16 @@ $(document).ready(function() {
 //----------------------------------------------------------------------------------GUARDAR
 	$('.container').on('click','#btn-guardar',function(event){
 		enombre = 		$('#nombre').val();
-		edescripcion = 	$('#descripcion').val();
+		edescripcion = $('#descripcion').val();
 		eingredientes = $('#ingredientes').val();
-		epeso = 		$('#peso').val();
+		epeso = 			$('#peso').val();
 		epesoneto = 	$('#pesoneto').val();
 		emarca = 		$('#marca').val();
 		elargo = 		$('#largo').val();
 		eancho = 		$('#ancho').val();
-		ealto = 		$('#alto').val();
+		ealto = 			$('#alto').val();
 		eprecio = 		$('#precio').val();
-		eexistencias = 	$('#existencias').val();
+		eexistencias = $('#existencias').val();
 		eestado = 		$('#estado').val();
 
 		rta = guardar(function(rta){
@@ -397,8 +412,24 @@ $(document).ready(function() {
 
 				$('.editable').each(function() {$(this).attr('disabled', true);});
 				$('.editable').each(function() {$(this).attr('readonly', true);});
+				
+				$('input[name*="car"]').each(function(){
+					if ($(this).prop('checked') == true) {
+						$(this).attr('data-valor', "1");
+					} else {
+						$(this).attr('data-valor', "0");
+					}
+				});
 				$('input[name*="car"]').each(function(){
 					$(this).attr('disabled', true);
+				});
+				
+				$('input[name*="cat"]').each(function(){
+					if ($(this).prop('checked') == true) {
+						$(this).attr('data-valor', "1");
+					} else {
+						$(this).attr('data-valor', "0");
+					}
 				});
 				$('input[name*="cat"]').each(function(){
 					$(this).attr('disabled', true);
