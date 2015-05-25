@@ -126,7 +126,7 @@ class Productos_model extends CI_Model {
 
 
 //--------------------------------Valida campos de Producto con estado diferente de DISPONIBLE
-    function editar( $dataproducto = null){
+    function editar($dataproducto = null){
 
         if(json_decode($dataproducto) == null && json_last_error() !== JSON_ERROR_NONE){
             $data['res'] = 'bad';
@@ -233,18 +233,19 @@ class Productos_model extends CI_Model {
         $this->db->select('id');
         $this->db->where('nombre', "disponible");
         $query = $this->db->get('estadosproductos', 1, 0);
-//        $query->num_rows();
         $iddisponible = $query->row()->id;
 
         $this->db->trans_start();
 
-        if (count($objeto) > 0) {
-            if ($idestadoproducto == 1) {
-                $objeto['idestadoproducto'] = 2;
-            }
+//        if (count($objeto) > 0) {
+//            if ($idestadoproducto == $iddisponible) {
+//                $objeto['idestadoproducto'] = $idinactivo;
+//                $data['est'] = $idinactivo; 
+//            }
+    $objeto['existencias'] = 12;
             $this->db->where('id', $dataproducto->id);
             $this->db->update('productos', $objeto);
-        }
+  //      }
 
         //--------------------------------Borrado y grabado de nuevas categorias del producto
         $this->db->where('idproducto', $dataproducto->id);

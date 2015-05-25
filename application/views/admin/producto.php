@@ -341,7 +341,6 @@ $(document).ready(function() {
 
 //----------------------------------------------------------------------------------CANCELAR
 	$('.container').on('click','#btn-cancelar',function(event){
-
 		$('input[name*="car"]').each(function(){
 			if ($(this).attr('data-valor') == "1") {
 				$(this).prop('checked', true);
@@ -479,9 +478,14 @@ function guardar (callback) {
 	    type: "POST",
 	    data: {dataproducto : JSON.stringify(dataproducto) } })
    .done(function(data) {                               // respuesta del servidor
-		if (data.res == "bad") {
-   			alert(data.msj);
-				$('#'+data.cmp+'').focus();
+		if (data.res == "ok") {
+			if (data.est !== "") {
+				$('#estado').val(data.est);
+			}
+  			callback(true);
+  		}else {
+			alert(data.msj);
+			$('#'+data.cmp+'').focus();
    			callback(false);
 		}
     })
