@@ -11,19 +11,8 @@ class Producto extends CI_Controller {
 		$nombre = @$this->input->post('nombre',TRUE);
 		$descripcion = @$this->input->post('descripcion',TRUE);
 		$ingredientes = @$this->input->post('ingredientes',TRUE);
-		$precio = @$this->input->post('precio',TRUE);
-		$marca = @$this->input->post('marca',TRUE);
-		$pesoneto = @$this->input->post('pesoneto',TRUE);
-		$peso = @$this->input->post('peso',TRUE);
-		$largo = @$this->input->post('largo',TRUE);
-		$ancho = @$this->input->post('ancho',TRUE);
-		$alto = @$this->input->post('alto',TRUE);
-		$existencias = @$this->input->post('existencias',TRUE);
-		$estado = @$this->input->post('estado',TRUE);
-		$datacaracteristicas = @$this->input->post('datacaracteristicas',TRUE);
-		$datacategorias = @$this->input->post('datacategorias',TRUE);
 		$this->load->model('Productos_model');
-		$data = $this->Productos_model->crear($nombre,$descripcion,$ingredientes,$precio,$marca,$pesoneto,$peso,$largo,$ancho,$alto,$existencias,$estado,$datacaracteristicas,$datacategorias);
+		$data = $this->Productos_model->crear($nombre,$descripcion,$ingredientes);
 		$this->load->view('producto/crear', $data, FALSE);
 	}
 

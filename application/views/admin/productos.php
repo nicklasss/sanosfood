@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
                                     <ul class="pagination" id="paginas">
                                         <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
@@ -76,6 +76,9 @@
                                     </ul>
                                 </div>
                             </div>
+                            <div class="col-md-2 col-md-offset-4">
+                                <button type="button" class="btn btn-lg btn-success btn-nuevo"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -90,31 +93,35 @@
     var cant = 10;
     var pagina = 1;
     $(document).ready(function(){
-        $("#select-cant").change(function(){
-            cant = $("#select-cant").val();
-            pagina = 1;
-            listar();
-        });
-        $("#paginas").on('click','.link-a-pagina',function(e){
-            e.preventDefault();
-            pagina = $(e.target).attr('data-pag');
-            listar();
-        });
-    })
 
+    $("#select-cant").change(function(){
+        cant = $("#select-cant").val();
+        pagina = 1;
+        listar();
+    });
+
+    $("#paginas").on('click','.link-a-pagina',function(e){
+        e.preventDefault();
+        pagina = $(e.target).attr('data-pag');
+        listar();
+    });
+
+    $('.container').on('click','.btn-nuevo',function(event){
+        window.location="<?php print base_url();?>admin/crearproducto";
+    });
+});
+
+//----------------------------------------------------------------------------------funcion LISTAR
     function listar(){
         $.ajax({                                               // envio de los datos
             url: "<?php print base_url();?>producto/listar",
             context: document.body,
             dataType: "json",
             type: "POST",
-            data: {
-                    cant : cant,
-                    pagina : pagina
-                }
+            data: { cant : cant, pagina : pagina }
             })
-            .done(function(data) {                                // respuesta del servidor
-            if(data.res=="ok") {
+         .done(function(data) {                                // respuesta del servidor
+            if(data.res == "ok") {
                 resultado = '';
                 for (var i = 0; i < data.productos.length; i++) {
                     resultado += ' <tr role="row">'+
@@ -138,9 +145,10 @@
                 $("#paginas").html(resultado);
               }
             else{alert(data.msj) } })          
-            .error(function(){alert('error en el servidor'); });  // error generado
+         .error(function(){alert('error en el servidor'); });  // error generado
     }
     
+//----------------------------------------------------------------------------------funcion BUSCAR
     function buscar(query){
         $.ajax({
             url: "<?php print base_url();?>producto/buscar",

@@ -386,7 +386,6 @@ $(document).ready(function() {
 
 	});
 
-
 //----------------------------------------------------------------------------------GUARDAR
 	$('.container').on('click','#btn-guardar',function(event){
 		enombre = 		$('#nombre').val();
