@@ -89,6 +89,9 @@
     </div>
     <!-- /.col-lg-12 -->
 </div>
+
+
+<!------------------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
     var cant = 10;
     var pagina = 1;
@@ -112,64 +115,58 @@
 });
 
 //----------------------------------------------------------------------------------funcion LISTAR
-    function listar(){
-        $.ajax({                                               // envio de los datos
-            url: "<?php print base_url();?>producto/listar",
-            context: document.body,
-            dataType: "json",
-            type: "POST",
-            data: { cant : cant, pagina : pagina }
-            })
-         .done(function(data) {                                // respuesta del servidor
-            if(data.res == "ok") {
-                resultado = '';
-                for (var i = 0; i < data.productos.length; i++) {
-                    resultado += ' <tr role="row">'+
-                                    '<td>'+data.productos[i].nombre+'</td>'+
-                                    '<td>'+data.productos[i].existencias+'</td>'+
-                                    '<td>'+data.productos[i].estado+'</td>'+
-                                    '<td>'+data.productos[i].precio+'</td>'+
-                                '   </tr>';
-                    $("#lista").html(resultado);
-                };
-                resultado = '';
-                for (var i = 0; i < Math.floor((data.cant-1)/cant)+1; i++) {
-                    resultado += '  <li class="paginate_button ';
-                    if((i+1)==pagina){
-                        resultado+= ' active';
-                    }
-                    resultado += '" aria-controls="dataTables-example" tabindex="0">'+
-                                        '<a data-pag="'+(i+1)+'" class="link-a-pagina" href="javascript:void(0)">'+(i+1)+'</a>'+
-                                    '</li>';
-                };
-                $("#paginas").html(resultado);
-              }
-            else{alert(data.msj) } })          
-         .error(function(){alert('error en el servidor'); });  // error generado
-    }
-    
-//----------------------------------------------------------------------------------funcion BUSCAR
-    function buscar(query){
-        $.ajax({
-            url: "<?php print base_url();?>producto/buscar",
-            context: document.body,
-            dataType: "json",
-            type: "POST",
-            data: {
-                    query : query
+function listar(){
+    $.ajax({                                               // envio de los datos
+        url: "<?php print base_url();?>producto/listar",
+        context: document.body,
+        dataType: "json",
+        type: "POST",
+        data: { cant : cant, pagina : pagina }
+        })
+     .done(function(data) {                                // respuesta del servidor
+        if(data.res == "ok") {
+            resultado = '';
+            for (var i = 0; i < data.productos.length; i++) {
+                resultado += ' <tr role="row">'+
+                                '<td>'+data.productos[i].nombre+'</td>'+
+                                '<td>'+data.productos[i].existencias+'</td>'+
+                                '<td>'+data.productos[i].estado+'</td>'+
+                                '<td>'+data.productos[i].precio+'</td>'+
+                            '   </tr>';
+                $("#lista").html(resultado);
+            };
+            resultado = '';
+            for (var i = 0; i < Math.floor((data.cant-1)/cant)+1; i++) {
+                resultado += '  <li class="paginate_button ';
+                if((i+1)==pagina){
+                    resultado+= ' active';
                 }
-        })
-        .done(function(data){
-            if(data.res=="ok"){
+                resultado += '" aria-controls="dataTables-example" tabindex="0">'+
+                                    '<a data-pag="'+(i+1)+'" class="link-a-pagina" href="javascript:void(0)">'+(i+1)+'</a>'+
+                                '</li>';
+            };
+            $("#paginas").html(resultado);
+          }
+        else{alert(data.msj) } })          
+     .error(function(){alert('error en el servidor'); });  // error generado
+}
 
-            }else{
-                alert('Sin resultados')
-            }
-        })
-        .error(function(){
-            alert('Sin resultados')
-        })
-
-    };
+//----------------------------------------------------------------------------------funcion BUSCAR
+function buscar(query){
+    $.ajax({
+        url: "<?php print base_url();?>producto/buscar",
+        context: document.body,
+        dataType: "json",
+        type: "POST",
+        data: { query : query }
+    })
+    .done(function(data){
+        if(data.res == "ok"){
+        }else{ alert('Sin resultados') }
+    })
+    .error(function(){
+        alert('Sin resultados')
+    })
+}
     
 </script>
