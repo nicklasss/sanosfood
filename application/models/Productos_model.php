@@ -24,7 +24,7 @@ class Productos_model extends CI_Model {
             $data['msj'] = 'ERROR, Ya existe un Producto con este nombre';
             return $data;
         }
-        $slug = url_title($nombre,'dash',TRUE);
+        $slug = url_title(limpiarString($nombre),'dash',TRUE);
         $this->db->select('id');
         $this->db->where('nombre', "inactivo");
         $query = $this->db->get('estadosproductos', 1, 0);
@@ -154,12 +154,20 @@ class Productos_model extends CI_Model {
         $this->db->select('id');
         $this->db->where('nombre', "inactivo");
         $query = $this->db->get('estadosproductos', 1, 0);
-//        $query->num_rows();
+        if ($query->num_rows() == 0) {
+            $data['msj'] = 'No se encuentra el estado inactivo en estadosproductos';
+            $data['res'] = 'bad'; return $data; 
+        }
+
         $idinactivo = $query->row()->id;
 
         $this->db->select('id');
         $this->db->where('nombre', "disponible");
         $query = $this->db->get('estadosproductos', 1, 0);
+        if ($query->num_rows() == 0) {
+            $data['msj'] = 'No se encuentra el estado disponible en estadosproductos';
+            $data['res'] = 'bad'; return $data; 
+        }
         $iddisponible = $query->row()->id;
 
         $this->db->trans_start();
