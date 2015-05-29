@@ -12,6 +12,11 @@ class Pedidos_model extends CI_Model {
     	$this->db->where('idusuario', $id);
     	$this->db->order_by('fecha', 'desc');
     	$query = $this->db->get('pedidos', 50, 0);
+        foreach ($query->result() as $row) {
+            $this->db->select('nombre');
+            $this->db->where('id', $row->idestadopedido);
+            $row->nombreestado = $this->db->get('estadospedidos', 1, 0)->row()->nombre;
+        }
     	return $query->result();
     }
 

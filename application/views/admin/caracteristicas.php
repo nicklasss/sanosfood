@@ -38,11 +38,11 @@ foreach ($caracteristicas as $caracteristica) {
 				    	</div>
 					</td>
 					<td width="15%">
-				    	<div class="editable escondido">
+				    	<div class="editable escondido btn-editable">
 					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'.$caracteristica->id.'">Guardar</button>
 					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
 				    	</div>
-				    	<div class="mostrable">
+				    	<div class="mostrable btn-mostrable">
 					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
 					   		<button type="button" class="btn btn-xs btn-danger btn-eliminar" data-id="'.$caracteristica->id.'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
 				    	</div>
@@ -91,6 +91,8 @@ $(document).ready(function() {
 	$('.container').on('click','.btn-editar',function(event){														
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
+		$('.btn-mostrable').attr('disabled', false);
+
 	});
 
 

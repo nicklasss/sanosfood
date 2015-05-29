@@ -81,7 +81,7 @@ if (isset($usuario->pedidos)) {
 		print '<tr role="row">';
 		print '<td>'.$pedido->id.'</td>';
 		print '<td><a href="../pedido/'.$pedido->id.'">'.$pedido->fecha.'</a></td>';
-		print '<td>'.$pedido->estado.'</td>';
+		print '<td>'.$pedido->nombreestado.'</td>';
 		print '</tr>';
 	};
 }

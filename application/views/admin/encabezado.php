@@ -82,17 +82,31 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">SanosFood</a>
+          <a class="navbar-brand" href="#">SanosFoods</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="<?php print base_url(); ?>admin/productos">Productos</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Productos <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <?php
+                foreach ($estadosproductos as $estadosprod) { ?>
+                  <li><a href="<?php print base_url().'admin/productos/'.$estadosprod->id;?>"><?php print $estadosprod->nombre; ?></a></li>
+                
+                  <?php
+                }
+                ?>
+                <li class="divider"></li>
+                <li><a href="<?php print base_url().'admin/productos/Todos';?>">Todos</a></li>
+              </ul>
+            </li>
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usuarios <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Administradores</a></li>
-                <li><a href="#">Usuarios</a></li>
+                <li><a href="<?php print base_url().'admin/buscarusuarios'?>">Usuarios</a></li>
               </ul>
             </li>
             <li class="dropdown">

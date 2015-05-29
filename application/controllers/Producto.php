@@ -21,7 +21,11 @@ class Producto extends CI_Controller {
 		$pagina = @$this->input->post('pagina');
 		$this->load->model('Productos_model');
 		$data = $this->Productos_model->listar($cant,$pagina);
-		$this->load->view('producto/listar', $data, FALSE);
+		if(count($productos)==0){
+			print json_encode(array('res'=>'bad','msj'=>'Sin resultados'));exit();
+		}
+		print json_encode(array('res'=>'ok','productos'=>$productos,'cant'=>$cant));exit();
+
 	}
 	public function editar(){
 		if(!$this->session->userdata('logeado_admin')){

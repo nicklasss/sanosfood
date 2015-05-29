@@ -51,6 +51,23 @@ class Productos_model extends CI_Model {
         return $data;
     }
 
+//--------------------------------devuelve todos los productos con un estado especifico
+    function getProductosPorEstado($estadopro = null, $cant = 10, $pag = 1, $cat = null, $car = null){
+        $data['cant'] = $this->db->count_all_results('productos');
+        if($estadopro != 'Todos'){
+            $this->db->where('idestadoproducto', $estadopro); 
+        }
+        $this->db->from('productos');
+        $this->db->limit($cant,$cant*($pag-1));
+        $query = $this->db->get();
+        foreach ($query->result() as $row) {
+            $this->db->select('nombre');
+            $this->db->where('id', $row->idestadoproducto);
+            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
+        }
+        $data['productos'] = $query->result();
+        return $data;
+   }
 
 //--------------------------------Valida campos de Producto con estado diferente de DISPONIBLE
     function editar($dataproducto = null){

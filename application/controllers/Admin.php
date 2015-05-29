@@ -6,10 +6,13 @@ class Admin extends CI_Controller {
 	public function index() {
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->view('admin/home');
 		$this->load->view('admin/piedepagina');
 	}
+	
 	public function login() {
 		$this->load->view('admin/login');
 	}
@@ -22,13 +25,18 @@ class Admin extends CI_Controller {
 	public function home() {
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->view('admin/home');
 		$this->load->view('admin/piedepagina');
 	}
+	
 	public function crearproducto(){
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Estadosproductos_model');
 		$data['estados'] = $this->Estadosproductos_model->listar();
@@ -42,82 +50,119 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/piedepagina');
 	}
 
-	public function productos($id = null) {
+	public function productos($estadopro = null) {
+		if($estadopro == null){ show_404();
+		}
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
-		$this->load->model('Productos_model');
-		if($id != null) {
-			$this->load->model('Estadosproductos_model');
-			$this->load->model('Marcas_model');
-			$data['marcas'] = $this->Marcas_model->listar();
-			$this->load->model('Caracteristicas_model');
-			$data['caracteristicas'] = $this->Caracteristicas_model->listar();
-			$this->load->model('Categorias_model');
-			$data['categorias'] = $this->Categorias_model->listar();
-			$data['producto'] = $this->Productos_model->producto($id);
-			$data['estados'] = $this->Estadosproductos_model->listar();
-			$this->load->view('admin/producto', $data, FALSE); }
-		else {
+
+		if ($estadopro =="Todos") {
+			$this->load->model('Productos_model');
 			$data = $this->Productos_model->listar();
 			$this->load->view('admin/productos',$data,FALSE); }
+		else {
+			$this->load->model('Productos_model');
+			$data = $this->Productos_model->getProductosPorEstado($estadopro);
+			$this->load->view('admin/productos',$data,FALSE); 
+		}
 		$this->load->view('admin/piedepagina');
 	}
+
+	public function producto($id = null) {
+		if($id == null){ show_404();
+		}
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
+		$this->load->model('Productos_model');
+		$this->load->model('Estadosproductos_model');
+		$this->load->model('Marcas_model');
+		$data['marcas'] = $this->Marcas_model->listar();
+		$this->load->model('Caracteristicas_model');
+		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
+		$this->load->model('Categorias_model');
+		$data['categorias'] = $this->Categorias_model->listar();
+		$data['producto'] = $this->Productos_model->producto($id);
+		$data['estados'] = $this->Estadosproductos_model->listar();
+		$this->load->view('admin/producto', $data, FALSE); 
+		$this->load->view('admin/piedepagina');
+	}
+
 	public function caracteristicas() {
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Caracteristicas_model');
 		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
 		$this->load->view('admin/caracteristicas', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
+	
 	public function categorias() {
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Categorias_model');
 		$data['categorias'] = $this->Categorias_model->listar();
 		$this->load->view('admin/categorias', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
+	
 	public function estadosproductos() {
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Estadosproductos_model');
 		$data['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/estadosproductos', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
+	
 	public function estadospedidos() {
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$data['estadospedidos'] = $this->Estadospedidos_model->listar();
 		$this->load->view('admin/estadospedidos', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
+	
 	public function marcas() {
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Marcas_model');
 		$data['marcas'] = $this->Marcas_model->listar();
 		$this->load->view('admin/marcas', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
+	
 	public function usuarios($id = null){
-		if($id==null){
-			show_404();
+		if($id==null){ show_404();
 		}
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Usuarios_model');
 		$data['usuario'] = $this->Usuarios_model->get($id);
-		if(!$data['usuario']){
-			show_404();
+		if(!$data['usuario']){ show_404();
 		}
 		$this->load->model('Pedidos_model');
 		$data['usuario']->pedidos = $this->Pedidos_model->pedidosUsuario($data['usuario']->id);
@@ -126,23 +171,26 @@ class Admin extends CI_Controller {
 	}
 
 	public function pedido($id = null){
-		if($id==null){
-			show_404();
+		if($id==null){ show_404();
 		}
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Pedidos_model');
 		$data['pedido'] = $this->Pedidos_model->getPedido($id);
 		$this->load->view('admin/pedido', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
+
 	public function pedidos($estado = null,$pag = 1){
-		if($estado==null){
-			show_404();
+		if($estado==null){ show_404();
 		}
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->model('Pedidos_model');
 		$data['pedidos'] = $this->Pedidos_model->getPedidosPorEstado($estado,$pag);
@@ -179,13 +227,18 @@ class Admin extends CI_Controller {
 	public function crearusuario(){
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->view('admin/crearusuario');
 		$this->load->view('admin/piedepagina');
 	}
+	
 	public function buscarusuarios(){
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->view('admin/buscarusuarios');
 		$this->load->view('admin/piedepagina');

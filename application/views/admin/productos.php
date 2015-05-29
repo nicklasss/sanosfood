@@ -1,16 +1,21 @@
 <div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">Productos</h1>
-    </div>
+   <div class="col-lg-12">
+      <h2 class="page-header">
+<?php
+      if ($this->uri->segment(3)=="Todos") {print "Todos los Productos";}
+      else {
+          foreach ($estadosproductos as $estadopro) {
+              if ($estadopro->id == $this->uri->segment(3)) {print "Productos en estado <mark>".$estadopro->nombre."</mark>";}
+          };
+      }
+?>          
+      </h2>
+   </div>
 </div>
 
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                Todos los productos
-            </div>
-            <!-- /.panel-heading -->
             <div class="panel-body">
                 <div class="dataTable_wrapper">
                     <div class="form-inline">
@@ -48,7 +53,7 @@
                                         foreach ($productos as $producto) {
                                             print ' <tr role="row">
                                     
-                                                        <td width="40%"><strong><a href="'.base_url().'admin/productos/'.$producto->id.'">'.$producto->nombre.'</a></strong></td>
+                                                        <td width="40%"><strong><a href="'.base_url().'admin/producto/'.$producto->id.'">'.$producto->nombre.'</a></strong></td>
                                                         <td width="20%">'.$producto->existencias.'</td>
                                                         <td width="20%">'.$producto->nombreestado.'</td>
                                                         <td class="center">'.number_format($producto->precio , 0, ",", ".").'</td> 

@@ -17,10 +17,6 @@
 	</div>
 </div>
 
-
-
-
-
 <div class="row">
 	<div class="col-md-9 col-md-offset-1">
         <div class="panel panel-default">
@@ -40,13 +36,15 @@
 	</div>
 </div>
 
-
 <script type="text/javascript">
 $(document).ready(function() { 
 
 	$('.container').on('click','.btn-buscar',function(event){
-		criterio = $('.container').find('#ecriterio').val();
-		if (criterio == null) {alert("es nulo"); return false;}
+		criterio = $('#ecriterio').val();
+		if (criterio == "") {
+			alert("no ha escrito ningun criterio de busqueda"); 
+			return false;
+		}
 		rta = buscar( criterio, function(rta){
 			if(!rta) { alert("ha habido un error en la busqueda"); }
 	   })

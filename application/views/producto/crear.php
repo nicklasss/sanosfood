@@ -1,6 +1,6 @@
 <?php
-if($res=="bad"){
+if ($res == "bad") {
 	print json_encode(array('res'=>$res,'msj'=>$msj));exit();
-}else{
+} else {
 	print json_encode(array('res'=>$res,'id'=>$id));exit();
 }
