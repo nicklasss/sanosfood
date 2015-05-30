@@ -39,12 +39,12 @@ foreach ($marcas as $marca) {
 					</td>
 					<td width="15%">
 				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'.$marca->id.'">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+					  		<button type="button" class="btn btn-xs btn-success btn-guardar btn-editable" data-id="'.$marca->id.'">Guardar</button>
+					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar btn-editable">Cancelar</button>
 				    	</div>
 				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-					   		<button type="button" class="btn btn-xs btn-danger btn-eliminar" data-id="'.$marca->id.'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
+					   		<button type="button" class="btn btn-xs btn-primary btn-editar btn-mostrable"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+					   		<button type="button" class="btn btn-xs btn-danger btn-eliminar btn-mostrable" data-id="'.$marca->id.'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
 				    	</div>
 					</td>	
 				</tr>';
@@ -69,11 +69,11 @@ foreach ($marcas as $marca) {
 					</td>
 					<td>
 				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-agregar" data-id="'.$marca->id.'">Agregar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>
+					  		<button type="button" class="btn btn-xs btn-success btn-agregar btn-editable" data-id="'.$marca->id.'">Agregar</button>
+					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar btn-editable">Cancelar</button>
 				    	</div>
 				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-success text-center btn-nuevo"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
+					   		<button type="button" class="btn btn-xs btn-success text-center btn-nuevo btn-mostrable"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
 				    	</div>
 					</td>	
 				</tr>
@@ -89,8 +89,11 @@ $(document).ready(function() {
 
 //----------------------------------------------------------------------------------EDITAR
 	$('.container').on('click','.btn-editar',function(event){
+		snombre = $(event.target).parent().parent().parent().find('.salnombre').text();
+		sdescripcion = $(event.target).parent().parent().parent().find('.saldescripcion').text();
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
+		$('.btn-mostrable').each(function() {$(this).attr('disabled', true);});
 	});
 
 
@@ -102,6 +105,7 @@ $(document).ready(function() {
 		$(event.target).parent().parent().parent().find('.entdescripcion').val(sdescripcion);
 		$(event.target).parent().parent().parent().find('.mostrable').show();
 		$(event.target).parent().parent().parent().find('.editable').hide();
+		$('.btn-mostrable').each(function() {$(this).attr('disabled', false);});
 	});
 
 
@@ -127,23 +131,25 @@ $(document).ready(function() {
 		$(event.target).parent().parent().parent().find('.editable').show();
 		$(event.target).parent().parent().parent().find('.mostrable').hide();
 		$(event.target).parent().parent().parent().find('.entnombre').focus();
+		$('.btn-mostrable').each(function() {$(this).attr('disabled', true);});
 	});
 
 
 //----------------------------------------------------------------------------------nuevo AGREGAR
 	$('.container').on('click','.btn-agregar',function(event){
-		enombre = $(event.target).parent().parent().parent().find('.entnombre').val();
+		enombre = $(event.target).parent().parent().parent().find('.entnombre').val().trim();
 		if (enombre == "") {
 			alert ("el Nombre no puede estar vacio");
 			$(event.target).parent().parent().parent().find('.entnombre').focus();
 			return false;
 		};
-		edescripcion = $(event.target).parent().parent().parent().find('.entdescripcion').val();
+		edescripcion = $(event.target).parent().parent().parent().find('.entdescripcion').val().trim();
 		if (edescripcion == "") {
 			alert ("la Descripción no puede estar vacia");
 			$(event.target).parent().parent().parent().find('.entdescripcion').focus();
 			return false;
 		};
+		$('.btn-mostrable').each(function() {$(this).attr('disabled', false);});
 		rta = crear( enombre , edescripcion , function(rta){
 			if(rta) {
 				$(event.target).parent().parent().parent().find('.mostrable').show();
@@ -157,10 +163,8 @@ $(document).ready(function() {
 
 //----------------------------------------------------------------------------------editar GUARDAR
 	$('.container').on('click','.btn-guardar',function(event){
-		snombre = $(event.target).parent().parent().parent().find('.salnombre').text();
-		enombre = $(event.target).parent().parent().parent().find('.entnombre').val();
-		sdescripcion = $(event.target).parent().parent().parent().find('.saldescripcion').text();
-		edescripcion = $(event.target).parent().parent().parent().find('.entdescripcion').val();
+		enombre = $(event.target).parent().parent().parent().find('.entnombre').val().trim();
+		edescripcion = $(event.target).parent().parent().parent().find('.entdescripcion').val().trim();
 		if (edescripcion == "") {
 			alert ("la Descripción no puede estar vacia");
 			$(event.target).parent().parent().parent().find('.entdescripcion').focus();
@@ -189,6 +193,7 @@ $(document).ready(function() {
 		};
 		$(event.target).parent().parent().parent().find('.editable').hide();
 		$(event.target).parent().parent().parent().find('.mostrable').show();
+		$('.btn-mostrable').each(function() {$(this).attr('disabled', false);});
 	});
 
 });
@@ -259,12 +264,12 @@ function crear (nombre, descripcion, callback) {
 		'	</td>'+
 		'	<td>'+
 		'    	<div class="editable escondido">'+
-		'	  		<button type="button" class="btn btn-xs btn-success btn-guardar" data-id="'+ data.id +'">Guardar</button>'+
-		'	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar">Cancelar</button>'+
+		'	  		<button type="button" class="btn btn-xs btn-success btn-guardar btn-editable" data-id="'+ data.id +'">Guardar</button>'+
+		'	  		<button type="button" class="btn btn-xs btn-warning btn-cancelar btn-editable">Cancelar</button>'+
 		'    	</div>'+
 		'    	<div class="mostrable">'+
-		'	   		<button type="button" class="btn btn-xs btn-primary btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>'+
-		'	   		<button type="button" class="btn btn-xs btn-danger btn-eliminar" data-id="'+ data.id +'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>'+
+		'	   		<button type="button" class="btn btn-xs btn-primary btn-editar btn-mostrable"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>'+
+		'	   		<button type="button" class="btn btn-xs btn-danger btn-eliminar btn-mostrable" data-id="'+ data.id +'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>'+
 		'    	</div>'+
 		'	</td>'+	
 		'</tr>');

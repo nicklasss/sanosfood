@@ -82,11 +82,11 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">SanosFoods</a>
+          <a class="navbar-brand" href="<?php print base_url().'admin/productos/Todos';?>">SanosFoods</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
+            <li class="active"><a href="<?php print base_url().'admin/productos/Todos';?>">Home</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Productos <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">

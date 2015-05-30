@@ -48,9 +48,9 @@ $(document).ready(function() {
 
 //----------------------------------------------------------------------------------btn-GUARDAR
 	$('.container').on('click','.btn-guardar',function(event){
-		enombre = $('#nombre').val();
-		edescripcion = $('#descripcion').val();
-		eingredientes = $('#ingredientes').val();
+		enombre = $('#nombre').val().trim();
+		edescripcion = $('#descripcion').val().trim();
+		eingredientes = $('#ingredientes').val().trim();
 		if(enombre == "") {
 			alert("Los campos obligatorios deben estar diligenciados");
 			return false; }

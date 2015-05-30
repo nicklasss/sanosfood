@@ -4,13 +4,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin extends CI_Controller {
 
 	public function index() {
-		$this->load->model('Estadospedidos_model');
+/*		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
 		$this->load->model('Estadosproductos_model');
 		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 		$this->load->view('admin/home');
 		$this->load->view('admin/piedepagina');
+*/
+		$this->load->model('Estadospedidos_model');
+		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
+		$this->load->model('Estadosproductos_model');
+		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
+		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
+			$this->load->model('Productos_model');
+			$data = $this->Productos_model->listar();
+			$this->load->view('admin/productos',$data,FALSE); 
+		$this->load->view('admin/piedepagina');
+
 	}
 	
 	public function login() {
