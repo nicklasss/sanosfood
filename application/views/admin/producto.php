@@ -253,6 +253,56 @@ foreach ($categorias as $categoria) {
   	</div>
 </div>
 
+
+
+
+
+
+
+
+
+
+<div class="row registro">
+	<div class="col-md-4">
+        <div class="panel panel-default">
+
+
+<form action="upload.php" class="dropzone" method="post" enctype="multipart/form-data">
+
+</form>
+
+
+		</div> <!-- Panel-->
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--------------------------------------------------------------------------------------------------------------------- -->
 <script type="text/javascript">
 

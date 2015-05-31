@@ -83,7 +83,7 @@
           data: {usuario  : $("#usuario").val(), clave : $("#clave").val()} })
          .done(function(data) {                                // respuesta del servidor
             if(data.res=="ok") {
-              window.location= "<?php print base_url();?>admin/home";}
+              window.location= "<?php print base_url();?>admin/productos/Todos";}
             else{alert(data.msj) } })          
          .error(function(){alert('error en el servidor'); });  // error generado
     }
