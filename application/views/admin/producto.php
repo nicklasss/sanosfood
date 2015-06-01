@@ -276,7 +276,7 @@ foreach ($categorias as $categoria) {
         		<div class="col-md-6">
         			<div style="margin-top:10px" class="text-center">
 					  	<form method="POST" enctype="multipart/form-data" action="<?php print base_url(); ?>producto/agregarfoto">
-					  		<input type="hidden" value="<?php print $producto->id;?>">
+					  		<input type="hidden" name="idproducto" value="<?php print $producto->id;?>">
 						  	<input style="margin-bottom:5px;" type="submit" class="btn btn-primary fileinput-exists" value="Guardar"/>
 						    <span style="margin-bottom:5px;" class="btn btn-default btn-file"><span class="fileinput-new">Agregar imagen</span><span class="fileinput-exists">Cambiar</span><input type="file" name="userfile" accept="image/x-png, image/gif, image/jpeg"></span>
 						    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Cancelar</a>

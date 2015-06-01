@@ -1,4 +1,8 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php 
+require $_SERVER['DOCUMENT_ROOT'].'/sanosfood/aws/aws-autoloader.php';
+
+use Aws\Common\Aws;
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Productos_model extends CI_Model {
 
@@ -357,6 +361,30 @@ class Productos_model extends CI_Model {
         $this -> db -> where('MATCH (nombre,descripcion) AGAINST ("' . utf8_encode($query_filtrado) . '")', NULL, FALSE);
         $query = $this -> db -> get('productos');
         return $query->result();
+    }
+
+    function agregarfoto($idproducto = null){
+        if($idproducto==null){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Error, producto sin id';
+            //return $data; 
+        }
+        $destino_path = "temp/";
+        $path = $_FILES['userfile']['name'];
+        $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+        $destino_path = $destino_path . $idProducto .'.'.$ext;
+
+        if((!empty($_FILES["userfile"])) && ($_FILES['userfile']['error'] == 0)) {
+            if (($ext == "jpg" || $ext =="png" || $ext =="jpeg") && ($_FILES["userfile"]["type"] == "image/jpeg" || $_FILES["userfile"]["type"] == "image/png") && ($_FILES["userfile"]["size"] < 100000000)) {
+
+                /*$archivoEntrada = $_FILES['userfile']['tmp_name'];
+                $archivoSalida = $target_path2;
+                $image = new Imagick($inFile);
+                $image->thumbnailImage(110, 110);
+                $image->writeImage($outFile);*/
+            }
+        }
+
     }
 
 } 

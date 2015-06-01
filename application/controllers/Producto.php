@@ -44,6 +44,14 @@ class Producto extends CI_Controller {
 		$this->load->model('Productos_model');
 		print json_encode($this->Productos_model->editarestado($id));
 	}
+	public function agregarfoto(){
+		if(!$this->session->userdata('logeado_admin')){
+			print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));
+		}
+		$idproducto = @$this->input->post('idproducto',TRUE);
+		$this->load->model('Productos_model');
+		$this->Productos_model->agregarfoto($idproducto);
+	}	
 
 }
 
