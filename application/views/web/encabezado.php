@@ -12,7 +12,9 @@
 <!--<![endif]-->
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><?php print @$pregunta->titulo;?></title>
+<!--
+	<title><?php print @$pregunta->titulo;?></title>  
+-->
 		
 	<!-- Fonts -->
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,700,800' rel='stylesheet' type='text/css'>
@@ -20,8 +22,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
+<!--
 	<meta name="description" content="<?php print @$pregunta->descripcion; ?>">
 	<meta name="keywords" content="<?php print @$pregunta->metakeywords;?>">
+-->
 
 	<meta name="robots" content="INDEX,FOLLOW" />
 
@@ -35,7 +39,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<meta name="author" content="1doc3">
+	<meta name="author" content="sanosfoods">
 	<meta name="msvalidate.01" content="4559AF8A1303FF6B1A5841E03D85A1C5" />
 
 	<meta property="og:url" content="<?php print base_url();?>" />
@@ -55,8 +59,44 @@
 	<meta name="twitter:image" content="https://s3.amazonaws.com/1doc3/img/logo-fb.png">
 	<meta name="twitter:domain" content="www.1doc3.com">
 
-	<link rel="stylesheet" href="<?php print base_url();?>css2/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php print base_url();?>css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php print base_url();?>css/main.css">
-	<script type="text/javascript" src="<?php print base_url();?>js/modernizr.js"></script>
+<!--	<script type="text/javascript" src="<?php print base_url();?>js/modernizr.js"></script>  -->
 
 </head>
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="<?php print base_url().'admin/productos/Todos';?>">SanosFoods</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="<?php print base_url().'web/home';?>">Home</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Productos <span class="caret"></span></a>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usuarios <span class="caret"></span></a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pedidos <span class="caret"></span></a>
+            </li>
+            <li><a href="#">Características</a></li>
+            <li><a href="#">Categorías</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estados <span class="caret"></span></a>
+            </li>
+            <li><a href="#">Marcas</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
