@@ -1,3 +1,59 @@
-      body{
-        padding-top: 50px;
-      }
+body{
+    padding-top: 50px;
+}
+
+.baner01 {
+	height: 500px;
+	background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQFmAznfSgYFd8-mTteMo8gMjd1u2kKqJBYez3fNLAGRmBXse8Jg);
+	background-size: cover;"	
+}
+
+.baner02 {
+	height: 200px;
+	background-color: #eeeeee;
+}
+
+.baner03 {
+	height: 320px;
+	background-color: #cccccc;
+}
+
+.textos01 {
+	padding-top:130px;
+	color: #ffffff;
+}
+
+.boton01 {
+	padding-top: 50px;
+}
+
+.plato01 {
+	height: 120px;
+    margin-top: 40px;
+	background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQs0zs9HD7B6cF9l_o2zSM8goQ-Q7VnFWnHNRbYozeA_Nw9gFfHow);
+	background-size: cover;"	
+	border-radius: 5px;
+}
+
+.plato02 {
+	height: 120px;
+    margin-top: 40px;
+	background-image: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSYjZO4E3jO0jUfwNcB8L_TxEZyGX3HOj_zdr4UMPaJxMcR17-zcg);
+	background-size: cover;"	
+	border-radius: 5px;
+}
+
+.plato03 {
+	height: 120px;
+    margin-top: 40px;
+	background-image: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzDwFGbTG2gEkCh0gn7xa4SBqXwitKCWq7GPWcvnyyKH7L5iWk);
+	background-size: cover;"	
+	border-radius: 5px;
+}
+
+.producto01 {
+	height: 140px;
+    margin-top: 30px;
+	background-image:url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSvJ7qUhQWipGR5B-Q0KxTNkD-825SRmcyzQGKr0qmB4NO8Fp1mow);
+	background-size: cover;"	
+}
