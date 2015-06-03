@@ -18,9 +18,35 @@ body{
 	background-color: #cccccc;
 }
 
+.baner04 {
+	height: 400px;
+	background-image: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS4lV5gab_10aS3YeB6CHPwFNVz_IO3mR6iL8eOnbkWRdLE9rse);
+	background-size: cover;"	
+	background-color: rgb(0,0,255); opacity: 0.7;
+}
+
+.baner05 {
+	height: 250px;
+	background-color: #444444;
+}
+
 .textos01 {
 	padding-top:130px;
 	color: #ffffff;
+}
+
+.textos02 {
+    margin-top: 40px;
+	color: #aaaaaa;
+}
+
+.textos03 {
+	padding-top: 40px;
+	color: #ffffff;
+}
+
+.textos04 {
+	color: #aaaaaa;
 }
 
 .boton01 {
