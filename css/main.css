@@ -82,7 +82,13 @@ body{
 
 .producto01 {
 	height: 140px;
+    background-image: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSvJ7qUhQWipGR5B-Q0KxTNkD-825SRmcyzQGKr0qmB4NO8Fp1mow);
     margin-top: 30px;
-	background-image:url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSvJ7qUhQWipGR5B-Q0KxTNkD-825SRmcyzQGKr0qmB4NO8Fp1mow);
+	background-size: cover;"	
+}
+
+.img01 {
+	height: 150px;
+    margin-top: 30px;
 	background-size: cover;"	
 }

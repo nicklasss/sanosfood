@@ -76,7 +76,9 @@
          <div class="col-lg-9 col-lg-offset-3">
             <div class="row">
                <div class="col-lg-12">
-                  <div class="producto01"></div>
+                  <div >
+                     <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSvJ7qUhQWipGR5B-Q0KxTNkD-825SRmcyzQGKr0qmB4NO8Fp1mow" class="img-responsive img-rounded img01"/>
+                  </div>
                </div>
             </div>     
             <div class="row">
