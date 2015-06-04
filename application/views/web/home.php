@@ -2,7 +2,12 @@
 </div> <!-- /container -->
 
 <!---------------------------------------------------------------IMAGEN SUPERIOR -->
-<div class="row baner01">
+
+
+<div>
+   <div class="baner01">
+      <img src="http://necesitodetodos.org/wp-content/uploads/2013/09/alimentos-saludables.jpg" class="img-responsive">
+   </div>
    <div class="container">
       <div class="row">
          <div class="col-lg-4 col-lg-offset-1">
