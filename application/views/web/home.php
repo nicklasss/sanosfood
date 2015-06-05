@@ -69,9 +69,9 @@ foreach ($productos as $producto) {
       }
       print '<div class="row baner03" style="background: #cccccc;">';
    } 
-  print '<div class="col-lg-3">
+  print '<div class="col-lg-3" align="center">
             <div class="row">
-               <div class="col-lg-9 col-lg-offset-3">
+               <div class="col-lg-9 col-lg-offset-2">
                   <div class="row">
                      <div class="col-lg-12">
                         <img class="img-responsive img01" src="'.$producto->imagen.'"/>
@@ -80,13 +80,13 @@ foreach ($productos as $producto) {
                   <div class="row">
                      <div class="col-lg-10">
                         <div class="row">
-                           <div class="col-lg-8 texto02"><h6><strong>'.$producto->nombre.'</strong></h6></div>
-                           <div class="col-lg-4 texto02"><h4><strong>$'.number_format($producto->precio , 0, ",", ".").'</strong></h4></div>
+                           <div class="col-lg-8 texto02" align="left"><h5><strong>'.$producto->nombre.'</strong></h5></div>
+                           <div class="col-lg-4 texto02" align="right"><h4><strong>$'.number_format($producto->precio , 0, ",", ".").'</strong></h4></div>
                         </div>
                      </div>   
                   </div>
                   <div class="row">
-                     <div class="col-lg-12 texto02">
+                     <div class="col-lg-12 texto02" align="left">
                         <h6>'.$producto->descripcioncorta.'</h6>
                      </div>
                   </div>
