@@ -2,6 +2,7 @@ body{
     padding-top: 50px;
 }
 
+/*---------------------------------------------HOME */
 .baner01 {
 	height: 500px;
 	background-image: url(http://necesitodetodos.org/wp-content/uploads/2013/09/alimentos-saludables.jpg); 
@@ -66,3 +67,5 @@ body{
     margin-top: 30px;
 	background-size: cover;"	
 }
+
+/*---------------------------------------------PRODUCTO */

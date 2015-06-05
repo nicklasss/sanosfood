@@ -58,6 +58,7 @@
    </div>
 </div>
 
+<div class="productos">
 
 <?php
 $i = 0;
@@ -92,7 +93,7 @@ foreach ($productos as $producto) {
                   </div>
                   <div class="row">
                      <div class="col-lg-12 text-right">
-                        <button type="button" class="btn btn-xs btn-success" id="btn-vermas'.$producto->id.'">Ver Detales</button>
+                        <button type="button" class="btn-verdetalle btn-xs btn-success" data-id="'.$producto->id.'">Ver Detalles</button>
                      </div>
                   </div>
                </div>
@@ -100,262 +101,11 @@ foreach ($productos as $producto) {
          </div> ';
 }
 ?>
+</div>  
 
-
-<!--
-
-
-
-
-
-
-<div class="row baner03" style="background: #cccccc;">
-   <div class="col-lg-3">
-      <div class="row">
-         <div class="col-lg-9 col-lg-offset-3">
-            <div class="row">
-               <div class="col-lg-12">
-                  <img class="img-responsive img01" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSvJ7qUhQWipGR5B-Q0KxTNkD-825SRmcyzQGKr0qmB4NO8Fp1mow"/>
-               </div>
-            </div>     
-            <div class="row">
-               <div class="col-lg-10">
-                  <div class="row">
-                     <div class="col-lg-8 texto02"><h6><strong>LOREM IPSUM</strong></h6></div>
-                     <div class="col-lg-4 texto02"><h4><strong>$35.000</strong></h4></div>
-                  </div>
-               </div>   
-            </div>
-            <div class="row">
-               <div class="col-lg-12 texto02">
-                  <h6>Loren ipsum dolor sit amet, consecte tur adipiscing elit, sed do elusmod tempor.</h6>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-lg-12 text-right">
-                  <button type="button" class="btn btn-xs btn-success" id="btn-guardar">Ver Detales</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div> 
- 
-   <div class="col-lg-3">
-      <div class="row">
-         <div class="col-lg-9 col-lg-offset-2">
-            <div class="row">
-               <div class="col-lg-12">
-                  <img class="img-responsive img01" src="http://cmsa-img.seccionamarilla.com/Media/Articulos/Imagenes/468_Web_piel-brillante.gif"/>
-               </div>
-            </div>     
-            <div class="row">
-               <div class="col-lg-10">
-                  <div class="row">
-                     <div class="col-lg-8 texto02"><h6><strong>LOREM IPSUM</strong></h6></div>
-                     <div class="col-lg-4 texto02"><h4>$35.000</h4></div>
-                  </div>
-               </div>   
-            </div>
-            <div class="row">
-               <div class="col-lg-12 texto02">
-                  <h6>Loren ipsum dolor sit amet, consecte tur adipiscing elit, sed do elusmod tempor.</h6>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-lg-12 text-right">
-                  <button type="button" class="btn btn-xs btn-success" id="btn-guardar">Ver Detales</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div> 
-
-   <div class="col-lg-3">
-      <div class="row">
-         <div class="col-lg-9 col-lg-offset-1">
-            <div class="row">
-               <div class="col-lg-12">
-                  <img class="img-responsive img01" src="https://alimentossaludablesynosaludables.files.wordpress.com/2013/04/aditivos.jpg"/>
-               </div>
-            </div>     
-            <div class="row">
-               <div class="col-lg-10">
-                  <div class="row">
-                     <div class="col-lg-8 texto02"><h6><strong>LOREM IPSUM</strong></h6></div>
-                     <div class="col-lg-4 texto02"><h4>$35.000</h4></div>
-                  </div>
-               </div>   
-            </div>
-            <div class="row">
-               <div class="col-lg-12 texto02">
-                  <h6>Loren ipsum dolor sit amet, consecte tur adipiscing elit, sed do elusmod tempor.</h6>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-lg-12 text-right">
-                  <button type="button" class="btn btn-xs btn-success" id="btn-guardar">Ver Detales</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div> 
-
-   <div class="col-lg-3">
-      <div class="row">
-         <div class="col-lg-9">
-            <div class="row">
-               <div class="col-lg-12">
-                  <img class="img-responsive img01" src="http://azu1.facilisimo.com/ima/i/3/4/5c/am_79218_2123806_383473.jpg"/>
-               </div>
-            </div>     
-            <div class="row">
-               <div class="col-lg-10">
-                  <div class="row">
-                     <div class="col-lg-8 texto02"><h6><strong>LOREM IPSUM</strong></h6></div>
-                     <div class="col-lg-4 texto02"><h4>$35.000</h4></div>
-                  </div>
-               </div>   
-            </div>
-            <div class="row">
-               <div class="col-lg-12 texto02">
-                  <h6>Loren ipsum dolor sit amet, consecte tur adipiscing elit, sed do elusmod tempor.</h6>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-lg-12 text-right">
-                  <button type="button" class="btn btn-xs btn-success" id="btn-guardar">Ver Detales</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div> 
 </div> 
 
-
-<div class="row baner03" style="background: #cccccc;">
-   <div class="col-lg-3">
-      <div class="row">
-         <div class="col-lg-9 col-lg-offset-3">
-            <div class="row">
-               <div class="col-lg-12">
-                  <img class="img-responsive img01" src="http://g.cdn.ecn.cl/nutricion/files/2014/02/alimentos-no-saludables.jpg"/>
-               </div>
-            </div>     
-            <div class="row">
-               <div class="col-lg-10">
-                  <div class="row">
-                     <div class="col-lg-8 texto02"><h6><strong>LOREM IPSUM</strong></h6></div>
-                     <div class="col-lg-4 texto02"><h4>$35.000</h4></div>
-                  </div>
-               </div>   
-            </div>
-            <div class="row">
-               <div class="col-lg-12 texto02">
-                  <h6>Loren ipsum dolor sit amet, consecte tur adipiscing elit, sed do elusmod tempor.</h6>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-lg-12 text-right">
-                  <button type="button" class="btn btn-xs btn-success" id="btn-guardar">Ver Detales</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div> 
- 
-   <div class="col-lg-3">
-      <div class="row">
-         <div class="col-lg-9 col-lg-offset-2">
-            <div class="row">
-               <div class="col-lg-12">
-                  <img class="img-responsive img01" src="http://www.vitadelia.com/images/2008/03/legumbres.gif"/>
-               </div>
-            </div>     
-            <div class="row">
-               <div class="col-lg-10">
-                  <div class="row">
-                     <div class="col-lg-8 texto02"><h6><strong>LOREM IPSUM</strong></h6></div>
-                     <div class="col-lg-4 texto02"><h4>$35.000</h4></div>
-                  </div>
-               </div>   
-            </div>
-            <div class="row">
-               <div class="col-lg-12 texto02">
-                  <h6>Loren ipsum dolor sit amet, consecte tur adipiscing elit, sed do elusmod tempor.</h6>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-lg-12 text-right">
-                  <button type="button" class="btn btn-xs btn-success" id="btn-guardar">Ver Detales</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div> 
-
-   <div class="col-lg-3">
-      <div class="row">
-         <div class="col-lg-9 col-lg-offset-1">
-            <div class="row">
-               <div class="col-lg-12">
-                  <img class="img-responsive img01" src="http://www.cosasdesalud.es/images/pasta1.jpg"/>
-               </div>
-            </div>     
-            <div class="row">
-               <div class="col-lg-10">
-                  <div class="row">
-                     <div class="col-lg-8 texto02"><h6><strong>LOREM IPSUM</strong></h6></div>
-                     <div class="col-lg-4 texto02"><h4>$35.000</h4></div>
-                  </div>
-               </div>   
-            </div>
-            <div class="row">
-               <div class="col-lg-12 texto02">
-                  <h6>Loren ipsum dolor sit amet, consecte tur adipiscing elit, sed do elusmod tempor.</h6>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-lg-12 text-right">
-                  <button type="button" class="btn btn-xs btn-success">Ver Detales</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div> 
-
-   <div class="col-lg-3">
-      <div class="row">
-         <div class="col-lg-9">
-            <div class="row">
-               <div class="col-lg-12">
-                  <img class="img-responsive img01" src="http://www.puntofape.com/wp-content/uploads/2012/10/Reglas-de-una-alimentaci%C3%B3n-saludable.jpg"/>
-               </div>
-            </div>     
-            <div class="row">
-               <div class="col-lg-10">
-                  <div class="row">
-                     <div class="col-lg-8 texto02"><h6><strong>LOREM IPSUM</strong></h6></div>
-                     <div class="col-lg-4 texto02"><h4>$35.000</h4></div>
-                  </div>
-               </div>   
-            </div>
-            <div class="row">
-               <div class="col-lg-12 texto02">
-                  <h6>Loren ipsum dolor sit amet, consecte tur adipiscing elit, sed do elusmod tempor.</h6>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-lg-12 text-right">
-                  <button type="button" class="btn btn-xs btn-success">Ver Detales</button>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div> --> 
-</div>   
-
 </div> <!-- /container -->
-
 
 <!---------------------------------------------------------------BANER 4 -->
 <div class="row baner04">
@@ -372,3 +122,14 @@ foreach ($productos as $producto) {
 
 <div class="container">
 
+<!------------------------------------------------------------------------------------------------------------------------------------> 
+<script type="text/javascript">
+    $(document).ready(function(){
+
+   $('*').on('click','.btn-verdetalle',function(event){
+alert ("entra por aqui");
+      id = $(event.target).attr("data-id");
+      window.location="<?php print base_url();?>web/producto/"+id+")";
+   });
+}
+</script>
