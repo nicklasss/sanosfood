@@ -4,9 +4,8 @@ body{
 
 .baner01 {
 	height: 500px;
-/*	background-image: url(http://necesitodetodos.org/wp-content/uploads/2013/09/alimentos-saludables.jpg); */
+	background-image: url(http://necesitodetodos.org/wp-content/uploads/2013/09/alimentos-saludables.jpg); 
 	background-size: cover;"	
-
 }
 
 .baner02 {
@@ -15,7 +14,7 @@ body{
 }
 
 .baner03 {
-	height: 320px;
+	height: 400px;
 	background-color: #cccccc;
 }
 
@@ -56,37 +55,14 @@ body{
 
 .plato01 {
 	height: 120px;
+	width: 330px;
     margin-top: 40px;
-	background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQs0zs9HD7B6cF9l_o2zSM8goQ-Q7VnFWnHNRbYozeA_Nw9gFfHow);
 	background-size: cover;"	
 	border-radius: 5px;
-}
-
-.plato02 {
-	height: 120px;
-    margin-top: 40px;
-	background-image: url(https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSYjZO4E3jO0jUfwNcB8L_TxEZyGX3HOj_zdr4UMPaJxMcR17-zcg);
-	background-size: cover;"	
-	border-radius: 5px;
-}
-
-.plato03 {
-	height: 120px;
-    margin-top: 40px;
-	background-image: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzDwFGbTG2gEkCh0gn7xa4SBqXwitKCWq7GPWcvnyyKH7L5iWk);
-	background-size: cover;"	
-	border-radius: 5px;
-}
-
-.producto01 {
-	height: 140px;
-    background-image: url(https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSvJ7qUhQWipGR5B-Q0KxTNkD-825SRmcyzQGKr0qmB4NO8Fp1mow);
-    margin-top: 30px;
-	background-size: cover;"	
 }
 
 .img01 {
-	height: 150px;
+	height: 160px;
     margin-top: 30px;
 	background-size: cover;"	
 }
