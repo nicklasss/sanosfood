@@ -87,7 +87,7 @@ foreach ($productos as $producto) {
                   </div>
                   <div class="row">
                      <div class="col-lg-12 texto02">
-                        <h6>'.$producto->descripcion.'</h6>
+                        <h6>'.$producto->descripcioncorta.'</h6>
                      </div>
                   </div>
                   <div class="row">
