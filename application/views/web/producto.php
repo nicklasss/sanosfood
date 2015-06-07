@@ -9,17 +9,17 @@ foreach ($producto->imagenes as $imagen) {
 		print '
 		<div class="row">
 		  <div class="col-lg-12">
-		     <img class="img-responsive img02" src="'.$imagen->imagen.'"/>
+		     <img class="img-responsive img02" id="vistagrande" src="'.$imagen->imagen.'"/>
 		  </div>
 		</div>  
 		<div class="col-lg-3">
-		  <img class="img-responsive img03" src="'.$imagen->imagen.'"/>
+		  <img class="img-responsive img03" id="vistapequeña'.$i.'"  src="'.$imagen->imagen.'"/>
 		</div>
 		<div class="row">';}
 	else {	  
 		print '  
 		<div class="col-lg-3">
-		  <img class="img-responsive img03" src="'.$imagen->imagen.'"/>
+		  <img class="img-responsive img03" id="vistapequeña'.$i.'"  src="'.$imagen->imagen.'"/>
 		</div>';
 	};
 };
@@ -77,3 +77,16 @@ foreach ($producto->imagenes as $imagen) {
 	   </div>
 	</div>
 </div>   
+
+
+<!------------------------------------------------------------------------------------------------------------------------------------> 
+<script type="text/javascript">
+    $(document).ready(function(){
+
+   $('*').on('click','.btn-verdetalle',function(event){
+alert ("entra por aqui");
+      id = $(event.target).attr("data-id");
+      window.location="<?php print base_url();?>web/producto/"+id+")";
+   });
+}
+</script>

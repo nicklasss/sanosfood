@@ -36,6 +36,7 @@ class Productos_model extends CI_Model {
 
         $object = array('nombre' => $nombre, 
                         'descripcion' => $descripcion,
+                        'descripcioncorta' => $descripcioncorta,
                         'ingredientes' => $ingredientes,
                         'idmarca' => "",
                         'precio' => 0,
@@ -105,6 +106,13 @@ class Productos_model extends CI_Model {
                 $data['msj'] = 'La descripcion del producto debe tener al menos 10 caracteres';
                 $data['res'] = 'bad'; $data['cmp'] = 'descripcion'; return $data; 
             } else { $objeto['descripcion'] = $descripcion; }
+        } 
+        if (array_key_exists('descripcioncorta', $dataproducto)) {
+            $descripcioncorta = $dataproducto->descripcioncorta;
+            if ($descripcioncorta !== "" AND strlen($descripcioncorta) < 5) {
+                $data['msj'] = 'La descripcion corta del producto debe tener al menos 5 caracteres';
+                $data['res'] = 'bad'; $data['cmp'] = 'descripcioncorta'; return $data; 
+            } else { $objeto['descripcioncorta'] = $descripcioncorta; }
         } 
         if (array_key_exists('ingredientes', $dataproducto)) {
             $ingredientes = $dataproducto->ingredientes;
@@ -249,6 +257,11 @@ class Productos_model extends CI_Model {
         if (strlen($producto->descripcion) < 10) {
             $data['msj'] = 'La descripcion del producto debe tener al menos 10 caracteres';
             $data['res'] = 'bad'; $data['cmp'] = 'descripcion';
+            return $data; 
+        } 
+        if (strlen($producto->descripcioncorta) < 5) {
+            $data['msj'] = 'La descripcion corta del producto debe tener al menos 5 caracteres';
+            $data['res'] = 'bad'; $data['cmp'] = 'descripcioncorta';
             return $data; 
         } 
         if (strlen($producto->ingredientes) < 10) {

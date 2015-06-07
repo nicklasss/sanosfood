@@ -15,9 +15,13 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6">
 				<label>Descripción</label>
 				<textarea type="text" class="form-control editable" id="descripcion" readonly><?php print $producto->descripcion;?></textarea>
+			</div>
+			<div class="col-md-6">
+				<label>Descripción Corta</label>
+				<textarea type="text" class="form-control editable" id="descripcioncorta" readonly><?php print $producto->descripcioncorta;?></textarea>
 			</div>
 		</div>
 	</form>
@@ -255,14 +259,6 @@ foreach ($categorias as $categoria) {
 	   	</div>	
   	</div>
 </div>
-
-
-
-
-
-
-
-
 
 
 <div class="row registro">

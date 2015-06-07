@@ -15,8 +15,10 @@ body{
 }
 
 .baner03 {
-	height: 350px;
+/*	height: 500px; */
 	background-color: #cccccc;
+	padding-top: 10px;
+	padding-bottom: 30px;
 }
 
 .baner04 {
@@ -71,7 +73,7 @@ body{
 /*---------------------------------------------PRODUCTO */
 
 .baner06 {
-	height: 550px;
+	height: 550px; 
 	background-color: #eeeeee;
 }
 

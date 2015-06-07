@@ -52,13 +52,11 @@
 </div> 
 
 <!---------------------------------------------------------------PRODUCTOS -->
-<div class="row" style="background: #cccccc;">
+<!--<div class="row" style="background: #cccccc;">   -->
+<div class="row baner03">
    <div class="col-lg-12 text-center">
       <h4><strong>PRODUCTOS DESTACADOS</strong></h4>
    </div>
-</div>
-
-<div class="productos">
 
 <?php
 $i = 0;
@@ -68,7 +66,7 @@ foreach ($productos as $producto) {
       if ($i == 5) {
          print '</div>';
       }
-      print '<div class="row baner03" style="background: #cccccc;">';
+      print '<div class="row">';
    } 
   print '<div class="col-lg-3" align="center">
             <div class="row">
@@ -103,7 +101,6 @@ foreach ($productos as $producto) {
 ?>
 </div>  
 
-</div> 
 
 </div> <!-- /container -->
 
@@ -127,7 +124,7 @@ foreach ($productos as $producto) {
     $(document).ready(function(){
 
    $('*').on('click','.btn-verdetalle',function(event){
-alert ("entra por aqui");
+      alert ("entra por aqui");
       id = $(event.target).attr("data-id");
       window.location="<?php print base_url();?>web/producto/"+id+")";
    });
