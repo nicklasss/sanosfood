@@ -366,7 +366,7 @@ class Productos_model extends CI_Model {
         $producto->categorias = $this->db->get('pro_cat')->result();
 
         $this->db->where('idproducto', $producto->id);
-        $producto->imagenes = $this->db->get('imagenes')->result();
+        $producto->imagenes = $this->db->get('imagenes', 1, 0)->result();
         return $producto;
     }
     

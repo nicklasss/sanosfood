@@ -1,9 +1,9 @@
 <!---------------------------------------------------------------PRODUCTO -->
-<div class="row baner06">';
+<div class="row baner06">
 	<div class="col-lg-5" align="center">
 	  <div class="row">
 	     <div class="col-lg-12">
-	        <img class="img-responsive img02" src="http://i.bellahermosa.com/wp-content/uploads/2011/11/comida-no-saludable.jpg"/>
+	        <img class="img-responsive img02" src=<?php print $producto->imagenes->imagen;?>/>
 	     </div>
 	  </div>     
 	  <div class="row">
