@@ -308,31 +308,6 @@ foreach ($categorias as $categoria) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!--------------------------------------------------------------------------------------------------------------------- -->
 <script type="text/javascript">
 
@@ -397,6 +372,7 @@ $(document).ready(function() {
 
 		snombre = 		$('#nombre').val();
 		sdescripcion = 	$('#descripcion').val();
+		sdescripcioncorta = 	$('#descripcioncorta').val();
 		singredientes = $('#ingredientes').val();
 		speso = 		$('#peso').val();
 		spesoneto = 	$('#pesoneto').val();
@@ -444,6 +420,7 @@ $(document).ready(function() {
 
 		$('#nombre').val(snombre);
 		$('#descripcion').val(sdescripcion);
+		$('#descripcioncorta').val(sdescripcioncorta);
 		$('#ingredientes').val(singredientes);
 		$('#peso').val(speso);
 		$('#pesoneto').val(spesoneto);
@@ -470,6 +447,7 @@ $(document).ready(function() {
 	$('.container').on('click','#btn-guardar',function(event){
 		enombre = 		$('#nombre').val();
 		edescripcion = $('#descripcion').val();
+		edescripcioncorta = $('#descripcioncorta').val();
 		eingredientes = $('#ingredientes').val();
 		epeso = 			$('#peso').val();
 		epesoneto = 	$('#pesoneto').val();
@@ -522,7 +500,8 @@ function guardar (callback) {
 	var dataproducto = {};
 	dataproducto.id = <?php print $this->uri->segment(3);?>;
 	if(snombre !== enombre) {dataproducto.nombre = enombre;}
-   if(sdescripcion !== edescripcion) {dataproducto.descripcion = edescripcion;}
+	if(sdescripcion !== edescripcion) {dataproducto.descripcion = edescripcion;}
+	if(sdescripcioncorta !== edescripcioncorta) {dataproducto.descripcioncorta = edescripcioncorta;}
 	if(singredientes !== eingredientes)	{dataproducto.ingredientes = eingredientes;}
 	if(speso !== epeso) {dataproducto.peso = epeso;}
 	if(spesoneto !== epesoneto) {dataproducto.pesoneto = epesoneto;}
