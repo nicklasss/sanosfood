@@ -364,7 +364,10 @@ class Productos_model extends CI_Model {
         $producto->caracteristicas = $this->db->get('pro_car')->result();
         $this->db->where('idProducto', $producto->id);
         $producto->categorias = $this->db->get('pro_cat')->result();
-    	return $producto;
+
+        $this->db->where('idproducto', $producto->id);
+        $producto->imagenes = $this->db->get('imagenes')->result();
+        return $producto;
     }
     
     function buscar($query=null){

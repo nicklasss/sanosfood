@@ -81,7 +81,7 @@ foreach ($productos as $producto) {
                   <div class="row">
                      <div class="col-lg-10">
                         <div class="row">
-                           <div class="col-lg-8 texto02" align="left"><h5><strong>'.$producto->nombre.'</strong></h5></div>
+                           <div class="col-lg-8 texto02" align="left"><h6><strong>'.$producto->nombre.'</strong></h6></div>
                            <div class="col-lg-4 texto02" align="right"><h4><strong>$'.number_format($producto->precio , 0, ",", ".").'</strong></h4></div>
                         </div>
                      </div>   

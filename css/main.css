@@ -69,3 +69,34 @@ body{
 }
 
 /*---------------------------------------------PRODUCTO */
+
+.baner06 {
+	height: 550px;
+	background-color: #eeeeee;
+}
+
+.textos05 {
+	color: #aaaaaa;
+}
+
+.textos06 {
+	color: #00aa00;
+}
+
+.img02 {
+	height: 400px;
+    margin-top: 30px;
+	background-size: cover;"	
+}
+
+.img03 {
+	height: 80px;
+    margin-top: 10px;
+	background-size: cover;"	
+	border-radius: 5px;
+}
+
+.baner07 {
+	height: 100px;
+	background-color: #eeeeee;
+}

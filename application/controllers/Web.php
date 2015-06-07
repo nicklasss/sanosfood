@@ -21,17 +21,18 @@ class Web extends CI_Controller {
 //		$this->load->model('Estadosproductos_model');
 //		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 
-		$this->load->view('web/encabezado',$dataencabezado,FALSE);
+//		$this->load->view('web/encabezado',$dataencabezado,FALSE);
+		$this->load->view('web/encabezado');
 		$this->load->model('Productos_model');
 //		$this->load->model('Estadosproductos_model');
-		$this->load->model('Marcas_model');
-		$data['marcas'] = $this->Marcas_model->listar();
-		$this->load->model('Caracteristicas_model');
-		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
-		$this->load->model('Categorias_model');
-		$data['categorias'] = $this->Categorias_model->listar();
+//		$this->load->model('Marcas_model');
+//		$data['marcas'] = $this->Marcas_model->listar();
+//		$this->load->model('Caracteristicas_model');
+//		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
+//		$this->load->model('Categorias_model');
+//		$data['categorias'] = $this->Categorias_model->listar();
 		$data['producto'] = $this->Productos_model->producto($id);
-		$data['estados'] = $this->Estadosproductos_model->listar();
+//		$data['estados'] = $this->Estadosproductos_model->listar();
 		$this->load->view('web/producto', $data, FALSE); 
 		$this->load->view('web/piedepagina');
 	}
