@@ -1,25 +1,30 @@
 <!---------------------------------------------------------------PRODUCTO -->
 <div class="row baner06">
 	<div class="col-lg-5" align="center">
-	  <div class="row">
-	     <div class="col-lg-12">
-	        <img class="img-responsive img02" src=<?php print $producto->imagenes->imagen;?>/>
-	     </div>
-	  </div>     
-	  <div class="row">
-	     <div class="col-lg-3">
-	        <img class="img-responsive img03" src="http://i.bellahermosa.com/wp-content/uploads/2011/11/comida-no-saludable.jpg"/>
-	     </div>
-	     <div class="col-lg-3">
-	        <img class="img-responsive img03" src="http://i.bellahermosa.com/wp-content/uploads/2011/11/comida-no-saludable.jpg"/>
-	     </div>
-	     <div class="col-lg-3">
-	        <img class="img-responsive img03" src="http://i.bellahermosa.com/wp-content/uploads/2011/11/comida-no-saludable.jpg"/>
-	     </div>
-	     <div class="col-lg-3">
-	        <img class="img-responsive img03" src="http://i.bellahermosa.com/wp-content/uploads/2011/11/comida-no-saludable.jpg"/>
-	     </div>
-	  </div>     
+<?php
+$i = 0;
+foreach ($producto->imagenes as $imagen) {
+   $i = $i + 1;
+   if ($i == 1) {
+		print '
+		<div class="row">
+		  <div class="col-lg-12">
+		     <img class="img-responsive img02" src="'.$imagen->imagen.'"/>
+		  </div>
+		</div>  
+		<div class="col-lg-3">
+		  <img class="img-responsive img03" src="'.$imagen->imagen.'"/>
+		</div>
+		<div class="row">';}
+	else {	  
+		print '  
+		<div class="col-lg-3">
+		  <img class="img-responsive img03" src="'.$imagen->imagen.'"/>
+		</div>';
+	};
+};
+?>
+		</div>   
    </div>
 	<div class="col-lg-7">
 		<div class="row">
