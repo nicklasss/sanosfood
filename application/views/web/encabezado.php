@@ -79,26 +79,20 @@
 	            	<img src="https://s3.amazonaws.com/sanosfood/img/044.jpg" height="35">
 	            </div>
 	        </div>
-	        <div class="navbar-collapse collapse">
-	            <ul class="nav navbar-nav">
-	                <li><a href="#">Item1</a></li>
-	                <li class="divider-vertical"></li>
-	                <li><a href="#about">Item2</a></li>
-	                <li class="divider-vertical"></li>
-	                <li><a href="#contact">Item3</a></li>
-	                <li class="divider-vertical"></li>
-	                <li><a href="#contact">Item4</a></li>
-	                <li class="divider-vertical"></li>
-	                <li><a href="#contact">Item</a></li>
-	                <li class="divider-vertical"></li>
-	                <li><a href="#contact">Item6</a></li>
-	                <li class="divider-vertical"></li>
-	                <li><a href="#contact">Item7</a></li>
-	            </ul>
-	        </div>
+	        <form class="navbar-form navbar-left" role="search">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search for...">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</div>
+			</form>
+			 <ul class="nav navbar-nav navbar-right">
+        		<li><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>0</a></li>
+			</ul>
 	    </div>
 	</div>
-    <div class="navbar navbar-default navbar-static-top">
+    <div class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-nav">
