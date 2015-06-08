@@ -1,6 +1,4 @@
 
-</div> <!-- /container -->
-
 <!---------------------------------------------------------------IMAGEN SUPERIOR -->
 <div class="row baner01">
    <div class="container">
@@ -91,7 +89,7 @@ foreach ($productos as $producto) {
                   </div>
                   <div class="row">
                      <div class="col-lg-12 text-right">
-                        <button type="button" class="btn-verdetalle btn-xs btn-success" data-id="'.$producto->id.'">Ver Detalles</button>
+                        <button type="button" class="btn btn-verdetalle btn-xs btn-success" data-id="'.$producto->id.'">Ver Detalles</button>
                      </div>
                   </div>
                </div>
@@ -116,8 +114,6 @@ foreach ($productos as $producto) {
       </div> 
    </div> <!-- /container -->
 </div> 
-
-<div class="container">
 
 <!------------------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">

@@ -1,3 +1,4 @@
+<div class="container">
 
 <!---------------------------------------------------------------PRODUCTOS -->
 <!--<div class="row" style="background: #cccccc;">   -->
@@ -76,24 +77,7 @@ foreach ($productos as $producto) {
 }
 ?>
 </div>  
-
-
 </div> <!-- /container -->
-
-<!---------------------------------------------------------------BANER 4 -->
-<div class="row baner04">
-   <div class="container">
-      <div class="col-lg-8 col-lg-offset-2 text-center">
-         <div class="textos01">
-            <h1><strong>LOREM IPSUM</strong></h1>
-            <h2>dolor sit awet, consectetur adipising elit,</h2>
-            <h2>sed do eiuswod tempor incididuut ut.</h2>
-         </div>
-      </div> 
-   </div> <!-- /container -->
-</div> 
-
-<div class="container">
 
 <!------------------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
