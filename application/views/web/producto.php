@@ -1,3 +1,4 @@
+
 <!---------------------------------------------------------------PRODUCTO -->
 <div class="row baner06">
 	<div class="col-lg-5" align="center">
@@ -5,6 +6,7 @@
 $i = 0;
 foreach ($producto->imagenes as $imagen) {
    $i = $i + 1;
+   if ($i > 4) {break;}
    if ($i == 1) {
 		print '
 		<div class="row">
@@ -12,15 +14,15 @@ foreach ($producto->imagenes as $imagen) {
 		     <img class="img-responsive img02" id="vistagrande" src="'.$imagen->imagen.'"/>
 		  </div>
 		</div>  
-		<div class="col-lg-3">
-		  <img class="img-responsive img03" id="vistapequeña'.$i.'"  src="'.$imagen->imagen.'"/>
-		</div>
-		<div class="row">';}
+		<div class="row">
+			<div class="col-lg-3">
+			  <img class="img03" onclick="reemplazaimagen('.$i.')" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/>
+			</div>';}
 	else {	  
 		print '  
-		<div class="col-lg-3">
-		  <img class="img-responsive img03" id="vistapequeña'.$i.'"  src="'.$imagen->imagen.'"/>
-		</div>';
+			<div class="col-lg-3">
+			  <img class="img-responsive img03" onclick="reemplazaimagen('.$i.')" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/>
+			</div>';
 	};
 };
 ?>
@@ -81,12 +83,12 @@ foreach ($producto->imagenes as $imagen) {
 
 <!------------------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
-    $(document).ready(function(){
 
-   $('*').on('click','.btn-verdetalle',function(event){
-alert ("entra por aqui");
-      id = $(event.target).attr("data-id");
-      window.location="<?php print base_url();?>web/producto/"+id+")";
-   });
+function reemplazaimagen(i) {
+	urlimagen = $("#imgsmall").url();
+	alert ("nada");
+
+
+
 }
 </script>

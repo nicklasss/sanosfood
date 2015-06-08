@@ -128,5 +128,5 @@ foreach ($productos as $producto) {
       id = $(event.target).attr("data-id");
       window.location="<?php print base_url();?>web/producto/"+id+")";
    });
-}
+})
 </script>
