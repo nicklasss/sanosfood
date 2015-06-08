@@ -13,7 +13,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <!--
-	<title><?php print @$pregunta->titulo;?></title>  
+	<title><?php print @$encabezado->titulo;?></title>  
 -->
 		
 	<!-- Fonts -->
@@ -23,8 +23,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 <!--
-	<meta name="description" content="<?php print @$pregunta->descripcion; ?>">
-	<meta name="keywords" content="<?php print @$pregunta->metakeywords;?>">
+	<meta name="description" content="<?php print @$encabezado->descripcion; ?>">
+	<meta name="keywords" content="<?php print @$encabezado->metakeywords;?>">
 -->
 
 	<meta name="robots" content="INDEX,FOLLOW" />
@@ -32,74 +32,105 @@
 	<link rel="canonical" href="http://www.1doc3.com/" />
 	<link rel="alternate" href="http://www.1doc3.com/" hreflang="es-co" />
 
-	<link rel="icon" href="https://s3.amazonaws.com/1doc3/img/favicon.png" type="image/x-icon" />
-	<link rel="shortcut icon" href="https://s3.amazonaws.com/1doc3/img/favicon.png">
+	<link rel="icon" href="" type="image/x-icon" />
+	<link rel="shortcut icon" href="">
 
-	<a href="https://plus.google.com/102789918912607192339" rel="publisher"></a>
+	<a href="https://plus.google.com/g+" rel="publisher"></a>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<meta name="author" content="sanosfoods">
-	<meta name="msvalidate.01" content="4559AF8A1303FF6B1A5841E03D85A1C5" />
 
 	<meta property="og:url" content="<?php print base_url();?>" />
 	<meta property="og:type" content="website"/>
-	<meta property="og:image" content="https://s3.amazonaws.com/1doc3/img/logo-fb.png"/>
-	<meta property="og:title" content="1DOC3 | Haz preguntas anónimas de salud y recibe respuestas de médicos especialistas."/>
-	<meta property="og:site_name" content="1DOC3"/>
-	<meta property="og:description" content="Ingresa a 1doc3 y encuentra la mejor orientación médica en la web en español. Haz tus preguntas anónimas de temas médicos y recibe respuestas por médicos especialistas reales y totalmente validados. Información médica confiable a tu alcance." />
-	<meta property="fb:app_id" content="1440239009569539" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content=""/>
+	<meta property="og:site_name" content="Sanosfoods"/>
+	<meta property="og:description" content="" />
+	<meta property="fb:app_id" content="" />
 
-	<meta property="twitter:account_id" content="2364242874" />
+	<meta property="twitter:account_id" content="" />
 	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="1DOC3">
-	<meta name="twitter:description" content="Haz preguntas anónimas de salud y recibe respuestas de médicos especialistas.">
-	<meta name="twitter:url" content="http://www.1doc3.com/">
-	<meta name="twitter:site" content="@doctor1doc3">
-	<meta name="twitter:image" content="https://s3.amazonaws.com/1doc3/img/logo-fb.png">
-	<meta name="twitter:domain" content="www.1doc3.com">
+	<meta name="twitter:title" content="Sanosfoods">
+	<meta name="twitter:description" content="">
+	<meta name="twitter:url" content="http://www.sanosfoods.com/">
+	<meta name="twitter:site" content="">
+	<meta name="twitter:image" content="">
+	<meta name="twitter:domain" content="www.sanosfoods.com">
 
 	<link rel="stylesheet" href="<?php print base_url();?>css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?php print base_url();?>css/main.css">
-<!--	<script type="text/javascript" src="<?php print base_url();?>js/modernizr.js"></script>  -->
+	<script type="text/javascript" src="<?php print base_url();?>js/modernizr.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 
 </head>
 <body>
+<div id="wrap">
+	<div class="navbar navbar-default navbar-fixed-top">
+	    <div class="container">
 
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="<?php print base_url().'admin/productos/Todos';?>">SanosFoods</a>
+	        <div class="navbar-header">
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+	            <div class="navbar-brand logo">
+	            	<img src="https://s3.amazonaws.com/sanosfood/img/044.jpg" height="35">
+	            </div>
+	        </div>
+	        <div class="navbar-collapse collapse">
+	            <ul class="nav navbar-nav">
+	                <li><a href="#">Item1</a></li>
+	                <li class="divider-vertical"></li>
+	                <li><a href="#about">Item2</a></li>
+	                <li class="divider-vertical"></li>
+	                <li><a href="#contact">Item3</a></li>
+	                <li class="divider-vertical"></li>
+	                <li><a href="#contact">Item4</a></li>
+	                <li class="divider-vertical"></li>
+	                <li><a href="#contact">Item</a></li>
+	                <li class="divider-vertical"></li>
+	                <li><a href="#contact">Item6</a></li>
+	                <li class="divider-vertical"></li>
+	                <li><a href="#contact">Item7</a></li>
+	            </ul>
+	        </div>
+	    </div>
+	</div>
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-nav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse main-nav">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">it1d</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#about">it2d</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#contact">it3d</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#contact">it4d</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#contact">it5d</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#contact">it6d</a></li>
+                    <li class="divider-vertical"></li>
+                    <li><a href="#contact">it7d</a></li>
+
+                </ul>
+            </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="<?php print base_url().'web/home';?>">Home</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Productos <span class="caret"></span></a>
-            </li>
+    </div>
+</div>
 
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Usuarios <span class="caret"></span></a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pedidos <span class="caret"></span></a>
-            </li>
-            <li><a href="#">Características</a></li>
-            <li><a href="#">Categorías</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Estados <span class="caret"></span></a>
-            </li>
-            <li><a href="#">Marcas</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+
+
 
 <div class="container">
  
