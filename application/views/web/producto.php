@@ -1,4 +1,6 @@
 
+ 
+ 
 <!---------------------------------------------------------------PRODUCTO -->
 <div class="row baner06">
 	<div class="col-lg-5" align="center">
@@ -11,12 +13,12 @@ foreach ($producto->imagenes as $imagen) {
 		print '
 		<div class="row">
 		  <div class="col-lg-12">
-		     <img class="img-responsive img02" id="vistagrande" src="'.$imagen->imagen.'"/>
+		     <img class="img-responsive img02" id="imggrande" src="'.$imagen->imagen.'"/>
 		  </div>
 		</div>  
 		<div class="row">
 			<div class="col-lg-3">
-			  <img class="img03" onclick="reemplazaimagen('.$i.')" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/>
+			  <img class="img-responsive img03" onclick="reemplazaimagen('.$i.')" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/>
 			</div>';}
 	else {	  
 		print '  
@@ -84,11 +86,41 @@ foreach ($producto->imagenes as $imagen) {
 <!------------------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
 
+
+//$(document).ready(function() { 
+//
+//	$('.container').on('click','#imgsmall1',function(event){
+//		eestado = $('#imgsmall1').attr("src");
+//		alert (eestado);
+//		});
+//});
+
+
+
+
+
+
+
+
+
+
 function reemplazaimagen(i) {
-	urlimagen = $("#imgsmall").url();
-	alert ("nada");
-
-
+	switch(i) {
+		case 1:
+			urlimg = $('#imgsmall1').attr("src");
+			break;
+		case 2:
+			urlimg = $('#imgsmall2').attr("src");
+			break;
+		case 3:
+			urlimg = $('#imgsmall3').attr("src");
+			break;
+		case 4:
+			urlimg = $('#imgsmall4').attr("src");
+			break;
+	}
+	$('#imggrande').attr("src", urlimg);
 
 }
+
 </script>
