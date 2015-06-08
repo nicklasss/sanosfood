@@ -86,13 +86,6 @@ foreach ($producto->imagenes as $imagen) {
 <!------------------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
 
-//$(document).ready(function() { 
-//
-//	$('.container').on('click','#imgsmall1',function(event){
-//		eestado = $('#imgsmall1').attr("src");
-//		alert (eestado);
-//		});
-//});
 
 function reemplazaimagen(i) {
 	switch(i) {

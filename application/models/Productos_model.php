@@ -12,16 +12,13 @@ class Productos_model extends CI_Model {
         parent::__construct();
     }
 
-    function crear( $nombre = null,
-                    $descripcion = null,
-                    $ingredientes = null){
-
+//--------------------------------crea un producto nuevo
+    function crear( $nombre = null, $descripcion = null, $ingredientes = null){
         if(strlen($nombre) < 5){
             $data['res'] = 'bad';
             $data['msj'] = 'El nombre del producto debe tener al menos 5 caracteres';
             return $data;
         }
-        
         $this->db->where('nombre', $nombre);
         if($this->db->count_all_results('productos')>0){
             $data['res'] = 'bad';
@@ -74,9 +71,74 @@ class Productos_model extends CI_Model {
         return $data;
    }
 
+//--------------------------------devuelve todos los productos con un estado especifico
+    function buscarProductos($quebuscar = null, $cant = 10, $pag = 1, $cat = null, $car = null){
+        $data['cant'] = $this->db->count_all_results('productos');
+
+        $palabras = preg_split("/ (.| ) /", $quebuscar);
+        $against = "";
+        foreach ($palabras as $palabra) {
+            $against .= $palabra.'* ';
+        }
+        $query = $this->db->query(" SELECT * FROM productos
+                                    WHERE MATCH(nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE);");
+    
+        foreach ($query->result() as $row) {
+            $this->db->select('imagen');
+            $this->db->where('idproducto', $row->id);
+            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
+        }
+        $data['productos'] = $query->result();
+        return $query->result();
+
+   }
+
+//--------------------------------Listar
+    function listar($cant = 10, $pag = 1, $cat = null, $car = null){
+        $data['cant'] = $this->db->count_all_results('productos');
+        if($cat!= null){
+                }
+
+        if($car != null){
+                }
+
+        $this->db->from('productos');
+        $this->db->limit($cant,$cant*($pag-1));
+        $query = $this->db->get();
+        foreach ($query->result() as $row) {
+            $this->db->select('nombre');
+            $this->db->where('id', $row->idestadoproducto);
+            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
+            $this->db->select('imagen');
+            $this->db->where('idproducto', $row->id);
+            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
+        }
+        $data['productos'] = $query->result();
+
+        return $data;
+    }
+
+//--------------------------------Obtiene un producto
+    function producto($id = null){
+        $this->db->where('id', $id);
+        $query = $this->db->get('productos', 1, 0);
+        $producto = $query->row();
+        $this->db->select('nombre');
+        $this->db->where('id', $producto->idmarca);
+        $producto->marca = $this->db->get('marcas', 1, 0)->row()->nombre;
+        $this->db->where('idProducto', $producto->id);
+        $producto->caracteristicas = $this->db->get('pro_car')->result();
+        $this->db->where('idProducto', $producto->id);
+        $producto->categorias = $this->db->get('pro_cat')->result();
+
+        $this->db->where('idproducto', $producto->id);
+        $producto->imagenes = $this->db->get('imagenes')->result();
+        return $producto;
+    }
+    
+
 //--------------------------------Valida campos de Producto con estado diferente de DISPONIBLE
     function editar($dataproducto = null){
-
         if(json_decode($dataproducto) == null && json_last_error() !== JSON_ERROR_NONE){
             $data['res'] = 'bad';
             $data['msj'] = 'Ha ocurrido un error enviando los datos del producto.';
@@ -187,7 +249,6 @@ class Productos_model extends CI_Model {
             $data['msj'] = 'No se encuentra el estado inactivo en estadosproductos';
             $data['res'] = 'bad'; return $data; 
         }
-
         $idinactivo = $query->row()->id;
 
         $this->db->select('id');
@@ -241,10 +302,8 @@ class Productos_model extends CI_Model {
 
     }
 
-
 //--------------------------------Valida campos de Producto con estado DISPONIBLE
     function editarestado( $id = null){
-
         $this->db->where('id', $id);
         $query = $this->db->get('productos', 1, 0);
         $producto = $query->row();
@@ -324,51 +383,7 @@ class Productos_model extends CI_Model {
         $data['res'] = 'ok'; 
         return $data; 
     }
-
-
-//--------------------------------Listar
-    function listar($cant = 10, $pag = 1, $cat = null, $car = null){
-        $data['cant'] = $this->db->count_all_results('productos');
-    	if($cat!= null){
-    			}
-
-		if($car != null){
-				}
-
-		$this->db->from('productos');
-		$this->db->limit($cant,$cant*($pag-1));
-		$query = $this->db->get();
-        foreach ($query->result() as $row) {
-            $this->db->select('nombre');
-            $this->db->where('id', $row->idestadoproducto);
-            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
-            $this->db->select('imagen');
-            $this->db->where('idproducto', $row->id);
-            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
-        }
-        $data['productos'] = $query->result();
-
-		return $data;
-    }
-
-//--------------------------------Obtiene un producto
-    function producto($id = null){
-    	$this->db->where('id', $id);
-    	$query = $this->db->get('productos', 1, 0);
-        $producto = $query->row();
-//        $this->db->select('nombre');
-//        $this->db->where('id', $producto->idmarca);
-//        $producto->marca = $this->db->get('marcas', 1, 0)->row()->nombre;
-        $this->db->where('idProducto', $producto->id);
-        $producto->caracteristicas = $this->db->get('pro_car')->result();
-        $this->db->where('idProducto', $producto->id);
-        $producto->categorias = $this->db->get('pro_cat')->result();
-
-        $this->db->where('idproducto', $producto->id);
-        $producto->imagenes = $this->db->get('imagenes')->result();
-        return $producto;
-    }
-    
+//--------------------------------reemplaza caracteres raros
     function buscar($query=null){
         $unwanted_array = array(    'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
                             'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
