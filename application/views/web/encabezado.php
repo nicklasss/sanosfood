@@ -83,7 +83,7 @@
 				<div class="input-group">
 					<input type="text" class="form-control" placeholder="Search for...">
 					<span class="input-group-btn">
-						<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+						<button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
 					</span>
 				</div>
 			</form>
@@ -122,9 +122,4 @@
         </div>
     </div>
 </div>
-
-
-
-
-<div class="container">
  
