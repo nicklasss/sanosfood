@@ -55,8 +55,8 @@ foreach ($producto->imagenes as $imagen) {
 		   </div>
 	   </div>
 		<div class="row">
-		   <div class="col-lg-12" align="left">
-		      <h4><strong>input de cantidad pedida</strong></h4>
+		   <div class="col-lg-4" align="left">
+		      <h4><strong><input type="number" name="cantidad" min="1" max="<?php print $producto->existencias;?>" ></strong></h4>
 		   </div>
 	   </div>
 		<div class="row">
@@ -86,7 +86,6 @@ foreach ($producto->imagenes as $imagen) {
 <!------------------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
 
-
 //$(document).ready(function() { 
 //
 //	$('.container').on('click','#imgsmall1',function(event){
@@ -94,15 +93,6 @@ foreach ($producto->imagenes as $imagen) {
 //		alert (eestado);
 //		});
 //});
-
-
-
-
-
-
-
-
-
 
 function reemplazaimagen(i) {
 	switch(i) {
@@ -120,7 +110,6 @@ function reemplazaimagen(i) {
 			break;
 	}
 	$('#imggrande').attr("src", urlimg);
-
 }
 
 </script>

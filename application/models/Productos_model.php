@@ -342,27 +342,13 @@ class Productos_model extends CI_Model {
             $this->db->select('nombre');
             $this->db->where('id', $row->idestadoproducto);
             $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
-        }
-        $data['productos'] = $query->result();
-		return $data;
-    }
-
-//--------------------------------Listar
-    function listar8(){
-        $this->db->from('productos');
-        $this->db->limit(8,0);
-        $query = $this->db->get();
-
-
-        foreach ($query->result() as $row) {
             $this->db->select('imagen');
             $this->db->where('idproducto', $row->id);
             $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
         }
-
-
         $data['productos'] = $query->result();
-        return $data;
+
+		return $data;
     }
 
 //--------------------------------Obtiene un producto
