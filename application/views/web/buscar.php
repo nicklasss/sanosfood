@@ -3,36 +3,46 @@
 <!---------------------------------------------------------------PRODUCTOS -->
 <!--<div class="row" style="background: #cccccc;">   -->
 <div class="row">
-   <div class="col-lg-4">
-        <div class="panel panel-default">
-			<div class="panel-heading text-center"><h5>CATEGORIAS</h5></div>
-			<table class="table table-condensed table-striped">
-				<tbody>
-
-
-<?php 
-foreach ($categorias as $categoria) {
-	print '
-				<tr>
-					<td>
-     					<label  class= "checkbox"><input  type= "checkbox" data-valor="0"></label> 
-					</td>
-				<th scope="row">'.$categoria->nombre.'</th>
-				</tr>';
-}
-?>
-
-				</tbody>
-			</table> <!-- tabla--> 
-		</div> <!-- Panel-->
+   <div class="col-lg-2">
+      <div class="row">
+	      <div class="panel panel-default">
+				<div class="panel-heading text-center"><h5><strong>CATEGORIAS</strong></h5></div>
+				<table class="table table-condensed table-striped">
+					<tbody>
+					<?php 
+					foreach ($categorias as $categoria) {
+						print '
+						<tr>
+							<td><input  type= "checkbox" data-valor="0"></td>
+							<td>'.$categoria->nombre.'</td>
+						</tr>';
+					}
+					?>
+					</tbody>
+				</table> <!-- tabla--> 
+			</div> <!-- Panel-->
+		</div>
+      <div class="row">
+	      <div class="panel panel-default">
+				<div class="panel-heading text-center"><h5><strong>MARCAS</strong></h5></div>
+				<table class="table table-condensed table-striped">
+					<tbody>
+					<?php 
+					foreach ($marcas as $marca) {
+						print '
+						<tr>
+							<td><input  type= "checkbox" data-valor="0"></td>
+							<td>'.$marca->nombre.'</td>
+						</tr>';
+					}
+					?>
+					</tbody>
+				</table> <!-- tabla--> 
+			</div> <!-- Panel-->
+		</div>
 	</div>
-
-
-
-
-   </div>
-
-
+   <div class="col-lg-10">
+   	<div class="row">
 
 
 <?php
@@ -41,11 +51,14 @@ foreach ($productos as $producto) {
    $i = $i + 1;
    if ($i == 1 || ($i % 4) == 0) {
       if (($i % 4) == 0) {
-         print '</div>';
+         print '
+         </div>';
       }
-      print '<div class="row">';
+	      print '
+	      <div class="row">';
    } 
-  print '<div class="col-lg-3" align="center">
+			print '
+  			<div class="col-lg-4" align="center">
             <div class="row">
                <div class="col-lg-9 col-lg-offset-2">
                   <div class="row">
@@ -68,7 +81,7 @@ foreach ($productos as $producto) {
                   </div>
                   <div class="row">
                      <div class="col-lg-12 text-right">
-                        <button type="button" class="btn-verdetalle btn-xs btn-success" data-id="'.$producto->id.'">Ver Detalles</button>
+                        <button type="button" class="btn btn-verdetalle btn-xs btn-success" data-id="'.$producto->id.'">Ver Detalles</button>
                      </div>
                   </div>
                </div>
@@ -76,7 +89,9 @@ foreach ($productos as $producto) {
          </div> ';
 }
 ?>
-</div>  
+		</div>
+	</div>  
+</div>
 </div> <!-- /container -->
 
 <!------------------------------------------------------------------------------------------------------------------------------------> 
@@ -84,9 +99,8 @@ foreach ($productos as $producto) {
     $(document).ready(function(){
 
    $('*').on('click','.btn-verdetalle',function(event){
-      alert ("entra por aqui");
       id = $(event.target).attr("data-id");
-      window.location="<?php print base_url();?>web/producto/"+id+")";
+      window.location="<?php print base_url();?>web/producto/"+id;
    });
 })
 </script>
