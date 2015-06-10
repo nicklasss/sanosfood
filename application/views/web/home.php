@@ -120,9 +120,8 @@ foreach ($productos as $producto) {
     $(document).ready(function(){
 
    $('*').on('click','.btn-verdetalle',function(event){
-      alert ("entra por aqui");
       id = $(event.target).attr("data-id");
-      window.location="<?php print base_url();?>web/producto/"+id+")";
+      window.location="<?php print base_url();?>web/producto/"+id;
    });
 })
 </script>

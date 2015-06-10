@@ -97,10 +97,11 @@ class Productos_model extends CI_Model {
     function listar($cant = 10, $pag = 1, $cat = null, $car = null){
         $data['cant'] = $this->db->count_all_results('productos');
         if($cat!= null){
-                }
+            $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p WHERE (pc.idcategoria = $cat and pc.idproducto = p.id);");
+        }
 
         if($car != null){
-                }
+          }
 
         $this->db->from('productos');
         $this->db->limit($cant,$cant*($pag-1));
@@ -137,6 +138,23 @@ class Productos_model extends CI_Model {
     }
     
 
+//--------------------------------Listar
+    function listarxCategoria($idcategoria = null){
+        $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p WHERE (pc.idcategoria = $idcategoria and pc.idproducto = p.id);");
+
+//        foreach ($query->result() as $row) {
+//            $this->db->select('imagen');
+//            $this->db->where('idproducto', $row->id);
+//            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
+//        }
+
+//        $query = $this->db->get('productos', 4, 0);
+
+        $data['productos'] = $query->result();
+        $data['res'] = 'ok'; 
+
+        return $data;
+    }
 //--------------------------------Valida campos de Producto con estado diferente de DISPONIBLE
     function editar($dataproducto = null){
         if(json_decode($dataproducto) == null && json_last_error() !== JSON_ERROR_NONE){

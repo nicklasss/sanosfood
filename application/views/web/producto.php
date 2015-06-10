@@ -17,12 +17,12 @@ foreach ($producto->imagenes as $imagen) {
 		</div>  
 		<div class="row">
 			<div class="col-lg-3">
-			  <img class="img-responsive img03" onclick="reemplazaimagen('.$i.')" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/>
+				<a href="javascript:void(0)"><img class="img-responsive img03 imgsmall" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/></a>
 			</div>';}
 	else {	  
 		print '  
 			<div class="col-lg-3">
-			  <img class="img-responsive img03" onclick="reemplazaimagen('.$i.')" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/>
+				<a href="javascript:void(0)"><img class="img-responsive img03 imgsmall" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/></a>
 			</div>';
 	};
 };
@@ -86,23 +86,26 @@ foreach ($producto->imagenes as $imagen) {
 <!------------------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
 
+$(document).ready(function(){
 
-function reemplazaimagen(i) {
-	switch(i) {
-		case 1:
-			urlimg = $('#imgsmall1').attr("src");
-			break;
-		case 2:
-			urlimg = $('#imgsmall2').attr("src");
-			break;
-		case 3:
-			urlimg = $('#imgsmall3').attr("src");
-			break;
-		case 4:
-			urlimg = $('#imgsmall4').attr("src");
-			break;
-	}
-	$('#imggrande').attr("src", urlimg);
-}
+   $('.container').on('click','.imgsmall',function(event){
+      i = $(event.target).attr("data-id");
+		switch(i) {
+			case "1":
+				urlimg = $('#imgsmall1').attr("src");
+				break;
+			case "2":
+				urlimg = $('#imgsmall2').attr("src");
+				break;
+			case "3":
+				urlimg = $('#imgsmall3').attr("src");
+				break;
+			case "4":
+				urlimg = $('#imgsmall4').attr("src");
+				break;
+		}
+		$('#imggrande').attr("src", urlimg);
+   });
+})
 
 </script>

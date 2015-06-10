@@ -36,6 +36,12 @@ class Producto extends CI_Controller {
 		print json_encode($this->Productos_model->editar($dataproducto));
 	}
 
+	public function listarProductosxCategoria(){
+		$idcategoria = @$this->input->post('idcategoria');
+		$this->load->model('Productos_model');
+		print json_encode($this->Productos_model->listarxCategoria($idcategoria));
+	}
+
 	public function editarestado(){
 		if(!$this->session->userdata('logeado_admin')){
 			print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));
