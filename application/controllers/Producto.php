@@ -19,14 +19,16 @@ class Producto extends CI_Controller {
 	public function listar(){
 		$cant = @$this->input->post('cant');
 		$pagina = @$this->input->post('pagina');
+		$idcategoria = @$this->input->post('idcategoria');
+		$idmarca = @$this->input->post('idmarca');
 		$this->load->model('Productos_model');
-		$data = $this->Productos_model->listar($cant,$pagina);
+		$data = $this->Productos_model->listar($cant, $pagina, $idcategoria, $idmarca);
 		if(count($data['productos'])==0){
 			print json_encode(array('res'=>'bad','msj'=>'Sin resultados'));exit();
 		}
 		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$cant));exit();
-
 	}
+
 	public function editar(){
 		if(!$this->session->userdata('logeado_admin')){
 			print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));
@@ -42,6 +44,12 @@ class Producto extends CI_Controller {
 		print json_encode($this->Productos_model->listarxCategoria($idcategoria));
 	}
 
+	public function listarProductosxMarca(){
+		$idmarca = @$this->input->post('idmarca');
+		$this->load->model('Productos_model');
+		print json_encode($this->Productos_model->listar(2,1,,$idmarca));
+	}
+
 	public function editarestado(){
 		if(!$this->session->userdata('logeado_admin')){
 			print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));
@@ -50,6 +58,7 @@ class Producto extends CI_Controller {
 		$this->load->model('Productos_model');
 		print json_encode($this->Productos_model->editarestado($id));
 	}
+
 	public function agregarfoto(){
 		if(!$this->session->userdata('logeado_admin')){
 			print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));

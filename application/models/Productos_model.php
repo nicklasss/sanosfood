@@ -69,12 +69,11 @@ class Productos_model extends CI_Model {
         }
         $data['productos'] = $query->result();
         return $data;
-   }
+    }
 
 //--------------------------------devuelve todos los productos con un estado especifico
     function buscarProductos($quebuscar = null, $cant = 10, $pag = 1, $cat = null, $car = null){
         $data['cant'] = $this->db->count_all_results('productos');
-
         $palabras = preg_split("/ (.| ) /", $quebuscar);
         $against = "";
         foreach ($palabras as $palabra) {
@@ -90,33 +89,6 @@ class Productos_model extends CI_Model {
         }
         $data['productos'] = $query->result();
         return $query->result();
-
-   }
-
-//--------------------------------Listar
-    function listar($cant = 10, $pag = 1, $cat = null, $car = null){
-        $data['cant'] = $this->db->count_all_results('productos');
-        if($cat!= null){
-            $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p WHERE (pc.idcategoria = $cat and pc.idproducto = p.id);");
-        }
-
-        if($car != null){
-          }
-
-        $this->db->from('productos');
-        $this->db->limit($cant,$cant*($pag-1));
-        $query = $this->db->get();
-        foreach ($query->result() as $row) {
-            $this->db->select('nombre');
-            $this->db->where('id', $row->idestadoproducto);
-            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
-            $this->db->select('imagen');
-            $this->db->where('idproducto', $row->id);
-            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
-        }
-        $data['productos'] = $query->result();
-
-        return $data;
     }
 
 //--------------------------------Obtiene un producto
@@ -139,22 +111,102 @@ class Productos_model extends CI_Model {
     
 
 //--------------------------------Listar
+    function listar($cant = 10, $pag = 1, $cat = null, $mar = null){
+        $data['cant'] = $this->db->count_all_results('productos');
+        if($cat!= null){
+        }
+
+        if($mar != null){
+          }
+
+        $this->db->from('productos');
+        $this->db->limit($cant,$cant*($pag-1));
+        $query = $this->db->get();
+        foreach ($query->result() as $row) {
+            $this->db->select('nombre');
+            $this->db->where('id', $row->idestadoproducto);
+            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
+            $this->db->select('imagen');
+            $this->db->where('idproducto', $row->id);
+            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
+        }
+        $data['productos'] = $query->result();
+
+        return $data;
+    }
+
+//--------------------------------Listar
+/*    function listar($cant = 10, $pag = 1, $cat = null, $mar = null){
+        $data['cant'] = $this->db->count_all_results('productos');
+        if ($mar != null){ 
+            $cant = $this->db->count_all_results('productos');
+        }
+        if($cat!= null && $mar != null){
+            $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
+                                        WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.idmarca = $mar
+                                        LIMIT $cant OFFSET $cant*($pag - 1);");
+        } else { 
+            if($mar != null){
+                $query = $this->db->query(" SELECT * FROM productos AS p WHERE p.idmarca = $mar
+                                            LIMIT $cant OFFSET $cant*($pag - 1);");
+            } else { 
+                if($cat != null){
+                    $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
+                                        WHERE pc.idcategoria = $cat and pc.idproducto = p.id 
+                                        LIMIT $cant OFFSET $cant*($pag - 1);");
+                } else {
+                    $this->db->from('productos');
+                    $this->db->limit($cant, $cant*($pag - 1));
+                    $query = $this->db->get();
+                }
+            } 
+        }
+
+        foreach ($query->result() as $row) {
+            $this->db->select('nombre');
+            $this->db->where('id', $row->idestadoproducto);
+            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
+            $this->db->select('imagen');
+            $this->db->where('idproducto', $row->id);
+            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
+        }
+        $data['productos'] = $query->result();
+
+        return $data;
+    }
+*/
+//--------------------------------listarxCategoria
     function listarxCategoria($idcategoria = null){
         $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p WHERE (pc.idcategoria = $idcategoria and pc.idproducto = p.id);");
 
-//        foreach ($query->result() as $row) {
-//            $this->db->select('imagen');
-//            $this->db->where('idproducto', $row->id);
-//            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
-//        }
-
-//        $query = $this->db->get('productos', 4, 0);
+        foreach ($query->result() as $row) {
+            $this->db->select('imagen');
+            $this->db->where('idproducto', $row->id);
+            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
+        }
 
         $data['productos'] = $query->result();
         $data['res'] = 'ok'; 
 
         return $data;
     }
+
+//--------------------------------listarxMarca
+    function listarxMarca($idmarca = null){
+        $query = $this->db->query(" SELECT * FROM productos AS p WHERE (p.idmarca = $idmarca);");
+
+        foreach ($query->result() as $row) {
+            $this->db->select('imagen');
+            $this->db->where('idproducto', $row->id);
+            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
+        }
+
+        $data['productos'] = $query->result();
+        $data['res'] = 'ok'; 
+
+        return $data;
+    }
+
 //--------------------------------Valida campos de Producto con estado diferente de DISPONIBLE
     function editar($dataproducto = null){
         if(json_decode($dataproducto) == null && json_last_error() !== JSON_ERROR_NONE){
