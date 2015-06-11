@@ -47,7 +47,7 @@ class Producto extends CI_Controller {
 	public function listarProductosxMarca(){
 		$idmarca = @$this->input->post('idmarca');
 		$this->load->model('Productos_model');
-		print json_encode($this->Productos_model->listar(2,1,,$idmarca));
+		print json_encode($this->Productos_model->listar($idmarca));
 	}
 
 	public function editarestado(){
