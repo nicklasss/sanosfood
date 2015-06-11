@@ -109,51 +109,24 @@ class Productos_model extends CI_Model {
         return $producto;
     }
     
-
 //--------------------------------Listar
     function listar($cant = 10, $pag = 1, $cat = null, $mar = null){
         $data['cant'] = $this->db->count_all_results('productos');
-        if($cat!= null){
-        }
-
-        if($mar != null){
-          }
-
-        $this->db->from('productos');
-        $this->db->limit($cant,$cant*($pag-1));
-        $query = $this->db->get();
-        foreach ($query->result() as $row) {
-            $this->db->select('nombre');
-            $this->db->where('id', $row->idestadoproducto);
-            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
-            $this->db->select('imagen');
-            $this->db->where('idproducto', $row->id);
-            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
-        }
-        $data['productos'] = $query->result();
-
-        return $data;
-    }
-
-//--------------------------------Listar
-/*    function listar($cant = 10, $pag = 1, $cat = null, $mar = null){
-        $data['cant'] = $this->db->count_all_results('productos');
-        if ($mar != null){ 
-            $cant = $this->db->count_all_results('productos');
-        }
+        
+        $pagina = $cant * ($pag - 1);
         if($cat!= null && $mar != null){
             $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
                                         WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.idmarca = $mar
-                                        LIMIT $cant OFFSET $cant*($pag - 1);");
+                                        LIMIT $cant OFFSET $pagina;");
         } else { 
             if($mar != null){
                 $query = $this->db->query(" SELECT * FROM productos AS p WHERE p.idmarca = $mar
-                                            LIMIT $cant OFFSET $cant*($pag - 1);");
+                                            LIMIT $cant OFFSET $pagina;");
             } else { 
                 if($cat != null){
                     $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
                                         WHERE pc.idcategoria = $cat and pc.idproducto = p.id 
-                                        LIMIT $cant OFFSET $cant*($pag - 1);");
+                                        LIMIT $cant OFFSET $pagina;");
                 } else {
                     $this->db->from('productos');
                     $this->db->limit($cant, $cant*($pag - 1));
@@ -170,37 +143,6 @@ class Productos_model extends CI_Model {
             $this->db->where('idproducto', $row->id);
             $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
         }
-        $data['productos'] = $query->result();
-
-        return $data;
-    }
-*/
-//--------------------------------listarxCategoria
-    function listarxCategoria($idcategoria = null){
-        $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p WHERE (pc.idcategoria = $idcategoria and pc.idproducto = p.id);");
-
-        foreach ($query->result() as $row) {
-            $this->db->select('imagen');
-            $this->db->where('idproducto', $row->id);
-            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
-        }
-
-        $data['productos'] = $query->result();
-        $data['res'] = 'ok'; 
-
-        return $data;
-    }
-
-//--------------------------------listarxMarca
-    function listarxMarca($idmarca = null){
-        $query = $this->db->query(" SELECT * FROM productos AS p WHERE (p.idmarca = $idmarca);");
-
-        foreach ($query->result() as $row) {
-            $this->db->select('imagen');
-            $this->db->where('idproducto', $row->id);
-            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
-        }
-
         $data['productos'] = $query->result();
         $data['res'] = 'ok'; 
 

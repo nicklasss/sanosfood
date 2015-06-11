@@ -133,11 +133,11 @@ function listar(){
             resultado = '';
             for (var i = 0; i < data.productos.length; i++) {
                 resultado += ' <tr role="row">'+
-                                '<td>'+data.productos[i].nombre+'</td>'+
-                                '<td>'+data.productos[i].existencias+'</td>'+
-                                '<td>'+data.productos[i].estado+'</td>'+
-                                '<td>'+data.productos[i].precio+'</td>'+
-                            '   </tr>';
+                    '<td width="40%"><strong><a href="<?php print base_url();?>admin/producto/'+data.productos[i].id+'">'+data.productos[i].nombre+'</a></strong></td>'+
+                    '<td width="20%">'+data.productos[i].existencias+'</td>'+
+                    '<td width="20%">'+data.productos[i].estado+'</td>'+
+                    '<td width="20%">'+data.productos[i].precio+'</td>'+
+                    '</tr>';
                 $("#lista").html(resultado);
             };
             resultado = '';
@@ -173,5 +173,6 @@ function buscar(query){
         alert('Sin resultados')
     })
 }
+
     
 </script>

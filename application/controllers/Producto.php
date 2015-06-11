@@ -35,19 +35,7 @@ class Producto extends CI_Controller {
 		}
 		$dataproducto = @$this->input->post('dataproducto',TRUE);
 		$this->load->model('Productos_model');
-		print json_encode($this->Productos_model->editar($dataproducto));
-	}
-
-	public function listarProductosxCategoria(){
-		$idcategoria = @$this->input->post('idcategoria');
-		$this->load->model('Productos_model');
-		print json_encode($this->Productos_model->listarxCategoria($idcategoria));
-	}
-
-	public function listarProductosxMarca(){
-		$idmarca = @$this->input->post('idmarca');
-		$this->load->model('Productos_model');
-		print json_encode($this->Productos_model->listar($idmarca));
+		print json_encode($this->Productos_model->editar());
 	}
 
 	public function editarestado(){

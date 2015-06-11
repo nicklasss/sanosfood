@@ -108,14 +108,14 @@ $(document).ready(function(){
    $('.container').on('click','.categ',function(event){
       idcategoria = $(event.target).attr("data-id");
 		rta = buscarxcategoria(idcategoria, function(rta){
-			if(!rta) { alert("ha habido un error en la busqueda por categoria"); }
+			if(!rta) {  }
 	   })
 	})
 
    $('.container').on('click','.marca',function(event){
       idmarca = $(event.target).attr("data-id");
 		rta = buscarxmarca(idmarca, function(rta){
-			if(!rta) { alert("ha habido un error en la busqueda por marca"); }
+			if(!rta) {  }
 	   })
    });
 })
@@ -123,11 +123,11 @@ $(document).ready(function(){
 //----------------------------------------------------------------------------------funcion buscarxcategoria
 function buscarxcategoria(idcategoria, callback) {
   $.ajax({                                              
-		url: "<?php print base_url();?>producto/listarProductosxCategoria",
+		url: "<?php print base_url();?>producto/listar",
 		context: document.body,
 		dataType: "json",
 		type: "POST",
-		data: {idcategoria : idcategoria} })
+		data: { cant : 100, pagina : 1, idcategoria : idcategoria} })
    .done(function(data) {                               // respuesta del servidor
 		if(data.res=="ok") {
 			callback(true);
@@ -141,11 +141,11 @@ function buscarxcategoria(idcategoria, callback) {
 //----------------------------------------------------------------------------------funcion buscarxcategoria
 function buscarxmarca(idmarca, callback) {
   $.ajax({                                              
-		url: "<?php print base_url();?>producto/listarProductosxMarca",
+		url: "<?php print base_url();?>producto/listar",
 		context: document.body,
 		dataType: "json",
 		type: "POST",
-		data: {idmarca : idmarca} })
+		data: { cant : 100, pagina : 1, idmarca : idmarca} })
    .done(function(data) {                               // respuesta del servidor
 		if(data.res=="ok") {
 			callback(true);
