@@ -41,11 +41,14 @@ foreach ($estadosproductos as $estado) {
 				    	<div class="editable escondido">
 					  		<button type="button" class="btn btn-xs btn-success btn-guardar btn-editable" data-id="'.$estado->id.'">Guardar</button>
 					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar btn-editable">Cancelar</button>
-				    	</div>
+				    	</div>';
+	if ($estado->id != 1 && $estado->id != 2) {				    	
+		print '
 				    	<div class="mostrable">
 					   		<button type="button" class="btn btn-xs btn-primary btn-editar btn-mostrable"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
 					   		<button type="button" class="btn btn-xs btn-danger btn-eliminar btn-mostrable" data-id="'.$estado->id.'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
-				    	</div>
+				    	</div>';}
+	print '	
 					</td>	
 				</tr>';
 }

@@ -101,10 +101,10 @@ foreach ($productos as $producto) {
 
 
 </div> <!-- /container -->
-
+</div>
 <!---------------------------------------------------------------BANER 4 -->
 <div class="row baner04">
-   <div class="container">
+   <div class="container">  
       <div class="col-lg-8 col-lg-offset-2 text-center">
          <div class="textos01">
             <h1><strong>LOREM IPSUM</strong></h1>

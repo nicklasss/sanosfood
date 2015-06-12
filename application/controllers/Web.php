@@ -8,7 +8,7 @@ class Web extends CI_Controller {
 	{
 		$this->load->view('web/encabezado');
 		$this->load->model('Productos_model');
-		$data = $this->Productos_model->listar(8);
+		$data = $this->Productos_model->listarWeb(8);
 		$this->load->view('web/home',$data,FALSE);
 		$this->load->view('web/piedepagina');
 	}
@@ -46,7 +46,7 @@ class Web extends CI_Controller {
 		$data['marcas'] = $this->Marcas_model->listar();
 		$this->load->model('Categorias_model');
 		$data['categorias'] = $this->Categorias_model->listar();
-		$data['productos'] = $this->Productos_model->buscarProductos($quebuscar);
+		$data['productos'] = $this->Productos_model->buscarProductosWeb($quebuscar);
 		$this->load->view('web/buscar', $data, FALSE); 
 		$this->load->view('web/piedepagina');
 	}

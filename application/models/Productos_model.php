@@ -72,7 +72,7 @@ class Productos_model extends CI_Model {
     }
 
 //--------------------------------devuelve todos los productos con un estado especifico
-    function buscarProductos($quebuscar = null, $cant = 10, $pag = 1, $cat = null, $car = null){
+    function buscarProductosWeb($quebuscar = null, $cant = 10, $pag = 1, $cat = null, $car = null){
         $data['cant'] = $this->db->count_all_results('productos');
         $palabras = preg_split("/ (.| ) /", $quebuscar);
         $against = "";
@@ -80,7 +80,7 @@ class Productos_model extends CI_Model {
             $against .= $palabra.'* ';
         }
         $query = $this->db->query(" SELECT * FROM productos
-                                    WHERE MATCH(nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE);");
+                                    WHERE MATCH(nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1;");
     
         foreach ($query->result() as $row) {
             $this->db->select('imagen');
@@ -99,9 +99,9 @@ class Productos_model extends CI_Model {
         $this->db->select('nombre');
         $this->db->where('id', $producto->idmarca);
         $producto->marca = $this->db->get('marcas', 1, 0)->row()->nombre;
-        $this->db->where('idProducto', $producto->id);
+        $this->db->where('idproducto', $producto->id);
         $producto->caracteristicas = $this->db->get('pro_car')->result();
-        $this->db->where('idProducto', $producto->id);
+        $this->db->where('idproducto', $producto->id);
         $producto->categorias = $this->db->get('pro_cat')->result();
 
         $this->db->where('idproducto', $producto->id);
@@ -109,7 +109,7 @@ class Productos_model extends CI_Model {
         return $producto;
     }
     
-//--------------------------------Listar
+//--------------------------------ListarWeb
     function listar($cant = 10, $pag = 1, $cat = null, $mar = null){
         $data['cant'] = $this->db->count_all_results('productos');
         
@@ -120,8 +120,7 @@ class Productos_model extends CI_Model {
                                         LIMIT $cant OFFSET $pagina;");
         } else { 
             if($mar != null){
-                $query = $this->db->query(" SELECT * FROM productos AS p WHERE p.idmarca = $mar
-                                            LIMIT $cant OFFSET $pagina;");
+                $query = $this->db->query(" SELECT * FROM productos WHERE idmarca = $mar and LIMIT $cant OFFSET $pagina;");
             } else { 
                 if($cat != null){
                     $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
@@ -134,7 +133,45 @@ class Productos_model extends CI_Model {
                 }
             } 
         }
+        foreach ($query->result() as $row) {
+            $this->db->select('nombre');
+            $this->db->where('id', $row->idestadoproducto);
+            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
+            $this->db->select('imagen');
+            $this->db->where('idproducto', $row->id);
+            $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
+        }
+        $data['productos'] = $query->result();
+        $data['res'] = 'ok'; 
 
+        return $data;
+    }
+
+//--------------------------------ListarWeb
+    function listarWeb($cant = 10, $pag = 1, $cat = null, $mar = null){
+        $data['cant'] = $this->db->count_all_results('productos');
+        
+        $pagina = $cant * ($pag - 1);
+        if($cat!= null && $mar != null){
+            $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
+                                        WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.idmarca = $mar and p.idestadoproducto = 1
+                                        LIMIT $cant OFFSET $pagina;");
+        } else { 
+            if($mar != null){
+                $query = $this->db->query(" SELECT * FROM productos WHERE idmarca = $mar and idestadoproducto = 1 LIMIT $cant OFFSET $pagina;");
+            } else { 
+                if($cat != null){
+                    $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
+                                        WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.idestadoproducto = 1
+                                        LIMIT $cant OFFSET $pagina;");
+                } else {
+                    $this->db->from('productos');
+                    $this->db->where('idestadoproducto', 1);
+                    $this->db->limit($cant, $cant*($pag - 1));
+                    $query = $this->db->get();
+                }
+            } 
+        }
         foreach ($query->result() as $row) {
             $this->db->select('nombre');
             $this->db->where('id', $row->idestadoproducto);
@@ -254,23 +291,25 @@ class Productos_model extends CI_Model {
         $query = $this->db->get('productos', 1, 0);
         $idestadoproducto = $query->row()->idestadoproducto;
 
-        $this->db->select('id');
-        $this->db->where('nombre', "inactivo");
-        $query = $this->db->get('estadosproductos', 1, 0);
-        if ($query->num_rows() == 0) {
-            $data['msj'] = 'No se encuentra el estado inactivo en estadosproductos';
-            $data['res'] = 'bad'; return $data; 
-        }
-        $idinactivo = $query->row()->id;
+//        $this->db->select('id');
+//        $this->db->where('nombre', "inactivo");
+//        $query = $this->db->get('estadosproductos', 1, 0);
+//        if ($query->num_rows() == 0) {
+//            $data['msj'] = 'No se encuentra el estado inactivo en estadosproductos';
+//            $data['res'] = 'bad'; return $data; 
+//        }
+//        $idinactivo = $query->row()->id;
+        $idinactivo = 2;
 
-        $this->db->select('id');
-        $this->db->where('nombre', "disponible");
-        $query = $this->db->get('estadosproductos', 1, 0);
-        if ($query->num_rows() == 0) {
-            $data['msj'] = 'No se encuentra el estado disponible en estadosproductos';
-            $data['res'] = 'bad'; return $data; 
-        }
-        $iddisponible = $query->row()->id;
+//        $this->db->select('id');
+//        $this->db->where('nombre', "disponible");
+//        $query = $this->db->get('estadosproductos', 1, 0);
+//        if ($query->num_rows() == 0) {
+//            $data['msj'] = 'No se encuentra el estado disponible en estadosproductos';
+//            $data['res'] = 'bad'; return $data; 
+//        }
+//        $idinactivo = $query->row()->id;
+        $iddisponible = 1;
 
         $this->db->trans_start();
 

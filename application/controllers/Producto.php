@@ -29,6 +29,19 @@ class Producto extends CI_Controller {
 		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$cant));exit();
 	}
 
+	public function listarWeb(){
+		$cant = @$this->input->post('cant');
+		$pagina = @$this->input->post('pagina');
+		$idcategoria = @$this->input->post('idcategoria');
+		$idmarca = @$this->input->post('idmarca');
+		$this->load->model('Productos_model');
+		$data = $this->Productos_model->listarWeb($cant, $pagina, $idcategoria, $idmarca);
+		if(count($data['productos'])==0){
+			print json_encode(array('res'=>'bad','msj'=>'Sin resultados'));exit();
+		}
+		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$cant));exit();
+	}
+
 	public function editar(){
 		if(!$this->session->userdata('logeado_admin')){
 			print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));

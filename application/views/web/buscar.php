@@ -123,7 +123,7 @@ $(document).ready(function(){
 //----------------------------------------------------------------------------------funcion buscarxcategoria
 function buscarxcategoria(idcategoria, callback) {
   $.ajax({                                              
-		url: "<?php print base_url();?>producto/listar",
+		url: "<?php print base_url();?>producto/listarWeb",
 		context: document.body,
 		dataType: "json",
 		type: "POST",
@@ -141,7 +141,7 @@ function buscarxcategoria(idcategoria, callback) {
 //----------------------------------------------------------------------------------funcion buscarxcategoria
 function buscarxmarca(idmarca, callback) {
   $.ajax({                                              
-		url: "<?php print base_url();?>producto/listar",
+		url: "<?php print base_url();?>producto/listarWeb",
 		context: document.body,
 		dataType: "json",
 		type: "POST",
