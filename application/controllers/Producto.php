@@ -48,7 +48,7 @@ class Producto extends CI_Controller {
 		}
 		$dataproducto = @$this->input->post('dataproducto',TRUE);
 		$this->load->model('Productos_model');
-		print json_encode($this->Productos_model->editar());
+		print json_encode($this->Productos_model->editar($dataproducto));
 	}
 
 	public function editarestado(){

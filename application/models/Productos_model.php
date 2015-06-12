@@ -194,8 +194,8 @@ class Productos_model extends CI_Model {
             return $data;
         }
         $dataproducto = json_decode($dataproducto);
-        $datacaracteristicas = $dataproducto->caracteristicas;
         $datacategorias = $dataproducto->categorias;
+        $datacaracteristicas = $dataproducto->caracteristicas;
 
         $data['est'] = ''; 
         $data['cmp'] = ''; 
