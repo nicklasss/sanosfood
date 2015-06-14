@@ -39,13 +39,13 @@
 
 <div class="row baner02">
    <div class="col-lg-4" align="center">
-       <img class="plato01" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQs0zs9HD7B6cF9l_o2zSM8goQ-Q7VnFWnHNRbYozeA_Nw9gFfHow"/>
+       <img class="plato01 img-thumbnail" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQs0zs9HD7B6cF9l_o2zSM8goQ-Q7VnFWnHNRbYozeA_Nw9gFfHow"/>
    </div> 
    <div class="col-lg-4"  align="center">
-       <img class="plato01" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSYjZO4E3jO0jUfwNcB8L_TxEZyGX3HOj_zdr4UMPaJxMcR17-zcg"/>
+       <img class="plato01 img-thumbnail" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSYjZO4E3jO0jUfwNcB8L_TxEZyGX3HOj_zdr4UMPaJxMcR17-zcg"/>
    </div> 
    <div class="col-lg-4" align="center">
-       <img class="plato01" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzDwFGbTG2gEkCh0gn7xa4SBqXwitKCWq7GPWcvnyyKH7L5iWk"/>
+       <img class="plato01 img-thumbnail" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzDwFGbTG2gEkCh0gn7xa4SBqXwitKCWq7GPWcvnyyKH7L5iWk"/>
    </div> 
 </div> 
 
@@ -71,7 +71,7 @@ foreach ($productos as $producto) {
                <div class="col-lg-9 col-lg-offset-2">
                   <div class="row">
                      <div class="col-lg-12">
-                        <img class="img-responsive img01" src="'.$producto->imagen.'"/>
+                        <img class="img-responsive img-thumbnail img01" src="'.$producto->imagen.'"/>
                      </div>
                   </div>     
                   <div class="row">

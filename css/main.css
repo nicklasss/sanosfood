@@ -78,7 +78,7 @@ body{
 }
 
 .textos05 {
-	color: #aaaaaa;
+	color: #888888;
 }
 
 .textos06 {
@@ -89,6 +89,7 @@ body{
 	height: 400px;
     margin-top: 30px;
 	background-size: cover;"	
+	border-radius: 15px;
 }
 
 .img03 {
@@ -109,3 +110,24 @@ body{
 	background-color: #eeeeee;
 	padding-bottom: 30px;
 }
+
+.registro .glyphicon-ok{
+color:green;
+}
+.registro .glyphicon-remove{
+color:red;
+}
+.registro .glyphicon-asterisk{
+color:blue;
+}
+
+.tabla1 th {
+ 	 font-size: 10px;
+ }
+ .tabla1 caption {
+ 	 height: 35px;
+ }
+
+ .tabla2 td, tr {
+ 	 font-size: 10px;
+ }
