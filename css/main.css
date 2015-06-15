@@ -121,13 +121,21 @@ color:red;
 color:blue;
 }
 
-.tabla1 th {
- 	 font-size: 10px;
+.categ, .marca {
+ 	 font-size: 13px;
+}
+
+#tabla1 th {
+ 	 font-size: 12px;
  }
- .tabla1 caption {
+#tabla1 caption {
  	 height: 35px;
  }
+#tabla1 td {
+ 	 font-size: 15px;
+ }
 
- .tabla2 td, tr {
+
+#tabla2 td, tr {
  	 font-size: 10px;
  }

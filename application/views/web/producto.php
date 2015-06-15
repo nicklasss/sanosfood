@@ -68,10 +68,10 @@ foreach ($producto->imagenes as $imagen) {
 			   </div>
 				<div class="row">
 				   <div class="col-lg-6" align="left">
-				      <h4><strong><input type="number" name="cantidad" min="1" max="<?php print $producto->existencias;?>" ></strong></h4>
+				      <h4><strong><input type="number" id="cantidad" min="1" max="<?php print $producto->existencias;?>" ></strong></h4>
 				   </div>
 				   <div class="col-lg-6" align="left">
-			         <button type="button" class="btn btn-success" id="btn-vermas'.$producto->id.'">Comprar</button>
+			         <button type="button" class="btn btn-success" id="btn-comprar">Comprar</button>
 				   </div>
 			   </div>
 				<div class="row">
@@ -83,7 +83,7 @@ foreach ($producto->imagenes as $imagen) {
 		   <div class="col-lg-4">
 				<div class="row">
 				   <div class="col-lg-12" align="right">
-						<table class="tabla1 table-condensed table-striped table-bordered">
+						<table class="table-condensed table-striped table-bordered" id="tabla1">
 					   	<caption class="textos06"><div  align="center"><h5>Medidas (cms)</h5></div></caption>
 							<thead>
 		                  <tr class="textos05">
@@ -106,7 +106,7 @@ foreach ($producto->imagenes as $imagen) {
 		   <div class="col-lg-4">
 				<div class="row">
 				   <div class="col-lg-12" align="left">
-						<table class="tabla1 table-condensed table-striped table-bordered">
+						<table class="table-condensed table-striped table-bordered"  id="tabla1">
 					   	<caption class="textos06"><div  align="center"><h5>Peso (grs)</h5></div></caption>
 							<thead>
 		                  <tr class="textos05">
@@ -128,7 +128,7 @@ foreach ($producto->imagenes as $imagen) {
    	<div class="textos06" align="center"><h4>Características</h4></div>
 		<div class="row registro tabla1">
 		   <div class="col-lg-3">
-				<table class="table table2 table-condensed table-striped table-bordered">
+				<table class="table table-condensed table-striped table-bordered" id="table2">
 					<tbody>
 						<tr align="left">
 							<td>Sin Gluten</td>
@@ -150,7 +150,7 @@ foreach ($producto->imagenes as $imagen) {
 				</table> <!-- tabla--> 
 		   </div> 
 		   <div class="col-lg-3">
-				<table class="table table-condensed table-striped table-bordered">
+				<table class="table table-condensed table-striped table-bordered" id="table2">
 					<tbody>
 						<tr align="left">
 							<td>Sin Levadura</td>
@@ -172,7 +172,7 @@ foreach ($producto->imagenes as $imagen) {
 				</table> <!-- tabla--> 
 		   </div> 
 		   <div class="col-lg-3">
-				<table class="table table-condensed table-striped table-bordered">
+				<table class="table table-condensed table-striped table-bordered" id="table2">
 					<tbody>
 						<tr align="left">
 							<td>Sin Fructuosa</td>
@@ -194,7 +194,7 @@ foreach ($producto->imagenes as $imagen) {
 				</table> <!-- tabla--> 
 		   </div> 
 		   <div class="col-lg-3">
-				<table class="table table-condensed table-striped table-bordered">
+				<table class="table table-condensed table-striped table-bordered" id="table2">
 					<tbody>
 						<tr align="left">
 							<td>Kosher</td>
@@ -231,6 +231,11 @@ foreach ($producto->imagenes as $imagen) {
 <script type="text/javascript">
 
 $(document).ready(function(){
+
+	$('#btn-comprar').on("click", function(){
+		alert ("entro a comprar");
+	});
+
 
    $('.container').on('click','.imgsmall',function(event){
       i = $(event.target).attr("data-id");
