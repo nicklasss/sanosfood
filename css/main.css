@@ -108,7 +108,7 @@ body{
 
 .baner08 {
 	background-color: #eeeeee;
-	padding-bottom: 30px;
+	padding-bottom: 10px;
 }
 
 .registro .glyphicon-ok{
@@ -125,8 +125,13 @@ color:blue;
  	 font-size: 13px;
 }
 
+.tipocar h6 {
+ 	 font-size: 10px;
+}
+
 #tabla1 th {
  	 font-size: 12px;
+ 	 text-align: "center";
  }
 #tabla1 caption {
  	 height: 35px;
@@ -134,7 +139,6 @@ color:blue;
 #tabla1 td {
  	 font-size: 15px;
  }
-
 
 #tabla2 td, tr {
  	 font-size: 10px;
