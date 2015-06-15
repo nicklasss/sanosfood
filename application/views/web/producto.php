@@ -86,7 +86,7 @@ foreach ($producto->imagenes as $imagen) {
 						<table class="table table-condensed table-striped table-bordered" id="tabla1">
 					   	<caption class="textos06"><div  align="center"><h5>Medidas (cms)</h5></div></caption>
 							<thead>
-		                  <tr>
+		                  <tr class="textos05">
 									<th>Alto</th>
 									<th>Ancho</th>
 									<th>Largo</th>
@@ -107,11 +107,11 @@ foreach ($producto->imagenes as $imagen) {
 				<div class="row">
 				   <div class="col-lg-12" align="left">
 						<table class="table table-condensed table-striped table-bordered"  id="tabla1">
-					   	<caption class="textos06"><div  align="center"><h5>Peso (grs)</h5></div></caption>
+					   	<caption class="textos06"><div align="center"><h5>Peso (grs)</h5></div></caption>
 							<thead>
 		                  <tr class="textos05">
-									<th>Peso Bruto</th>
-									<th>Peso Neto</th>
+									<th>Bruto</th>
+									<th>Neto</th>
 								</tr>
 							</thead>	
 							<tbody>
@@ -126,6 +126,8 @@ foreach ($producto->imagenes as $imagen) {
 		   </div>
 	   </div>
    	<div class="textos06" align="center"><h4>Características</h4></div>
+
+
 		<div class="row registro tabla1">
 		   <div class="col-lg-3">
 				<table class="table table-condensed table-striped table-bordered" id="table2">
@@ -212,13 +214,13 @@ foreach ($producto->imagenes as $imagen) {
 	</div>
 <div class="row">
 	<div class="col-md-10 col-md-offset-1 registro">
-        <div class="panel panel-default tipocar" id="tipocar">
+		<div class="panel panel-default tipocar" id="tipocar">
 			<div><h6><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Indica que el producto no contiene el alérgeno o trazas del mismo.</h6></div>
 			<div><h6><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Indica que el alérgeno se añade directamente o indirectamente a través de otros ingredientes. Según lo declarado en la etiqueta del producto.</h6></div>
 			<div><h6><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Indica que puede contener trazas del alérgeno por contaminación cruzada, según lo declarado en la etiqueta del producto. Esta información
 					es correcta en el momento de la impresión, mayo de 2013.</h6></div>			
 
-	   	</div>	
+	   </div>	
   	</div>
 </div>
 

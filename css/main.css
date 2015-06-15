@@ -1,5 +1,5 @@
 body{
-    padding-top: 50px;
+   padding-top: 50px;
 }
 
 /*---------------------------------------------HOME */
@@ -39,7 +39,7 @@ body{
 }
 
 .textos02 {
-    margin-top: 40px;
+   margin-top: 40px;
 	color: #aaaaaa;
 }
 
@@ -59,14 +59,14 @@ body{
 .plato01 {
 	height: 120px;
 	width: 330px;
-    margin-top: 40px;
+   margin-top: 40px;
 	background-size: cover;"	
 	border-radius: 5px;
 }
 
 .img01 {
 	height: 160px;
-    margin-top: 30px;
+   margin-top: 30px;
 	background-size: cover;"	
 }
 
@@ -87,14 +87,14 @@ body{
 
 .img02 {
 	height: 400px;
-    margin-top: 30px;
+   margin-top: 30px;
 	background-size: cover;"	
 	border-radius: 15px;
 }
 
 .img03 {
 	height: 80px;
-    margin-top: 10px;
+   margin-top: 10px;
 	background-size: cover;"	
 	border-radius: 5px;
 }
@@ -107,39 +107,49 @@ body{
 /*---------------------------------------------PRODUCTO */
 
 .baner08 {
-	background-color: #eeeeee;
+	background-color: #eaf2d3;
 	padding-bottom: 10px;
 }
 
 .registro .glyphicon-ok{
-color:green;
+	color:green;
 }
 .registro .glyphicon-remove{
-color:red;
+	color:red;
 }
 .registro .glyphicon-asterisk{
-color:blue;
+	color:blue;
 }
 
 .categ, .marca {
- 	 font-size: 13px;
+ 	font-size: 13px;
 }
 
-.tipocar h6 {
- 	 font-size: 10px;
+#tipocar {
+	background-color: #eaf0d3;
+	margin-top: 10px;
+	padding-left: 5px;
+}
+#tipocar h6 {
+	font-size: 10px;
 }
 
+#tabla1 {
+	width: 120px;
+}
 #tabla1 th {
- 	 font-size: 12px;
- 	 text-align: "center";
+ 	font-size: 12px;
+ 	text-align: center;
  }
 #tabla1 caption {
- 	 height: 35px;
+ 	height: 35px;
  }
 #tabla1 td {
- 	 font-size: 15px;
+ 	font-size: 12px;
+ 	height: 25px;
  }
 
 #tabla2 td, tr {
- 	 font-size: 10px;
+ 	font-size: 10px;
  }
+ 
