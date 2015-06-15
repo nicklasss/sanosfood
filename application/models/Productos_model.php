@@ -102,7 +102,7 @@ class Productos_model extends CI_Model {
         $producto = $query->row();
         $this->db->select('nombre');
         $this->db->where('id', $producto->idmarca);
-        $producto->marca = $this->db->get('marcas', 1, 0)->row()->nombre;
+        $producto->marca = @$this->db->get('marcas', 1, 0)->row()->nombre;
         $this->db->where('idproducto', $producto->id);
         $producto->caracteristicas = $this->db->get('pro_car')->result();
         $this->db->where('idproducto', $producto->id);
