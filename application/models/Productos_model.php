@@ -37,7 +37,7 @@ class Productos_model extends CI_Model {
 
         $object = array('nombre' => $nombre, 
                         'descripcion' => $descripcion,
-                        'descripcioncorta' => $descripcioncorta,
+                        'descripcioncorta' => "",
                         'ingredientes' => $ingredientes,
                         'idmarca' => "",
                         'precio' => 0,
@@ -145,6 +145,7 @@ class Productos_model extends CI_Model {
             $this->db->where('idproducto', $row->id);
             $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
         }
+
         $data['productos'] = $query->result();
         $data['res'] = 'ok'; 
 
@@ -295,24 +296,7 @@ class Productos_model extends CI_Model {
         $query = $this->db->get('productos', 1, 0);
         $idestadoproducto = $query->row()->idestadoproducto;
 
-//        $this->db->select('id');
-//        $this->db->where('nombre', "inactivo");
-//        $query = $this->db->get('estadosproductos', 1, 0);
-//        if ($query->num_rows() == 0) {
-//            $data['msj'] = 'No se encuentra el estado inactivo en estadosproductos';
-//            $data['res'] = 'bad'; return $data; 
-//        }
-//        $idinactivo = $query->row()->id;
         $idinactivo = 2;
-
-//        $this->db->select('id');
-//        $this->db->where('nombre', "disponible");
-//        $query = $this->db->get('estadosproductos', 1, 0);
-//        if ($query->num_rows() == 0) {
-//            $data['msj'] = 'No se encuentra el estado disponible en estadosproductos';
-//            $data['res'] = 'bad'; return $data; 
-//        }
-//        $idinactivo = $query->row()->id;
         $iddisponible = 1;
 
         $this->db->trans_start();
