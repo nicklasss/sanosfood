@@ -62,6 +62,16 @@
 	<link rel="stylesheet" href="<?php print base_url();?>css/main.css">
 	<script type="text/javascript" src="<?php print base_url();?>js/modernizr.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="<?php print base_url();?>js/bootstrap.min.js"></script>
+	<style type="text/css">
+	.input-group-addon.success {
+	    color: rgb(255, 255, 255);
+	    background-color: rgb(92, 184, 92);
+	    border-color: rgb(76, 174, 76);
+	    margin-left: 10px;
+	    margin-right: 10px;
+	}
+	</style>
 
 </head>
 <body>
@@ -79,20 +89,23 @@
 	            	<img src="https://s3.amazonaws.com/sanosfood/img/044.jpg" height="35">
 	            </div>
 	        </div>
-	        <form class="navbar-form navbar-left" role="search">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Search for...">
-					<span class="input-group-btn">
-						<button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search"></span></button>
-					</span>
-				</div>
-			</form>
-			 <ul class="nav navbar-nav navbar-right">
-        		<li><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>0</a></li>
-			</ul>
+	        <div class="collapse navbar-collapse">
+	        	<ul class="nav navbar-nav navbar-right">
+	        		<li class="text-center"><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>0</a></li>
+				</ul>
+			      <form class="navbar-form">
+			        <div class="form-group" style="display:inline;">
+			          <div class="input-group" style="display:table;">
+			            <input class="form-control" name="search" placeholder="Search Here" autocomplete="off" autofocus="autofocus" type="text">
+			            <span class="input-group-addon success" style="width:1%;"><span class="glyphicon glyphicon-search"></span></span>
+			          </div>
+			        </div>
+			      </form>
+				 
+			</div>
 	    </div>
 	</div>
-    <div class="navbar navbar-inverse navbar-static-top">
+    <div class="navbar navbar-inverse navbar-static-top hidden-xs">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-nav">

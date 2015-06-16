@@ -262,46 +262,9 @@ foreach ($categorias as $categoria) {
 
 
 <div class="row registro">
-	<div class="col-md-6">
+	<div class="col-md-8">
         <div class="panel panel-default">
         	<div class="panel-heading text-center"><h4>Imágenes</h4></div>
-        	<div class="row fileinput fileinput-new" data-provides="fileinput">
-        		<div class="col-md-6">
-					<div class="fileinput-preview fileinput-exists img-circle" style="margin-left:10px;margin-top:10px;max-width: 210px; max-height: 210px;"></div>
-        		</div>
-        		<div class="col-md-6">
-        			<div style="margin-top:10px" class="text-center">
-					  	<form method="POST" enctype="multipart/form-data" action="<?php print base_url(); ?>producto/agregarfoto">
-					  		<input type="hidden" name="idproducto" value="<?php print $producto->id;?>">
-						  	<input style="margin-bottom:5px;" type="submit" class="btn btn-primary fileinput-exists" value="Guardar"/>
-						    <span style="margin-bottom:5px;" class="btn btn-default btn-file"><span class="fileinput-new">Agregar imagen</span><span class="fileinput-exists">Cambiar</span><input type="file" name="userfile" accept="image/x-png, image/gif, image/jpeg"></span>
-						    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Cancelar</a>
-						</form>
-						<p style="color:#A94442;"><?php
-							print @$this->session->userdata('error');
-							$this->session->unset_userdata('error');
-						 ?></p>
-					  </div>
-        		</div>
-        	</div>
-        	<!--<div class="fileinput fileinput-new" data-provides="fileinput">
-			  <div class="fileinput-new" style="width: 210px; height: 210px;">
-			    <img style="width: 210px; height: 210px;" src="<?php print base_url().@$linkFoto; ?>" alt="..." width="210" height="210" class="img-circle">
-			  </div>
-			  <div class="fileinput-preview fileinput-exists img-circle" style="max-width: 210px; max-height: 210px;"></div>
-			  <div style="margin-top:10px" class="text-center">
-			  	<form method="POST" enctype="multipart/form-data" action="<?php print base_url(); ?>doctor/editarfoto">
-				  	<input style="margin-bottom:5px;" type="submit" class="btn btn-primary fileinput-exists" value="Guardar"/>
-				    <span style="margin-bottom:5px;" class="btn btn-default btn-file"><span class="fileinput-new">Seleccionar imagen</span><span class="fileinput-exists">Cambiar</span><input type="file" name="userfile" accept="image/x-png, image/gif, image/jpeg"></span>
-				    <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Cancelar</a>
-				</form>
-				<p style="color:#A94442;"><?php
-					print @$this->session->userdata('error');
-					$this->session->unset_userdata('error');
-				 ?></p>
-			  </div>
-			</div>-->
-
 		</div> <!-- Panel-->
 	</div>
 </div>
@@ -318,6 +281,7 @@ $(document).ready(function() {
 	$('#btn-cancelar-est').hide();
 //	 var hola = JSON.parse('<?php print json_encode($producto->caracteristicas);?>');
 //   console.log(hola);
+
 
 //----------------------------------------------------------------------------------EDITAR-EST
 	$('.container').on('click','#btn-editar-est',function(event){
