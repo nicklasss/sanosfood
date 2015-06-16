@@ -127,11 +127,55 @@ foreach ($producto->imagenes as $imagen) {
 	   </div>
    	<div class="textos06" align="center"><h4>Características</h4></div>
 
+<?php
+print '<div class="row tabla1">';
+$i = 0;
+foreach ($caracteristicas as $caracteristica) {
+	$i = $i + 1;
+	if ($i == 1) {
+		print '	<div class="col-lg-3">'.
+			  '		<table class="table table-condensed table-striped table-bordered" id="table2">'.
+			  '			<tbody>';
+	}		  	
+	if ($i == 5 || $i == 9 || $i == 13) {
+		print '			</tbody>'.
+				'		</table>'.
+				'</div>'.
+				'	<div class="col-lg-3">'.
+				'		<table class="table table-condensed table-striped table-bordered" id="table2">'.
+				'			<tbody>';
+	}
+	print '<tr>'.
+			'<td>'.$caracteristica->nombre.'</td>';
+	$entra = 0;
+	foreach ($producto->caracteristicas as $procar) {
+		if ($caracteristica->id == $procar->idcaracteristica) {
+			$entra = 1;
+			switch ($procar->tipo) {
+				case "remove":
+					print 	'<td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>';
+					break;
+				case "asterisk":
+					print 	'<td><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></td>';
+					break;
+			}
+		}
+	}
+	if ($entra == 0) {
+		print 	'<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';
+	}
+}
+print '			</tbody>'.
+		'		</table>'.
+		'	</div>'.
+		'</div>';
+?>
 
-		<div class="row tabla1">
+<!--		<div class="row tabla1">
 		   <div class="col-lg-3">
 				<table class="table table-condensed table-striped table-bordered" id="table2">
 					<tbody>
+
 						<tr align="left">
 							<td>Sin Gluten</td>
 							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
@@ -149,7 +193,7 @@ foreach ($producto->imagenes as $imagen) {
 							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
 						</tr>
 					</tbody>
-				</table> <!-- tabla--> 
+				</table> <!-- tabla
 		   </div> 
 		   <div class="col-lg-3">
 				<table class="table table-condensed table-striped table-bordered" id="table2">
@@ -171,7 +215,7 @@ foreach ($producto->imagenes as $imagen) {
 							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
 						</tr>
 					</tbody>
-				</table> <!-- tabla--> 
+				</table> <!-- tabla
 		   </div> 
 		   <div class="col-lg-3">
 				<table class="table table-condensed table-striped table-bordered" id="table2">
@@ -193,7 +237,7 @@ foreach ($producto->imagenes as $imagen) {
 							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
 						</tr>
 					</tbody>
-				</table> <!-- tabla--> 
+				</table> <!-- tabla
 		   </div> 
 		   <div class="col-lg-3">
 				<table class="table table-condensed table-striped table-bordered" id="table2">
@@ -203,11 +247,11 @@ foreach ($producto->imagenes as $imagen) {
 							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
 						</tr>
 					</tbody>
-				</table> <!-- tabla--> 
+				</table> <!-- tabla
 
 		   </div> 
 		</div>
-
+--> 
 
 
 
@@ -219,7 +263,6 @@ foreach ($producto->imagenes as $imagen) {
 			<div><h6><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Indica que el alérgeno se añade directamente o indirectamente a través de otros ingredientes. Según lo declarado en la etiqueta del producto.</h6></div>
 			<div><h6><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Indica que puede contener trazas del alérgeno por contaminación cruzada, según lo declarado en la etiqueta del producto. Esta información
 					es correcta en el momento de la impresión, mayo de 2013.</h6></div>			
-
 	   </div>	
   	</div>
 </div>

@@ -48,7 +48,21 @@ foreach ($productos as $producto) {
 			</tbody>
 		</table> <!-- tabla--> 
 	</div>
+
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1">
+			<div class="panel panel-default tipocar" id="tipocar">
+				<div><h6><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Indica que el producto no contiene el alérgeno o trazas del mismo.</h6></div>
+				<div><h6><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Indica que el alérgeno se añade directamente o indirectamente a través de otros ingredientes. Según lo declarado en la etiqueta del producto.</h6></div>
+				<div><h6><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span> Indica que puede contener trazas del alérgeno por contaminación cruzada, según lo declarado en la etiqueta del producto. Esta información
+						es correcta en el momento de la impresión, mayo de 2013.</h6></div>			
+		   </div>	
+	  	</div>
+	</div>
+
+
 </div>
+
 
 </div> <!-- container--> 
 
