@@ -51,4 +51,16 @@ class Web extends CI_Controller {
 		$this->load->view('web/piedepagina');
 	}
 
+	public function productoscaracteristicas() {
+		$this->load->model('Productos_model');
+		$data = $this->Productos_model->listarweb();
+		$this->load->model('Caracteristicas_model');
+		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
+		$this->load->model('Pro_car_model');
+		$data['pro_car'] = $this->Pro_car_model->listar();
+		$this->load->view('web/encabezado');
+		$this->load->view('web/productoscaracteristicas', $data, FALSE); 
+		$this->load->view('web/piedepagina');
+	}
+
 }

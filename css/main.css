@@ -111,14 +111,17 @@ body{
 	padding-bottom: 10px;
 }
 
-.registro .glyphicon-ok{
+.glyphicon-ok{
 	color:green;
+	text-align: center;
 }
-.registro .glyphicon-remove{
+.glyphicon-remove{
 	color:red;
+	text-align: center;
 }
-.registro .glyphicon-asterisk{
+.glyphicon-asterisk{
 	color:blue;
+	text-align: center;
 }
 
 .categ, .marca {
@@ -151,4 +154,7 @@ body{
 #tabla2 td, tr {
  	font-size: 10px;
  }
+
+ /*---------------------------------------------PRODUCTOSCARACTERISTICAS */
+
  

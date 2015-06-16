@@ -128,7 +128,7 @@ foreach ($producto->imagenes as $imagen) {
    	<div class="textos06" align="center"><h4>Características</h4></div>
 
 
-		<div class="row registro tabla1">
+		<div class="row tabla1">
 		   <div class="col-lg-3">
 				<table class="table table-condensed table-striped table-bordered" id="table2">
 					<tbody>
@@ -213,7 +213,7 @@ foreach ($producto->imagenes as $imagen) {
 
 	</div>
 <div class="row">
-	<div class="col-md-10 col-md-offset-1 registro">
+	<div class="col-md-10 col-md-offset-1">
 		<div class="panel panel-default tipocar" id="tipocar">
 			<div><h6><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Indica que el producto no contiene el alérgeno o trazas del mismo.</h6></div>
 			<div><h6><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Indica que el alérgeno se añade directamente o indirectamente a través de otros ingredientes. Según lo declarado en la etiqueta del producto.</h6></div>
