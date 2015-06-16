@@ -1,6 +1,9 @@
 body{
    padding-top: 50px;
 }
+.navbar-cats{
+	margin-bottom: 0px !important;
+}
 
 /*---------------------------------------------HOME */
 .baner01 {

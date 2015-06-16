@@ -105,7 +105,7 @@
 			</div>
 	    </div>
 	</div>
-    <div class="navbar navbar-inverse navbar-static-top hidden-xs">
+    <div class="navbar navbar-inverse navbar-static-top hidden-xs navbar-cats">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".main-nav">
