@@ -10,7 +10,7 @@
 		   <caption class="textos06"><div align="center"><h3><strong>CARACTERÍSTICAS DE NUESTROS PRODUCTOS</strong></h3></div></caption>
 			<thead>
 	            <tr class="textos05">
-	            	<th>Nombre del producto</th>
+	            	<th><img src="https://s3.amazonaws.com/sanosfood/img/044.jpg" height="50"></th>
 <?php
 foreach ($caracteristicas as $caracteristica) {
 	print '<th>'.$caracteristica->nombre.'</th>';
@@ -23,7 +23,9 @@ foreach ($caracteristicas as $caracteristica) {
 foreach ($productos as $producto) {
 	print 
 				'<tr>'.
-				'	<td class="textos05">'.$producto->nombre.'</td>';
+
+				'	<td class="textos05"><a href="'.base_url().'web/producto/'.$producto->id.'"><strong>'.$producto->nombre.'</strong></a></td>';
+
 	foreach ($caracteristicas as $caracteristica) {
 		$i = 0;
 		foreach ($pro_car as $procar) {
