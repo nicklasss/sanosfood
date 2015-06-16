@@ -157,4 +157,18 @@ body{
 
  /*---------------------------------------------PRODUCTOSCARACTERISTICAS */
 
+#procar th {
+	background-color: green;
+	color: #ffffff;
+ 	font-size: 10px;
+ 	text-align: center;
+ }
+#procar caption {
+ 	height: 60px;
+ }
+#procar td {
+ 	font-size: 12px;
+ 	height: 25px;
+ 	text-align: center;
+ }
  

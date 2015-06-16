@@ -4,10 +4,10 @@
 <!--<div class="row" style="background: #cccccc;">   -->
 <div class="container">
 
-<div class="row">
+<div class="row baner08">
 	<div class="col-lg-12">
 		<table class="table table-condensed table-striped table-bordered registro" id="procar">
-		   <caption class="textos06"><div align="center"><h4><strong>CARACTERÍSTICAS DE NUESTROS PRODUCTOS</strong></h4></div></caption>
+		   <caption class="textos06"><div align="center"><h3><strong>CARACTERÍSTICAS DE NUESTROS PRODUCTOS</strong></h3></div></caption>
 			<thead>
 	            <tr class="textos05">
 	            	<th>Nombre del producto</th>
