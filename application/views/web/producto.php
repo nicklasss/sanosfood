@@ -171,90 +171,6 @@ print '			</tbody>'.
 		'</div>';
 ?>
 
-<!--		<div class="row tabla1">
-		   <div class="col-lg-3">
-				<table class="table table-condensed table-striped table-bordered" id="table2">
-					<tbody>
-
-						<tr align="left">
-							<td>Sin Gluten</td>
-							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-						</tr> 
-						<tr align="left">
-							<td>Sin Trigo</td>
-							<td><span class="glyphicon glyphicon-asterisk" aria-hidden="true"></span></td>
-						</tr>
-						<tr align="left">
-							<td>Sin Huevo</td>
-							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-						</tr>
-						<tr align="left">
-							<td>Sin Leche</td>
-							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-						</tr>
-					</tbody>
-				</table> <!-- tabla
-		   </div> 
-		   <div class="col-lg-3">
-				<table class="table table-condensed table-striped table-bordered" id="table2">
-					<tbody>
-						<tr align="left">
-							<td>Sin Levadura</td>
-							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-						</tr>
-						<tr align="left">
-							<td>Sin Soya</td>
-							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-						</tr>
-						<tr align="left">
-							<td>Sin Cacahete</td>
-							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-						</tr>
-						<tr align="left">
-							<td>Sin Frutos Secos</td>
-							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-						</tr>
-					</tbody>
-				</table> <!-- tabla
-		   </div> 
-		   <div class="col-lg-3">
-				<table class="table table-condensed table-striped table-bordered" id="table2">
-					<tbody>
-						<tr align="left">
-							<td>Sin Fructuosa</td>
-							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-						</tr>
-						<tr align="left">
-							<td>Sin Azúcar</td>
-							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-						</tr>
-						<tr align="left">
-							<td>Vegan</td>
-							<td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-						</tr>
-						<tr align="left">
-							<td>No GMO</td>
-							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-						</tr>
-					</tbody>
-				</table> <!-- tabla
-		   </div> 
-		   <div class="col-lg-3">
-				<table class="table table-condensed table-striped table-bordered" id="table2">
-					<tbody>
-						<tr align="left">
-							<td>Kosher</td>
-							<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-						</tr>
-					</tbody>
-				</table> <!-- tabla
-
-		   </div> 
-		</div>
---> 
-
-
-
 	</div>
 <div class="row">
 	<div class="col-md-10 col-md-offset-1">
@@ -271,7 +187,6 @@ print '			</tbody>'.
 
 </div> <!-- /container -->
 
-
 <!------------------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
 
@@ -280,7 +195,6 @@ $(document).ready(function(){
 	$('#btn-comprar').on("click", function(){
 		alert ("entro a comprar");
 	});
-
 
    $('.container').on('click','.imgsmall',function(event){
       i = $(event.target).attr("data-id");
