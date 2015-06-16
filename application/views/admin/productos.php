@@ -2,13 +2,15 @@
    <div class="col-lg-12">
       <h2 class="page-header">
 <?php
-      if ($this->uri->segment(3)=="Todos") {print "Todos los Productos";}
+print "Productos en estado <mark>".$cual."</mark>";
+/*      if ($this->uri->segment(3)=="Todos") {print "Todos los Productos";}
       else {
           foreach ($estadosproductos as $estadopro) {
               if ($estadopro->id == $this->uri->segment(3)) {print "Productos en estado <mark>".$estadopro->nombre."</mark>";}
           };
-      }
+      } */
 ?>          
+
       </h2>
    </div>
 </div>
@@ -135,8 +137,8 @@ function listar(){
                 resultado += ' <tr role="row">'+
                     '<td width="40%"><strong><a href="<?php print base_url();?>admin/producto/'+data.productos[i].id+'">'+data.productos[i].nombre+'</a></strong></td>'+
                     '<td width="20%">'+data.productos[i].existencias+'</td>'+
-                    '<td width="20%">'+data.productos[i].estado+'</td>'+
-                    '<td width="20%">'+data.productos[i].precio+'</td>'+
+                    '<td width="20%">'+data.productos[i].nombreestado+'</td>'+
+                    '<td width="20%">'+formato_numero(data.productos[i].precio)+'</td>'+
                     '</tr>';
                 $("#lista").html(resultado);
             };
@@ -174,5 +176,12 @@ function buscar(query){
     })
 }
 
+//----------------------------------------------------------------------------------funcion formato_numero
+function formato_numero(texto) {
+    var resultado = "";
+    for (var j, i = texto.length - 1, j = 0; i >= 0; i--, j++) 
+        resultado = texto.charAt(i) + ((j > 0) && (j % 3 == 0)? ".": "") + resultado; 
+    return resultado;
+}
     
 </script>

@@ -17,9 +17,10 @@ class Admin extends CI_Controller {
 		$this->load->model('Estadosproductos_model');
 		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
-			$this->load->model('Productos_model');
-			$data = $this->Productos_model->listar();
-			$this->load->view('admin/productos',$data,FALSE); 
+		$this->load->model('Productos_model');
+		$data = $this->Productos_model->listar();
+		$data["cual"] = "Todos";
+		$this->load->view('admin/productos',$data,FALSE); 
 		$this->load->view('admin/piedepagina');
 
 	}
@@ -70,15 +71,14 @@ class Admin extends CI_Controller {
 		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
 
+		$this->load->model('Productos_model');
 		if ($estadopro =="Todos") {
-			$this->load->model('Productos_model');
 			$data = $this->Productos_model->listar();
-			$this->load->view('admin/productos',$data,FALSE); }
-		else {
-			$this->load->model('Productos_model');
+		} else {
 			$data = $this->Productos_model->getProductosPorEstado($estadopro);
-			$this->load->view('admin/productos',$data,FALSE); 
 		}
+		$data["cual"] = $estadopro;
+		$this->load->view('admin/productos',$data,FALSE); 
 		$this->load->view('admin/piedepagina');
 	}
 

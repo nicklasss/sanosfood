@@ -21,11 +21,8 @@ foreach ($caracteristicas as $caracteristica) {
 			<tbody>
 <?php
 foreach ($productos as $producto) {
-	print 
-				'<tr>'.
-
-				'	<td class="textos05"><a href="'.base_url().'web/producto/'.$producto->id.'"><strong>'.$producto->nombre.'</strong></a></td>';
-
+	print 	'<tr>'.
+			'	<td class="textos05"><a href="'.base_url().'web/producto/'.$producto->id.'"><strong>'.$producto->nombre.'</strong></a></td>';
 	foreach ($caracteristicas as $caracteristica) {
 		$i = 0;
 		foreach ($pro_car as $procar) {
