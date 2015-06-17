@@ -38,7 +38,7 @@ else {
                             </div>
                             <div class="col-md-3 col-md-offset-1">
                                 <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-                                    <ul class="pagination" id="paginas" style="margin:0px;">
+                                    <ul class="pagination" id="paginas">
                                         <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
                                             <a href="javascript:void(0)" data-pag="1" class="link-a-pagina">1</a>
                                         </li>

@@ -14,48 +14,6 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <style type="text/css">
-      body{
-        padding-top: 60px;
-      }
-      .escondido{
-        display: none;
-      }
-      .panel-caracteristicas{
-        overflow-y:scroll;
-        height: 340px; 
-      }
-      .panel-caracteristicas .radio-inline{
-        padding-top: 0 !important;
-      }
-      .panel-categorias{
-        overflow-y:scroll;
-        height: 340px; 
-      }
-      .panel-categorias .checkbox{
-        padding-top: 0 !important;
-      }
-      .panel-usuarios{
-        overflow-y:scroll;
-        height: 400px;
-        width: 1000px; 
-      }
-      div .registro{
-        margin-bottom: 5px;
-      }
-      div .registro textarea{
-        resize:vertical;
-      }
-      .registro .glyphicon-ok{
-        color:lightgreen;
-      }
-      .registro .glyphicon-remove{
-        color:red;
-      }
-      .registro .glyphicon-asterisk{
-        color:lightblue;
-      }
-    </style>
 
     <title>Fixed Top Navbar Example for Bootstrap</title>
 
@@ -66,6 +24,7 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
  <![endif]-->
  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+ <link rel="stylesheet" href="<?php print base_url();?>css/admin.css">
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 

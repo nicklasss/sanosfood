@@ -1,0 +1,44 @@
+body{
+  padding-top: 60px;
+}
+.escondido{
+  display: none;
+}
+.panel-caracteristicas{
+  overflow-y:scroll;
+  height: 340px; 
+}
+.panel-caracteristicas .radio-inline{
+  padding-top: 0 !important;
+}
+.panel-categorias{
+  overflow-y:scroll;
+  height: 340px; 
+}
+.panel-categorias .checkbox{
+  padding-top: 0 !important;
+}
+.panel-usuarios{
+  overflow-y:scroll;
+  height: 400px;
+  width: 1000px; 
+}
+div .registro{
+  margin-bottom: 5px;
+}
+div .registro textarea{
+  resize:vertical;
+}
+.registro .glyphicon-ok{
+  color:lightgreen;
+}
+.registro .glyphicon-remove{
+  color:red;
+}
+.registro .glyphicon-asterisk{
+  color:lightblue;
+}
+#paginas {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
