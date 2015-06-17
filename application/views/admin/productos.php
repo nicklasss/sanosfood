@@ -1,18 +1,12 @@
 <div class="row">
    <div class="col-lg-12">
-      <h2 class="page-header">
+      <h2 class="pagne-header">
 <?php
 if ($nombreestado == "Todos") {
-    print "(".$cant.") Todos los Productos";}
+    print "(".$cant.") Todos los Productos"; }
 else {
     print "(".$cant.") Productos en estado <mark>".$nombreestado."</mark>";
 }
-/*      if ($this->uri->segment(3)=="Todos") {print "Todos los Productos";}
-      else {
-          foreach ($estadosproductos as $estadopro) {
-              if ($estadopro->id == $this->uri->segment(3)) {print "Productos en estado <mark>".$estadopro->nombre."</mark>";}
-          };
-      } */
 ?>          
 
       </h2>
@@ -26,7 +20,7 @@ else {
                 <div class="dataTable_wrapper">
                     <div class="form-inline">
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <div class="dataTables_length">
                                 <label>Mostrar 
                                     <select id="select-cant" aria-controls="dataTables-example" class="form-control input-sm">
@@ -37,11 +31,32 @@ else {
                                     </select> productos</label>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-3">
                                 <div id="dataTables-example_filter" class="dataTables_filter">
                                     <label>Buscar:<input type="search" class="form-control input-sm" placeholder="" aria-controls="dataTables-example"></label>
                                 </div>
                             </div>
+                            <div class="col-md-3 col-md-offset-1">
+                                <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
+                                    <ul class="pagination" id="paginas" style="margin:0px;">
+                                        <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
+                                            <a href="javascript:void(0)" data-pag="1" class="link-a-pagina">1</a>
+                                        </li>
+                                        <?php
+                                        for ($i=2; $i < floor($cant/10)+2; $i++) { 
+                                            print'  <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
+                                                        <a data-pag="'.$i.'" class="link-a-pagina" href="javascript:void(0)">'.$i.'</a>
+                                                    </li>';
+                                        }
+                                        ?>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-success btn-nuevo"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
+                            </div>
+
+
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
@@ -68,27 +83,6 @@ else {
                                         ?>
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="dataTables_paginate paging_simple_numbers" id="dataTables-example_paginate">
-                                    <ul class="pagination" id="paginas">
-                                        <li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
-                                            <a href="javascript:void(0)" data-pag="1" class="link-a-pagina">1</a>
-                                        </li>
-                                        <?php
-                                        for ($i=2; $i < floor($cant/10)+2; $i++) { 
-                                            print'  <li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-                                                        <a data-pag="'.$i.'" class="link-a-pagina" href="javascript:void(0)">'.$i.'</a>
-                                                    </li>';
-                                        }
-                                        ?>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-2 col-md-offset-4">
-                                <button type="button" class="btn btn-lg btn-success btn-nuevo"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
                             </div>
                         </div>
                     </div>
