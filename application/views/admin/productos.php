@@ -2,7 +2,11 @@
    <div class="col-lg-12">
       <h2 class="page-header">
 <?php
-print "Productos en estado <mark>".$cual."</mark>";
+if ($nombreestado == "Todos") {
+    print "(".$cant.") Todos los Productos";}
+else {
+    print "(".$cant.") Productos en estado <mark>".$nombreestado."</mark>";
+}
 /*      if ($this->uri->segment(3)=="Todos") {print "Todos los Productos";}
       else {
           foreach ($estadosproductos as $estadopro) {
@@ -41,7 +45,7 @@ print "Productos en estado <mark>".$cual."</mark>";
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+                                <table class="table table-striped table-bordered table-condensed table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
                                     <thead>
                                         <tr role="row">
                                             <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" >Nombre</th>
@@ -128,7 +132,7 @@ function listar(){
         context: document.body,
         dataType: "json",
         type: "POST",
-        data: { cant : cant, pagina : pagina }
+        data: { cant : cant, pagina : pagina, nomestado : "<?php print $this->uri->segment(3);?>"  }
         })
      .done(function(data) {                                // respuesta del servidor
         if(data.res == "ok") {

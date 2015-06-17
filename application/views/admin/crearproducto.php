@@ -74,7 +74,7 @@ function crear (nombre, descripcion, ingredientes, callback) {
 	    data: {nombre : nombre, descripcion : descripcion, ingredientes : ingredientes } })
    .done(function(data) {                           
     if(data.res == "ok") {
-    	window.location="<?php print base_url();?>admin/productos/"+data.id;
+    	window.location="<?php print base_url();?>admin/producto/"+data.id;
     	callback(true)}
     else {alert(data.msj);callback(false)}
     })

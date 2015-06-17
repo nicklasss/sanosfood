@@ -21,12 +21,20 @@ class Producto extends CI_Controller {
 		$pagina = @$this->input->post('pagina');
 		$idcategoria = @$this->input->post('idcategoria');
 		$idmarca = @$this->input->post('idmarca');
+		$nomestado = @$this->input->post('nomestado');
 		$this->load->model('Productos_model');
-		$data = $this->Productos_model->listar($cant, $pagina, $idcategoria, $idmarca);
+		
+		if ($nomestado == "Todos") {
+			$data = $this->Productos_model->listar($cant, $pagina, $idcategoria, $idmarca);}
+		else {
+			$data = $this->Productos_model->getProductosPorEstado($nomestado, $cant, $pagina);
+		}
+
 		if(count($data['productos'])==0){
 			print json_encode(array('res'=>'bad','msj'=>'Sin resultados'));exit();
 		}
-		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$cant));exit();
+		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant']));exit();
+//		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$cant));exit();
 	}
 
 	public function listarWeb(){
@@ -39,7 +47,7 @@ class Producto extends CI_Controller {
 		if(count($data['productos'])==0){
 			print json_encode(array('res'=>'bad','msj'=>'Sin resultados'));exit();
 		}
-		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$cant));exit();
+		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant']));exit();
 	}
 
 	public function editar(){

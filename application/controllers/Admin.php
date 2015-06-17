@@ -70,14 +70,12 @@ class Admin extends CI_Controller {
 		$this->load->model('Estadosproductos_model');
 		$dataencabezado['estadosproductos'] = $this->Estadosproductos_model->listar();
 		$this->load->view('admin/encabezado',$dataencabezado,FALSE);
-
 		$this->load->model('Productos_model');
-		if ($estadopro =="Todos") {
-			$data = $this->Productos_model->listar();
-		} else {
+		if ($estadopro == "Todos") {
+			$data = $this->Productos_model->listar();}
+		else {
 			$data = $this->Productos_model->getProductosPorEstado($estadopro);
 		}
-		$data["cual"] = $estadopro;
 		$this->load->view('admin/productos',$data,FALSE); 
 		$this->load->view('admin/piedepagina');
 	}
