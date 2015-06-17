@@ -13,13 +13,13 @@ body{
 }
 
 .baner02 {
-	height: 200px;
-	background-color: #eeeeee;
+	height: 210px;
+	background-color: #efefef;
 }
 
 .baner03 {
 /*	height: 500px; */
-	background-color: #cccccc;
+	background-color: #dee2e7;
 	padding-top: 10px;
 	padding-bottom: 30px;
 }
@@ -60,11 +60,11 @@ body{
 }
 
 .plato01 {
-	height: 120px;
-	width: 330px;
+	height: 140px;
+	width: 310px;
    margin-top: 40px;
 	background-size: cover;"	
-	border-radius: 5px;
+	border-radius: 15px;
 }
 
 .img01 {
@@ -84,8 +84,12 @@ body{
 	color: #888888;
 }
 
+.textos05a {
+	color: #2c6250;
+}
+
 .textos06 {
-	color: #00aa00;
+	color: #5cb85c;
 }
 
 .img02 {
@@ -161,7 +165,7 @@ body{
  /*---------------------------------------------PRODUCTOSCARACTERISTICAS */
 
 #procar th {
-	background-color: green;
+	background-color: #7ac85d;
 	color: #ffffff;
  	font-size: 10px;
  	text-align: center;

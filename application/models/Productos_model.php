@@ -52,6 +52,7 @@ class Productos_model extends CI_Model {
 
 //--------------------------------devuelve todos los productos con un estado especifico
     function getProductosPorEstado($estadopro = null, $cant = 10, $pag = 1, $cat = null, $car = null){
+        $this->db->where('id', $estadopro);
         $data['cant'] = $this->db->count_all_results('productos');
         if($estadopro != 'Todos'){
             $this->db->where('idestadoproducto', $estadopro); 

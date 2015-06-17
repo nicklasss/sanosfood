@@ -38,14 +38,14 @@
 <div class="container">
 
 <div class="row baner02">
-   <div class="col-lg-4" align="center">
-       <img class="img-responsive img-thumbnail plato01" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQs0zs9HD7B6cF9l_o2zSM8goQ-Q7VnFWnHNRbYozeA_Nw9gFfHow"/>
+   <div class="col-lg-4" align="right">
+       <img class="img-responsive plato01 img-rounded" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQs0zs9HD7B6cF9l_o2zSM8goQ-Q7VnFWnHNRbYozeA_Nw9gFfHow"/>
    </div> 
    <div class="col-lg-4"  align="center">
-       <img class="img-responsive img-thumbnail plato01" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSYjZO4E3jO0jUfwNcB8L_TxEZyGX3HOj_zdr4UMPaJxMcR17-zcg"/>
+       <img class="img-responsive plato01 img-rounded" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSYjZO4E3jO0jUfwNcB8L_TxEZyGX3HOj_zdr4UMPaJxMcR17-zcg"/>
    </div> 
-   <div class="col-lg-4" align="center">
-       <img class="img-responsive img-thumbnail plato01" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzDwFGbTG2gEkCh0gn7xa4SBqXwitKCWq7GPWcvnyyKH7L5iWk"/>
+   <div class="col-lg-4" align="left">
+       <img class="img-responsive plato01 img-rounded" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzDwFGbTG2gEkCh0gn7xa4SBqXwitKCWq7GPWcvnyyKH7L5iWk"/>
    </div> 
 </div> 
 
@@ -71,19 +71,19 @@ foreach ($productos as $producto) {
                <div class="col-lg-9 col-lg-offset-2">
                   <div class="row">
                      <div class="col-lg-12">
-                        <img class="img-responsive img-thumbnail img01" src="'.$producto->imagen.'"/>
+                        <img class="img-responsive img-rounded img01" src="'.$producto->imagen.'"/>
                      </div>
                   </div>     
                   <div class="row">
                      <div class="col-lg-10">
                         <div class="row">
-                           <div class="col-lg-8 texto02" align="left"><h6><strong>'.$producto->nombre.'</strong></h6></div>
-                           <div class="col-lg-4 texto02" align="right"><h4><strong>$'.number_format($producto->precio , 0, ",", ".").'</strong></h4></div>
+                           <div class="col-lg-8 textos05a" align="left"><h6><strong>'.$producto->nombre.'</strong></h6></div>
+                           <div class="col-lg-4 textos06" align="right"><h4><strong>$'.number_format($producto->precio , 0, ",", ".").'</strong></h4></div>
                         </div>
                      </div>   
                   </div>
                   <div class="row">
-                     <div class="col-lg-12 texto02" align="left">
+                     <div class="col-lg-12 textos05" align="left">
                         <h6>'.$producto->descripcioncorta.'</h6>
                      </div>
                   </div>
