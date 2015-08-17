@@ -26,8 +26,7 @@ class Web extends CI_Controller {
 	}
 
 	public function buscar() {
-//		$quebuscar = @$this->input->post('quebuscar');
-		$quebuscar = "harina";
+		$quebuscar = @$this->input->post('quebuscar');
 		$this->load->view('web/encabezado');
 		$this->load->model('Productos_model');
 		$this->load->model('Marcas_model');

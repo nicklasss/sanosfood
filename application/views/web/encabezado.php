@@ -93,11 +93,11 @@
 	        	<ul class="nav navbar-nav navbar-right">
 	        		<li class="text-center"><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>0</a></li>
 				</ul>
-			      <form class="navbar-form">
+			      <form id="form-buscar" class="navbar-form" method="POST" action="<?= base_url();?>web/buscar">
 			        <div class="form-group" style="display:inline;">
 			          <div class="input-group" style="display:table;">
-			            <input class="form-control" name="search" placeholder="Search Here" autocomplete="off" autofocus="autofocus" type="text">
-			            <span class="input-group-addon success" style="width:1%;"><span class="glyphicon glyphicon-search"></span></span>
+			            <input class="form-control" name="quebuscar" placeholder="Search Here" autocomplete="off" autofocus="autofocus" type="text">
+			            <span id="btn-buscar-barra" class="input-group-addon success" style="width:1%;"><span class="glyphicon glyphicon-search"></span></span>
 			          </div>
 			        </div>
 			      </form>

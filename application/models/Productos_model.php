@@ -75,14 +75,16 @@ class Productos_model extends CI_Model {
 
 //--------------------------------devuelve todos los productos con un estado especifico
     function buscarProductosWeb($quebuscar = null, $cant = 10, $pag = 1, $cat = null, $car = null){
+        if($quebuscar==""){
+            return array();
+        }
         $data['cant'] = $this->db->count_all_results('productos');
         $palabras = preg_split("/ (.| ) /", $quebuscar);
         $against = "";
         foreach ($palabras as $palabra) {
             $against .= $palabra.'* ';
         }
-        $query = $this->db->query(" SELECT * FROM productos
-                                    WHERE MATCH(nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1;");
+        $query = $this->db->query(" SELECT * FROM productos WHERE MATCH(nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1;");
     
         foreach ($query->result() as $row) {
             $this->db->select('imagen');

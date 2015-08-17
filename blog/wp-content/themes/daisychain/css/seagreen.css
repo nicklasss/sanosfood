@@ -1,0 +1,59 @@
+/* Color scheme Sea-Green
+----------------------------------------------- */
+html body {
+  background-color: #5e8c6a;       
+}
+body a,
+body .post-entry .post-entry-headline a {
+  color: #5e8c6a;       
+}
+body #top-navigation-wrapper,
+body #wrapper-footer,
+body #searchform .searchform-wrapper .send,
+.js #top-navigation-wrapper .top-navigation .selectnav {
+  background-color: #386343;                             
+}
+body #main-content-inner,
+body #searchform .searchform-wrapper #s {
+  border-color: #386343;                         
+}
+body .post-entry .read-more-button,
+body input[type="submit"],
+body input[type="reset"] {
+  background-color: #6ca17a;                                   
+}
+body .menu-box ul ul {
+  border-color: #6ca17a;                     
+}
+body .sidebar-widget a {
+  color: #6ca17a;                       
+}
+body .post-entry .read-more-button:hover,
+body .footer-signature,
+body input[type="submit"]:hover,
+body input[type="reset"]:hover,
+body #searchform .send:hover {
+  background-color: #284730;                                         
+}
+body #top-navigation-wrapper,
+body .top-navigation ul ul,
+body #wrapper-footer,
+body #footer .footer-widget .footer-headline,
+.js #top-navigation-wrapper .top-navigation .selectnav {
+  border-color: #284730;                             
+}
+body .footer-signature {
+  border-color: #1d3322;                       
+}
+body .menu-box a:hover,
+body .menu-box :hover > a,
+body #searchform .searchform-wrapper #s {
+  background-color: #cae3d1;                          
+}
+body .top-navigation a,
+body .top-navigation a:visited,
+body #footer a,
+body #footer .footer-widget .footer-headline,
+body .footer-signature .footer-signature-content a {
+  color: #d7f2df;                               
+}
