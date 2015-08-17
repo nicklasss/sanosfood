@@ -86,6 +86,8 @@
       </div> 
    </div> <!-- /container -->
 </div> 
+
+
 <script type="text/javascript">
    $("#btn-buscar-barra").on('click',function(){
       $("#form-buscar").submit();

@@ -84,7 +84,8 @@ class Productos_model extends CI_Model {
         foreach ($palabras as $palabra) {
             $against .= $palabra.'* ';
         }
-        $query = $this->db->query(" SELECT * FROM productos WHERE MATCH(nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1;");
+        $query = $this->db->query(" SELECT * FROM productos 
+                                    WHERE MATCH(nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1;");
     
         foreach ($query->result() as $row) {
             $this->db->select('imagen');

@@ -30,9 +30,9 @@ class Web extends CI_Controller {
 		$this->load->view('web/encabezado');
 		$this->load->model('Productos_model');
 		$this->load->model('Marcas_model');
-		$data['marcas'] = $this->Marcas_model->listar();
+		$data['marcas'] = $this->Marcas_model->listarConProductos();
 		$this->load->model('Categorias_model');
-		$data['categorias'] = $this->Categorias_model->listar();
+		$data['categorias'] = $this->Categorias_model->listarConProductos();
 		$data['productos'] = $this->Productos_model->buscarProductosWeb($quebuscar);
 		$this->load->view('web/buscar', $data, FALSE); 
 		$this->load->view('web/piedepagina');

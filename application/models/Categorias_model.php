@@ -13,6 +13,16 @@ class Categorias_model extends CI_Model {
     	$query = $this->db->get('categorias');
     	return $query->result();
     }	
+
+    function listarConProductos() {
+    
+        $query = $this->db->query(" SELECT pc.idcategoria as id, c.nombre, count(pc.idcategoria) as cuentas
+                                    FROM pro_cat AS pc, productos AS p, categorias AS c   
+                                    WHERE p.idestadoproducto = 1 AND p.id = pc.idproducto AND pc.idcategoria = c.id
+                                    GROUP BY pc.idcategoria;");
+        return $query->result();
+
+    }   
 	
     function editar($id = NULL, $atributo = NULL, $valor = NULL){
         if($id != NULL AND $atributo != NULL AND $valor != NULL){

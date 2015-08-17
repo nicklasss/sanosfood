@@ -12,7 +12,17 @@ class Marcas_model extends CI_Model {
     	$query = $this->db->get('marcas');
     	return $query->result();
     }
+
+    function listarConProductos() {
     
+        $query = $this->db->query(" SELECT p.idmarca, m.nombre, count(p.idmarca) as cuentas
+                                    FROM productos AS p, marcas AS m   
+                                    WHERE p.idestadoproducto = 1 AND p.idmarca = m.id
+                                    GROUP BY m.id;");
+        return $query->result();
+
+    }   
+  
     function editar($id = NULL, $atributo = NULL, $valor = NULL){
         if($id != NULL AND $atributo != NULL AND $valor != NULL){
             if($atributo =="nombre"){
