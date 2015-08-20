@@ -84,20 +84,18 @@ class Productos_model extends CI_Model {
         foreach ($palabras as $palabra) {
             $against .= $palabra.'* ';
         }
-        $against = "harina";
         $query = $this->db->query(" SELECT * FROM productos 
                                     WHERE MATCH(nombre,descripcion,ingredientes) 
                                         AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1 
                                         LIMIT $cant OFFSET $pag;");
         
-        $data['cant'] = $query->num_rows();
         foreach ($query->result() as $row) {
             $this->db->select('imagen');
             $this->db->where('idproducto', $row->id);
             $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
         }
-        $data['productos'] = $query->result();
-        return $data;
+//        $data['productos'] = $query->result();
+        return $query->result();
     }
 
 //--------------------------------Obtiene un producto
@@ -107,13 +105,11 @@ class Productos_model extends CI_Model {
         foreach ($palabras as $palabra) {
             $against .= $palabra.'* ';
         }
-        $against = "harina";
-        
-        $this->db->query(" SELECT * FROM productos 
+        $query = $this->db->query(" SELECT * FROM productos 
                             WHERE MATCH(nombre,descripcion,ingredientes) 
                             AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1;");
 
-        return $this->db->count_all_results('productos');
+        return $query->num_rows();
     }
 
 //--------------------------------Obtiene un producto

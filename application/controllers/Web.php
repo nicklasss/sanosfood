@@ -29,7 +29,8 @@ class Web extends CI_Controller {
 		$quebuscar = @$this->input->post('quebuscar');
 		$this->load->view('web/encabezado');
 		$this->load->model('Productos_model');
-		$data = $this->Productos_model->buscarProductosWeb($quebuscar, $pag);
+		$data['productos'] = $this->Productos_model->buscarProductosWeb($quebuscar, $pag);
+		$data['cant'] = $this->Productos_model->contarProductos($quebuscar);
 
 		$this->load->model('Marcas_model');
 		$data['marcas'] = $this->Marcas_model->listarConProductos();
@@ -38,7 +39,7 @@ class Web extends CI_Controller {
 
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'web/buscar/'.$pag;
-		$config['total_rows'] = $this->Productos_model->contarProductos($quebuscar);
+		$config['total_rows'] = $data['cant'];
 		$config['per_page'] = 3;
 		$config['num_links'] = 3;
 		$config['display_pages'] = TRUE;					/*FALSE si quiere solamente los enlaces "siguiente" y "anterior"*/
