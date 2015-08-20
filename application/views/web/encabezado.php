@@ -93,7 +93,7 @@
 	        	<ul class="nav navbar-nav navbar-right">
 	        		<li class="text-center"><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>0</a></li>
 				</ul>
-			      <form id="form-buscar" class="navbar-form" method="POST" action="<?= base_url();?>web/buscar">
+			      <form id="form-buscar" class="navbar-form" method="POST" action="<?= base_url();?>web/buscar/2">
 			        <div class="form-group" style="display:inline;">
 			          <div class="input-group" style="display:table;">
 			            <input class="form-control" name="quebuscar" placeholder="Buscar aqui" autocomplete="off" autofocus="autofocus" type="text">

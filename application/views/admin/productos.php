@@ -151,7 +151,7 @@ function listar(){
                                 '</li>';
             };
             $("#paginas").html(resultado);
-          }
+        }
         else{alert(data.msj) } })          
      .error(function(){alert('error en el servidor'); });  // error generado
 }

@@ -38,6 +38,34 @@ class Producto extends CI_Controller {
 	}
 
 	public function listarWeb(){
+
+		$this->load->library('pagination');
+		$config['base_url'] = base_url().'web/buscar/';
+		$config['total_rows'] = 30;
+		$config['per_page'] = 3;
+		$config['num_links'] = 3;
+		$config['use_page_numbers'] = TRUE;
+		$config['full_tag_open'] = '<nav class="text-center"><ul class="pagination pagination-sm">';
+		$config['full_tag_close'] = '</ul></nav>';
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="disabled"><span>';
+		$config['cur_tag_close'] = '</span></li>';
+		$config['next_link'] = '&rsaquo;';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
+		$config['last_link'] = '&raquo;';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+		$config['first_link'] = '&laquo;';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['prev_link'] = '&lsaquo;';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+		$this->pagination->initialize($config);
+
+
 		$cant = @$this->input->post('cant');
 		$pagina = @$this->input->post('pagina');
 		$idcategoria = @$this->input->post('idcategoria');
@@ -47,7 +75,7 @@ class Producto extends CI_Controller {
 		if(count($data['productos'])==0){
 			print json_encode(array('res'=>'bad','msj'=>'Sin resultados'));exit();
 		}
-		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant']));exit();
+		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant'], 'pag'=>$this->pagination->create_links()));exit();
 	}
 
 	public function editar(){

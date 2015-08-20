@@ -74,7 +74,7 @@ class Productos_model extends CI_Model {
     }
 
 //--------------------------------devuelve todos los productos con un estado especifico
-    function buscarProductosWeb($quebuscar = null, $cant = 10, $pag = 1, $cat = null, $car = null){
+    function buscarProductosWeb($quebuscar = null, $pag = 1, $cant = 3){
         if($quebuscar==""){
             return array();
         }
@@ -84,16 +84,36 @@ class Productos_model extends CI_Model {
         foreach ($palabras as $palabra) {
             $against .= $palabra.'* ';
         }
+        $against = "harina";
         $query = $this->db->query(" SELECT * FROM productos 
-                                    WHERE MATCH(nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1;");
-    
+                                    WHERE MATCH(nombre,descripcion,ingredientes) 
+                                        AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1 
+                                        LIMIT $cant OFFSET $pag;");
+        
+        $data['cant'] = $query->num_rows();
         foreach ($query->result() as $row) {
             $this->db->select('imagen');
             $this->db->where('idproducto', $row->id);
             $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
         }
         $data['productos'] = $query->result();
-        return $query->result();
+        return $data;
+    }
+
+//--------------------------------Obtiene un producto
+    function contarProductos($quebuscar = null){
+        $palabras = preg_split("/ (.| ) /", $quebuscar);
+        $against = "";
+        foreach ($palabras as $palabra) {
+            $against .= $palabra.'* ';
+        }
+        $against = "harina";
+        
+        $this->db->query(" SELECT * FROM productos 
+                            WHERE MATCH(nombre,descripcion,ingredientes) 
+                            AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1;");
+
+        return $this->db->count_all_results('productos');
     }
 
 //--------------------------------Obtiene un producto

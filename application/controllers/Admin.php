@@ -204,6 +204,7 @@ class Admin extends CI_Controller {
 		$this->load->model('Pedidos_model');
 		$data['pedidos'] = $this->Pedidos_model->getPedidosPorEstado($estado,$pag);
 		$data['estados'] = $dataencabezado['estadospedidos'];
+
 		$this->load->library('pagination');
 		$config['base_url'] = base_url().'admin/pedidos/'.$estado.'/';
 		$config['total_rows'] = $this->Pedidos_model->contarPedidos($estado);
@@ -229,6 +230,7 @@ class Admin extends CI_Controller {
 		$config['prev_tag_open'] = '<li>';
 		$config['prev_tag_close'] = '</li>';
 		$this->pagination->initialize($config);
+
 		$this->load->view('admin/pedidosxestado', $data, FALSE);
 		$this->load->view('admin/piedepagina');
 	}
