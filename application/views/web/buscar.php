@@ -1,13 +1,19 @@
+<script type="text/javascript">
+var quebuscar = "<?php print $quebuscar;?>";
+var ppp = <?php print $ppp;?>;
+var pag = 1;
+var proceso = "busqueda";
+</script>
+
 <div class="container">
-
-<?php
-    print "(".$cant.") Productos"; 
-?>          
-
-
 
 <!---------------------------------------------------------------PRODUCTOS -->
 <!--<div class="row" style="background: #cccccc;">   -->
+<div class="row text-center" id="titulo">
+   <div class="col-lg-10 col-lg-offset-2">
+		<h4>Busqueda de: <strong><?php if ($quebuscar == "*") {print "TODOS LOS PRODUCTOS";} else {print "$quebuscar";} ?></strong></h4>
+	</div>
+</div>
 <div class="row">
    <div class="col-lg-2">
 		<div class="row">
@@ -44,35 +50,15 @@
 				</table> <!-- tabla--> 
 			</div> <!-- Panel-->
 		</div>
-
-<!--		<div class="row">
-			<div class="col-sm-12 text-center">
-				<h6><strong>Ver Productos por Página</strong></h6>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6 col-sm-offset-3">
-			<select id="select-cant" aria-controls="dataTables-example" class="form-control input-sm">
-				<option value="6">6</option>
-				<option value="12">12</option>
-				<option value="24">24</option>
-				<option value="48">48</option>
-			</select>
-			</div>
-		</div>
--->
-
-
-
 	</div>
 	<div class="col-lg-10">
 		<div class="row baner08" id="listaproductos">  
 
-
 <?php
+if (count($productos) == 0) {print '<h4 class="text-center label-warning">No hay productos coincidentes con el criterio de busqueda</h4>';}
+
 $i = 0;
 foreach ($productos as $producto) {         
-
 	if ($i == 0) {
 	  print '<div class="row">';
 	}
@@ -114,34 +100,30 @@ foreach ($productos as $producto) {
 	$i = $i + 1;
 	}
 ?>
-
-		</div>
-
-		<div class="row">
-			<div class="col-md-12 center-text paginacion">
-				<?php print $this->pagination->create_links();?>
-			</div>
-		</div>
-
-<!--		<div class="row">
-			<div class="dataTables_paginate paging_simple_numbers text-center" id="dataTables-example_paginate">
-			   <ul class="pagination" id="paginas">
-					<li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
-			      	<a href="javascript:void(0)" data-pag="1" class="link-a-pagina">1</a>
-					</li>
-//					<?php
-//					for ($i=2; $i < floor($cant/3)+2; $i++) { 
-//						print'  	<li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
-//									<a data-pag="'.$i.'" class="link-a-pagina" href="javascript:void(0)">'.$i.'</a>
-//									</li>';
-//					}
-//					?>
-				</ul>
-			</div>  -->
-
-
 		</div>
 	</div>  
+	<div class="row">
+		<div class="dataTables_paginate paging_simple_numbers text-center" id="dataTables-example_paginate">
+			<ul class="pagination" id="paginado">
+				<?php
+				$paginas = ceil($cant/$ppp);
+				if ($paginas > 1) {
+					print '	<li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
+					  				<a href="javascript:void(0)" data-pag="1" class="link-a-pagina">1</a>
+								</li>';
+					for ($i=2; $i < ceil($cant/$ppp)+1; $i++) { 
+				 		print'	<li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
+				   					<a data-pag="'.$i.'" class="link-a-pagina" href="javascript:void(0)">'.$i.'</a>
+									</li>';
+					}
+					print '	<li class="paginate_button" aria-controls="dataTables-example" tabindex="0">
+					 				<a data-pag="sig" class="link-a-pagina" href="javascript:void(0)">&raquo;</a>
+					 			</li>';
+				}
+				?>
+			</ul>
+		</div>
+	</div>
 </div>
 </div> <!-- /container -->
 
@@ -157,53 +139,97 @@ $(document).ready(function(){
 
 	$('.container').on('click','.categ',function(event){
 		idcategoria = $(event.target).attr("data-id");
+		proceso = "categoria";
+		pag = 1;
+		$("#titulo").html('<h4><strong>'+$(event.target).html()+'</strong></h4>');
 		rta = buscarxcategoria(idcategoria, function(rta){
 			if(!rta) {  }
 		})
-	})
+	});
 
 	$('.container').on('click','.marca',function(event){
 		idmarca = $(event.target).attr("data-id");
+		proceso = "marca";
+		pag = 1;
+		$("#titulo").html('<h4><strong>'+$(event.target).html()+'</strong></h4>');
 		rta = buscarxmarca(idmarca, function(rta){
 			if(!rta) {  }
 		})
 	});
+
+	$("#paginado").on('click','.link-a-pagina',function(e){
+		e.preventDefault();
+		pagdada = $(e.target).attr('data-pag');
+		switch (pagdada) {
+			case 'sig': pag = pag + 1; break;
+			case 'ant': pag = pag - 1; break;
+			default: pag = parseInt(pagdada);
+		}
+		switch (proceso) {
+			case 'marca': buscarxmarca(idmarca); break;
+			case 'categoria': buscarxcategoria(idcategoria); break;
+			case 'busqueda': buscar(); break;
+		}
+	});
+
 })
 
 //----------------------------------------------------------------------------------funcion buscarxcategoria
-function buscarxcategoria(idcategoria, callback) {
+function buscarxcategoria(idcategoria) {
 	$.ajax({                                              
-		url: "<?php print base_url();?>producto/listarWeb",
+		url: "<?php print base_url();?>producto/listarxCategoriaWeb",
 		context: document.body,
 		dataType: "json",
 		type: "POST",
-		data: { cant : 100, pagina : 1, idcategoria : idcategoria} })
+		data: { idcategoria : idcategoria, ppp : ppp, pag : pag }})
 	.done(function(data) {                               // respuesta del servidor
 		if(data.res=="ok") {
-			callback(true);
-			$("#paginacion").html(data.pag);
+//			callback(true);
 			pintarproductos(data);
-		} else {alert(data.msj);callback(false)}
+			pintarpaginacion(pag, ppp, data.cant); 
+		}
+		else {alert(data.msj);}
 	})
-	.error(function(){alert('No hay conexion');callback(false);})
+	.error(function(){alert('No hay conexion');});
 }
 
 //----------------------------------------------------------------------------------funcion buscarxcategoria
 function buscarxmarca(idmarca, callback) {
 	$.ajax({                                              
-		url: "<?php print base_url();?>producto/listarWeb",
+		url: "<?php print base_url();?>producto/listarxMarcaWeb",
 		context: document.body,
 		dataType: "json",
 		type: "POST",
-		data: { cant : 100, pagina : 1, idmarca : idmarca} })
+		data: { idmarca : idmarca, ppp : ppp, pag : pag }})
 	.done(function(data) {                               // respuesta del servidor
 		if(data.res=="ok") {
-			callback(true);
-			$("#paginacion").html(data.pag);
-			pintarproductos(data); return;
-		} else {alert(data.msj);callback(false)}
+//			callback(true);
+			pintarproductos(data);
+			pintarpaginacion(pag, ppp, data.cant); 
+		} 
+		else {alert(data.msj);}
 	})
-	.error(function(){alert('No hay conexion');callback(false);})
+	.error(function(){alert('No hay conexion');});
+}
+
+//----------------------------------------------------------------------------------funcion LISTAR
+function buscar(){
+	$.ajax({                                               // envio de los datos
+		url: "<?php print base_url();?>producto/buscar",
+		context: document.body,
+		dataType: "json",
+		type: "POST",
+		data: { quebuscar : quebuscar, ppp : ppp, pag : pag }
+	})
+	.done(function(data) {                                // respuesta del servidor
+		if(data.res == "ok") {
+			pintarproductos(data);
+			pintarpaginacion(pag, ppp, data.cant); 
+			return;
+		}
+		else{alert(data.msj) } 
+		})          
+	.error(function(){alert('error en el servidor'); });  // error generado
 }
 
 //----------------------------------------------------------------------------------funcion pintarproductos
@@ -251,12 +277,40 @@ function pintarproductos(data) {
 	}
 }
 
+//----------------------------------------------------------------------------------funcion pintarproductos
+function pintarpaginacion(pag, ppp, cant) {
+	sartahtml = '';
+	paginas = Math.ceil(cant/ppp);
+	if (pag > 1) {
+		sartahtml += '	<li class="paginate_button" aria-controls="dataTables-example" tabindex="0">'+
+		             '		<a data-pag="ant" class="link-a-pagina" href="javascript:void(0)">&laquo;</a>'+
+		             '	</li>';
+	};		 
+	for (var i = 1; i < Math.ceil(cant/ppp)+1; i++) {
+		sartahtml += ' <li class="paginate_button ';
+		if((i)==pag){
+		  sartahtml+= ' active';
+		}
+		sartahtml += '" aria-controls="dataTables-example" tabindex="0">'+
+		                  '<a data-pag="'+(i)+'" class="link-a-pagina" href="javascript:void(0)">'+(i)+'</a>'+
+		              '</li>';
+	};
+	if (pag < paginas) {
+		sartahtml += '	<li class="paginate_button" aria-controls="dataTables-example" tabindex="0">'+
+		             '		<a data-pag="sig" class="link-a-pagina" href="javascript:void(0)">&raquo;</a>'+
+		             '	</li>';
+	};		 
+
+	$("#paginado").html(sartahtml);   
+}
+
+
 //----------------------------------------------------------------------------------funcion formato_numero
 function formato_numero(texto) {
-var resultado = "";
-for (var j, i = texto.length - 1, j = 0; i >= 0; i--, j++) 
-	resultado = texto.charAt(i) + ((j > 0) && (j % 3 == 0)? ".": "") + resultado; 
-return resultado;
+	var resultado = "";
+	for (var j, i = texto.length - 1, j = 0; i >= 0; i--, j++) 
+		resultado = texto.charAt(i) + ((j > 0) && (j % 3 == 0)? ".": "") + resultado; 
+	return resultado;
 }
 
 </script>

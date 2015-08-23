@@ -73,44 +73,96 @@ class Productos_model extends CI_Model {
         return $data;
     }
 
-//--------------------------------devuelve todos los productos con un estado especifico
-    function buscarProductosWeb($quebuscar = null, $pag = 1, $cant = 3){
-        if($quebuscar==""){
-            return array();
+//--------------------------------devuelve todos los productos con palabra buscada
+    function buscarProductosWeb($quebuscar = null, $pag = 1, $ppp = 3){
+        $pagina = $ppp * ($pag - 1);
+        if($quebuscar == "*"){
+            $query = $this->db->query("SELECT * FROM productos 
+                                        WHERE idestadoproducto = 1 
+                                        LIMIT $ppp offset $pagina");
         }
-        $data['cant'] = $this->db->count_all_results('productos');
-        $palabras = preg_split("/ (.| ) /", $quebuscar);
-        $against = "";
-        foreach ($palabras as $palabra) {
-            $against .= $palabra.'* ';
+        else {
+            $palabras = preg_split("/ (.| ) /", $quebuscar);
+            $against = "";
+            foreach ($palabras as $palabra) {
+                $against .= $palabra.'* ';
+            }
+            $query = $this->db->query("SELECT * FROM productos 
+                        WHERE MATCH (nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1 
+                        LIMIT $ppp offset $pagina");
         }
-        $query = $this->db->query(" SELECT * FROM productos 
-                                    WHERE MATCH(nombre,descripcion,ingredientes) 
-                                        AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1 
-                                        LIMIT $cant OFFSET $pag;");
         
         foreach ($query->result() as $row) {
             $this->db->select('imagen');
             $this->db->where('idproducto', $row->id);
             $row->imagen = $this->db->get('imagenes', 1, 0)->row()->imagen;
         }
-//        $data['productos'] = $query->result();
         return $query->result();
     }
-
-//--------------------------------Obtiene un producto
-    function contarProductos($quebuscar = null){
-        $palabras = preg_split("/ (.| ) /", $quebuscar);
-        $against = "";
-        foreach ($palabras as $palabra) {
-            $against .= $palabra.'* ';
+    //--------------------------------Obtiene cantidad total de productos por la busqueda
+    function contarProductosBuscar($quebuscar = null){
+        if($quebuscar == "*"){
+            $query = $this->db->query("SELECT * FROM productos 
+                        WHERE idestadoproducto = 1;");
         }
-        $query = $this->db->query(" SELECT * FROM productos 
-                            WHERE MATCH(nombre,descripcion,ingredientes) 
-                            AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1;");
-
+        else {
+            $palabras = preg_split("/ (.| ) /", $quebuscar);
+            $against = "";
+            foreach ($palabras as $palabra) {
+                $against .= $palabra.'* ';
+            }
+            $query = $this->db->query("SELECT * FROM productos 
+                        WHERE MATCH (nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE) and idestadoproducto = 1;");
+        }
         return $query->num_rows();
     }
+
+//--------------------------------ListarxCategoriaWeb
+    function listarxCategoriaWeb($cat = null, $pag = 1, $ppp = 1){
+        $pagina = $ppp * ($pag - 1);
+        $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
+                            WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.idestadoproducto = 1
+                            LIMIT $ppp OFFSET $pagina;");
+        foreach ($query->result() as $row) {
+            $this->db->select('nombre');
+            $this->db->where('id', $row->idestadoproducto);
+            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
+            $this->db->select('imagen');
+            $this->db->where('idproducto', $row->id);
+            $row->imagen = @$this->db->get('imagenes', 1, 0)->row()->imagen;
+        }
+        return $query->result();
+    }
+    //--------------------------------Obtiene cantidad total de productos por la categoria
+    function contarProductosCategoria($cat = null){
+        $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
+                            WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.idestadoproducto = 1");
+        return $query->num_rows();
+    }
+
+//--------------------------------ListarxMarcaiaWeb
+    function listarxMarcaWeb($mar = null, $pag = 1, $ppp = 1){
+        $pagina = $ppp * ($pag - 1);
+        $query = $this->db->query(" SELECT * FROM productos 
+                                    WHERE idmarca = $mar and idestadoproducto = 1 
+                                    LIMIT $ppp OFFSET $pagina;");
+        foreach ($query->result() as $row) {
+            $this->db->select('nombre');
+            $this->db->where('id', $row->idestadoproducto);
+            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
+            $this->db->select('imagen');
+            $this->db->where('idproducto', $row->id);
+            $row->imagen = @$this->db->get('imagenes', 1, 0)->row()->imagen;
+        }
+        return $query->result();
+    }
+    //--------------------------------Obtiene cantidad total de productos por la marca
+    function contarProductosMarca($mar = null){
+        $query = $this->db->query(" SELECT * FROM productos 
+                                    WHERE idmarca = $mar and idestadoproducto = 1;");
+        return $query->num_rows();
+    }
+
 
 //--------------------------------Obtiene un producto
     function producto($id = null){
@@ -169,7 +221,7 @@ class Productos_model extends CI_Model {
         return $data;
     }
 
-//--------------------------------ListarWeb
+//--------------------------------ListarWeb----------------OBSOLETA
     function listarWeb($cant = 10, $pag = 1, $cat = null, $mar = null){
         $data['cant'] = $this->db->count_all_results('productos');
         

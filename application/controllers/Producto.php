@@ -37,45 +37,43 @@ class Producto extends CI_Controller {
 //		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$cant));exit();
 	}
 
-	public function listarWeb(){
-
-		$this->load->library('pagination');
-		$config['base_url'] = base_url().'web/buscar/';
-		$config['total_rows'] = 30;
-		$config['per_page'] = 3;
-		$config['num_links'] = 3;
-		$config['use_page_numbers'] = TRUE;
-		$config['full_tag_open'] = '<nav class="text-center"><ul class="pagination pagination-sm">';
-		$config['full_tag_close'] = '</ul></nav>';
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = '<li class="disabled"><span>';
-		$config['cur_tag_close'] = '</span></li>';
-		$config['next_link'] = '&rsaquo;';
-		$config['next_tag_open'] = '<li>';
-		$config['next_tag_close'] = '</li>';
-		$config['last_link'] = '&raquo;';
-		$config['last_tag_open'] = '<li>';
-		$config['last_tag_close'] = '</li>';
-		$config['first_link'] = '&laquo;';
-		$config['first_tag_open'] = '<li>';
-		$config['first_tag_close'] = '</li>';
-		$config['prev_link'] = '&lsaquo;';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-		$this->pagination->initialize($config);
-
-
-		$cant = @$this->input->post('cant');
-		$pagina = @$this->input->post('pagina');
+	public function listarxCategoriaWeb(){
 		$idcategoria = @$this->input->post('idcategoria');
-		$idmarca = @$this->input->post('idmarca');
+		$ppp = @$this->input->post('ppp');
+		$pag = @$this->input->post('pag');
 		$this->load->model('Productos_model');
-		$data = $this->Productos_model->listarWeb($cant, $pagina, $idcategoria, $idmarca);
+		$data['productos'] = $this->Productos_model->listarxCategoriaWeb($idcategoria, $pag, $ppp);
+		$data['cant'] = $this->Productos_model->contarProductosCategoria($idcategoria);
 		if(count($data['productos'])==0){
 			print json_encode(array('res'=>'bad','msj'=>'Sin resultados'));exit();
 		}
-		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant'], 'pag'=>$this->pagination->create_links()));exit();
+		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant'],));exit();
+	}
+
+	public function listarxMarcaWeb(){
+		$idmarca = @$this->input->post('idmarca');
+		$ppp = @$this->input->post('ppp');
+		$pag = @$this->input->post('pag');
+		$this->load->model('Productos_model');
+		$data['productos'] = $data = $this->Productos_model->listarxMarcaWeb($idmarca, $pag, $ppp);
+		$data['cant'] = $this->Productos_model->contarProductosMarca($idmarca);
+		if(count($data['productos'])==0){
+			print json_encode(array('res'=>'bad','msj'=>'Sin resultados'));exit();
+		}
+		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant'],));exit();
+	}
+
+	public function buscar() {
+		$quebuscar = @$this->input->post('quebuscar');
+		$ppp = @$this->input->post('ppp');
+		$pag = @$this->input->post('pag');
+		$this->load->model('Productos_model');
+		$data['productos'] = $this->Productos_model->buscarProductosWeb($quebuscar, $pag, $ppp);
+		$data['cant'] = $this->Productos_model->contarProductosBuscar($quebuscar);
+		if(count($data['productos'])==0){
+			print json_encode(array('res'=>'bad','msj'=>'Sin resultados'));exit();
+		}
+		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant']));exit();
 	}
 
 	public function editar(){
