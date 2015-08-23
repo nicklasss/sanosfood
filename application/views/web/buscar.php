@@ -9,8 +9,8 @@ var proceso = "busqueda";
 
 <!---------------------------------------------------------------PRODUCTOS -->
 <!--<div class="row" style="background: #cccccc;">   -->
-<div class="row text-center" id="titulo">
-   <div class="col-lg-10 col-lg-offset-2">
+<div class="row">
+   <div class="col-lg-10 col-lg-offset-2 text-center" id="titulo">
 		<h4>Busqueda de: <strong><?php if ($quebuscar == "*") {print "TODOS LOS PRODUCTOS";} else {print "$quebuscar";} ?></strong></h4>
 	</div>
 </div>
