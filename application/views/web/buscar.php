@@ -11,7 +11,7 @@ var proceso = "busqueda";
 <!--<div class="row" style="background: #cccccc;">   -->
 <div class="row">
    <div class="col-lg-10 col-lg-offset-2 text-center" id="titulo">
-		<h4>Busqueda de: <strong><?php if ($quebuscar == "*") {print "TODOS LOS PRODUCTOS";} else {print "$quebuscar";} ?></strong></h4>
+		<h4>Busqueda de: <strong><?php if ($quebuscar == "*") {print "TODOS LOS PRODUCTOS ($cant)";} else {print "$quebuscar ($cant)";} ?></strong></h4>
 	</div>
 </div>
 <div class="row">
@@ -109,16 +109,16 @@ foreach ($productos as $producto) {
 				$paginas = ceil($cant/$ppp);
 				if ($paginas > 1) {
 					print '	<li class="paginate_button active" aria-controls="dataTables-example" tabindex="0">
-					  				<a href="javascript:void(0)" data-pag="1" class="link-a-pagina">1</a>
-								</li>';
+					  			<span>1</span>
+							</li>';
 					for ($i=2; $i < ceil($cant/$ppp)+1; $i++) { 
 				 		print'	<li class="paginate_button " aria-controls="dataTables-example" tabindex="0">
 				   					<a data-pag="'.$i.'" class="link-a-pagina" href="javascript:void(0)">'.$i.'</a>
-									</li>';
+								</li>';
 					}
 					print '	<li class="paginate_button" aria-controls="dataTables-example" tabindex="0">
-					 				<a data-pag="sig" class="link-a-pagina" href="javascript:void(0)">&raquo;</a>
-					 			</li>';
+					 			<a data-pag="sig" class="link-a-pagina" href="javascript:void(0)">&raquo;</a>
+					 		</li>';
 				}
 				?>
 			</ul>
@@ -287,13 +287,15 @@ function pintarpaginacion(pag, ppp, cant) {
 		             '	</li>';
 	};		 
 	for (var i = 1; i < Math.ceil(cant/ppp)+1; i++) {
-		sartahtml += ' <li class="paginate_button ';
 		if((i)==pag){
-		  sartahtml+= ' active';
-		}
-		sartahtml += '" aria-controls="dataTables-example" tabindex="0">'+
-		                  '<a data-pag="'+(i)+'" class="link-a-pagina" href="javascript:void(0)">'+(i)+'</a>'+
-		              '</li>';
+		  sartahtml+= 	'<li class="paginate_button active aria-controls="dataTables-example" tabindex="0">'+
+						'	<span>'+(i)+'</span>'+
+						'</li>';
+		} else {
+		  sartahtml+= 	'<li class="paginate_button aria-controls="dataTables-example" tabindex="0">'+
+						'	<a data-pag="'+(i)+'" class="link-a-pagina" href="javascript:void(0)">'+(i)+'</a>'+
+						'</li>';
+		};
 	};
 	if (pag < paginas) {
 		sartahtml += '	<li class="paginate_button" aria-controls="dataTables-example" tabindex="0">'+
