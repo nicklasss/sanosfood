@@ -17,7 +17,7 @@
             </div>
          </div>
       </div>
-      <div class="row">
+<!--      <div class="row">
          <div class="col-lg-1 col-lg-offset-9 text-right">
             <div class="boton01">
                <div class="row">
@@ -30,14 +30,14 @@
                </div>
             </div>
          </div>
-      </div>
+      </div>  -->
    </div> <!-- /container -->
 </div> 
 
 <!---------------------------------------------------------------BANNER DE PLATOS -->
 <div class="container">
 
-<div class="row baner02">
+<!--<div class="row baner02">
    <div class="col-lg-4" align="right">
        <img class="img-responsive plato01 img-rounded" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQs0zs9HD7B6cF9l_o2zSM8goQ-Q7VnFWnHNRbYozeA_Nw9gFfHow"/>
    </div> 
@@ -47,7 +47,7 @@
    <div class="col-lg-4" align="left">
        <img class="img-responsive plato01 img-rounded" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzDwFGbTG2gEkCh0gn7xa4SBqXwitKCWq7GPWcvnyyKH7L5iWk"/>
    </div> 
-</div> 
+</div> -->
 
 <!---------------------------------------------------------------PRODUCTOS -->
 <!--<div class="row" style="background: #cccccc;">   -->

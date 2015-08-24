@@ -35,7 +35,7 @@ class Web extends CI_Controller {
 		$this->load->model('Categorias_model');
 		$data['categorias'] = $this->Categorias_model->listarConProductos();
 		$data['quebuscar'] = $quebuscar;
-		$data['ppp'] = 3;
+		$data['ppp'] = 6;
 		$data['pag'] = 1;
 		$ppp = $data['ppp'];
 		$pag = $data['pag'];

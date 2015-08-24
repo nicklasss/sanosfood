@@ -65,10 +65,10 @@
             <h5><strong>Contact</strong></h5>
          </div>
          <div class="textos04">
-            <h5><strong>Terms and Conditions</strong></h5>
+            <h5><strong><a href="www.sanosfoods.com/blog">Blog</a></strong></h5>
          </div>
          <div class="textos04">
-            <h5><strong><a href="#">Privacy Policy</a></strong></h5>
+            <h5><strong>Privacy Policy</strong></h5>
          </div>
       </div> 
 

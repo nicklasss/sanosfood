@@ -7,7 +7,7 @@ body{
 
 /*---------------------------------------------HOME */
 .baner01 {
-	height: 500px;
+	height: 400px;
 	background-image: url(http://necesitodetodos.org/wp-content/uploads/2013/09/alimentos-saludables.jpg); 
 	background-size: cover;"	
 }
@@ -37,7 +37,7 @@ body{
 }
 
 .textos01 {
-	padding-top:130px;
+	padding-top:90px;
 	color: #ffffff;
 }
 
@@ -89,7 +89,7 @@ body{
 }
 
 .textos06 {
-	color: #5cb85c;
+	color: #888888;
 }
 
 .img02 {
