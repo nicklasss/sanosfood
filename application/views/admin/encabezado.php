@@ -21,10 +21,14 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
  <!--[if lt IE 9]>
    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
- <![endif]-->
+ <![endif]
  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
- <link rel="stylesheet" href="<?php print base_url();?>css/admin.css">
+ <script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
+ 
+<script src="//code.jquery.com/jquery-2.0.2.min.js"></script>  
+<link rel="stylesheet" href="<?php print base_url();?>css/admin.css">
+
+
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 

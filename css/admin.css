@@ -42,3 +42,10 @@ div .registro textarea{
   margin-top: 0px;
   margin-bottom: 0px;
 }
+
+.img03 {
+  height: 80px;
+   margin-top: 10px;
+  background-size: cover;"  
+  border-radius: 5px;
+}

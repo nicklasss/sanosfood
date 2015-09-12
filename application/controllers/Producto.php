@@ -3,9 +3,7 @@
 class Producto extends CI_Controller {
 
 	public function index()
-	{
-		
-	}
+	{ }
 
 	public function crear(){
 		$nombre = @$this->input->post('nombre',TRUE);
@@ -14,6 +12,29 @@ class Producto extends CI_Controller {
 		$this->load->model('Productos_model');
 		$data = $this->Productos_model->crear($nombre,$descripcion,$ingredientes);
 		$this->load->view('producto/crear', $data, FALSE);
+	}
+
+	public function subirImagen(){
+       //Ruta donde se guardan los ficheros
+        $config['upload_path'] = './images/';
+       //Tipos de ficheros permitidos
+        $config['allowed_types'] = 'gif|jpg|png';
+       //Se pueden configurar aun mas parámetros.
+       //Cargamos la librería de subida y le pasamos la configuración
+        $this->load->library('upload', $config);
+        if(!$this->upload->do_upload()){
+            /*Si al subirse hay algún error lo meto en un array para pasárselo a la vista*/
+                $error=array('error' => $this->upload->display_errors());
+                $this->load->view('subir_view', $error);
+        }else{
+            //Datos del fichero subido
+            $datos["img"]=$this->upload->data();
+            // Podemos acceder a todas las propiedades del fichero subido
+            // $datos["img"]["file_name"]);
+            //Cargamos la vista y le pasamos los datos
+            $this->load->view('subir_view', $datos);
+        }
+
 	}
 
 	public function listar(){
