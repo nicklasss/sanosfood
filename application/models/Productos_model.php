@@ -529,13 +529,11 @@ class Productos_model extends CI_Model {
         $this->db->where('id', $idimagen);
         $data['imagen'] = @$this->db->get('imagenes', 1, 0)->row()->imagen;
 
-
         $this->db->where('id', $idimagen);
         $this->db->delete('imagenes');
         $data['res'] = 'ok';
         return $data; 
     }
-
 
 //--------------------------------reemplaza caracteres raros
     function buscar($query=null){

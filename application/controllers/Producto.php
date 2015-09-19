@@ -26,7 +26,7 @@ class Producto extends CI_Controller {
 				$data = $this->Productos_model->guardarImagen($idproducto, $ext);		//graba en la base de datos la direccion de la imagen
 				$nombre = $data['id'];
 				$direccion = base_url() . "images/" . $nombre . "." . $ext;
-				$newname = FCPATH.'/images/' . $nombre . "." . $ext;  
+				$newname = FCPATH.'images/' . $nombre . "." . $ext;  
 				if ((move_uploaded_file($_FILES['userfile']['tmp_name'],$newname))) {   //Intenta cargar el archivo al destino
 					$this->session->set_flashdata('ok', "Archivo subido correctamente como: <br>".$direccion);
 				}
