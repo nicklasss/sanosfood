@@ -15,27 +15,40 @@ class Producto extends CI_Controller {
 	}
 
 	public function subirImagen(){
-       //Ruta donde se guardan los ficheros
-        $config['upload_path'] = './images/';
-       //Tipos de ficheros permitidos
-        $config['allowed_types'] = 'gif|jpg|png';
-       //Se pueden configurar aun mas parámetros.
-       //Cargamos la librería de subida y le pasamos la configuración
-        $this->load->library('upload', $config);
-        if(!$this->upload->do_upload()){
-            /*Si al subirse hay algún error lo meto en un array para pasárselo a la vista*/
-                $error=array('error' => $this->upload->display_errors());
-                $this->load->view('subir_view', $error);
-        }else{
-            //Datos del fichero subido
-            $datos["img"]=$this->upload->data();
-            // Podemos acceder a todas las propiedades del fichero subido
-            // $datos["img"]["file_name"]);
-            //Cargamos la vista y le pasamos los datos
-            $this->load->view('subir_view', $datos);
-        }
-
+        $idproducto = @$this->input->post('idproducto',TRUE);
+		if((!empty($_FILES["userfile"])) && ($_FILES['userfile']['error'] == 0)) {
+			$filename = basename($_FILES['userfile']['name']);
+			$ext = substr($filename, strrpos($filename, '.') + 1);
+			$tamano = 500*1024;
+			$ext_permitidas = array('jpg','jpeg','gif','png');
+			if ((in_array(strtolower($ext), $ext_permitidas)) && ($_FILES["userfile"]["type"] == "image/jpeg") && ($_FILES["userfile"]["size"] < $tamano)) {
+				$this->load->model('Productos_model');
+				$data = $this->Productos_model->guardarImagen($idproducto, $ext);		//graba en la base de datos la direccion de la imagen
+				$nombre = $data['id'];
+				$direccion = base_url() . "images/" . $nombre . "." . $ext;
+				$newname = FCPATH.'/images/' . $nombre . "." . $ext;  
+				if ((move_uploaded_file($_FILES['userfile']['tmp_name'],$newname))) {   //Intenta cargar el archivo al destino
+					$this->session->set_flashdata('ok', "Archivo subido correctamente como: <br>".$direccion);
+				}
+				else { $this->session->set_flashdata('error', "Error: han ocurrido problemas al subirlo"); }
+			}
+			else { $this->session->set_flashdata('error', "Error: solamente imagenes menores a: ".$tamano." son aceptadas para subir"); }
+		}
+		else { $this->session->set_flashdata('error', "Error: No se a subido el archivo"); }
+		redirect('admin/producto/'.$idproducto,'refresh');
 	}
+
+	public function borrarImagen(){
+        $idproducto = $this->input->post('numproducto',TRUE);
+        $idimagen = $this->input->post('numimagen',TRUE);
+		$this->load->model('Productos_model');
+		$data = $this->Productos_model->borrarImagen($idimagen);		
+		$imagen = $data['imagen'];
+		unlink($imagen);
+
+		redirect('admin/producto/'.$idproducto,'refresh');
+	}
+
 
 	public function listar(){
 		$cant = @$this->input->post('cant');
@@ -114,13 +127,6 @@ class Producto extends CI_Controller {
 		$this->load->model('Productos_model');
 		print json_encode($this->Productos_model->editarestado($id));
 	}
-
-	public function agregarfotos(){
-		if(!$this->session->userdata('logeado_admin')){
-			print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));
-		}
-		$this->load->view('producto/agregarfoto');
-	}	
 
 }
 

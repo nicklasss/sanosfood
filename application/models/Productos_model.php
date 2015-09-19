@@ -491,6 +491,52 @@ class Productos_model extends CI_Model {
         $data['res'] = 'ok'; 
         return $data; 
     }
+
+//--------------------------------Guardar Imagen
+    function guardarImagen($idproducto = null, $extencion = null){
+        if($idproducto == null){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Error, producto sin id';
+            return $data; 
+        }
+        if($extencion == null){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Error, no hay extencion de la imagen';
+            return $data; 
+        }
+
+        $object = array('idproducto' => $idproducto, 'imagen' => $extencion);
+        $this->db->insert('imagenes', $object);
+
+        $id = $this->db->insert_id();
+        $objeto['imagen'] = base_url() . "images/" . $id . "." . $extencion;
+        $this->db->where('id', $id);
+        $this->db->update('imagenes', $objeto);
+
+        $data['res'] = 'ok';
+        $data['id'] = $id;
+        return $data; 
+    }
+
+//--------------------------------Guardar Imagen
+    function borrarImagen($idimagen = null){
+        if($idimagen == null){
+            $data['res'] = 'bad';
+            $data['msj'] = 'Error, no hay extencion de la imagen';
+            return $data; 
+        }
+
+        $this->db->where('id', $idimagen);
+        $data['imagen'] = @$this->db->get('imagenes', 1, 0)->row()->imagen;
+
+
+        $this->db->where('id', $idimagen);
+        $this->db->delete('imagenes');
+        $data['res'] = 'ok';
+        return $data; 
+    }
+
+
 //--------------------------------reemplaza caracteres raros
     function buscar($query=null){
         $unwanted_array = array(    'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
@@ -506,29 +552,6 @@ class Productos_model extends CI_Model {
         return $query->result();
     }
 
-    function agregarfoto($idproducto = null){
-        if($idproducto==null){
-            $data['res'] = 'bad';
-            $data['msj'] = 'Error, producto sin id';
-            //return $data; 
-        }
-        $destino_path = "temp/";
-        $path = $_FILES['userfile']['name'];
-        $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
-        $destino_path = $destino_path . $idProducto .'.'.$ext;
-
-        if((!empty($_FILES["userfile"])) && ($_FILES['userfile']['error'] == 0)) {
-            if (($ext == "jpg" || $ext =="png" || $ext =="jpeg") && ($_FILES["userfile"]["type"] == "image/jpeg" || $_FILES["userfile"]["type"] == "image/png") && ($_FILES["userfile"]["size"] < 100000000)) {
-
-                /*$archivoEntrada = $_FILES['userfile']['tmp_name'];
-                $archivoSalida = $target_path2;
-                $image = new Imagick($inFile);
-                $image->thumbnailImage(110, 110);
-                $image->writeImage($outFile);*/
-            }
-        }
-
-    }
 
 } 
 

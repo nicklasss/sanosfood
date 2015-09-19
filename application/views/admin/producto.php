@@ -1,5 +1,9 @@
 <link rel="stylesheet" href="https://s3.amazonaws.com/sanosfood/js/jasny/jasny-bootstrap.min.css">
 <script type="text/javascript" src="https://s3.amazonaws.com/sanosfood/js/jasny/jasny-bootstrap.min.js"></script>
+<script type="text/javascript">
+var idproducto = <?php print $producto->id;?>;
+</script>
+
 
 <div class="panel panel-default">
 	<div class="panel-heading text-center"><h2>Información del Producto</h2></div>
@@ -265,49 +269,78 @@ foreach ($categorias as $categoria) {
 	<div class="col-md-12">
         <div class="panel panel-default">
         	<div class="panel-heading text-center"><h4>Imágenes</h4></div>
-			<?php
+<?php
 			$i = 0;
 			foreach ($producto->imagenes as $imagen) {
 				$i = $i + 1;
-				if ($i > 4) {break;}
-				print ' <div class="col-lg-3">
-							<a href="javascript:void(0)"><img class="img-responsive img03" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/></a>
+				print ' <div class="col-md-2">
+							<a href="javascript:void(0)"><img class="img-responsive img03 imge" id="img'.$i.'" data-id="'.$imagen->id.'" src="'.$imagen->imagen.'"/></a> 
+							<h6 class="text-center">'.$imagen->id.'</h6>
 						</div>';
 			};
-			?>
+?>
+<!--							<img class="img-responsive img-thumbnail img03 imgsmall" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/> -->
 		</div> <!-- Panel-->
 	</div>
 </div>
 
 <div class="row">
-	<div class="col-md-4">
-
-
-       <h3 class="text-center"> Subida y precarga de imagenes </h3>
-       <div id="respuesta" class="alert"></div>
-       <form action="subirImagen" method="POST" enctype="multipart/form-data">
-          <div class="row">
-             <div class="col-lg-4">
-                <input type="file" name="userfile" value="fichero"/>
-             </div> 
-          </div>
-          <div class="row">
-             <div class="col-lg-2">
-                <input type="submit" value="Subir">
-             </div>
-          </div>
-       </form>
+	<div class="col-md-9">
+		<div class="panel panel-default panel-danger">
+			<div class="panel-heading text-center alert"><h4>Subida y precarga de imagenes</h4></div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="row">
+						<form action="<?php print base_url();?>producto/subirImagen" method="POST" enctype="multipart/form-data">
+							<div class="form-group">
+								<div class="col-md-5">	
+									<input type="file" name="userfile" class="filestyle" id="btn-escoger" data-buttonName="btn-primary"
+											data-buttonText="Escojer Imagen" data-buttonBefore="true"/>
+									<input type="hidden" name="idproducto" value="<?php print $producto->id;?>"/>	
+								</div>
+								<div class="col-md-1">		
+								    <button type="submit" id="btn-subir" value="Subir" class="btn btn-success">Subir</button>
+								</div>
+								<div class="col-md-6">
 <?php
-if(isset($error)){
-    echo "<strong style='color:red;'>".$error."</strong>";
-}
-if(isset($img)){
-    echo "<strong style='color:green;'>".$img["orig_name"]." subido satisfactoriamente </strong>";
-}
+									if (@$this->session->flashdata('error') != '') {
+									    echo "<strong style='color:red;'>".$this->session->flashdata('error')."</strong>";
+									}
+									if (@$this->session->flashdata('ok') != ''){
+									    echo "<strong style='color:green;'>".$this->session->flashdata('ok')."</strong>";
+									}
 ?>
+						    	</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	    </div>	
+	</div>
+	<div class="col-md-3">
+		<div class="panel panel-default panel-danger">
+			<div class="panel-heading text-center alert"><h4>Borrar Imágenes</h4></div>
+			<div class="row">
+				<div class="text-center" id="textoborrar">Para borrar imagenes de click sobre la imagen que desea borrar</div>
+				<div class="row">
 
+					<form action="<?php print base_url();?>producto/borrarImagen" method="POST">
+						<div class="form-group">
+							<div class="col-md-7 text-right">	
+								<input type="hidden" id="numproducto" name="numproducto" value="<?php print $producto->id;?>"/>	
+								<input type="hidden" id="numimagen" name="numimagen" value=""/>	
+								<buttom type="submit" id="btn-borraimg" class="btn btn-success">Desea Borrar?</buttom>
+							</div>
+						</div>
+					</form>
+					<div class="col-md-5">		
+					    <button type="buttom text-right" id="btn-cancelaborrar" class="btn btn-warning">Cancelar</button>
+					</div>
 
-
+				</div>		
+		    </div>	
+		</div>
 
 	</div>
 </div>
@@ -315,8 +348,7 @@ if(isset($img)){
 
 
 <!--------------------------------------------------------------------------------------------------------------------- -->
-<script src="<?php print base_url();?>js/upload.js"></script>
-
+<script type="text/javascript" src="<?php print base_url();?>js/bootstrap-filestyle.min.js"> </script>
 <script type="text/javascript">
 
 $(document).ready(function() { 
@@ -324,22 +356,34 @@ $(document).ready(function() {
 	$('#btn-cancelar').hide();
 	$('#btn-guardar-est').hide();
 	$('#btn-cancelar-est').hide();
-
-//   SUBIR ARCHIVOS
-      mostrarArchivos();
-      $("#boton_subir").on('click', function() {
-         subirArchivos();
-      });
-      $("#archivos_subidos").on('click', '.eliminar_archivo', function() {
-         var archivo = $(this).parents('.row').eq(0).find('span').text();
-         archivo = $.trim(archivo);
-         eliminarArchivos(archivo);
-      });
-
+	$('#btn-subir').hide();
+	$('#btn-borraimg').hide();
+	$('#btn-cancelaborrar').hide();
 
 
 //	 var hola = JSON.parse('<?php print json_encode($producto->caracteristicas);?>');
 //   console.log(hola);
+
+
+
+
+
+//----------------------------------------------------------------------------------SUBIR o BORRAR IMAGEN
+	$('.container').on('click','#btn-escoger',function(event){
+		$('#btn-subir').show();
+	});
+	$('.container').on('click','.imge',function(event){
+		idimagen = $(event.target).attr("data-id");
+		$("#numimagen").val(idimagen);
+		$("#textoborrar").html("Confirme borrar imagen:" + idimagen);
+		$('#btn-borraimg').show();
+		$('#btn-cancelaborrar').show();
+	});
+	$('.container').on('click','#btn-cancelaborrar',function(event){
+		$("#textoborrar").html("Para borrar imagenes de click sobre la imagen que desea borrar");
+		$('#btn-borraimg').hide();
+		$('#btn-cancelaborrar').hide();
+	});
 
 //----------------------------------------------------------------------------------EDITAR-EST
 	$('.container').on('click','#btn-editar-est',function(event){
@@ -587,75 +631,4 @@ function guardarest (callback) {
    .error(function(){alert('No hay conexion');callback(false);})
 }
 
-
-
-
-
-
-//   SUBIR ARCHIVOS
- function subirArchivos() {
-      $("#archivo").upload('producto/subirImagen',
-      {
-         nombre_archivo: $("#nombre_archivo").val()
-      },
-      function(respuesta) {
-         //Subida finalizada.
-         $("#barra_de_progreso").val(0);
-         
-         if (respuesta === 1) {
-            mostrarRespuesta('El archivo ha sido subido correctamente.', true);
-            $("#nombre_archivo, #archivo").val('');
-         } else {
-            mostrarRespuesta('El archivo NO se ha podido subir.', false);
-         }
-         mostrarArchivos();
-         }, function(progreso, valor) {
-            //Barra de progreso.
-            $("#barra_de_progreso").val(valor);
-         });
-   }
-   function eliminarArchivos(archivo) {
-      $.ajax({
-         url: 'eliminar_archivo.php',
-         type: 'POST',
-         timeout: 10000,
-         data: {archivo: archivo},
-         error: function() {
-            mostrarRespuesta('Error al intentar eliminar el archivo.', false);
-         },
-         success: function(respuesta) {
-            if (respuesta == 1) {
-               mostrarRespuesta('El archivo ha sido eliminado.', true);
-            } else {
-               mostrarRespuesta('Error al intentar eliminar el archivo.', false); 
-            }
-            mostrarArchivos();
-         }
-      });
-   }
-   function mostrarArchivos() {
-      $.ajax({
-         url: 'mostrar_archivos.php',
-         dataType: 'JSON',
-         success: function(respuesta) {
-            if (respuesta) {
-               var html = '';
-               for (var i = 0; i < respuesta.length; i++) {
-                  if (respuesta[i] != undefined) {
-                     html += '<div class="row"> <span class="col-lg-2"> ' + respuesta[i] + ' </span> <div class="col-lg-2"> <a class="eliminar_archivo btn btn-danger" href="javascript:void(0);"> Eliminar </a> </div> </div> <hr />';
-                  }
-               }
-               $("#archivos_subidos").html(html);
-            }
-         }
-      });
-   }
-   function mostrarRespuesta(mensaje, ok){
-      $("#respuesta").removeClass('alert-success').removeClass('alert-danger').html(mensaje);
-      if(ok){
-         $("#respuesta").addClass('alert-success');
-      }else{
-         $("#respuesta").addClass('alert-danger');
-      }
-   }
-   </script>
+</script>
