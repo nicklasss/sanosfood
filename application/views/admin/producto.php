@@ -273,10 +273,11 @@ foreach ($categorias as $categoria) {
 			$i = 0;
 			foreach ($producto->imagenes as $imagen) {
 				$i = $i + 1;
-				print ' <div class="col-md-2">
-							<a href="javascript:void(0)"><img class="img-responsive img03 imge" id="img'.$i.'" data-id="'.$imagen->id.'" src="'.$imagen->imagen.'"/></a> 
-							<h6 class="text-center">'.$imagen->id.'</h6>
-						</div>';
+				print
+				' <div class="col-md-2">
+					<a href="javascript:void(0)"><img class="img-responsive img03 imge" id="img'.$i.'" data-id="'.$imagen->titulo.'" src="'.$imagen->imagen.'"/></a> 
+					<h6 class="text-center">'.$imagen->titulo.'</h6>
+				  </div>';
 			};
 ?>
 <!--							<img class="img-responsive img-thumbnail img03 imgsmall" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/> -->
@@ -329,8 +330,8 @@ foreach ($categorias as $categoria) {
 						<div class="form-group">
 							<div class="col-md-7 text-right">	
 								<input type="hidden" id="numproducto" name="numproducto" value="<?php print $producto->id;?>"/>	
-								<input type="hidden" id="numimagen" name="numimagen" value=""/>	
-								<buttom type="submit" id="btn-borraimg" class="btn btn-success">Desea Borrar?</buttom>
+								<input type="hidden" id="titimagen" name="titimagen" value=""/>	
+								<button type="submit" id="btn-borraimg" class="btn btn-success">Desea Borrar?</button>
 							</div>
 						</div>
 					</form>
@@ -361,21 +362,14 @@ $(document).ready(function() {
 	$('#btn-cancelaborrar').hide();
 
 
-//	 var hola = JSON.parse('<?php print json_encode($producto->caracteristicas);?>');
-//   console.log(hola);
-
-
-
-
-
 //----------------------------------------------------------------------------------SUBIR o BORRAR IMAGEN
 	$('.container').on('click','#btn-escoger',function(event){
 		$('#btn-subir').show();
 	});
 	$('.container').on('click','.imge',function(event){
-		idimagen = $(event.target).attr("data-id");
-		$("#numimagen").val(idimagen);
-		$("#textoborrar").html("Confirme borrar imagen:" + idimagen);
+		tituloimagen = $(event.target).attr("data-id");
+		$("#titimagen").val(tituloimagen);
+		$("#textoborrar").html("Confirme borrar imagen: " + tituloimagen);
 		$('#btn-borraimg').show();
 		$('#btn-cancelaborrar').show();
 	});

@@ -18,7 +18,7 @@ class Producto extends CI_Controller {
         $idproducto = @$this->input->post('idproducto',TRUE);
 		if((!empty($_FILES["userfile"])) && ($_FILES['userfile']['error'] == 0)) {
 			$filename = basename($_FILES['userfile']['name']);
-			$ext = substr($filename, strrpos($filename, '.') + 1);
+			$ext = strtolower(substr($filename, strrpos($filename, '.') + 1));
 			$tamano = 500*1024;
 			$ext_permitidas = array('jpg','jpeg','gif','png');
 			if ((in_array(strtolower($ext), $ext_permitidas)) && ($_FILES["userfile"]["type"] == "image/jpeg") && ($_FILES["userfile"]["size"] < $tamano)) {
@@ -40,11 +40,10 @@ class Producto extends CI_Controller {
 
 	public function borrarImagen(){
         $idproducto = $this->input->post('numproducto',TRUE);
-        $idimagen = $this->input->post('numimagen',TRUE);
+        $tituloimagen = $this->input->post('titimagen',TRUE);
 		$this->load->model('Productos_model');
-		$data = $this->Productos_model->borrarImagen($idimagen);		
+		$data = $this->Productos_model->borrarImagen($tituloimagen);		
 		$imagen = $data['imagen'];
-		unlink($imagen);
 
 		redirect('admin/producto/'.$idproducto,'refresh');
 	}

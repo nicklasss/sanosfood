@@ -510,6 +510,8 @@ class Productos_model extends CI_Model {
 
         $id = $this->db->insert_id();
         $objeto['imagen'] = base_url() . "images/" . $id . "." . $extencion;
+        $objeto['titulo'] = $id . "." . $extencion;
+        
         $this->db->where('id', $id);
         $this->db->update('imagenes', $objeto);
 
@@ -519,18 +521,23 @@ class Productos_model extends CI_Model {
     }
 
 //--------------------------------Guardar Imagen
-    function borrarImagen($idimagen = null){
-        if($idimagen == null){
+    function borrarImagen($tituloimagen = null){
+        if($tituloimagen == null){
             $data['res'] = 'bad';
             $data['msj'] = 'Error, no hay extencion de la imagen';
             return $data; 
         }
-
+        $idimagen = substr($tituloimagen, 0, strpos($tituloimagen, "."));
         $this->db->where('id', $idimagen);
         $data['imagen'] = @$this->db->get('imagenes', 1, 0)->row()->imagen;
 
         $this->db->where('id', $idimagen);
         $this->db->delete('imagenes');
+
+        $imagen = FCPATH.'images/' . $tituloimagen;
+
+        unlink($imagen);
+
         $data['res'] = 'ok';
         return $data; 
     }
