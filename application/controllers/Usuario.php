@@ -11,7 +11,9 @@ class Usuario extends CI_Controller {
 		$query = $this->input->post('query',TRUE);
 		$this->load->model('Usuarios_model');
 		$data['usuarios'] = $this->Usuarios_model->buscar($query);
-		$this->load->view('usuario/buscar', $data, FALSE);
+
+		print json_encode(array('res'=>'ok','usuarios'=>$data['usuarios']));
+//		$this->load->view('usuario/buscar', $data, FALSE);
 	}
 
 }

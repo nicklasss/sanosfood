@@ -168,7 +168,7 @@ $(document).ready(function() {
 		if(edescripcion !== sdescripcion) {
 			rta = guardar( $(event.target).attr("data-id") , "descripcion" , edescripcion ,function(rta){
 				if(rta) {
-				  $(event.target).parent().parent().parent().find('.saldescripcion').html(edescripcion); 
+				  $(event.target).parent().parent().parent().find('.saldescripcion').text(edescripcion); 
 				};
 			});
 		};
@@ -180,7 +180,7 @@ $(document).ready(function() {
 		if(enombre !== snombre) {
 		   rta = guardar( $(event.target).attr("data-id") , "nombre" , enombre ,function(rta){
 			   if(rta) {
-					$(event.target).parent().parent().parent().find('.salnombre').val(enombre); 
+					$(event.target).parent().parent().parent().find('.salnombre').text(enombre); 
 				} else {
 					$(event.target).parent().parent().parent().find('.entnombre').focus();
 				};

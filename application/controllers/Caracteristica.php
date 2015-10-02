@@ -16,7 +16,8 @@ class Caracteristica extends CI_Controller {
 		$valor = @$this->input->post('valor',TRUE);
 		$this->load->model('Caracteristicas_model');
 		$data['resultado'] = $this->Caracteristicas_model->editar($id,$atributo,$valor);
-		$this->load->view('caracteristica/editar', $data, FALSE);
+		print json_encode($data['resultado']);
+//		$this->load->view('caracteristica/editar', $data, FALSE);
 	}
 	public function crear(){
 		if(!$this->session->userdata('logeado_admin')) {
@@ -27,8 +28,10 @@ class Caracteristica extends CI_Controller {
 		$descripcion = @$this->input->post('descripcion',TRUE);
 		$this->load->model('Caracteristicas_model');
 		$data['resultado'] = $this->Caracteristicas_model->crear($nombre,$descripcion);
-		$this->load->view('caracteristica/crear', $data, FALSE);
+		print json_encode($data['resultado']);
+//		$this->load->view('caracteristica/crear', $data, FALSE);
 	}
+
 	public function eliminar(){
 		if(!$this->session->userdata('logeado_admin')) {
 			$data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
@@ -37,7 +40,8 @@ class Caracteristica extends CI_Controller {
 		$id = @$this->input->post('id',TRUE);
 		$this->load->model('Caracteristicas_model');
 		$data['resultado'] = $this->Caracteristicas_model->eliminar($id);
-		$this->load->view('caracteristica/eliminar', $data, FALSE);
+		print json_encode($data['resultado']);		
+//		$this->load->view('caracteristica/eliminar', $data, FALSE);
 	}
 
 }

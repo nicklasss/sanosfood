@@ -11,7 +11,13 @@ class Producto extends CI_Controller {
 		$ingredientes = @$this->input->post('ingredientes',TRUE);
 		$this->load->model('Productos_model');
 		$data = $this->Productos_model->crear($nombre,$descripcion,$ingredientes);
-		$this->load->view('producto/crear', $data, FALSE);
+
+		if ($data['res'] == "bad") {
+			print json_encode(array('res'=>$data['res'],'msj'=>$data['msj']));
+		} else {
+			print json_encode(array('res'=>$data['res'],'id'=>$data['id']));
+		}
+//		$this->load->view('producto/crear', $data, FALSE);
 	}
 
 	public function subirImagen(){
@@ -64,9 +70,9 @@ class Producto extends CI_Controller {
 		}
 
 		if(count($data['productos'])==0){
-			print json_encode(array('res'=>'bad','msj'=>'Sin resultados'));exit();
+			print json_encode(array('res'=>'bad','msj'=>'Sin resultados'));
 		}
-		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant']));exit();
+		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant']));
 //		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$cant));exit();
 	}
 

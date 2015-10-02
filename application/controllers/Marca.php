@@ -16,7 +16,8 @@ class Marca extends CI_Controller {
 		$valor = @$this->input->post('valor',TRUE);
 		$this->load->model('Marcas_model');
 		$data['resultado'] = $this->Marcas_model->editar($id,$atributo,$valor);
-		$this->load->view('marca/editar', $data, FALSE);
+print json_encode($data['resultado']);
+//		$this->load->view('marca/editar', $data, FALSE);
 	}
 	public function crear(){
 		if(!$this->session->userdata('logeado_admin')) {
@@ -27,7 +28,8 @@ class Marca extends CI_Controller {
 		$descripcion = @$this->input->post('descripcion',TRUE);
 		$this->load->model('Marcas_model');
 		$data['resultado'] = $this->Marcas_model->crear($nombre,$descripcion);
-		$this->load->view('marca/crear', $data, FALSE);
+print json_encode($data['resultado']);
+//		$this->load->view('marca/crear', $data, FALSE);
 	}
 	public function eliminar(){
 		if(!$this->session->userdata('logeado_admin')) {
@@ -37,7 +39,8 @@ class Marca extends CI_Controller {
 		$id = @$this->input->post('id',TRUE);
 		$this->load->model('Marcas_model');
 		$data['resultado'] = $this->Marcas_model->eliminar($id);
-		$this->load->view('marca/eliminar', $data, FALSE);
+print json_encode($data['resultado']);
+//		$this->load->view('marca/eliminar', $data, FALSE);
 	}
 
 }
