@@ -1,6 +1,7 @@
 <script type="text/javascript">
 var quebuscar = "<?php print $quebuscar;?>";
 var ppp = <?php print $ppp;?>;
+var baseurl = '<?php print base_url()?>';
 var pag = 1;
 var proceso = "busqueda";
 </script>
@@ -89,11 +90,30 @@ foreach ($productos as $producto) {
 							<h6>'.$producto->descripcioncorta.'</h6>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-lg-12 text-right">
-							<button type="button" class="btn btn-xs btn-success" id="btn-verdetalle" data-id="'.$producto->id.'">Ver Detalles</button>
+
+					<div>
+						<input type="hidden" class="idprod" data-id="'.$producto->id.'"/>
+						<input type="hidden" class="nombreprod" data-id="'.$producto->nombre.'"/>
+						<input type="hidden" class="precioprod" data-id="'.$producto->precio.'"/>
+
+						<div class="row">
+							<div class="col-lg-7" align="left" id="existen">
+								<h5>Disponibles: <strong>'.$producto->existencias.'</strong></h5>
+							</div>
+							<div class="col-lg-5" align="left">
+							  <h6><input type="number" class="cantidadprod" min="1" max="'.$producto->existencias.'" ></h6>
+							</div>
+						</div>	
+						<div class="row">
+							<div class="col-lg-6" align="left">
+								<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito">Agregar al Carrito</button>
+							</div>
+							<div class="col-lg-6" align="right">
+								<button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'.$producto->id.'">Ver Detalles</button>
+							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div> ';
@@ -131,6 +151,20 @@ foreach ($productos as $producto) {
 <script type="text/javascript">
 
 $(document).ready(function(){
+
+	$('.container').on('click','#btn-agregarcarrito',function(event){
+		idprod = $(event.target).parent().parent().parent().find('.idprod').attr("data-id");
+		nombreprod = $(event.target).parent().parent().parent().find('.nombreprod').attr("data-id");
+		precioprod = $(event.target).parent().parent().parent().find('.precioprod').attr("data-id");
+		cantidadprod = $(event.target).parent().parent().parent().find('.cantidadprod').val();
+		rta = agregarcarrito(idprod, nombreprod, precioprod, cantidadprod, function(rta){
+		   if(rta) {
+				alert('agregado');
+			} else {
+				alert('no se pudo agregar');
+			}
+		})
+	})
 
 	$('.container').on('click','#btn-verdetalle',function(event){
 		id = $(event.target).attr("data-id");
@@ -173,6 +207,21 @@ $(document).ready(function(){
 	});
 
 })
+
+//----------------------------------------------------------------------------------funcion agregar a carrito
+function agregarcarrito (idprod, nombreprod, precioprod, cantidadprod, callback) {
+	$.ajax({                                           
+	  url: "<?php print base_url();?>producto/agregarCarrito",
+	  context: document.body,
+	  dataType: "json",
+	  type: "POST",
+	  data: {idprod : idprod, nombreprod : nombreprod, precioprod : precioprod, cantidadprod : cantidadprod }})
+	 .done(function(data) {                               
+	  if(data.res=="ok") {callback(true)}
+	  else {alert(data.msj);callback(false)}
+	  })
+	 .error(function(){alert('No hay conexion');callback(false);})
+}
 
 //----------------------------------------------------------------------------------funcion buscarxcategoria
 function buscarxcategoria(idcategoria) {
@@ -244,35 +293,52 @@ function pintarproductos(data) {
 			$("#listaproductos").append(sarta1);
 		}  
 		} 
-	   sarta2 =	'<div class="col-lg-4" align="center">'+
-					' 	<div class="row">'+
-					'		<div class="col-lg-9 col-lg-offset-2">'+
-					'			<div class="row">'+
-					'				<div class="col-lg-12">'+
-					'					<img class="img-responsive img01" src="'+data.productos[i].imagen+'"/>'+
-					'				</div>'+
-					'			</div>'+
-					'			<div class="row">'+
-					'				<div class="col-lg-10">'+
-					'					<div class="row">'+
-					'						<div class="col-lg-8 texto02" align="left"><h6><strong>'+data.productos[i].nombre+'</strong></h6></div>'+
-					'						<div class="col-lg-4 texto02" align="right"><h4><strong>$'+formato_numero(data.productos[i].precio)+'</strong></h4></div>'+
-					'					</div>'+
-					'				</div>'+
-					'			</div>'+
-					'			<div class="row">'+
-					'				<div class="col-lg-12 texto02" align="left">'+
-					'					<h6>'+data.productos[i].descripcioncorta+'</h6>'+
-					'				</div>'+
-					'			</div>'+
-					'			<div class="row">'+
-					'				<div class="col-lg-12 text-right">'+
-					'					<button type="button" class="btn btn-xs btn-success" id="btn-verdetalle" data-id="'+data.productos[i].id+'">Ver Detalles</button>'+
-					'				</div>'+
-					'			</div>'+
-					'		</div>'+
-					'	</div>'+
-					'</div>';
+	   sarta2 =	
+		   	'<div class="col-lg-4" align="center">'+
+			' 	<div class="row">'+
+			'		<div class="col-lg-9 col-lg-offset-2">'+
+			'			<div class="row">'+
+			'				<div class="col-lg-12">'+
+			'					<img class="img-responsive img01" src="'+data.productos[i].imagen+'"/>'+
+			'				</div>'+
+			'			</div>'+
+			'			<div class="row">'+
+			'				<div class="col-lg-10">'+
+			'					<div class="row">'+
+			'						<div class="col-lg-8 texto02" align="left"><h6><strong>'+data.productos[i].nombre+'</strong></h6></div>'+
+			'						<div class="col-lg-4 texto02" align="right"><h4><strong>$'+formato_numero(data.productos[i].precio)+'</strong></h4></div>'+
+			'					</div>'+
+			'				</div>'+
+			'			</div>'+
+			'			<div class="row">'+
+			'				<div class="col-lg-12 texto02" align="left">'+
+			'					<h6>'+data.productos[i].descripcioncorta+'</h6>'+
+			'				</div>'+
+			'			</div>'+
+			'			<div>'+
+			'				<input type="hidden" class="idprod" data-id="'+data.productos[i].id+'"/>'+
+			'				<input type="hidden" class="nombreprod" data-id="'+data.productos[i].nombre+'"/>'+
+			'				<input type="hidden" class="precioprod" data-id="'+data.productos[i].precio+'"/>'+
+			'				<div class="row">'+
+			'					<div class="col-lg-7" align="left" id="existen">'+
+			'						<h5>Disponibles: <strong>'+data.productos[i].existencias+'</strong></h5>'+
+			'					</div>'+
+			'					<div class="col-lg-5" align="left">'+
+			'					  <h6><input type="number" class="cantidadprod" min="1" max="'+data.productos[i].existencias+'" ></h6>'+
+			'					</div>'+
+			'				</div>'+
+			'				<div class="row">'+
+			'					<div class="col-lg-6" align="left">'+
+			'						<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito">Agregar al Carrito</button>'+
+			'					</div>'+
+			'					<div class="col-lg-6" align="right">'+
+			'						<button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'+data.productos[i].id+'">Ver Detalles</button>'+
+			'					</div>'+
+			'				</div>'+
+			'			</div>'+
+			'		</div>'+
+			'	</div>'+
+			'</div>';
 		$("#listaproductos").append(sarta2);
 	}
 }

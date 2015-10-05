@@ -64,16 +64,31 @@
 <!--	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>  -->
 	<script src="//code.jquery.com/jquery-2.0.2.min.js"></script>  
 	<script type="text/javascript" src="<?php print base_url();?>js/bootstrap.min.js"></script>
-	<style type="text/css">
+<!--	<style type="text/css">
 	.input-group-addon.success {
 	    color: rgb(255, 255, 255);
 	    background-color: rgb(92, 184, 92);
 	    border-color: rgb(76, 174, 76);
 	    margin-left: 10px;
 	    margin-right: 10px;
-	}
-	</style>
 
+	#portamento_container { 
+	         float:right; 
+	         position:relative; 
+	} 
+
+	#portamento_container #example { 
+	         float:none; 
+	         position:absolute; 
+	} 
+
+	#portamento_container #example.fixed { 
+	         position:fixed; 
+	}
+
+
+	}
+	</style> -->
 </head>
 <body>
 <div id="wrap">
@@ -92,9 +107,9 @@
 	        </div>
 	        <div class="collapse navbar-collapse">
 	        	<ul class="nav navbar-nav navbar-right">
-	        		<li class="text-center"><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>0</a></li>
+	        		<li class="text-center"><a href="<?= base_url();?>producto/mostrarCarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>0</a></li>
 				</ul>
-			      <form id="form-buscar" class="navbar-form" method="POST" action="<?= base_url();?>web/buscar">
+			      <form id="form-buscar" class="navbar-form" method="POST" action="<?= base_url();?>web/productos">
 			        <div class="form-group" style="display:inline;">
 			          <div class="input-group" style="display:table;">
 			            <input class="form-control" name="quebuscar" placeholder="Buscar aqui" autocomplete="off" autofocus="autofocus" type="text">
@@ -117,7 +132,7 @@
             </div>
             <div class="collapse navbar-collapse main-nav">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">it1d</a></li>
+                    <li><a href="<?= base_url();?>web/productos">Productos</a></li>
                     <li class="divider-vertical"></li>
                     <li><a href="#about">it2d</a></li>
                     <li class="divider-vertical"></li>

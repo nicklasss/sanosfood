@@ -25,7 +25,7 @@ class Web extends CI_Controller {
 		$this->load->view('web/piedepagina');
 	}
 
-	public function buscar() {
+	public function productos() {
 		$quebuscar = @$this->input->post('quebuscar');
 		if ($quebuscar == null) {$quebuscar = "*";
 		}
@@ -42,7 +42,7 @@ class Web extends CI_Controller {
 		$this->load->model('Productos_model');
 		$data['productos'] = $this->Productos_model->buscarProductosWeb($quebuscar, $pag, $ppp);
 		$data['cant'] = $this->Productos_model->contarProductosBuscar($quebuscar);
-		$this->load->view('web/buscar', $data, FALSE); 
+		$this->load->view('web/productos', $data, FALSE); 
 		$this->load->view('web/piedepagina');
 	}
 
