@@ -17,40 +17,12 @@
             </div>
          </div>
       </div>
-<!--      <div class="row">
-         <div class="col-lg-1 col-lg-offset-9 text-right">
-            <div class="boton01">
-               <div class="row">
-                  <div class="col-lg-6 text-right">
-                     <a href="#"><span class="badge"> <</span></a>
-                  </div>
-                  <div class="col-lg-6 text-left">
-                     <a href="#"><span class="badge"> ></span></a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>  -->
    </div> <!-- /container -->
 </div> 
 
-<!---------------------------------------------------------------BANNER DE PLATOS -->
 <div class="container">
 
-<!--<div class="row baner02">
-   <div class="col-lg-4" align="right">
-       <img class="img-responsive plato01 img-rounded" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQs0zs9HD7B6cF9l_o2zSM8goQ-Q7VnFWnHNRbYozeA_Nw9gFfHow"/>
-   </div> 
-   <div class="col-lg-4"  align="center">
-       <img class="img-responsive plato01 img-rounded" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSYjZO4E3jO0jUfwNcB8L_TxEZyGX3HOj_zdr4UMPaJxMcR17-zcg"/>
-   </div> 
-   <div class="col-lg-4" align="left">
-       <img class="img-responsive plato01 img-rounded" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTzDwFGbTG2gEkCh0gn7xa4SBqXwitKCWq7GPWcvnyyKH7L5iWk"/>
-   </div> 
-</div> -->
-
 <!---------------------------------------------------------------PRODUCTOS -->
-<!--<div class="row" style="background: #cccccc;">   -->
 <div class="row baner03">
    <div class="col-lg-12 text-center">
       <h4><strong>PRODUCTOS DESTACADOS</strong></h4>

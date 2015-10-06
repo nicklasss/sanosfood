@@ -64,31 +64,15 @@
 <!--	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>  -->
 	<script src="//code.jquery.com/jquery-2.0.2.min.js"></script>  
 	<script type="text/javascript" src="<?php print base_url();?>js/bootstrap.min.js"></script>
-<!--	<style type="text/css">
+	<style type="text/css">
 	.input-group-addon.success {
 	    color: rgb(255, 255, 255);
 	    background-color: rgb(92, 184, 92);
 	    border-color: rgb(76, 174, 76);
 	    margin-left: 10px;
 	    margin-right: 10px;
-
-	#portamento_container { 
-	         float:right; 
-	         position:relative; 
-	} 
-
-	#portamento_container #example { 
-	         float:none; 
-	         position:absolute; 
-	} 
-
-	#portamento_container #example.fixed { 
-	         position:fixed; 
 	}
-
-
-	}
-	</style> -->
+	</style>
 </head>
 <body>
 <div id="wrap">
@@ -102,12 +86,12 @@
 	                <span class="icon-bar"></span>
 	            </button>
 	            <div class="navbar-brand logo">
-	            	<img src="https://s3.amazonaws.com/sanosfood/img/044.jpg" height="35">
+	            	<a href="<?= base_url();?>web/index"><img src="https://s3.amazonaws.com/sanosfood/img/044.jpg" height="35"/></a>
 	            </div>
 	        </div>
 	        <div class="collapse navbar-collapse">
 	        	<ul class="nav navbar-nav navbar-right">
-	        		<li class="text-center"><a href="<?= base_url();?>producto/mostrarCarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>0</a></li>
+	        		<li class="text-center"><a href="<?= base_url();?>producto/mostrarCarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><?= $this->cart->total_items();?></a></li>
 				</ul>
 			      <form id="form-buscar" class="navbar-form" method="POST" action="<?= base_url();?>web/productos">
 			        <div class="form-group" style="display:inline;">

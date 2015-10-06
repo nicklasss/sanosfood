@@ -77,8 +77,6 @@ foreach ($producto->imagenes as $imagen) {
 						</div>
 						<div class="col-lg-6" align="left">
 							<button type="button" class="btn btn-success" id="btn-agregarcarrito">Agregar al Carrito</button>
-
-						
 						</div>
 					</div>
 				</form>
@@ -201,10 +199,11 @@ print '			</tbody>'.
 
 $(document).ready(function(){
 	$('.container').on('click','#btn-agregarcarrito',function(event){
+		cantidadprod = $('#cantidadprod').val();
+		if(cantidadprod == 0) {return false;}
 		idprod = $('#idprod').val();
 		nombreprod = $('#nombreprod').val();
 		precioprod = $('#precioprod').val();
-		cantidadprod = $('#cantidadprod').val();
 		rta = agregarcarrito(idprod, nombreprod, precioprod, cantidadprod, function(rta){
 		   if(rta) {
 				alert('agregado');
