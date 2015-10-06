@@ -91,7 +91,12 @@
 	        </div>
 	        <div class="collapse navbar-collapse">
 	        	<ul class="nav navbar-nav navbar-right">
-	        		<li class="text-center"><a href="<?= base_url();?>producto/mostrarCarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><?= $this->cart->total_items();?></a></li>
+	        		<li class="text-center">
+	        			<a href="<?= base_url();?>producto/mostrarCarrito">
+	        				<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+	        				<span id="cantcart"><?= $this->cart->total_items();?></span>
+	        			</a>
+	        		</li>
 				</ul>
 			      <form id="form-buscar" class="navbar-form" method="POST" action="<?= base_url();?>web/productos">
 			        <div class="form-group" style="display:inline;">

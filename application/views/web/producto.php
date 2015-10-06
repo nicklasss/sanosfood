@@ -204,15 +204,8 @@ $(document).ready(function(){
 		idprod = $('#idprod').val();
 		nombreprod = $('#nombreprod').val();
 		precioprod = $('#precioprod').val();
-		rta = agregarcarrito(idprod, nombreprod, precioprod, cantidadprod, function(rta){
-		   if(rta) {
-				alert('agregado');
-			} else {
-				alert('no se pudo agregar');
-			}
-		})
+		agregarcarrito(idprod, nombreprod, precioprod, cantidadprod, function(rta){})
 	})
-
 
 	$('.container').on('click','.imgsmall',function(event){
 	  i = $(event.target).attr("data-id");
@@ -243,9 +236,8 @@ function agregarcarrito (idprod, nombreprod, precioprod, cantidadprod, callback)
 	  type: "POST",
 	  data: {idprod : idprod, nombreprod : nombreprod, precioprod : precioprod, cantidadprod : cantidadprod }})
 	 .done(function(data) {                               
-	  if(data.res=="ok") {callback(true)}
-	  else {alert(data.msj);callback(false)}
-	  })
+	  if(data.res == "ok") {$("#cantcart").text(data.cantcart);callback(true)}
+	  else {alert(data.msj);callback(false)}})
 	 .error(function(){alert('No hay conexion');callback(false);})
 }
 

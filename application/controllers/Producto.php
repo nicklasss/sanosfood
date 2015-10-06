@@ -142,7 +142,7 @@ class Producto extends CI_Controller {
 			'name' => $this->input->post('nombreprod'),
 		);
 		if($this->cart->insert($data1)) {
-			print json_encode(array('res'=>'ok')); exit;
+			print json_encode(array('res'=>'ok', 'cantcart'=>$this->cart->total_items())); exit;
 		}
 		print json_encode(array('res'=>'bad','msj'=>'No se pudo agregar por clase Cart'));
     } 
