@@ -27,20 +27,25 @@ class Producto extends CI_Controller {
 			$ext = strtolower(substr($filename, strrpos($filename, '.') + 1));
 			$tamano = 2000*1024;
 			$ext_permitidas = array('jpg','jpeg','gif','png');
-			if ((in_array(strtolower($ext), $ext_permitidas)) && ($_FILES["userfile"]["type"] == "image/jpeg") && ($_FILES["userfile"]["size"] < $tamano)) {
-				$this->load->model('Productos_model');
-				$data = $this->Productos_model->guardarImagen($idproducto, $ext);		//graba en la base de datos la direccion de la imagen
-				$nombre = $data['id'];
-				$direccion = base_url() . "images/" . $nombre . "." . $ext;
-				$newname = FCPATH.'images/' . $nombre . "." . $ext;  
-				if ((move_uploaded_file($_FILES['userfile']['tmp_name'],$newname))) {   //Intenta cargar el archivo al destino
-					$this->session->set_flashdata('ok', "Archivo subido correctamente como: <br>".$direccion);
-				}
-				else { $this->session->set_flashdata('error', "Error: han ocurrido problemas al subirlo"); }
+			if ((!in_array(strtolower($ext), $ext_permitidas))) {
+				$this->session->set_flashdata('error', "Error: solamente imagenes jpg, jepg, gif o png son aceptadas para subir");
+			} else {
+					if (!($_FILES["userfile"]["size"] < $tamano)) {
+						$this->session->set_flashdata('error', "Error: solamente imagenes menores a: ".$tamano." son aceptadas para subir"); 
+					} else {
+						$this->load->model('Productos_model');
+						$data = $this->Productos_model->guardarImagen($idproducto, $ext);		//graba en la base de datos la direccion de la imagen
+						$nombre = $data['id'];
+						$direccion = base_url() . "images/" . $nombre . "." . $ext;
+						$newname = FCPATH.'images/' . $nombre . "." . $ext;  
+						if ((move_uploaded_file($_FILES['userfile']['tmp_name'],$newname))) {   //Intenta cargar el archivo al destino
+							$this->session->set_flashdata('ok', "Archivo subido correctamente como: <br>".$direccion);
+						}
+					}
 			}
-			else { $this->session->set_flashdata('error', "Error: solamente imagenes menores a: ".$tamano." son aceptadas para subir"); }
+		} else { 
+			$this->session->set_flashdata('error', "Error: No se a subido el archivo");
 		}
-		else { $this->session->set_flashdata('error', "Error: No se a subido el archivo"); }
 		redirect('admin/producto/'.$idproducto,'refresh');
 	}
 
