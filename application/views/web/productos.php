@@ -18,37 +18,29 @@ var proceso = "busqueda";
 <div class="row">
    <div class="col-lg-2">
 		<div class="row">
-			<div class="panel panel-default">
+			<div class="panel panel-success">
 				<div class="panel-heading text-center"><h5><strong>CATEGORIAS</strong></h5></div>
-				<table class="table table-condensed table-striped">
-					<tbody>
+				<div class="list-group">
 					<?php 
 					foreach ($categorias as $categoria) {
-						print '
-						<tr>
-							<td><a href="javascript:void(0)" class="categ" data-id="'.$categoria->id.'" id="cat'.$categoria->id.'">'.$categoria->nombre.' ('.$categoria->cuentas.')</a></td>
-						</tr>';
+						print '	<a href="javascript:void(0)" class="list-group-item categ" data-id="'.$categoria->id.'" id="cat'.$categoria->id.'">
+								'.$categoria->nombre.'<span class="badge">'.$categoria->cuentas.'</span></a>';
 					}
 					?>
-					</tbody>
-				</table> <!-- tabla--> 
+				</div> <!-- list-group--> 
 			</div> <!-- Panel-->
 		</div>
 		<div class="row">
-			<div class="panel panel-default">
+			<div class="panel panel-success">
 				<div class="panel-heading text-center"><h5><strong>MARCAS</strong></h5></div>
-				<table class="table table-condensed table-striped">
-					<tbody>
+				<div class="list-group">
 					<?php 
 					foreach ($marcas as $marca) {
-						print '
-						<tr>
-							<td><a href="javascript:void(0)" class="marca" data-id="'.$marca->idmarca.'" id="mar'.$marca->idmarca.'">'.$marca->nombre.' ('.$marca->cuentas.')</a></td>
-						</tr>';
+						print '	<a href="javascript:void(0)" class="list-group-item marca" data-id="'.$marca->idmarca.'" id="mar'.$marca->idmarca.'">
+								'.$marca->nombre.'<span class="badge">'.$marca->cuentas.'</span></a>';
 					}
 					?>
-					</tbody>
-				</table> <!-- tabla--> 
+				</div> <!-- list-group--> 
 			</div> <!-- Panel-->
 		</div>
 	</div>
@@ -93,7 +85,9 @@ foreach ($productos as $producto) {
 
 					<div>
 						<input type="hidden" class="idprod" data-id="'.$producto->id.'"/>
+						<input type="hidden" class="imagenprod" data-id="'.$producto->imagen.'"/>
 						<input type="hidden" class="nombreprod" data-id="'.$producto->nombre.'"/>
+						<input type="hidden" class="descripcioncortaprod" data-id="'.$producto->descripcioncorta.'"/>
 						<input type="hidden" class="precioprod" data-id="'.$producto->precio.'"/>
 
 						<div class="row">
@@ -156,9 +150,11 @@ $(document).ready(function(){
 		cantidadprod = $(event.target).parent().parent().parent().find('.cantidadprod').val();
 		if(cantidadprod == 0) {return false;}
 		idprod = $(event.target).parent().parent().parent().find('.idprod').attr("data-id");
+		imagenprod = $(event.target).parent().parent().parent().find('.imagenprod').attr("data-id");
 		nombreprod = $(event.target).parent().parent().parent().find('.nombreprod').attr("data-id");
+		descripcioncortaprod = $(event.target).parent().parent().parent().find('.descripcioncortaprod').attr("data-id");
 		precioprod = $(event.target).parent().parent().parent().find('.precioprod').attr("data-id");
-		agregarcarrito(idprod, nombreprod, precioprod, cantidadprod, function(rta){})
+		agregarcarrito(idprod, imagenprod, nombreprod, descripcioncortaprod, precioprod, cantidadprod, function(rta){})
 	})
 
 	$('.container').on('click','#btn-verdetalle',function(event){
@@ -204,17 +200,22 @@ $(document).ready(function(){
 })
 
 //----------------------------------------------------------------------------------funcion agregar a carrito
-function agregarcarrito (idprod, nombreprod, precioprod, cantidadprod, callback) {
+function agregarcarrito (idprod, imagenprod, nombreprod, descripcioncortaprod, precioprod, cantidadprod, callback) {
 	$.ajax({                                           
-	  url: "<?php print base_url();?>producto/agregarCarrito",
-	  context: document.body,
-	  dataType: "json",
-	  type: "POST",
-	  data: {idprod : idprod, nombreprod : nombreprod, precioprod : precioprod, cantidadprod : cantidadprod }})
-	 .done(function(data) {                               
-	  if(data.res == "ok") {$("#cantcart").text(data.cantcart);callback(true)}
-	  else {alert(data.msj);callback(false)}})
-	 .error(function(){alert('No hay conexion');callback(false);})
+		url: "<?php print base_url();?>producto/agregarCarrito",
+		context: document.body,
+		dataType: "json",
+		type: "POST",
+		data: {idprod : idprod, imagenprod : imagenprod, nombreprod : nombreprod, descripcioncortaprod : descripcioncortaprod, precioprod : precioprod, cantidadprod : cantidadprod }})
+	.done(function(data) {                               
+		if(data.res == "ok") {
+			$("#cantcart").text(data.cantcart);
+			$("#btn-carrito").removeClass("btn-default");  
+			$("#btn-carrito").addClass("btn-warning");  
+			callback(true)
+		}
+		else {alert(data.msj);callback(false)}})
+	.error(function(){alert('No hay conexion');callback(false);})
 }
 
 //----------------------------------------------------------------------------------funcion buscarxcategoria
@@ -311,7 +312,9 @@ function pintarproductos(data) {
 			'			</div>'+
 			'			<div>'+
 			'				<input type="hidden" class="idprod" data-id="'+data.productos[i].id+'"/>'+
+			'				<input type="hidden" class="imagenprod" data-id="'+data.productos[i].imagen+'"/>'+
 			'				<input type="hidden" class="nombreprod" data-id="'+data.productos[i].nombre+'"/>'+
+			'				<input type="hidden" class="descripcioncortaprod" data-id="'+data.productos[i].descripcioncorta+'"/>'+
 			'				<input type="hidden" class="precioprod" data-id="'+data.productos[i].precio+'"/>'+
 			'				<div class="row">'+
 			'					<div class="col-lg-7" align="left" id="existen">'+

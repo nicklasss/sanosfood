@@ -25,7 +25,7 @@ class Producto extends CI_Controller {
 		if((!empty($_FILES["userfile"])) && ($_FILES['userfile']['error'] == 0)) {
 			$filename = basename($_FILES['userfile']['name']);
 			$ext = strtolower(substr($filename, strrpos($filename, '.') + 1));
-			$tamano = 500*1024;
+			$tamano = 1200*1024;
 			$ext_permitidas = array('jpg','jpeg','gif','png');
 			if ((in_array(strtolower($ext), $ext_permitidas)) && ($_FILES["userfile"]["type"] == "image/jpeg") && ($_FILES["userfile"]["size"] < $tamano)) {
 				$this->load->model('Productos_model');
@@ -137,9 +137,11 @@ class Producto extends CI_Controller {
 //		print_r($_POST);
 		$data1 = array(
 			'id' => $this->input->post('idprod'),
+			'imagen' => $this->input->post('imagenprod'),
+			'name' => $this->input->post('nombreprod'),
+			'descripcioncorta' => $this->input->post('descripcioncortaprod'),
 			'qty' => $this->input->post('cantidadprod'),
 			'price' => $this->input->post('precioprod'),
-			'name' => $this->input->post('nombreprod'),
 		);
 		if($this->cart->insert($data1)) {
 			print json_encode(array('res'=>'ok', 'cantcart'=>$this->cart->total_items())); exit;

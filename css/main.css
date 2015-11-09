@@ -5,6 +5,15 @@ body{
 	margin-bottom: 0px !important;
 }
 
+.input-group-addon.success {
+    color: rgb(255, 255, 255);
+    background-color: rgb(92, 184, 92);
+    border-color: rgb(76, 174, 76);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
 /*---------------------------------------------HOME */
 .baner01 {
 	height: 400px;
@@ -94,14 +103,14 @@ body{
 
 .img02 {
 	height: 400px;
-   margin-top: 30px;
+	margin-top: 30px;
 	background-size: cover;"	
 	border-radius: 15px;
 }
 
 .img03 {
 	height: 80px;
-   margin-top: 10px;
+	margin-top: 10px;
 	background-size: cover;"	
 	border-radius: 5px;
 }

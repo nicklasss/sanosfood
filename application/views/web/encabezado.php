@@ -64,7 +64,7 @@
 <!--	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>  -->
 	<script src="//code.jquery.com/jquery-2.0.2.min.js"></script>  
 	<script type="text/javascript" src="<?php print base_url();?>js/bootstrap.min.js"></script>
-	<style type="text/css">
+<!--	<style type="text/css">
 	.input-group-addon.success {
 	    color: rgb(255, 255, 255);
 	    background-color: rgb(92, 184, 92);
@@ -72,7 +72,7 @@
 	    margin-left: 10px;
 	    margin-right: 10px;
 	}
-	</style>
+	</style>  -->
 </head>
 <body>
 <div id="wrap">
@@ -93,8 +93,14 @@
 	        	<ul class="nav navbar-nav navbar-right">
 	        		<li class="text-center">
 	        			<a href="<?= base_url();?>producto/mostrarCarrito">
-	        				<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-	        				<span id="cantcart"><?= $this->cart->total_items();?></span>
+<!--	        				<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+	        				<span id="cantcart"><?= $this->cart->total_items();?></span>  -->
+	
+<button type="button" class="btn btn-default btn-sm" id="btn-carrito" aria-label="Left Align">
+  <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span id="cantcart"> <?= $this->cart->total_items();?></span> 
+</button>
+
+
 	        			</a>
 	        		</li>
 				</ul>
