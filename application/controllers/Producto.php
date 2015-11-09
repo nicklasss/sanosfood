@@ -25,7 +25,7 @@ class Producto extends CI_Controller {
 		if((!empty($_FILES["userfile"])) && ($_FILES['userfile']['error'] == 0)) {
 			$filename = basename($_FILES['userfile']['name']);
 			$ext = strtolower(substr($filename, strrpos($filename, '.') + 1));
-			$tamano = 1200*1024;
+			$tamano = 2000*1024;
 			$ext_permitidas = array('jpg','jpeg','gif','png');
 			if ((in_array(strtolower($ext), $ext_permitidas)) && ($_FILES["userfile"]["type"] == "image/jpeg") && ($_FILES["userfile"]["size"] < $tamano)) {
 				$this->load->model('Productos_model');
