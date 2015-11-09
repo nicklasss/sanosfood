@@ -28,7 +28,7 @@ class Producto extends CI_Controller {
 			$tamano = 2000*1024;
 			$ext_permitidas = array('jpg','jpeg','gif','png');
 			if ((!in_array(strtolower($ext), $ext_permitidas))) {
-				$this->session->set_flashdata('error', "Error: solamente imagenes jpg, jepg, gif o png son aceptadas para subir");
+				$this->session->set_flashdata('error', "Error: solamente imagenes jpg, jpeg, gif o png son aceptadas para subir");
 			} else {
 				if (!($_FILES["userfile"]["size"] < $tamano)) {
 					$this->session->set_flashdata('error', "Error: solamente imagenes menores a: ".$tamano." son aceptadas para subir"); 

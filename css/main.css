@@ -16,8 +16,8 @@ body{
 
 /*---------------------------------------------HOME */
 .baner01 {
-	height: 400px;
-	background-image: url(http://necesitodetodos.org/wp-content/uploads/2013/09/alimentos-saludables.jpg); 
+	height: 450px;
+	background-image: url(http://sanosfoods.com/images/23.png); 
 	background-size: cover;"	
 }
 
@@ -34,10 +34,10 @@ body{
 }
 
 .baner04 {
-	height: 400px;
-	background-image: url(http://nutricionline.org/wp-content/uploads/2012/10/alimentos-proteinas.jpg);
+	height: 500px;
+	background-image: url(http://sanosfoods.com/images/24.png);
 	background-size: cover;"	
-	background-color: rgb(0,0,255); opacity: 0.7;
+/*	background-color: rgb(0,0,255); opacity: 0.7; */
 }
 
 .baner05 {
