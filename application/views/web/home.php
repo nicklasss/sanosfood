@@ -23,7 +23,7 @@
 <div class="container">
 
 <!---------------------------------------------------------------PRODUCTOS -->
-<div class="row baner03">
+<div class="row">
    <div class="col-lg-12 text-center">
       <h4><strong>PRODUCTOS DESTACADOS</strong></h4>
    </div>

@@ -16,7 +16,7 @@ var proceso = "busqueda";
 	</div>
 </div>
 <div class="row">
-   <div class="col-lg-2">
+	<div class="col-lg-2">
 		<div class="row">
 			<div class="panel panel-success">
 				<div class="panel-heading text-center"><h5><strong>CATEGORIAS</strong></h5></div>
@@ -45,7 +45,7 @@ var proceso = "busqueda";
 		</div>
 	</div>
 	<div class="col-lg-10">
-		<div class="row baner08" id="listaproductos">  
+		<div id="listaproductos">  
 
 <?php
 if (count($productos) == 0) {print '<h4 class="text-center label-warning">No hay productos coincidentes con el criterio de busqueda</h4>';}
@@ -53,7 +53,8 @@ if (count($productos) == 0) {print '<h4 class="text-center label-warning">No hay
 $i = 0;
 foreach ($productos as $producto) {         
 	if ($i == 0) {
-	  print '<div class="row">';
+	  print '
+	  	<div class="row">';
 	}
 	elseif (($i % 3) == 0) {
 		print '
@@ -61,56 +62,72 @@ foreach ($productos as $producto) {
 		<div class="row">';
 	} 
 	print '
-		<div class="col-lg-4" align="center">
-			<div class="row">
-				<div class="col-lg-9 col-lg-offset-2">
-					<div class="row">
-						<div class="col-lg-12">
-							<img class="img-responsive img01" src="'.$producto->imagen.'"/>
-						</div>
-					</div>     
-					<div class="row">
-						<div class="col-lg-10">
-							<div class="row">
-								<div class="col-lg-8 texto02" align="left"><h6><strong>'.$producto->nombre.'</strong></h6></div>
-								<div class="col-lg-4 texto02" align="right"><h4><strong>$'.number_format($producto->precio , 0, ",", ".").'</strong></h4></div>
+			<div class="col-lg-4 prod-linea">
+				<div class="row">
+					<div class="col-lg-10 col-lg-offset-1">
+						<div class="row">
+							<div class="col-lg-12" align="center">
+								<div class="panel panel-prod-img">
+									<img class="img-responsive img01" src="'.$producto->imagen.'"/>
+								</div>
 							</div>
-						</div>   
-					</div>
-					<div class="row">
-						<div class="col-lg-12 texto02" align="left">
-							<h6>'.$producto->descripcioncorta.'</h6>
-						</div>
-					</div>
+						</div>     
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="panel panel-prod-nom">
+									<div class="texto02" align="center"><strong>'.$producto->nombre.'</strong></div>
+								</div>   
+							</div>  
 
-					<div>
-						<input type="hidden" class="idprod" data-id="'.$producto->id.'"/>
-						<input type="hidden" class="imagenprod" data-id="'.$producto->imagen.'"/>
-						<input type="hidden" class="nombreprod" data-id="'.$producto->nombre.'"/>
-						<input type="hidden" class="descripcioncortaprod" data-id="'.$producto->descripcioncorta.'"/>
-						<input type="hidden" class="precioprod" data-id="'.$producto->precio.'"/>
+						</div>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="panel panel-prod-desc">
+									<h6 align="justify">'.$producto->descripcioncorta.'</h6>
+								</div>
+							</div>   
+						</div>
 
 						<div class="row">
-							<div class="col-lg-7" align="left" id="existen">
-								<h5>Disponibles: <strong>'.$producto->existencias.'</strong></h5>
-							</div>
-							<div class="col-lg-5" align="left">
-							  <h6><input type="number" class="cantidadprod" min="1" max="'.$producto->existencias.'" ></h6>
-							</div>
-						</div>	
-						<div class="row">
-							<div class="col-lg-6" align="left">
-								<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito">Agregar al Carrito</button>
-							</div>
-							<div class="col-lg-6" align="right">
-								<button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'.$producto->id.'">Ver Detalles</button>
+							<div class="col-lg-12">
+								<div class="input-append">
+									<div class="col-lg-3" align="left" id="existen">
+										<h5><small>Disponibles:</small></h5>
+									</div>
+									<div class="col-lg-2" align="left">
+										<h5><strong>'.$producto->existencias.'</strong></h5>
+									</div>
+									<div class="col-lg-1" align="right">
+										<h5><small>Precio:</small></h5>
+									</div>
+									<div class="col-lg-3" align="left">
+										<div class="col-lg-4 texto02" ><h4><strong>$'.number_format($producto->precio , 0, ",", ".").'</strong></h4></div>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
 
+						<div class="row">
+							<div class="col-lg-12" align="right">
+								<div class="input-append">
+									<input  type="number" class="cantidadprod"  min="0" max="'.$producto->existencias.'">
+									<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito">Agregar a Carrito</button>
+									<button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'.$producto->id.'">Detalles</button>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<input type="hidden" class="idprod" data-id="'.$producto->id.'"/>
+							<input type="hidden" class="imagenprod" data-id="'.$producto->imagen.'"/>
+							<input type="hidden" class="nombreprod" data-id="'.$producto->nombre.'"/>
+							<input type="hidden" class="descripcioncortaprod" data-id="'.$producto->descripcioncorta.'"/>
+							<input type="hidden" class="precioprod" data-id="'.$producto->precio.'"/>
+						</div>
+
+					</div>
 				</div>
-			</div>
-		</div> ';
+			</div> ';
 	$i = $i + 1;
 	}
 ?>
@@ -147,13 +164,13 @@ foreach ($productos as $producto) {
 $(document).ready(function(){
 
 	$('.container').on('click','#btn-agregarcarrito',function(event){
-		cantidadprod = $(event.target).parent().parent().parent().find('.cantidadprod').val();
+		cantidadprod = $(event.target).parent().parent().parent().parent().find('.cantidadprod').val();
 		if(cantidadprod == 0) {return false;}
-		idprod = $(event.target).parent().parent().parent().find('.idprod').attr("data-id");
-		imagenprod = $(event.target).parent().parent().parent().find('.imagenprod').attr("data-id");
-		nombreprod = $(event.target).parent().parent().parent().find('.nombreprod').attr("data-id");
-		descripcioncortaprod = $(event.target).parent().parent().parent().find('.descripcioncortaprod').attr("data-id");
-		precioprod = $(event.target).parent().parent().parent().find('.precioprod').attr("data-id");
+		idprod = $(event.target).parent().parent().parent().parent().find('.idprod').attr("data-id");
+		imagenprod = $(event.target).parent().parent().parent().parent().find('.imagenprod').attr("data-id");
+		nombreprod = $(event.target).parent().parent().parent().parent().find('.nombreprod').attr("data-id");
+		descripcioncortaprod = $(event.target).parent().parent().parent().parent().find('.descripcioncortaprod').attr("data-id");
+		precioprod = $(event.target).parent().parent().parent().parent().find('.precioprod').attr("data-id");
 		agregarcarrito(idprod, imagenprod, nombreprod, descripcioncortaprod, precioprod, cantidadprod, function(rta){})
 	})
 

@@ -1,7 +1,7 @@
 <div class="container">
  
 <!---------------------------------------------------------------PRODUCTO -->
-<div class="row baner08">
+<div class="row">
 	<div class="col-lg-5" align="center">
 <?php
 $i = 0;

@@ -171,6 +171,7 @@ class Producto extends CI_Controller {
 			redirect('producto/mostrarCarrito');
 			exit;
         }
+
         if(isset($comprar)) {
 			redirect('producto/mostrarCarrito');
 			exit;
@@ -179,14 +180,12 @@ class Producto extends CI_Controller {
         $rows = $this->input->post('rowid');
         $cantidades = $this->input->post('qty');
         $data = array();
-        
         for ($i = 0; $i < sizeof($rows); $i++) {
             $data[] = array(
                 'rowid' => $rows[$i],
                 'qty' => $cantidades[$i]
             );
         }
-        
         $this->cart->update($data);
         redirect('producto/mostrarCarrito');  
     }

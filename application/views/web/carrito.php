@@ -22,7 +22,7 @@
 
 							print '<tr>';
 							print ' <td><img class="img-responsive img03" src="'.$item['imagen'].'"/></td>';
-							print '	<td><h5><strong>'.$item['name'].'</strong></h5>';
+							print '	<td><h5 class="nombre"><strong>'.$item['name'].'</strong></h5>';
 							print '	<h6><small>'.$item['descripcioncorta'].'</small></h6></td>';
 //							print '	<td>'.number_format($item['price'],0,',','.').'</td>';
 							print '	<td><h5><input type="number" class="form-control" name="qty[]" value="'.$item['qty'].'"></h5></td>';
@@ -48,3 +48,4 @@
 </div>
 
 </div>
+
