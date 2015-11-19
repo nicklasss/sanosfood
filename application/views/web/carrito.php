@@ -2,8 +2,8 @@
 
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
+		<div class="row text-center"><h2>Carrito de Compras</h2></div>
 		<div class="panel panel-default">
-			<div class="panel-heading text-center"><h2>Carrito de Compras</h2></div>
 			<table class="table table-condensed table-striped">
 				<thead>
 				<tr role="row">
