@@ -1,172 +1,48 @@
 body{
    padding-top: 50px;
 }
-.navbar-cats{
-	margin-bottom: 0px !important;
-}
-
-.input-group-addon.success {
-    color: rgb(255, 255, 255);
-    background-color: rgb(92, 184, 92);
-    border-color: rgb(76, 174, 76);
-    margin-left: 10px;
-    margin-right: 10px;
-}
 
 
-/*---------------------------------------------HOME */
+/*---------------------------------------------BANERs */
 .baner01 {
 	height: 450px;
 	background-image: url(http://sanosfoods.com/images/23.png); 
 	background-size: cover;"	
 }
-
 .baner02 {
 	height: 210px;
 	background-color: #efefef;
 }
-
 .baner03 {
 /*	height: 500px; */
 	background-color: #dee2e7;
 	padding-top: 10px;
 	padding-bottom: 30px;
 }
-
 .baner04 {
 	height: 500px;
 	background-image: url(http://sanosfoods.com/images/24.png);
 	background-size: cover;"	
 /*	background-color: rgb(0,0,255); opacity: 0.7; */
 }
-
 .baner05 {
 	height: 250px;
 	background-color: #444444;
 }
-
-.textos01 {
-	padding-top:90px;
-	color: #ffffff;
-}
-
-.textos02 {
-   margin-top: 40px;
-	color: #aaaaaa;
-}
-
-.textos03 {
-	padding-top: 40px;
-	color: #ffffff;
-}
-
-.textos04 {
-	color: #aaaaaa;
-}
-
-.boton01 {
-	padding-top: 50px;
-}
-
-.plato01 {
-	height: 140px;
-	width: 310px;
-	margin-top: 40px;
-	background-size: cover;
-	border-radius: 15px;
-}
-
-.panel-prod-img{
-	height: 160px; 
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 0px;
-	border: none;
-	box-shadow: none;
-}
-
-.panel-prod-nom{
-	height: 16px; 
-	border: none;
-	box-shadow: none;
-}
-
-.panel-prod-desc{
-	height: 35px; 
-	border: none;
-	margin-bottom: 10px;
-	box-shadow: none;
-}
-
-.prod-linea {
-	padding-top: 10px;
-}
-
-.panel-prod-img-grande{
-	height: 300px; 
-	margin-left: auto;
-	margin-right: auto;
-	border: none;
-	box-shadow: none;
-}
-
-.panel-prod-img-pequena{
-	height: 80px; 
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.img01 {
-	max-height: 160px;
-	margin-top: 30px;
-	background-size: contain;
-}
-
-/*---------------------------------------------PRODUCTO */
-
 .baner06 {
 	height: 550px; 
 	background-color: #eeeeee;
 }
-
-.textos05 {
-	color: #888888;
-}
-
-.textos05a {
-	color: #2c6250;
-}
-
-.textos06 {
-	color: #888888;
-}
-
-.img02 {
-	max-height: 300px; 
-	margin-top: 30px;
-	background-size: contain;
-/*	border-radius: 15px;  */
-}
-
-.img03 {
-	max-height: 80px; */
-	margin-top: 10px;
-	background-size: contain; */
-/*	border-radius: 5px; */
-}
-
 .baner07 {
 	height: 100px;
 	background-color: #eeeeee;
 }
-
-/*---------------------------------------------PRODUCTO */
-
 .baner08 {
 	background-color: #eeeeee;
 	padding-bottom: 10px;
 }
 
+/*---------------------------------------------GLYPHICON */
 .glyphicon-ok{
 	color:green;
 	text-align: center;
@@ -180,18 +56,63 @@ body{
 	text-align: center;
 }
 
-.categ, .marca {
- 	font-size: 13px;
+/*---------------------------------------------IMAGENES */
+.img01 {
+	max-height: 160px;
+	margin-top: 30px;
+	background-size: contain;
 }
-
-#tipocar {
+.img-grande {
+	max-height: 280px; 
+	margin-top: 30px;
+	background-size: contain;
+	border: none;
+/*	border-radius: 15px;  */
+}
+.img-pequena {
+	max-height: 80px; */
 	margin-top: 10px;
-	padding-left: 5px;
-}
-#tipocar h6 {
-	font-size: 10px;
+	background-size: contain; */
+	border: none;
+/*	border-radius: 5px; */
 }
 
+/*---------------------------------------------PANELES */
+.panel-prod-nom{
+	height: 16px; 
+	border: none;
+	box-shadow: none;
+}
+.panel-prod-desc{
+	height: 35px; 
+	border: none;
+	margin-bottom: 10px;
+	box-shadow: none;
+}
+.panel-prod-img{
+	height: 160px; 
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 0px;
+	border: none;
+	box-shadow: none;
+}
+.panel-prod-img-grande{
+	height: 300px; 
+	margin-left: auto;
+	margin-right: auto;
+	border: none;
+	box-shadow: none;
+}
+.panel-prod-img-pequena{
+	height: 80px; 
+	margin-left: auto;
+	margin-right: auto;
+	border: none;
+	box-shadow: none;
+}
+
+/*---------------------------------------------TABLAS */
 #tabla1 {
 	width: 120px;
 }
@@ -211,8 +132,33 @@ body{
  	font-size: 10px;
  }
 
- /*---------------------------------------------PRODUCTOSCARACTERISTICAS */
+/*---------------------------------------------TEXTOS */
+.textos01 {
+	padding-top:90px;
+	color: #ffffff;
+}
+.textos02 {
+   margin-top: 40px;
+	color: #aaaaaa;
+}
+.textos03 {
+	padding-top: 40px;
+	color: #ffffff;
+}
+.textos04 {
+	color: #aaaaaa;
+}
+.textos05 {
+	color: #888888;
+}
+.textos05a {
+	color: #2c6250;
+}
+.textos06 {
+	color: #888888;
+}
 
+ /*---------------------------------------------PRODUCTOSCARACTERISTICAS */
 #procar th {
 	background-color: #7ac85d;
 	color: #ffffff;
@@ -228,4 +174,47 @@ body{
  	text-align: center;
  }
  
+#tipocar {
+	margin-top: 10px;
+	padding-left: 5px;
+}
+#tipocar h6 {
+	font-size: 10px;
+}
 
+.categ, .marca {
+ 	font-size: 13px;
+}
+
+.boton01 {
+	padding-top: 50px;
+}
+
+.plato01 {
+	height: 140px;
+	width: 310px;
+	margin-top: 40px;
+	background-size: cover;
+	border-radius: 15px;
+}
+
+.prod-linea {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.margen-top1 {
+	padding-top: 30px;
+}
+
+.navbar-cats{
+	margin-bottom: 0px !important;
+}
+
+.input-group-addon.success {
+    color: rgb(255, 255, 255);
+    background-color: rgb(92, 184, 92);
+    border-color: rgb(76, 174, 76);
+    margin-left: 10px;
+    margin-right: 10px;
+}

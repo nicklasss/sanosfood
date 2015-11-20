@@ -9,25 +9,26 @@ foreach ($producto->imagenes as $imagen) {
 	$i = $i + 1;
 	if ($i > 4) {break;}
 	if ($i == 1) {
+		$imagendelproducto = $imagen->imagen;
 		print '
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default panel-prod-img-grande">
-					<img class="img-responsive img-thumbnail img02" id="imggrande" src="'.$imagen->imagen.'"/>
+					<img alig="center" class="img-responsive img-grande" id="imggrande" src="'.$imagen->imagen.'"/>
 				</div>
 			</div>
 		</div>  
 		<div class="row">
 			<div class="col-lg-3">
 				<div class="panel panel-default panel-prod-img-pequena">
-					<a href="javascript:void(0)"><img class="img-responsive img-thumbnail img03 imgsmall" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/></a>
+					<a href="javascript:void(0)"><img class="img-responsive img-pequena" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/></a>
 				</div>
 			</div>';
 	} else {	  
 		print '  
 			<div class="col-lg-3">
 				<div class="panel panel-default panel-prod-img-pequena">
-					<a href="javascript:void(0)"><img class="img-responsive img-thumbnail img03 imgsmall" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/></a>
+					<a href="javascript:void(0)"><img class="img-responsive img-pequena" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/></a>
 				</div>
 			</div>';
 	};
@@ -50,7 +51,7 @@ foreach ($producto->imagenes as $imagen) {
 			<div class="col-lg-2 textos06" align="left">
 			  <h4>Ingredientes:</h4>
 			</div>
-			<div class="col-lg-10 textos05" align="left">
+			<div class="col-lg-10" align="left">
 			  <h4><?php print $producto->ingredientes;?></h4>
 			</div>
 		</div>
@@ -58,15 +59,15 @@ foreach ($producto->imagenes as $imagen) {
 			<div class="col-lg-2 textos06" align="left">
 			  <h4>Marca:</h4>
 			</div>
-			<div class="col-lg-10 textos05" align="left">
-			  <h4><?php print $producto->marca;?></h4>
+			<div class="col-lg-10" align="left">
+			  <h4><strong><?php print $producto->marca;?></strong></h4>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-4" align="left">
 				<div class="row">
 					<div class="col-lg-6 textos06" align="left">
-					  <h4><strong>Precio:</strong></h4>
+					  <h4>Precio:</h4>
 					</div>
 					<div class="col-lg-6" align="left">
 					  <h4><strong>$<?php print number_format($producto->precio , 0, ",", ".");?></strong></h4>
@@ -74,9 +75,11 @@ foreach ($producto->imagenes as $imagen) {
 				</div>
 
 				<form>
-					<input type="hidden" id="idprod" value="<?php print $producto->id;?>"/>
+					<input type="hidden" id="idprod" 	 value="<?php print $producto->id;?>"/>
+					<input type="hidden" id="imagenprod" value="<?php print $imagendelproducto;?>"/>
 					<input type="hidden" id="nombreprod" value="<?php print $producto->nombre;?>"/>
 					<input type="hidden" id="precioprod" value="<?php print $producto->precio;?>"/>
+					<input type="hidden" id="descripcioncortaprod" value="<?php print $producto->descripcioncorta;?>"/>
 					<div class="row">
 						<div class="col-lg-6" align="left">
 							<h4><strong><input type="number" id="cantidadprod" min="0" max="<?php print $producto->existencias;?>" ></strong></h4>
@@ -208,12 +211,14 @@ $(document).ready(function(){
 		cantidadprod = $('#cantidadprod').val();
 		if(cantidadprod == 0) {return false;}
 		idprod = $('#idprod').val();
+		imagenprod = $('#imagenprod').val();
 		nombreprod = $('#nombreprod').val();
 		precioprod = $('#precioprod').val();
-		agregarcarrito(idprod, nombreprod, precioprod, cantidadprod, function(rta){})
+		descripcioncortaprod = $('#descripcioncortaprod').val();
+		agregarcarrito(idprod, imagenprod, nombreprod, precioprod, cantidadprod, descripcioncortaprod, function(rta){})
 	})
 
-	$('.container').on('click','.imgsmall',function(event){
+	$('.container').on('click','.img-pequena',function(event){
 	  i = $(event.target).attr("data-id");
 		switch(i) {
 			case "1":
@@ -234,15 +239,20 @@ $(document).ready(function(){
 })
 
 //----------------------------------------------------------------------------------funcion agregar a carrito
-function agregarcarrito (idprod, nombreprod, precioprod, cantidadprod, callback) {
+function agregarcarrito (idprod, imagenprod, nombreprod, precioprod, cantidadprod, descripcioncortaprod, callback) {
 	$.ajax({                                           
 	  url: "<?php print base_url();?>producto/agregarCarrito",
 	  context: document.body,
 	  dataType: "json",
 	  type: "POST",
-	  data: {idprod : idprod, nombreprod : nombreprod, precioprod : precioprod, cantidadprod : cantidadprod }})
+	  data: {idprod : idprod, imagenprod : imagenprod, nombreprod : nombreprod, precioprod : precioprod, cantidadprod : cantidadprod, descripcioncortaprod : descripcioncortaprod }})
 	 .done(function(data) {                               
-	  if(data.res == "ok") {$("#cantcart").text(data.cantcart);callback(true)}
+	  if(data.res == "ok") {
+			$("#cantcart").text(data.cantcart);
+			$("#btn-carrito").removeClass("btn-default");  
+			$("#btn-carrito").addClass("btn-warning");  
+			callback(true);
+	  }
 	  else {alert(data.msj);callback(false)}})
 	 .error(function(){alert('No hay conexion');callback(false);})
 }

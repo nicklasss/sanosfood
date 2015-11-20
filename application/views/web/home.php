@@ -24,53 +24,91 @@
 
 <!---------------------------------------------------------------PRODUCTOS -->
 <div class="row">
-   <div class="col-lg-12 text-center">
-      <h4><strong>PRODUCTOS DESTACADOS</strong></h4>
+   <div class="col-lg-12 text-center prod-linea">
+      <h3><strong>PRODUCTOS DESTACADOS</strong></h3>
    </div>
 
 <?php
 $i = 0;
-foreach ($productos as $producto) {
-   $i = $i + 1;
-   if ($i == 1 || $i == 5) {
-      if ($i == 5) {
-         print '</div>';
-      }
-      print '<div class="row">';
+foreach ($productos as $producto) {         
+   if ($i == 0) {
+     print '
+         <div class="row">';
+   }
+   elseif (($i % 4) == 0 && $i != 0) {
+      print '
+         </div>
+         <div class="row">';
    } 
-  print '<div class="col-lg-3" align="center">
-            <div class="row">
-               <div class="col-lg-9 col-lg-offset-2">
-                  <div class="row">
-                     <div class="col-lg-12">
-                        <img class="img-responsive img-rounded img01" src="'.$producto->imagen.'"/>
-                     </div>
-                  </div>     
-                  <div class="row">
-                     <div class="col-lg-10">
-                        <div class="row">
-                           <div class="col-lg-8 textos05a" align="left"><h6><strong>'.$producto->nombre.'</strong></h6></div>
-                           <div class="col-lg-4 textos06" align="right"><h4><strong>$'.number_format($producto->precio , 0, ",", ".").'</strong></h4></div>
+   print '  <div class="col-lg-3 prod-linea">
+               <div class="row">
+                  <div class="col-lg-10 col-lg-offset-1">
+                     <div class="row">
+                        <div class="col-lg-12" align="center">
+                           <div class="panel panel-default panel-prod-img">
+                              <img class="img-responsive img01" src="'.$producto->imagen.'"/>
+                           </div>
                         </div>
-                     </div>   
-                  </div>
-                  <div class="row">
-                     <div class="col-lg-12 textos05" align="left">
-                        <h6>'.$producto->descripcioncorta.'</h6>
+                     </div>     
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <div class="panel panel-default panel-prod-nom">
+                              <div class="texto02" align="center"><strong>'.$producto->nombre.'</strong></div>
+                           </div>   
+                        </div>  
                      </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-lg-12 text-right">
-                        <button type="button" class="btn btn-verdetalle btn-xs btn-success" data-id="'.$producto->id.'">Ver Detalles</button>
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <div class="panel panel-default panel-prod-desc">
+                              <h6 align="justify">'.$producto->descripcioncorta.'</h6>
+                           </div>
+                        </div>   
+                     </div>
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <div class="input-append">
+                              <div class="col-lg-3" align="left" id="existen">
+                                 <h5><small>Disponibles:</small></h5>
+                              </div>
+                              <div class="col-lg-2" align="left">
+                                 <h5><strong>'.$producto->existencias.'</strong></h5>
+                              </div>
+                              <div class="col-lg-1" align="right">
+                                 <h5><small>Precio:</small></h5>
+                              </div>
+                              <div class="col-lg-3" align="left">
+                                 <div class="col-lg-4 texto02" ><h4><strong>$'.number_format($producto->precio , 0, ",", ".").'</strong></h4></div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-lg-12" align="center">
+                           <div class="input-append">
+                              <input  type="number" class="cantidadprod" min="0" max="'.$producto->existencias.'"/>
+                              <button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Carrito</button>
+                              <button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'.$producto->id.'">Detalles</button>
+                           </div>
+                        </div>
+                     </div>
+                     <div>
+                        <input type="hidden" class="idprod"     data-id="'.$producto->id.'"/>
+                        <input type="hidden" class="imagenprod" data-id="'.$producto->imagen.'"/>
+                        <input type="hidden" class="nombreprod" data-id="'.$producto->nombre.'"/>
+                        <input type="hidden" class="precioprod" data-id="'.$producto->precio.'"/>
+                        <input type="hidden" class="descripcioncortaprod" data-id="'.$producto->descripcioncorta.'"/>
                      </div>
                   </div>
                </div>
-            </div>
-         </div> ';
-}
+            </div> ';
+   $i = $i + 1;
+   }
+   print '
+         </div>';
 ?>
-</div>  
 
+</div>  
+<div class="row margen-top1"></div>
 
 </div> <!-- /container -->
 </div>
@@ -87,13 +125,48 @@ foreach ($productos as $producto) {
    </div> <!-- /container -->
 </div> 
 
+
 <!------------------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
-    $(document).ready(function(){
 
-   $('*').on('click','.btn-verdetalle',function(event){
+$(document).ready(function(){
+
+   $('.container').on('click','#btn-agregarcarrito',function(event){
+      cantidadprod = $(event.target).parent().parent().parent().parent().find('.cantidadprod').val();
+      if(cantidadprod == 0) {return false;}
+      idprod = $(event.target).parent().parent().parent().parent().find('.idprod').attr("data-id");
+      imagenprod = $(event.target).parent().parent().parent().parent().find('.imagenprod').attr("data-id");
+      nombreprod = $(event.target).parent().parent().parent().parent().find('.nombreprod').attr("data-id");
+      descripcioncortaprod = $(event.target).parent().parent().parent().parent().find('.descripcioncortaprod').attr("data-id");
+      precioprod = $(event.target).parent().parent().parent().parent().find('.precioprod').attr("data-id");
+      agregarcarrito(idprod, imagenprod, nombreprod, descripcioncortaprod, precioprod, cantidadprod, function(rta){})
+   })
+
+   $('.container').on('click','#btn-verdetalle',function(event){
       id = $(event.target).attr("data-id");
       window.location="<?php print base_url();?>web/producto/"+id;
    });
+
 })
+
+//----------------------------------------------------------------------------------funcion agregar a carrito
+function agregarcarrito (idprod, imagenprod, nombreprod, descripcioncortaprod, precioprod, cantidadprod, callback) {
+   $.ajax({                                           
+      url: "<?php print base_url();?>producto/agregarCarrito",
+      context: document.body,
+      dataType: "json",
+      type: "POST",
+      data: {idprod : idprod, imagenprod : imagenprod, nombreprod : nombreprod, descripcioncortaprod : descripcioncortaprod, precioprod : precioprod, cantidadprod : cantidadprod }})
+   .done(function(data) {                               
+      if(data.res == "ok") {
+         $("#cantcart").text(data.cantcart);
+         $("#btn-carrito").removeClass("btn-default");  
+         $("#btn-carrito").addClass("btn-warning");  
+         callback(true)
+      }
+      else {alert(data.msj);callback(false)}})
+   .error(function(){alert('No hay conexion');callback(false);})
+}
+
 </script>
+
