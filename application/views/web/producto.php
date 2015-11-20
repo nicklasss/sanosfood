@@ -11,18 +11,24 @@ foreach ($producto->imagenes as $imagen) {
 	if ($i == 1) {
 		print '
 		<div class="row">
-		  <div class="col-lg-12">
-			 <img class="img-responsive img-thumbnail img02" id="imggrande" src="'.$imagen->imagen.'"/>
-		  </div>
+			<div class="col-lg-12">
+				<div class="panel panel-default panel-prod-img-grande">
+					<img class="img-responsive img-thumbnail img02" id="imggrande" src="'.$imagen->imagen.'"/>
+				</div>
+			</div>
 		</div>  
 		<div class="row">
 			<div class="col-lg-3">
-				<a href="javascript:void(0)"><img class="img-responsive img-thumbnail img03 imgsmall" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/></a>
-			</div>';}
-	else {	  
+				<div class="panel panel-default panel-prod-img-pequena">
+					<a href="javascript:void(0)"><img class="img-responsive img-thumbnail img03 imgsmall" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/></a>
+				</div>
+			</div>';
+	} else {	  
 		print '  
 			<div class="col-lg-3">
-				<a href="javascript:void(0)"><img class="img-responsive img-thumbnail img03 imgsmall" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/></a>
+				<div class="panel panel-default panel-prod-img-pequena">
+					<a href="javascript:void(0)"><img class="img-responsive img-thumbnail img03 imgsmall" data-id="'.$i.'" id="imgsmall'.$i.'" src="'.$imagen->imagen.'"/></a>
+				</div>
 			</div>';
 	};
 };
@@ -73,11 +79,11 @@ foreach ($producto->imagenes as $imagen) {
 					<input type="hidden" id="precioprod" value="<?php print $producto->precio;?>"/>
 					<div class="row">
 						<div class="col-lg-6" align="left">
-						  <h4><strong><input type="number" id="cantidadprod" min="1" max="<?php print $producto->existencias;?>" ></strong></h4>
+							<h4><strong><input type="number" id="cantidadprod" min="0" max="<?php print $producto->existencias;?>" ></strong></h4>
 						</div>
 						<div class="col-lg-6" align="left">
-							<button type="button" class="btn btn-success" id="btn-agregarcarrito">Agregar al Carrito</button>
-						</div>
+							<button type="button" class="btn btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Carrito</button> 
+						</div>  
 					</div>
 				</form>
 

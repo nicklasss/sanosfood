@@ -54,82 +54,80 @@ $i = 0;
 foreach ($productos as $producto) {         
 	if ($i == 0) {
 	  print '
-	  	<div class="row">';
+			<div class="row">';
 	}
-	elseif (($i % 3) == 0) {
+	elseif (($i % 3) == 0 && $i != 0) {
 		print '
-		</div>
-		<div class="row">';
+			</div>
+			<div class="row">';
 	} 
-	print '
-			<div class="col-lg-4 prod-linea">
-				<div class="row">
-					<div class="col-lg-10 col-lg-offset-1">
-						<div class="row">
-							<div class="col-lg-12" align="center">
-								<div class="panel panel-prod-img">
-									<img class="img-responsive img01" src="'.$producto->imagen.'"/>
+	print '		<div class="col-lg-4 prod-linea">
+					<div class="row">
+						<div class="col-lg-10 col-lg-offset-1">
+							<div class="row">
+								<div class="col-lg-12" align="center">
+									<div class="panel panel-default panel-prod-img">
+										<img class="img-responsive img01" src="'.$producto->imagen.'"/>
+									</div>
 								</div>
+							</div>     
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default panel-prod-nom">
+										<div class="texto02" align="center"><strong>'.$producto->nombre.'</strong></div>
+									</div>   
+								</div>  
 							</div>
-						</div>     
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="panel panel-prod-nom">
-									<div class="texto02" align="center"><strong>'.$producto->nombre.'</strong></div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="panel panel-default panel-prod-desc">
+										<h6 align="justify">'.$producto->descripcioncorta.'</h6>
+									</div>
 								</div>   
-							</div>  
-						</div>
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="panel panel-prod-desc">
-									<h6 align="justify">'.$producto->descripcioncorta.'</h6>
-								</div>
-							</div>   
-						</div>
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="input-append">
-									<div class="col-lg-3" align="left" id="existen">
-										<h5><small>Disponibles:</small></h5>
-									</div>
-									<div class="col-lg-2" align="left">
-										<h5><strong>'.$producto->existencias.'</strong></h5>
-									</div>
-									<div class="col-lg-1" align="right">
-										<h5><small>Precio:</small></h5>
-									</div>
-									<div class="col-lg-3" align="left">
-										<div class="col-lg-4 texto02" ><h4><strong>$'.number_format($producto->precio , 0, ",", ".").'</strong></h4></div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="input-append">
+										<div class="col-lg-3" align="left" id="existen">
+											<h5><small>Disponibles:</small></h5>
+										</div>
+										<div class="col-lg-2" align="left">
+											<h5><strong>'.$producto->existencias.'</strong></h5>
+										</div>
+										<div class="col-lg-1" align="right">
+											<h5><small>Precio:</small></h5>
+										</div>
+										<div class="col-lg-3" align="left">
+											<div class="col-lg-4 texto02" ><h4><strong>$'.number_format($producto->precio , 0, ",", ".").'</strong></h4></div>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-lg-12" align="center">
-								<div class="input-append">
-									<input  type="number" class="cantidadprod" min="0" max="'.$producto->existencias.'"/>
-									<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito">Carrito</button>
-									<button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'.$producto->id.'">Detalles</button>
+							<div class="row">
+								<div class="col-lg-12" align="center">
+									<div class="input-append">
+										<input  type="number" class="cantidadprod" min="0" max="'.$producto->existencias.'"/>
+										<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Carrito</button>
+										<button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'.$producto->id.'">Detalles</button>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div>
-							<input type="hidden" class="idprod"     data-id="'.$producto->id.'"/>
-							<input type="hidden" class="imagenprod" data-id="'.$producto->imagen.'"/>
-							<input type="hidden" class="nombreprod" data-id="'.$producto->nombre.'"/>
-							<input type="hidden" class="descripcioncortaprod" data-id="'.$producto->descripcioncorta.'"/>
-							<input type="hidden" class="precioprod" data-id="'.$producto->precio.'"/>
+							<div>
+								<input type="hidden" class="idprod"     data-id="'.$producto->id.'"/>
+								<input type="hidden" class="imagenprod" data-id="'.$producto->imagen.'"/>
+								<input type="hidden" class="nombreprod" data-id="'.$producto->nombre.'"/>
+								<input type="hidden" class="precioprod" data-id="'.$producto->precio.'"/>
+								<input type="hidden" class="descripcioncortaprod" data-id="'.$producto->descripcioncorta.'"/>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div> ';
+				</div> ';
 	$i = $i + 1;
 	}
 	print '
-	</div>';
+			</div>';
 ?>
 		</div>
-	</div>  
 	<div class="row">
 		<div class="dataTables_paginate paging_simple_numbers text-center" id="dataTables-example_paginate">
 			<ul class="pagination" id="paginado">
@@ -151,6 +149,7 @@ foreach ($productos as $producto) {
 				?>
 			</ul>
 		</div>
+	</div>
 	</div>
 </div>
 </div> <!-- /container -->
@@ -294,79 +293,78 @@ function buscar(){
 function pintarproductos(data) {
 	for (var i = 0; i < data.productos.length; i++) {
 		if (i == 0) { 
-			$("#listaproductos").html('<div class="row">'); 
-		}else {
-			if ((i % 3) == 0) {
-				sarta1 =	'</div>'+
+			sarta = '<div class="row">';
+		}
+		if ((i % 3) == 0 & i != 0) {
+			sarta =	sarta + '</div>'+
 							'	<div class="row">';
-				$("#listaproductos").append(sarta1);
-			}  
-		} 
-		sarta2 =	
-			'<div class="col-lg-4 prod-linea">'+
-			'	<div class="row">'+
-			'		<div class="col-lg-10 col-lg-offset-1">'+
-			'			<div class="row">'+
-			'				<div class="col-lg-12" align="center">'+
-			'					<div class="panel panel-prod-img">'+
-			'						<img class="img-responsive img01" src="'+data.productos[i].imagen+'"/>'+
-			'					</div>'+
-			'				</div>'+
-			'			</div>'+
-			'			<div class="row">'+
-			'				<div class="col-lg-12">'+
-			'					<div class="panel panel-prod-nom">'+
-			'						<div class="texto02" align="center"><strong>'+data.productos[i].nombre+'</strong></div>'+
-			'					</div>'+
-			'				</div>'+
-			'			</div>'+
-			'			<div class="row">'+
-			'				<div class="col-lg-12">'+
-			'					<div class="panel panel-prod-desc">'+
-			'						<h6 align="justify">'+data.productos[i].descripcioncorta+'</h6>'+
-			'					</div>'+
-			'				</div>'+
-			'			</div>'+
-			'			<div class="row">'+
-			'				<div class="col-lg-12">'+
-			'					<div class="input-append">'+
-			'						<div class="col-lg-3" align="left" id="existen">'+
-			'							<h5><small>Disponibles:</small></h5>'+
-			'						</div>'+
-			'						<div class="col-lg-2" align="left">'+
-			'							<h5><strong>'+data.productos[i].existencias+'</strong></h5>'+
-			'						</div>'+
-			'						<div class="col-lg-1" align="right">'+
-			'							<h5><small>Precio:</small></h5>'+
-			'						</div>'+
-			'						<div class="col-lg-3" align="left">'+
-			'							<div class="col-lg-4 texto02" ><h4><strong>$'+formato_numero(data.productos[i].precio)+'</strong></h4></div>'+
-			'						</div>'+
-			'					</div>'+
-			'				</div>'+
-			'			</div>'+
-			'			<div class="row">'+
-			'				<div class="col-lg-12" align="center">'+
-			'					<div class="input-append">'+
-			'						<input  type="number" class="cantidadprod" min="0" max="'+data.productos[i].existencias+'"/>'+
-			'						<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito">Carrito</button>'+
-			'						<button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'+data.productos[i].id+'">Detalles</button>'+
-			'					</div>'+
-			'				</div>'+
-			'			</div>'+
-			'			<div>'+
-			'				<input type="hidden" class="idprod"     data-id="'+data.productos[i].id+'"/>'+
-			'				<input type="hidden" class="imagenprod" data-id="'+data.productos[i].imagen+'"/>'+
-			'				<input type="hidden" class="nombreprod" data-id="'+data.productos[i].nombre+'"/>'+
-			'				<input type="hidden" class="descripcioncortaprod" data-id="'+data.productos[i].descripcioncorta+'"/>'+
-			'				<input type="hidden" class="precioprod" data-id="'+data.productos[i].precio+'"/>'+
-			'			</div>'+
-			'		</div>'+
-			'	</div>'+
-			'</div> ';
-		$("#listaproductos").append(sarta2);
+		}
+		sarta = sarta +  
+				'<div class="col-lg-4 prod-linea">'+
+				'	<div class="row">'+
+				'		<div class="col-lg-10 col-lg-offset-1">'+
+				'			<div class="row">'+
+				'				<div class="col-lg-12" align="center">'+
+				'					<div class="panel panel-default panel-prod-img">'+
+				'						<img class="img-responsive img01" src="'+data.productos[i].imagen+'"/>'+
+				'					</div>'+
+				'				</div>'+
+				'			</div>'+
+				'			<div class="row">'+
+				'				<div class="col-lg-12">'+
+				'					<div class="panel panel-default panel-prod-nom">'+
+				'						<div class="texto02" align="center"><strong>'+data.productos[i].nombre+'</strong></div>'+
+				'					</div>'+
+				'				</div>'+
+				'			</div>'+
+				'			<div class="row">'+
+				'				<div class="col-lg-12">'+
+				'					<div class="panel panel-default panel-prod-desc">'+
+				'						<h6 align="justify">'+data.productos[i].descripcioncorta+'</h6>'+
+				'					</div>'+
+				'				</div>'+
+				'			</div>'+
+				'			<div class="row">'+
+				'				<div class="col-lg-12">'+
+				'					<div class="input-append">'+
+				'						<div class="col-lg-3" align="left" id="existen">'+
+				'							<h5><small>Disponibles:</small></h5>'+
+				'						</div>'+
+				'						<div class="col-lg-2" align="left">'+
+				'							<h5><strong>'+data.productos[i].existencias+'</strong></h5>'+
+				'						</div>'+
+				'						<div class="col-lg-1" align="right">'+
+				'							<h5><small>Precio:</small></h5>'+
+				'						</div>'+
+				'						<div class="col-lg-3" align="left">'+
+				'							<div class="col-lg-4 texto02" ><h4><strong>$'+formato_numero(data.productos[i].precio)+'</strong></h4></div>'+
+				'						</div>'+
+				'					</div>'+
+				'				</div>'+
+				'			</div>'+
+				'			<div class="row">'+
+				'				<div class="col-lg-12" align="center">'+
+				'					<div class="input-append">'+
+				'						<input  type="number" class="cantidadprod" min="0" max="'+data.productos[i].existencias+'"/>'+
+				'						<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Carrito</button>'+
+				'						<button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'+data.productos[i].id+'">Detalles</button>'+
+				'					</div>'+
+				'				</div>'+
+				'			</div>'+
+				'			<div>'+
+				'				<input type="hidden" class="idprod"     data-id="'+data.productos[i].id+'"/>'+
+				'				<input type="hidden" class="imagenprod" data-id="'+data.productos[i].imagen+'"/>'+
+				'				<input type="hidden" class="nombreprod" data-id="'+data.productos[i].nombre+'"/>'+
+				'				<input type="hidden" class="precioprod" data-id="'+data.productos[i].precio+'"/>'+
+				'				<input type="hidden" class="descripcioncortaprod" data-id="'+data.productos[i].descripcioncorta+'"/>'+
+				'			</div>'+
+				'		</div>'+
+				'	</div>'+
+				'</div> ';
 	}
-	$("#listaproductos").append('</div></div>');
+	sarta = sarta + '</div>'
+	$("#listaproductos").html(sarta); 
+	
 }
 
 //----------------------------------------------------------------------------------funcion pintarproductos
