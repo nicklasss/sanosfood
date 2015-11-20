@@ -21,7 +21,7 @@
 							print '<input type="hidden" name="rowid[]" value="'.$item['rowid'].'">';
 
 							print '<tr>';
-							print ' <td><img class="img-responsive img03" src="'.$item['imagen'].'"/></td>';
+							print ' <td><img class="img-responsive img-pequena" src="'.$item['imagen'].'"/></td>';
 							print '	<td><h5 class="nombre"><strong>'.$item['name'].'</strong></h5>';
 							print '	<h6><small>'.$item['descripcioncorta'].'</small></h6></td>';
 //							print '	<td>'.number_format($item['price'],0,',','.').'</td>';
