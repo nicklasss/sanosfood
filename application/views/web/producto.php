@@ -85,7 +85,7 @@ foreach ($producto->imagenes as $imagen) {
 							<h4><strong><input type="number" id="cantidadprod" min="0" max="<?php print $producto->existencias;?>" ></strong></h4>
 						</div>
 						<div class="col-lg-6" align="left">
-							<button type="button" class="btn btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Carrito</button> 
+							<button type="button" class="btn btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar</button> 
 						</div>  
 					</div>
 				</form>

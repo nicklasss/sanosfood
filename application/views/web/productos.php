@@ -107,7 +107,7 @@ foreach ($productos as $producto) {
 								<div class="col-lg-12" align="center">
 									<div class="input-append">
 										<input  type="number" class="cantidadprod" min="0" max="'.$producto->existencias.'"/>
-										<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Carrito</button>
+										<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar</button>
 										<button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'.$producto->id.'">Detalles</button>
 									</div>
 								</div>
@@ -346,7 +346,7 @@ function pintarproductos(data) {
 				'				<div class="col-lg-12" align="center">'+
 				'					<div class="input-append">'+
 				'						<input  type="number" class="cantidadprod" min="0" max="'+data.productos[i].existencias+'"/>'+
-				'						<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Carrito</button>'+
+				'						<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar</button>'+
 				'						<button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'+data.productos[i].id+'">Detalles</button>'+
 				'					</div>'+
 				'				</div>'+

@@ -207,8 +207,12 @@ body{
 	padding-top: 30px;
 }
 
+.navbar{
+	min-height: 0px !important;
+}
+
 .navbar-cats{
-	margin-bottom: 0px !important;
+	margin-bottom: 10px !important;
 }
 
 .input-group-addon.success {
@@ -217,4 +221,9 @@ body{
     border-color: rgb(76, 174, 76);
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.navbar-nav>li>a {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
 }
