@@ -35,21 +35,6 @@ class Usuarios_model extends CI_Model {
             else {return array('res'=>'ok'); }
         }
     }
-    function crear($nombre = null, $descripcion = null){
-        if($nombre == NULL OR $descripcion == null){
-            return array('res'=>'bad','msj'=>'Error en la creación.'); }
-
-        if(strlen($nombre)<3){
-            return array('res'=>'bad','msj'=>'Ingresa un nombre adecuado'); }
-
-        $this->db->where('nombre', $nombre);
-        if($this->db->count_all_results('marcas')>0){
-            return array('res'=>'bad','msj'=>'Ya existe una caracteristica con este nombre'); }
-
-        $object = array('nombre' => $nombre, 'descripcion' => $descripcion);
-        $this->db->insert('marcas', $object);
-        return array('res'=>'ok','id'=>$this->db->insert_id());
-    }
     function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'Error en la inserción.'); }
@@ -57,10 +42,62 @@ class Usuarios_model extends CI_Model {
         $this->db->delete('usuarios');
         return array('res'=>'ok');
     }
-    function buscar($query = ''){
-        if($query ==""){
-            $data['usuarios'] = array();
+
+
+    function logear($usuario = null, $clave = null) {
+        $this->db->select('clave')->from('usuarios')->where('usuario', $usuario)->limit(1, 0);
+        $query = $this->db->get();
+
+        if ($query->num_rows() == 0) {
+            $data['res'] = 'bad';
+            $data['msj'] = 'No existe este nombre de usuario';
+            return $data;
         }
+        
+        $row = $query->row();
+
+//        if($row->clave == sha1(sha1($usuario).'sal sanosfood'.sha1($clave))) {
+        if($row->clave == $clave) {
+            $this->session->set_userdata('logeado',true);
+            $this->session->set_userdata('usuario',$usuario);
+            $data['res'] = 'ok';
+            return $data;
+        }
+        $data['res'] = 'bad';
+        $data['msj'] = 'Usuario o Clave invalido';
+        return $data;
+
+    }
+
+    function crear($nombres = null, $apellidos = null, $email = null, $usuario = null, $clave = null, $cedula = null, $telefono = null,
+                   $celular = null, $direccion = null, $barrio = null, $ciudad = null, $pais = null, $departamento = null) {
+
+        $this->db->where('usuario', $usuario);
+        if($this->db->count_all_results('usuarios') > 0) {
+            $data['res'] = 'bad';
+            $data['msj'] = 'Ya existe un Usuario con este nombre';
+            return $data;
+        }
+
+        $object = array('nombres' => $nombres, 'apellidos' => $apellidos, 'correo' => $email, 'usuario' => $usuario, 'clave' => $clave,
+                        'nro_identidad' => $cedula, 'telefono' => $telefono, 'celular' => $celular, 'direccion' => $direccion,
+                        'barrio' => $barrio, 'ciudad' => $ciudad, 'pais' => $pais, 'region' => $departamento);
+
+        $this->db->insert('usuarios', $object);
+
+        $data['res'] = 'ok';
+        return $data;
+    }
+
+    function buscar($query = ''){
+        if($query ==""){ $data['usuarios'] = array(); }
+        
+        if($query =="*") {
+            $query = $this->db->query(" SELECT id,nombres,apellidos,usuario,correo,ciudad
+                                        FROM usuarios;");
+            return $query->result();
+        }
+
         $palabras = preg_split("/ (.| ) /", $query);
         $against = "";
         foreach ($palabras as $palabra) {

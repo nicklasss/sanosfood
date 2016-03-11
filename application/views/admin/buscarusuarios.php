@@ -18,14 +18,14 @@
 </div>
 
 <div class="row">
-	<div class="col-md-9 col-md-offset-1">
+	<div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
 			<table class="table table-condensed table-striped">
 				<thead>
 				<tr role="row">
-				  <th width="30%">Nombre</th>
-				  <th width="15%">Usuario</th>
-				  <th width="30%">correo</th>
+				  <th width="25%">Nombre</th>
+				  <th width="25%">Usuario</th>
+				  <th width="20%">correo</th>
 				  <th width="25%">Ciudad</th>
 				</tr role="row">
 				</thead>

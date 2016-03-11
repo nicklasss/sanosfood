@@ -12,6 +12,27 @@ class Web extends CI_Controller {
 		$this->load->view('web/piedepagina');
 	}
 
+	public function login() {
+		$this->load->view('web/encabezado');
+		$this->load->view('web/login');
+		$this->load->view('web/piedepagina');
+	}
+
+	public function logout() {
+        $this->session->set_userdata('usuario',"");
+		$this->load->view('web/encabezado');
+		$this->load->model('Productos_model');
+		$data = $this->Productos_model->listarWeb(8);
+		$this->load->view('web/home',$data,FALSE);
+		$this->load->view('web/piedepagina');
+	}
+
+	public function registrarse() {
+		$this->load->view('web/encabezado');
+		$this->load->view('web/registrarse');
+		$this->load->view('web/piedepagina');
+	}
+
 	public function producto($id = null) {
 		if($id == null){ show_404();
 		}

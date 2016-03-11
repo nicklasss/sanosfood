@@ -16,7 +16,7 @@ class Estadoproducto extends CI_Controller {
 		$valor = @$this->input->post('valor',TRUE);
 		$this->load->model('Estadosproductos_model');
 		$data['resultado'] = $this->Estadosproductos_model->editar($id,$atributo,$valor);
-print json_encode($data['resultado']);
+		print json_encode($data['resultado']);
 //		$this->load->view('estadoproducto/editar', $data, FALSE);
 	}
 	public function crear(){
@@ -28,7 +28,7 @@ print json_encode($data['resultado']);
 		$descripcion = @$this->input->post('descripcion',TRUE);
 		$this->load->model('Estadosproductos_model');
 		$data['resultado'] = $this->Estadosproductos_model->crear($nombre,$descripcion);
-print json_encode($data['resultado']);
+		print json_encode($data['resultado']);
 //		$this->load->view('estadoproducto/crear', $data, FALSE);
 	}
 	public function eliminar(){
@@ -39,7 +39,7 @@ print json_encode($data['resultado']);
 		$id = @$this->input->post('id',TRUE);
 		$this->load->model('Estadosproductos_model');
 		$data['resultado'] = $this->Estadosproductos_model->eliminar($id);
-print json_encode($data['resultado']);
+		print json_encode($data['resultado']);
 //		$this->load->view('estadoproducto/eliminar', $data, FALSE);
 	}
 

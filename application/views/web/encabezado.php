@@ -53,18 +53,28 @@
 	<div class="navbar navbar-default navbar-fixed-top">
 	    <div class="container">
 	        <div class="navbar-header">
-	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-excollapse">
 	                <span class="icon-bar"></span>
 	                <span class="icon-bar"></span>
 	                <span class="icon-bar"></span>
 	            </button>
-	            <div class="navbar-brand logo">
-	            	<a href="<?= base_url();?>web/index"><img src="https://s3.amazonaws.com/sanosfood/img/044.jpg" height="35"/></a>
+	            <div class="navbar-brand logo-menu">
+	            	<a href="<?= base_url();?>web/index"><img src="http://sanosfoods.com/images/20.jpg" height="35px"/></a>
 	            </div>
 	        </div>
 	        <div class="collapse navbar-collapse">
 	        	<ul class="nav navbar-nav navbar-right">
-	        		<li class="text-center">
+<?php
+if ($this->session->userdata("usuario") <> "") {
+	print '<li><a href="#"><strong><span class="glyphicon glyphicon-user"></span> '.$this->session->userdata("usuario").'</strong></a></li>'; 
+	print '<li><a href="'.base_url().'web/logout"><span class="glyphicon glyphicon-log-out"></span> Terminar Sesión</a></li>';}
+else {
+	print '<li><a href="'.base_url().'web/Registrarse"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>';
+	print '<li><a href="'.base_url().'web/login"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión</a></li>';}
+?>
+
+
+            		<li class="text-center">
 	        			<a href="<?= base_url();?>producto/mostrarCarrito">
 <?php
 if ($this->cart->total_items() > 0) {
