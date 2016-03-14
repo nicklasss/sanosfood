@@ -227,3 +227,13 @@ body{
     padding-top: 10px !important;
     padding-bottom: 10px !important;
 }
+
+span.asterisco {
+	color:red;
+	font-size: x-large;
+	}
+
+.placeholder-sm::-webkit-input-placeholder { font-size: xx-small; }
+.placeholder-sm:-moz-placeholder { font-size: xx-small; }
+.placeholder-sm::-moz-placeholder { font-size: xx-small; }
+.placeholder-sm:-ms-input-placeholder { font-size: xx-small; }

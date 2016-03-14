@@ -33,6 +33,16 @@ class Web extends CI_Controller {
 		$this->load->view('web/piedepagina');
 	}
 
+	public function comprar() {
+//        if ($this->session->userdata('usuario') <> "") {
+//			$this->load->model('Usuarios_model');
+//			$data['usuario'] = $this->Usuarios_model->$this->session->userdata('usuario');
+//        }
+		$this->load->view('web/encabezado');
+		$this->load->view('web/comprar');
+		$this->load->view('web/piedepagina');
+	}
+
 	public function producto($id = null) {
 		if($id == null){ show_404();
 		}

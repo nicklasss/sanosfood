@@ -67,7 +67,7 @@ foreach ($productos as $producto) {
 							<div class="row">
 								<div class="col-lg-12" align="center">
 									<div class="panel panel-default panel-prod-img">
-										<img class="img-responsive img01" src="'.$producto->imagen.'"/>
+										<a href="'.base_url().'web/producto/'.$producto->id.'"><img class="img-responsive img01" src="'.$producto->imagen.'"/></a>
 									</div>
 								</div>
 							</div>     
@@ -106,7 +106,7 @@ foreach ($productos as $producto) {
 							<div class="row">
 								<div class="col-lg-12" align="center">
 									<div class="input-append">
-										<input  type="number" class="cantidadprod" min="0" max="'.$producto->existencias.'"/>
+										<input  type="number" class="cantidadprod placeholder-sm" placeholder="Cantidad" min="0" max="'.$producto->existencias.'"/>
 										<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar</button>
 										<button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'.$producto->id.'">Detalles</button>
 									</div>
@@ -345,7 +345,7 @@ function pintarproductos(data) {
 				'			<div class="row">'+
 				'				<div class="col-lg-12" align="center">'+
 				'					<div class="input-append">'+
-				'						<input  type="number" class="cantidadprod" min="0" max="'+data.productos[i].existencias+'"/>'+
+				'						<input  type="number" class="cantidadprod placeholder-sm" placeholder="Cantidad" min="0" max="'+data.productos[i].existencias+'"/>'+
 				'						<button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar</button>'+
 				'						<button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'+data.productos[i].id+'">Detalles</button>'+
 				'					</div>'+

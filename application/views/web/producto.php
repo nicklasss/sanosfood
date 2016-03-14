@@ -64,9 +64,9 @@ foreach ($producto->imagenes as $imagen) {
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-4" align="left">
+			<div class="col-lg-5" align="left">
 				<div class="row">
-					<div class="col-lg-6 textos06" align="left">
+					<div class="col-lg-5 textos06" align="left">
 					  <h4>Precio:</h4>
 					</div>
 					<div class="col-lg-6" align="left">
@@ -81,10 +81,13 @@ foreach ($producto->imagenes as $imagen) {
 					<input type="hidden" id="precioprod" value="<?php print $producto->precio;?>"/>
 					<input type="hidden" id="descripcioncortaprod" value="<?php print $producto->descripcioncorta;?>"/>
 					<div class="row">
-						<div class="col-lg-6" align="left">
+						<div class="col-lg-4 textos06" align="left">
+						  <h4>Cantidad:</h4>
+						</div>
+						<div class="col-lg-4" align="left">
 							<h4><strong><input type="number" id="cantidadprod" min="0" max="<?php print $producto->existencias;?>" ></strong></h4>
 						</div>
-						<div class="col-lg-6" align="left">
+						<div class="col-lg-4" align="left">
 							<button type="button" class="btn btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar</button> 
 						</div>  
 					</div>
@@ -119,7 +122,7 @@ foreach ($producto->imagenes as $imagen) {
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-3">
 				<div class="row">
 					<div class="col-lg-12" align="left">
 						<table class="table table-condensed table-striped table-bordered"  id="tabla1">

@@ -9,7 +9,7 @@
 	<div class="col-lg-8">
 		<div class="input-group input-group-lg">
 		  <span class="input-group-addon" id="sizing-addon1">Criterio de Busqueda</span>
-		  <input type="text" class="form-control input-lg" id="ecriterio" aria-describedby="sizing-addon1">
+		  <input type="text" class="form-control input-lg" id="ecriterio" placeholder="Nombre o * para todos" aria-describedby="sizing-addon1">
 		</div>
 	</div>
 	<div class="col-md-2">
@@ -25,7 +25,7 @@
 				<tr role="row">
 				  <th width="25%">Nombre</th>
 				  <th width="25%">Usuario</th>
-				  <th width="20%">correo</th>
+				  <th width="20%">Email</th>
 				  <th width="25%">Ciudad</th>
 				</tr role="row">
 				</thead>
@@ -58,7 +58,7 @@ function buscar (valor, callback) {
 	    dataType: "json",
 	    type: "POST",
 	    data: {query : valor} })
-   .done(function(data) {                               // respuesta del servidor
+   .done(function(data) {                           
     if(data.res=="ok") {
     	callback(true);
     	if(data.usuarios.length == 0) {alert("No se encuentra ninguna coincidencia");}

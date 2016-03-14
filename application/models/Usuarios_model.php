@@ -85,6 +85,9 @@ class Usuarios_model extends CI_Model {
 
         $this->db->insert('usuarios', $object);
 
+        $this->session->set_userdata('logeado',true);
+        $this->session->set_userdata('usuario',$usuario);
+
         $data['res'] = 'ok';
         return $data;
     }
