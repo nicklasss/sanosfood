@@ -22,7 +22,7 @@
 			<div class="row registro"><br>
 				<div class="col-md-3 col-md-offset-1">
 					<span>email (nombre de usuario) </span><span class="asterisco">*</span>
-					<strong><input type="email" id="email" class="form-control placeholder-sm" placeholder="Nombre"/></strong>
+					<strong><input type="email" id="email" class="form-control placeholder-sm"/></strong>
 				</div>
 				<div class="col-md-2">
 					<span>Contraseña </span><span class="asterisco">*</span>
