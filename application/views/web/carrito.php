@@ -90,9 +90,8 @@ function actualizarCarrito(rowid, cantidad, callback) {
 			// si el item bajo a cero recarga la pagina para desaparecerlo
 			sarta = ' '+data.canttotal;     
 			$("#cantcart").html(sarta); 
-			if (data.canttotal == 0) {
-				window.location="<?php print base_url();?>web/index";
-			} else { if (cantidad == 0) { location.reload(); }}
+			if (data.canttotal == 0) { window.location="<?php print base_url();?>web/index"; }
+			else { if (cantidad == 0) { location.reload(); }}
 
 			callback(true);
 		}
