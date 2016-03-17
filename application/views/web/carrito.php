@@ -9,38 +9,42 @@
 				<tr role="row">
 					<th width="15%"></th>
 					<th width="50%">Producto</th>
-<!--					<th width="10%">Precio</th>  -->
 					<th width="10%">Cantidad</th>
 					<th width="10%">Subtotal</th>
 				</tr role="row">
 				</thead>
 				<tbody>
-					<form action="actualizarCarrito" method="POST">
 <?php
-						foreach ($this->cart->contents() as $item) {
-							print '<input type="hidden" name="rowid[]" value="'.$item['rowid'].'">';
-
-							print '<tr>';
-							print ' <td><img class="img-responsive img-pequena" src="'.$item['imagen'].'"/></td>';
-							print '	<td><h5 class="nombre"><strong>'.$item['name'].'</strong></h5>';
-							print '	<h6><small>'.$item['descripcioncorta'].'</small></h6></td>';
-//							print '	<td>'.number_format($item['price'],0,',','.').'</td>';
-							print '	<td><h5><input type="number" class="form-control" name="qty[]" value="'.$item['qty'].'"></h5></td>';
-							print '	<td class="text-right"><h5><strong>'.number_format($item['subtotal'],0,',','.').'</strong></h5></td>';
-							print '</tr>';
-						}
+					foreach ($this->cart->contents() as $item) {
 						print '<tr>';
-						print '	<td colspan="2">';
-						print '		<input type="submit" class="btn btn-xs btn-primary" name="actualizar" value="Actualizar Carrito">';
-						print '		<input type="submit" class="btn btn-xs btn-warning" name="vaciar" value="Vaciar Carrito">';
-						print '		<input type="submit" class="btn btn-xs btn-success" name="comprar" value="Comprar">';
-						print '	</td>';
-//						print '	<td></td>';
-						print '	<td class="text-right"><h5>Total:</h5></td>';
-						print '	<td class="text-right"><h4><strong>'.number_format($this->cart->total(),0,',','.').'</strong></h4></td>';
+						print ' <td><img class="img-responsive img-pequena" src="'.$item['imagen'].'"/></td>';
+						print '	<td><h5 class="nombre"><strong>'.$item['name'].'</strong></h5>';
+						print '	<h6><small>'.$item['descripcioncorta'].'</small></h6></td>';
+						print '	<td><h5><input type="number" class="form-control input-cantidad" id="id'.$item['rowid'].'" min="0" value="'.$item['qty'].'" data-id="'.$item['rowid'].'"></h5></td>';
+						print '	<td id="valor'.$item['id'].'" class="text-right">';
+						print '		<div id="valor-item'.$item['rowid'].'">';
+						print '			<h5><strong>'.number_format($item['subtotal'],0,',','.').'</strong></h5>';
+						print '		</div>';
 						print '</tr>';
+					}
+					print '<tr>';
+					print '	<td colspan="2">';
+					if ($this->cart->total() == 0) {
+						print '		<button type="button" class="btn btn-xs btn-warning" id="btn-vaciar" disabled="disabled">Vaciar Carrito</button>';
+						print '		<button type="button" class="btn btn-xs btn-success" id="btn-comprar" disabled="disabled">Comprar</button>';
+					} else {
+						print '		<button type="button" class="btn btn-xs btn-warning" id="btn-vaciar">Vaciar Carrito</button>';
+						print '		<button type="button" class="btn btn-xs btn-success" id="btn-comprar">Comprar</button>';
+					}
+					print '	</td>';
+					print '	<td class="text-right"><h5>Total:</h5></td>';
+					print '	<td class="text-right">';
+					print '		<div id="valor-total">';
+					print '			<h4><strong>'.number_format($this->cart->total(),0,',','.').'</strong></h4>';
+					print '		</div>';
+					print '	</td>';
+					print '</tr>';
 ?>
-					</form>
 				</tbody>
 			</table>
 		</div> <!-- Panel-->
@@ -48,3 +52,59 @@
 </div>
 
 </div>
+
+<!--------------------------------------------------------------------------------------------------------------------------> 
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$('#btn-vaciar').click(function(event){ 
+			window.location = "<?php print base_url();?>carrito/vaciarCarrito";
+		})
+
+		$('.input-cantidad').change(function(event){ 
+			rowid = $(event.target).attr("data-id"); 
+			cantidad = $('#id'+rowid).val();
+			rta = actualizarCarrito( rowid, cantidad, function(rta){});
+		})
+	})
+
+//----------------------------------------------------------------------------------funcion guardar
+function actualizarCarrito(rowid, cantidad, callback) {
+	$.ajax({                                              
+	  url: "<?php print base_url();?>carrito/actualizarCarrito",
+	  context: document.body,
+	  dataType: "json",
+	  type: "POST",
+	  data: { rowid : rowid, cantidad : cantidad }})
+	.done(function(data) {                              
+		if(data.res=="ok") {
+			// actualiza el valor del item cambiado
+			sarta = '<h5><strong>'+data.vlritem+'</strong></h5>';
+			$("#valor-item"+rowid).html(sarta); 
+			
+			// actualiza el valor total de la compra
+			sarta = '<h4><strong>'+data.vlrtotal+'</strong></h4>';
+			$("#valor-total").html(sarta); 
+			
+			// actualiza el carrito de la barra de navegacion
+			sarta = ' '+data.canttotal;     
+			$("#cantcart").html(sarta); 
+			if (cantidad == 0) {
+				location.reload();
+			}
+			callback(true);
+		}
+		else {alert(data.msj);callback(false);}
+	  })
+	.error(function(){alert('No hay conexion');callback(false);})
+}
+
+//----------------------------------------------------------------------------------funcion formato_numero
+function formato_numero(texto) {
+    var resultado = "";
+    for (var j, i = texto.length - 1, j = 0; i >= 0; i--, j++) 
+        resultado = texto.charAt(i) + ((j > 0) && (j % 3 == 0)? ".": "") + resultado; 
+    return resultado;
+}
+
+</script>

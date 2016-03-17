@@ -1,5 +1,67 @@
 <div class="container" style="margin-top:40px;">
 
+	<div class="row">
+		<div class="col-md-5 col-md-offset-3">
+			<div class="panel panel-default">
+				<div class="panel-heading text-center">
+					<strong>Registro (Crear una cuenta)</strong>
+				</div>
+				<div class="panel-body">
+					<form role="form">
+						<fieldset>
+							<div class="row">
+								<div class="col-sm-12 col-md-10  col-md-offset-1 ">
+									<div class="form-group">
+										<div class="input-group">
+
+											<span class="input-group-addon">
+												<i class="glyphicon glyphicon-user"></i>
+											</span><span>Nombre del Usuario (email)</span>
+											<strong><input class="form-control" placeholder="email" id="email" type="email" autofocus/></strong>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">
+												<i class="glyphicon glyphicon-lock"></i>
+											</span><span>Contraseña</span>
+											<strong><input class="form-control" placeholder="Contraseña" id="clave1" type="password" value=""/></strong>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon">
+												<i class="glyphicon glyphicon-lock"></i>
+											</span><span>Redigite la Contraseña</span>
+											<strong><input class="form-control" placeholder="Redigite la Contraseña" id="clave2" type="password" value=""/></strong>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="input-group">
+											<strong><span id="mensaje" class="mensajeerror"></span></strong>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<button id="btn-enviar-registro" type="button" class="btn btn-lg btn-primary btn-block">Registrarme</button>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+            </div>
+		</div>
+	</div>
+
+
+
+
+
+
+<!--
+
     <div class="panel panel-default">
 
 		<div class="panel-heading text-center">
@@ -86,7 +148,7 @@
 
 		</form>
 	</div>
-
+-->
 </div>
  
 <!-- Scripts y Funciones de Javascript  -->
@@ -98,28 +160,40 @@
             
 //----------------------------------------------------------------------------------funcion crear usuario
     function crear() {
-		if ($("#nombres").val()   == "") { alert('Nombres no puede ser vacio'); $("#nombres").focus(); return false; }
-		if ($("#apellidos").val() == "") { alert('Apellidos no puede ser vacio'); $("#apellidos").focus(); return false; }
-		if ($("#email").val()     == "") { alert('Email no puede ser vacio'); $("#email").focus(); return false; }
-		if ($("#clave1").val()    == "") { alert('Clave no puede ser vacia'); $("#clave1").focus(); return false; }
-		if ($("#clave2").val()    == "") { alert('Clave no puede ser vacio'); $("#clave2").focus(); return false; }
-		if ($("#clave1").val() !== $("#clave2").val())  { alert('Las Claves no coincides'); $("#clave1").focus(); return false; } 
+		if ($("#email").val()     == "") { $('#mensaje').html('email no puede ser vacio'); $("#email").focus(); return false; }
+		if ($("#clave1").val()    == "") { $('#mensaje').html('Contraseña no puede ser vacia'); $("#clave1").focus(); return false; }
+		if ($("#clave2").val()    == "") { $('#mensaje').html('Contraseña no puede ser vacio'); $("#clave2").focus(); return false; }
+		if ($("#clave1").val() !== $("#clave2").val())  { $('#mensaje').html('Las Contraseñas no coinciden'); $("#clave1").focus(); return false; } 
+		email = $("#email").val();
+		clave = $("#clave1").val();
 
         $.ajax({                                               
           url: "<?php print base_url();?>Usuario/crear",
           context: document.body,
           dataType: "json",
           type: "POST",
-          data: {nombres  : $("#nombres").val(), apellidos : $("#apellidos").val(), email : $("#email").val(),
-          		 clave : $("#clave1").val(), cedula : $("#cedula").val(), telefono : $("#telefono").val(), 
-          		 celular : $("#celular").val(), direccion : $("#direccion").val(), barrio : $("#barrio").val(),
-          		 ciudad : $("#ciudad").val(), departamento : $("#departamento").val(), pais : $("#pais").val() }})
-         .done(function(data) {
-            if(data.res=="ok") {
-				window.location= "<?php print base_url();?>web/index";}
-            else {alert(data.msj) } })          
-         .error(function() { alert('error en el servidor1'); })
+          data: {email : $("#email").val(), clave : $("#clave1").val() }})
+		.done(function(data) {
+			if(data.res == "ok") {
+				enviar_login(email, clave);
+				window.location= "<?php print base_url();?>web/index";
+			} else {$('#mensaje').html(data.msj) } 
+		})          
+		.error(function() { $('#mensaje').html('error en el servidor'); })
          
+    }
+
+    function enviar_login(usuario, clave) {
+        $.ajax({                                               // envio de los datos
+          url: "<?php print base_url();?>usuario/logear",
+          context: document.body,
+          dataType: "json",
+          type: "POST",
+          data: {usuario  : $("#usuario").val(), clave : $("#clave").val()} })
+         .done(function(data) {                                // respuesta del servidor
+            if(data.res=="ok") {
+            }else{alert(data.msj) } })          
+         .error(function(){alert('error en el servidor'); });  // error generado
     }
     
 </script>

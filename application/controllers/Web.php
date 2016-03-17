@@ -20,11 +20,13 @@ class Web extends CI_Controller {
 
 	public function logout() {
         $this->session->set_userdata('usuario',"");
-		$this->load->view('web/encabezado');
+		redirect('','refresh');
+/*		$this->load->view('web/encabezado');
 		$this->load->model('Productos_model');
 		$data = $this->Productos_model->listarWeb(8);
 		$this->load->view('web/home',$data,FALSE);
 		$this->load->view('web/piedepagina');
+*/
 	}
 
 	public function registrarse() {
@@ -33,6 +35,12 @@ class Web extends CI_Controller {
 		$this->load->view('web/piedepagina');
 	}
 
+	public function mostrarCarrito() {
+		$this->load->view('web/encabezado');
+		$this->load->view('web/carrito', FALSE); 
+		$this->load->view('web/piedepagina');
+	}
+    
 	public function comprar() {
 //        if ($this->session->userdata('usuario') <> "") {
 //			$this->load->model('Usuarios_model');

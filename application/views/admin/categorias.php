@@ -160,7 +160,6 @@ $(document).ready(function() {
 		});
 	});
 
-
 //----------------------------------------------------------------------------------editar GUARDAR
 	$('.container').on('click','.btn-guardar',function(event){
 		enombre = $(event.target).parent().parent().parent().find('.entnombre').val().trim();

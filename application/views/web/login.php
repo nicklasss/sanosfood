@@ -1,25 +1,8 @@
 <body>    
     <div class="container" style="margin-top:40px">
 		<div class="row">
-			<div class="col-md-6">
-				<div class="panel panel-default">
-					<div class="panel-heading text-center">
-						<strong>Crear una cuenta</strong>
-					</div>
-					<div class="panel-body">
-						<span>
-							Al crear una cuenta en nuestra tienda, podrá realizar el proceso de compra más rápidamente, 
-							indicar una dirección de envío, ver y hacer un seguimiento de sus Pedidos y mucho más.
-						</span> 
-						<div class="form-group text-right">
-							<button id="btn-enviar-nuevo" type="button" class="btn btn btn-primary">Crear una Cuenta</button>
-						</div>
 
-					</div>
-                </div>
-			</div>
-
-			<div class="col-md-4 col-md-offset-1">
+			<div class="col-md-5">
 				<div class="panel panel-default">
 					<div class="panel-heading text-center">
 						<strong>Clientes Registrados</strong>
@@ -31,18 +14,19 @@
 									<div class="col-sm-12 col-md-10  col-md-offset-1 ">
 										<div class="form-group">
 											<div class="input-group">
+
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-user"></i>
-												</span> 
-												<input class="form-control" placeholder="Usuario" id="usuario" type="text" autofocus>
+												</span><span>Nombre del Usuario (email)</span>
+												<strong><input class="form-control" placeholder="Usuario" id="usuario" type="text" autofocus/></strong>
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-lock"></i>
-												</span>
-												<input class="form-control" placeholder="Clave" id="clave" type="password" value="">
+												</span><span>Contraseña</span>
+												<strong><input class="form-control" placeholder="Clave" id="clave" type="password" value=""/></strong>
 											</div>
 										</div>
 										<div class="form-group">
@@ -55,17 +39,38 @@
 					</div>
                 </div>
 			</div>
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading text-center">
+						<strong>Crear una cuenta</strong>
+					</div>
+					<div class="panel-body">
+						<span>
+							Al crear una cuenta en nuestra tienda, podrá realizar el proceso de compra más rápidamente, 
+							indicar una dirección de envío, ver y hacer un seguimiento de sus Pedidos y mucho más.
+						</span> 
+						<div class="form-group text-right">
+							<button id="btn-enviar-nuevo" type="button" class="btn btn-xs btn-primary">Registrarse (Crear una cuenta)</button>
+						</div>
+
+					</div>
+                </div>
+			</div>
 		</div>
 	</div>
  
 
 
-    <!-- Scripts y Funciones de Javascript  -->
-    <script type="text/javascript">
+<!--------------------------------------------------------------------------------------------------------------------------> 
+<script type="text/javascript">
 
-    //-- garantiza que el siguiente Javascript se ejecuta despues de haberse cargado completamente la pagina
+//-- garantiza que el siguiente Javascript se ejecuta despues de haberse cargado completamente la pagina
 $(document).ready(function() {
-	$('#btn-enviar-login').click(enviar_login); });
+	$('#btn-enviar-login').click(enviar_login);
+	$('.container').on('click','#btn-enviar-nuevo',function(event){
+		window.location="<?php print base_url();?>web/registrarse";
+	});
+});
             
     //-- Funcion enviar datos del misionero al servidor al misioneros/crear.php quien los recibe
     function enviar_login() {
@@ -91,6 +96,6 @@ $(document).ready(function() {
          .error(function(){alert('error en el servidor'); });  // error generado
     }
     
-	</script>
+</script>
 
 </body>

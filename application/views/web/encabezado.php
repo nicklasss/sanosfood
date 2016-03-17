@@ -59,28 +59,29 @@
 	                <span class="icon-bar"></span>
 	            </button>
 	            <div class="navbar-brand logo-menu">
-	            	<a href="<?= base_url();?>web/index"><img src="http://sanosfoods.com/images/20.jpg" height="35px"/></a>
+	            	<a href="<?= base_url();?>"><img src="http://sanosfoods.com/images/20.jpg" height="35px"/></a>
 	            </div>
 	        </div>
 	        <div class="collapse navbar-collapse">
 	        	<ul class="nav navbar-nav navbar-right">
 <?php
-if ($this->session->userdata("usuario") <> "") {
-	print '<li><a href="#"><strong><span class="glyphicon glyphicon-user"></span> '.$this->session->userdata("usuario").'</strong></a></li>'; 
-	print '<li><a href="'.base_url().'web/logout"><span class="glyphicon glyphicon-log-out"></span> Terminar Sesión</a></li>';}
-else {
-	print '<li><a href="'.base_url().'web/Registrarse"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>';
-	print '<li><a href="'.base_url().'web/login"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión</a></li>';}
+					if ($this->session->userdata("usuario") <> "") {
+						print '<li><a href="#"><strong><span class="glyphicon glyphicon-user"></span> '.$this->session->userdata("usuario").'</strong></a></li>'; 
+						print '<li><a href="'.base_url().'web/logout"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>';}
+					else {
+						print '<li><a href="'.base_url().'web/Registrarse"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>';
+						print '<li><a href="'.base_url().'web/login"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión</a></li>';}
 ?>
 
 
             		<li class="text-center">
-	        			<a href="<?= base_url();?>producto/mostrarCarrito">
+	        			<a href="<?= base_url();?>web/mostrarCarrito">
 <?php
-if ($this->cart->total_items() > 0) {
-		print '				<button type="button" class="btn btn-sm btn-warning" id="btn-carrito" aria-label="Left Align">';}
-else {
-		print '				<button type="button" class="btn btn-sm btn-default" id="btn-carrito" aria-label="Left Align">';}
+							if ($this->cart->total_items() > 0) {
+									print '				<button type="button" class="btn btn-sm btn-warning" id="btn-carrito" aria-label="Left Align">';
+							} else {
+									print '				<button type="button" class="btn btn-sm btn-default" id="btn-carrito" aria-label="Left Align">';
+							}
 ?>
 							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span id="cantcart"> <?= $this->cart->total_items();?></span> 
 							</button>

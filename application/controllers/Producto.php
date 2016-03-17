@@ -138,59 +138,6 @@ class Producto extends CI_Controller {
 		print json_encode($this->Productos_model->editarestado($id));
 	}
 
-    public function agregarCarrito() {
-//		print_r($_POST);
-		$data1 = array(
-			'id' => $this->input->post('idprod'),
-			'imagen' => $this->input->post('imagenprod'),
-			'name' => $this->input->post('nombreprod'),
-			'descripcioncorta' => $this->input->post('descripcioncortaprod'),
-			'qty' => $this->input->post('cantidadprod'),
-			'price' => $this->input->post('precioprod'),
-		);
-		if($this->cart->insert($data1)) {
-			print json_encode(array('res'=>'ok', 'cantcart'=>$this->cart->total_items())); exit;
-		}
-		print json_encode(array('res'=>'bad','msj'=>'No se pudo agregar por clase Cart'));
-    } 
-
-	public function mostrarCarrito() {
-		$this->load->view('web/encabezado');
-		$this->load->view('web/carrito', FALSE); 
-		$this->load->view('web/piedepagina');
-	}
-    
-    public function actualizarCarrito() {
-//		print_r($_POST);
-        $actualizar = $this->input->post('actualizar');
-        $vaciar = $this->input->post('vaciar');
-        $comprar = $this->input->post('comprar');
-
-        if(isset($vaciar)) {
-			$this->cart->destroy();
-			redirect('producto/mostrarCarrito');
-			exit;
-        }
-
-        if(isset($comprar)) {
-			redirect('producto/mostrarCarrito');
-			exit;
-        }
-
-        $rows = $this->input->post('rowid');
-        $cantidades = $this->input->post('qty');
-        $data = array();
-        for ($i = 0; $i < sizeof($rows); $i++) {
-            $data[] = array(
-                'rowid' => $rows[$i],
-                'qty' => $cantidades[$i]
-            );
-        }
-        $this->cart->update($data);
-        redirect('producto/mostrarCarrito');  
-    }
-
-
 }
 
 /* End of file producto.php */

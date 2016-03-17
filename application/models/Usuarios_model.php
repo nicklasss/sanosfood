@@ -69,8 +69,7 @@ class Usuarios_model extends CI_Model {
 
     }
 
-    function crear($nombres = null, $apellidos = null, $email = null, $usuario = null, $clave = null, $cedula = null, $telefono = null,
-                   $celular = null, $direccion = null, $barrio = null, $ciudad = null, $pais = null, $departamento = null) {
+    function crear($email = null, $usuario = null, $clave = null) {
 
         $this->db->where('usuario', $usuario);
         if($this->db->count_all_results('usuarios') > 0) {
@@ -79,9 +78,7 @@ class Usuarios_model extends CI_Model {
             return $data;
         }
 
-        $object = array('nombres' => $nombres, 'apellidos' => $apellidos, 'correo' => $email, 'usuario' => $usuario, 'clave' => $clave,
-                        'nro_identidad' => $cedula, 'telefono' => $telefono, 'celular' => $celular, 'direccion' => $direccion,
-                        'barrio' => $barrio, 'ciudad' => $ciudad, 'pais' => $pais, 'region' => $departamento);
+        $object = array('correo' => $email, 'usuario' => $usuario, 'clave' => $clave);
 
         $this->db->insert('usuarios', $object);
 

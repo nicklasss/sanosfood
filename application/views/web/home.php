@@ -53,14 +53,14 @@ foreach ($productos as $producto) {
                      <div class="row">
                         <div class="col-lg-12">
                            <div class="panel panel-default panel-prod-nom">
-                              <div class="texto02" align="center"><strong>'.$producto->nombre.'</strong></div>
+                              <a href="'.base_url().'web/producto/'.$producto->id.'"><div class="texto02" align="center"><strong>'.$producto->nombre.'</strong></div></a>
                            </div>   
                         </div>  
                      </div>
                      <div class="row">
                         <div class="col-lg-12">
                            <div class="panel panel-default panel-prod-desc">
-                              <h6 align="justify">'.$producto->descripcioncorta.'</h6>
+                              <a href="'.base_url().'web/producto/'.$producto->id.'"><h6 align="justify">'.$producto->descripcioncorta.'</h6></a>
                            </div>
                         </div>   
                      </div>
@@ -85,9 +85,7 @@ foreach ($productos as $producto) {
                      <div class="row">
                         <div class="col-lg-12" align="center">
                            <div class="input-append">
-                              <input  type="number" class="cantidadprod placeholder-sm" placeholder="Cantidad" min="0" max="'.$producto->existencias.'"/>
-                              <button type="button" class="btn btn-xs btn-success" id="btn-agregarcarrito"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Agregar</button>
-                              <button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'.$producto->id.'">Detalles</button>
+                              <button type="button" class="btn btn-xs btn-info" id="btn-verdetalle" data-id="'.$producto->id.'">Mas Detalles</button>
                            </div>
                         </div>
                      </div>
@@ -131,7 +129,7 @@ foreach ($productos as $producto) {
 
 $(document).ready(function(){
 
-   $('.container').on('click','#btn-agregarcarrito',function(event){
+/*   $('.container').on('click','#btn-agregarcarrito',function(event){
       cantidadprod = $(event.target).parent().parent().parent().parent().find('.cantidadprod').val();
       if(cantidadprod == 0) {return false;}
       idprod = $(event.target).parent().parent().parent().parent().find('.idprod').attr("data-id");
@@ -141,7 +139,7 @@ $(document).ready(function(){
       precioprod = $(event.target).parent().parent().parent().parent().find('.precioprod').attr("data-id");
       agregarcarrito(idprod, imagenprod, nombreprod, descripcioncortaprod, precioprod, cantidadprod, function(rta){})
    })
-
+*/
    $('.container').on('click','#btn-verdetalle',function(event){
       id = $(event.target).attr("data-id");
       window.location="<?php print base_url();?>web/producto/"+id;
@@ -150,7 +148,7 @@ $(document).ready(function(){
 })
 
 //----------------------------------------------------------------------------------funcion agregar a carrito
-function agregarcarrito (idprod, imagenprod, nombreprod, descripcioncortaprod, precioprod, cantidadprod, callback) {
+/*function agregarcarrito (idprod, imagenprod, nombreprod, descripcioncortaprod, precioprod, cantidadprod, callback) {
    $.ajax({                                           
       url: "<?php print base_url();?>producto/agregarCarrito",
       context: document.body,
@@ -167,6 +165,6 @@ function agregarcarrito (idprod, imagenprod, nombreprod, descripcioncortaprod, p
       else {alert(data.msj);callback(false)}})
    .error(function(){alert('No hay conexion');callback(false);})
 }
-
+*/
 </script>
 

@@ -233,7 +233,18 @@ span.asterisco {
 	font-size: x-large;
 	}
 
-.placeholder-sm::-webkit-input-placeholder { font-size: xx-small; }
-.placeholder-sm:-moz-placeholder { font-size: xx-small; }
-.placeholder-sm::-moz-placeholder { font-size: xx-small; }
-.placeholder-sm:-ms-input-placeholder { font-size: xx-small; }
+span.mensajeerror {
+	color: red;
+	font-size: medium;
+	}
+
+.placeholder-xxs::-webkit-input-placeholder { font-size: xx-small; }
+.placeholder-xxs:-moz-placeholder { font-size: xx-small; }
+.placeholder-xxs::-moz-placeholder { font-size: xx-small; }
+.placeholder-xxs:-ms-input-placeholder { font-size: xx-small; }
+
+a:link {   
+	text-decoration: none;  
+	color: black; 
+}   
+

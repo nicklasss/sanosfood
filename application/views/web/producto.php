@@ -218,7 +218,7 @@ $(document).ready(function(){
 		nombreprod = $('#nombreprod').val();
 		precioprod = $('#precioprod').val();
 		descripcioncortaprod = $('#descripcioncortaprod').val();
-		agregarcarrito(idprod, imagenprod, nombreprod, precioprod, cantidadprod, descripcioncortaprod, function(rta){})
+		agregarCarrito(idprod, imagenprod, nombreprod, precioprod, cantidadprod, descripcioncortaprod, function(rta){})
 	})
 
 	$('.container').on('click','.img-pequena',function(event){
@@ -242,16 +242,16 @@ $(document).ready(function(){
 })
 
 //----------------------------------------------------------------------------------funcion agregar a carrito
-function agregarcarrito (idprod, imagenprod, nombreprod, precioprod, cantidadprod, descripcioncortaprod, callback) {
+function agregarCarrito (idprod, imagenprod, nombreprod, precioprod, cantidadprod, descripcioncortaprod, callback) {
 	$.ajax({                                           
-	  url: "<?php print base_url();?>producto/agregarCarrito",
+	  url: "<?php print base_url();?>carrito/agregarCarrito",
 	  context: document.body,
 	  dataType: "json",
 	  type: "POST",
 	  data: {idprod : idprod, imagenprod : imagenprod, nombreprod : nombreprod, precioprod : precioprod, cantidadprod : cantidadprod, descripcioncortaprod : descripcioncortaprod }})
 	 .done(function(data) {                               
 	  if(data.res == "ok") {
-			$("#cantcart").text(data.cantcart);
+			$("#cantcart").text(' '+data.cantcart);
 			$("#btn-carrito").removeClass("btn-default");  
 			$("#btn-carrito").addClass("btn-warning");  
 			callback(true);
