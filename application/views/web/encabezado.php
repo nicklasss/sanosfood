@@ -75,17 +75,18 @@
 
 
             		<li class="text-center">
-	        			<a href="<?= base_url();?>web/mostrarCarrito">
 <?php
 							if ($this->cart->total_items() > 0) {
-									print '				<button type="button" class="btn btn-sm btn-warning" id="btn-carrito" aria-label="Left Align">';
+			        			print '<a href="'.base_url().'web/mostrarCarrito" id="hrefcarrito">';
+									print '	<button type="button" class="btn btn-sm btn-warning" id="btn-carrito" aria-label="Left Align">';
 							} else {
-									print '				<button type="button" class="btn btn-sm btn-default" id="btn-carrito" aria-label="Left Align">';
+			        			print '<a href="#" id="hrefcarrito">';
+									print '	<button type="button" class="btn btn-sm btn-default" id="btn-carrito" aria-label="Left Align">';
 							}
 ?>
 							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span id="cantcart"> <?= $this->cart->total_items();?></span> 
 							</button>
-	        			</a>
+	        						</a>
 	        		</li>
 				</ul>
 				<form id="form-buscar" class="navbar-form" method="POST" action="<?= base_url();?>web/productos">

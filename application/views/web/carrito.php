@@ -87,24 +87,18 @@ function actualizarCarrito(rowid, cantidad, callback) {
 			$("#valor-total").html(sarta); 
 			
 			// actualiza el carrito de la barra de navegacion
+			// si el item bajo a cero recarga la pagina para desaparecerlo
 			sarta = ' '+data.canttotal;     
 			$("#cantcart").html(sarta); 
-			if (cantidad == 0) {
-				location.reload();
-			}
+			if (data.canttotal == 0) {
+				window.location="<?php print base_url();?>web/index";
+			} else { if (cantidad == 0) { location.reload(); }}
+
 			callback(true);
 		}
 		else {alert(data.msj);callback(false);}
 	  })
 	.error(function(){alert('No hay conexion');callback(false);})
-}
-
-//----------------------------------------------------------------------------------funcion formato_numero
-function formato_numero(texto) {
-    var resultado = "";
-    for (var j, i = texto.length - 1, j = 0; i >= 0; i--, j++) 
-        resultado = texto.charAt(i) + ((j > 0) && (j % 3 == 0)? ".": "") + resultado; 
-    return resultado;
 }
 
 </script>

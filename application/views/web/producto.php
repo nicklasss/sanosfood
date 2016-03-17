@@ -254,6 +254,8 @@ function agregarCarrito (idprod, imagenprod, nombreprod, precioprod, cantidadpro
 			$("#cantcart").text(' '+data.cantcart);
 			$("#btn-carrito").removeClass("btn-default");  
 			$("#btn-carrito").addClass("btn-warning");  
+			$("#hrefcarrito").attr("href", "<?php print base_url();?>web/mostrarCarrito");  
+
 			callback(true);
 	  }
 	  else {alert(data.msj);callback(false)}})
