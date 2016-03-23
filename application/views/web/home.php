@@ -11,7 +11,7 @@
                <h5>CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE.</h5>
                <div class="row boton01">
                   <div class="col-lg-5">
-                     <button type="button" class="btn btn-md btn-success" id="btn-guardar">Ver Detales</button>
+                     <button type="button" class="btn btn-md btn-success" id="btn-guardar">Ver Detalles</button>
                   </div>
                </div>           
             </div>
@@ -45,8 +45,8 @@ foreach ($productos as $producto) {
                   <div class="col-lg-11 col-lg-offset-1">
                      <div class="row">
                         <div class="col-lg-12" align="center">
-                           <div class="panel panel-default panel-prod-img">
-                              <a href="'.base_url().'web/producto/'.$producto->id.'"><img class="img-responsive img01" src="'.$producto->imagen.'"/></a>
+                           <div class="panel panel-default panel-prod-img-mediana">
+                              <a href="'.base_url().'web/producto/'.$producto->id.'"><img class="img-responsive img-mediana" src="'.$producto->imagen.'"/></a>
                            </div>
                         </div>
                      </div>     
@@ -101,8 +101,7 @@ foreach ($productos as $producto) {
             </div> ';
    $i = $i + 1;
    }
-   print '
-         </div>';
+   print '</div>';
 ?>
 
 </div>  
@@ -110,7 +109,7 @@ foreach ($productos as $producto) {
 
 </div> <!-- /container -->
 </div>
-<!---------------------------------------------------------------BANER 4 -->
+<!-------------------------------------------------- BANER 4 -->
 <div class="row baner04">
    <div class="container">  
       <div class="col-lg-8 col-lg-offset-2 text-center">
@@ -129,17 +128,6 @@ foreach ($productos as $producto) {
 
 $(document).ready(function(){
 
-/*   $('.container').on('click','#btn-agregarcarrito',function(event){
-      cantidadprod = $(event.target).parent().parent().parent().parent().find('.cantidadprod').val();
-      if(cantidadprod == 0) {return false;}
-      idprod = $(event.target).parent().parent().parent().parent().find('.idprod').attr("data-id");
-      imagenprod = $(event.target).parent().parent().parent().parent().find('.imagenprod').attr("data-id");
-      nombreprod = $(event.target).parent().parent().parent().parent().find('.nombreprod').attr("data-id");
-      descripcioncortaprod = $(event.target).parent().parent().parent().parent().find('.descripcioncortaprod').attr("data-id");
-      precioprod = $(event.target).parent().parent().parent().parent().find('.precioprod').attr("data-id");
-      agregarcarrito(idprod, imagenprod, nombreprod, descripcioncortaprod, precioprod, cantidadprod, function(rta){})
-   })
-*/
    $('.container').on('click','#btn-verdetalle',function(event){
       id = $(event.target).attr("data-id");
       window.location="<?php print base_url();?>web/producto/"+id;
@@ -147,24 +135,5 @@ $(document).ready(function(){
 
 })
 
-//----------------------------------------------------------------------------------funcion agregar a carrito
-/*function agregarcarrito (idprod, imagenprod, nombreprod, descripcioncortaprod, precioprod, cantidadprod, callback) {
-   $.ajax({                                           
-      url: "<?php print base_url();?>producto/agregarCarrito",
-      context: document.body,
-      dataType: "json",
-      type: "POST",
-      data: {idprod : idprod, imagenprod : imagenprod, nombreprod : nombreprod, descripcioncortaprod : descripcioncortaprod, precioprod : precioprod, cantidadprod : cantidadprod }})
-   .done(function(data) {                               
-      if(data.res == "ok") {
-         $("#cantcart").text(data.cantcart);
-         $("#btn-carrito").removeClass("btn-default");  
-         $("#btn-carrito").addClass("btn-warning");  
-         callback(true)
-      }
-      else {alert(data.msj);callback(false)}})
-   .error(function(){alert('No hay conexion');callback(false);})
-}
-*/
 </script>
 

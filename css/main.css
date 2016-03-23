@@ -61,21 +61,70 @@ body{
 	max-height: 160px;
 	margin-top: 30px;
 	background-size: contain;
+	margin: 0 auto;
 }
 .img-grande {
-	max-height: 280px; 
+	max-height: 300px; 
 	margin-top: 30px;
 	background-size: contain;
 	border: none;
-/*	border-radius: 15px;  */
+}
+.img-mediana {
+	max-height: 180px; 
+	margin-top: 30px;
+	background-size: contain; 
+	margin: 0 auto;
 }
 .img-pequena {
-	max-height: 80px; */
+	max-height: 80px; 
 	margin-top: 10px;
-	background-size: contain; */
+	background-size: contain; 
 	border: none;
-/*	border-radius: 5px; */
+	margin: 0 auto;
 }
+.img-pequenita {
+	max-height: 30px; 
+	margin-top: 5px;
+	background-size: contain; 
+	border: none;
+	margin: 0 auto;
+}
+/*
+.img-grande {
+	position: absolute;
+	top:0; left:0; right:0; bottom:0;
+	margin: auto;
+	overflow: auto;
+/*background: #83C24A;
+	height: 280px;
+/*box-shadow: 0 0 4px rgba(0,0,0,.3);
+}
+.img-mediana {
+	position: absolute;
+	top:0; left:0; right:0; bottom:0;
+	margin: auto;
+	overflow: auto;
+	height: 160px;
+}
+.img-pequena {
+	position: absolute;
+	top:0; left:0; right:0; bottom:0;
+	margin: auto;
+	overflow: auto;
+/*background: #83C24A;
+	height: 80px;
+/*box-shadow: 0 0 4px rgba(0,0,0,.3);
+}
+.img-pequenita {
+	position: absolute;
+	top:0; left:0; right:0; bottom:0;
+	margin: auto;
+	overflow: auto;
+/*background: #83C24A;
+	height: 30px;
+/*box-shadow: 0 0 4px rgba(0,0,0,.3);
+}
+*/
 
 /*---------------------------------------------PANELES */
 .panel-prod-nom{
@@ -90,7 +139,7 @@ body{
 	box-shadow: none;
 }
 .panel-prod-img{
-	height: 160px; 
+	height: 120px; 
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 0px;
@@ -104,8 +153,16 @@ body{
 	border: none;
 	box-shadow: none;
 }
+.panel-prod-img-mediana{
+	height: 180px; 
+	padding-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	border: none;
+	box-shadow: none;
+}
 .panel-prod-img-pequena{
-	height: 80px; 
+	height: 100px; 
 	margin-left: auto;
 	margin-right: auto;
 	border: none;
@@ -142,7 +199,7 @@ body{
 	color: #aaaaaa;
 }
 .textos03 {
-	padding-top: 40px;
+	padding-top: 10px;
 	color: #ffffff;
 }
 .textos04 {
@@ -248,3 +305,8 @@ a:link {
 	color: black; 
 }   
 
+thead.table-scrollable, tbody.table-scrollable { display: block; }
+tbody.table-scrollable {
+    height: 200px;
+    overflow-y: auto;
+ }

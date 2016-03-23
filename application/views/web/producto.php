@@ -105,7 +105,7 @@ foreach ($producto->imagenes as $imagen) {
 						<table class="table table-condensed table-striped table-bordered" id="tabla1">
 						<caption class="textos06"><div  align="center"><h5>Medidas (cms)</h5></div></caption>
 							<thead>
-						  <tr class="textos05">
+							<tr class="textos05">
 									<th>Alto</th>
 									<th>Ancho</th>
 									<th>Largo</th>
@@ -128,7 +128,7 @@ foreach ($producto->imagenes as $imagen) {
 						<table class="table table-condensed table-striped table-bordered"  id="tabla1">
 						<caption class="textos06"><div align="center"><h5>Peso (grs)</h5></div></caption>
 							<thead>
-						  <tr class="textos05">
+								<tr class="textos05">
 									<th>Bruto</th>
 									<th>Neto</th>
 								</tr>
@@ -183,6 +183,7 @@ foreach ($caracteristicas as $caracteristica) {
 	if ($entra == 0) {
 		print 	'<td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>';
 	}
+
 }
 print '			</tbody>'.
 		'		</table>'.

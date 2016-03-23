@@ -17,6 +17,15 @@ class Usuarios_model extends CI_Model {
         return $query->row();
     }
 
+    function encontrar($usuario = null){
+        $this->db->where('usuario', $usuario);
+        $query = $this->db->get('usuarios', 1, 0);
+        if($query->num_rows()!=1){
+            return false;
+        }
+        return $query->row();
+    }
+
     function listar(){
         $this->db->order_by('nombres', 'asc');
     	$query = $this->db->get('usuarios');
@@ -44,7 +53,7 @@ class Usuarios_model extends CI_Model {
     }
 
 
-    function logear($usuario = null, $clave = null) {
+    function web_logear($usuario = null, $clave = null) {
         $this->db->select('clave')->from('usuarios')->where('usuario', $usuario)->limit(1, 0);
         $query = $this->db->get();
 

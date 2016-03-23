@@ -21,12 +21,7 @@ class Web extends CI_Controller {
 	public function logout() {
         $this->session->set_userdata('usuario',"");
 		redirect('','refresh');
-/*		$this->load->view('web/encabezado');
-		$this->load->model('Productos_model');
-		$data = $this->Productos_model->listarWeb(8);
-		$this->load->view('web/home',$data,FALSE);
-		$this->load->view('web/piedepagina');
-*/
+
 	}
 
 	public function registrarse() {
@@ -42,10 +37,6 @@ class Web extends CI_Controller {
 	}
     
 	public function comprar() {
-//        if ($this->session->userdata('usuario') <> "") {
-//			$this->load->model('Usuarios_model');
-//			$data['usuario'] = $this->Usuarios_model->$this->session->userdata('usuario');
-//        }
 		$this->load->view('web/encabezado');
 		$this->load->view('web/comprar');
 		$this->load->view('web/piedepagina');
@@ -60,6 +51,22 @@ class Web extends CI_Controller {
 		$this->load->model('Caracteristicas_model');
 		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
 		$this->load->view('web/producto', $data, FALSE); 
+		$this->load->view('web/piedepagina');
+	}
+
+	public function micuenta() {
+		if(!$this->session->userdata('logeado')){
+			exit();
+		}
+	
+		$this->load->view('web/encabezado');
+		$this->load->model('Usuarios_model');
+		$data['usuario'] = $this->Usuarios_model->encontrar($this->session->userdata("usuario"));
+		$this->load->model('Pedidos_model');
+		$id = $data['usuario']->id;
+//		foreach ($data['usuario'] as $usuario) { $id = $usuario->id; }
+		$data['pedidos'] = $this->Pedidos_model->pedidosUsuario( $id );
+		$this->load->view('web/micuenta', $data, FALSE); 
 		$this->load->view('web/piedepagina');
 	}
 

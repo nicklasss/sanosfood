@@ -66,15 +66,15 @@ foreach ($productos as $producto) {
 						<div class="col-lg-10 col-lg-offset-1">
 							<div class="row">
 								<div class="col-lg-12" align="center">
-									<div class="panel panel-default panel-prod-img">
-										<a href="'.base_url().'web/producto/'.$producto->id.'"><img class="img-responsive img01" src="'.$producto->imagen.'"/></a>
+									<div class="panel panel-default panel-prod-img-mediana">
+										<a href="'.base_url().'web/producto/'.$producto->id.'"><img class="img-responsive img-mediana" src="'.$producto->imagen.'"/></a>
 									</div>
 								</div>
 							</div>     
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="panel panel-default panel-prod-nom">
-										<a href="'.base_url().'web/producto/'.$producto->id.'"><div class="texto02" align="center"><strong>'.$producto->nombre.'</strong></div></a>
+										<a href="'.base_url().'web/producto/'.$producto->id.'"><div class="texto03" align="center"><strong>'.$producto->nombre.'</strong></div></a>
 									</div>   
 								</div>  
 							</div>
@@ -304,8 +304,8 @@ function pintarproductos(data) {
 				'		<div class="col-lg-10 col-lg-offset-1">'+
 				'			<div class="row">'+
 				'				<div class="col-lg-12" align="center">'+
-				'					<div class="panel panel-default panel-prod-img">'+
-				'						<a href="'+baseurl+'web/producto/'+data.productos[i].id+'"><img class="img-responsive img01" src="'+data.productos[i].imagen+'"/></a>'+
+				'					<div class="panel panel-default panel-prod-img-mediana">'+
+				'						<a href="'+baseurl+'web/producto/'+data.productos[i].id+'"><img class="img-responsive img-mediana" src="'+data.productos[i].imagen+'"/></a>'+
 				'					</div>'+
 				'				</div>'+
 				'			</div>'+

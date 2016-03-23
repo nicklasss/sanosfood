@@ -64,29 +64,27 @@
 	        </div>
 	        <div class="collapse navbar-collapse">
 	        	<ul class="nav navbar-nav navbar-right">
-<?php
+					<?php
 					if ($this->session->userdata("usuario") <> "") {
-						print '<li><a href="#"><strong><span class="glyphicon glyphicon-user"></span> '.$this->session->userdata("usuario").'</strong></a></li>'; 
+						print '<li><a href="'.base_url().'web/micuenta"><strong><span class="glyphicon glyphicon-user"></span> '.$this->session->userdata("usuario").'</strong></a></li>'; 
 						print '<li><a href="'.base_url().'web/logout"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>';}
 					else {
 						print '<li><a href="'.base_url().'web/Registrarse"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>';
 						print '<li><a href="'.base_url().'web/login"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión</a></li>';}
-?>
-
-
+					?>
             		<li class="text-center">
-<?php
-							if ($this->cart->total_items() > 0) {
-			        			print '<a href="'.base_url().'web/mostrarCarrito" id="hrefcarrito">';
-									print '	<button type="button" class="btn btn-sm btn-warning" id="btn-carrito" aria-label="Left Align">';
-							} else {
-			        			print '<a href="#" id="hrefcarrito">';
-									print '	<button type="button" class="btn btn-sm btn-default" id="btn-carrito" aria-label="Left Align">';
-							}
-?>
-							<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span id="cantcart"> <?= $this->cart->total_items();?></span> 
+						<?php
+						if ($this->cart->total_items() > 0) {
+		        			print '<a href="'.base_url().'web/mostrarCarrito" id="hrefcarrito">';
+							print '	<button type="button" class="btn btn-sm btn-warning" id="btn-carrito" aria-label="Left Align">';
+						} else {
+		        			print '<a href="#" id="hrefcarrito">';
+							print '	<button type="button" class="btn btn-sm btn-default" id="btn-carrito" aria-label="Left Align">';
+						}
+						?>
+						<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span id="cantcart"> <?= $this->cart->total_items();?></span> 
 							</button>
-	        						</a>
+							</a>
 	        		</li>
 				</ul>
 				<form id="form-buscar" class="navbar-form" method="POST" action="<?= base_url();?>web/productos">

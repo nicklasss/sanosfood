@@ -8,7 +8,7 @@ class Pedidos_model extends CI_Model {
         parent::__construct();
     }
     
-    function pedidosUsuario($id =null){
+    function pedidosUsuario($id = null){
     	$this->db->where('idusuario', $id);
     	$this->db->order_by('fecha', 'desc');
     	$query = $this->db->get('pedidos', 50, 0);
@@ -18,6 +18,25 @@ class Pedidos_model extends CI_Model {
             $row->nombreestado = $this->db->get('estadospedidos', 1, 0)->row()->nombre;
         }
     	return $query->result();
+    }
+
+    function web_itemsxPedido($idpedido = null){
+        $this->db->where('id_pedido', $idpedido);
+//        $this->db->order_by('fecha', 'desc');
+        $query = $this->db->get('lineaspedidos');
+        foreach ($query->result() as $row) {
+            $this->db->select('nombre');
+            $this->db->where('id', $row->id_producto);
+            $row->nombreproducto = $this->db->get('productos', 1, 0)->row()->nombre;
+
+            $this->db->select('imagen');
+            $this->db->where('idproducto', $row->id_producto);
+            $row->imagenproducto = $this->db->get('imagenes', 1, 0)->row()->imagen;
+
+        }
+        $data['items'] = $query->result();
+        $data['res'] = "ok";
+        return $data;
     }
 
     function getPedido($id = null){

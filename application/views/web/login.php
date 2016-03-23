@@ -84,7 +84,7 @@ $(document).ready(function() {
 		}
 
         $.ajax({                                               // envio de los datos
-          url: "<?php print base_url();?>usuario/logear",
+          url: "<?php print base_url();?>usuario/web_logear",
           context: document.body,
           dataType: "json",
           type: "POST",
