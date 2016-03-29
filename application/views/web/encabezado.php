@@ -66,12 +66,21 @@
 	        	<ul class="nav navbar-nav navbar-right">
 					<?php
 					if ($this->session->userdata("usuario") <> "") {
-						print '<li><a href="'.base_url().'web/micuenta"><strong><span class="glyphicon glyphicon-user"></span> '.$this->session->userdata("usuario").'</strong></a></li>'; 
+						print '
+			            <li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong><span class="glyphicon glyphicon-user"></span> '.$this->session->userdata("usuario").'</strong></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="'.base_url().'web/micuenta">Mi Información</a></li>
+								<li><a href="'.base_url().'web/mispedidos">Mis Pedidos</a></li>
+								<li><a href="'.base_url().'web/cambiarclave">Cambiar la Contraseña</a></li>
+							</ul>
+			            </li>';
 						print '<li><a href="'.base_url().'web/logout"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>';}
 					else {
 						print '<li><a href="'.base_url().'web/Registrarse"><span class="glyphicon glyphicon-user"></span> Registrarse</a></li>';
 						print '<li><a href="'.base_url().'web/login"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión</a></li>';}
 					?>
+
             		<li class="text-center">
 						<?php
 						if ($this->cart->total_items() > 0) {
@@ -86,6 +95,7 @@
 							</button>
 							</a>
 	        		</li>
+
 				</ul>
 				<form id="form-buscar" class="navbar-form" method="POST" action="<?= base_url();?>web/productos">
 					<div class="form-group" style="display:inline;">
@@ -117,11 +127,7 @@
                     <li class="divider-vertical"></li>
                     <li><a href="#contact">it4d</a></li>
                     <li class="divider-vertical"></li>
-                    <li><a href="#contact">it5d</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a href="#contact">it6d</a></li>
-                    <li class="divider-vertical"></li>
-                    <li><a href="#contact">it7d</a></li>
+
                 </ul>
             </div>
         </div>

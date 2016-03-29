@@ -2,12 +2,9 @@
 
 class Usuarios_model extends CI_Model {
 
-	function __construct()
-    {
-        // Call the Model constructor
-        parent::__construct();
-    }
+	function __construct() { parent::__construct(); }
 
+//--------------------------------Encuentra un usuario por el id
     function get($id=null){
         $this->db->where('id', $id);
         $query = $this->db->get('usuarios', 1, 0);
@@ -17,6 +14,7 @@ class Usuarios_model extends CI_Model {
         return $query->row();
     }
 
+//--------------------------------Busca un usuarios por el usuario o email
     function encontrar($usuario = null){
         $this->db->where('usuario', $usuario);
         $query = $this->db->get('usuarios', 1, 0);
@@ -26,11 +24,47 @@ class Usuarios_model extends CI_Model {
         return $query->row();
     }
 
+//--------------------------------Lista todos usuarios de usuarios
     function listar(){
         $this->db->order_by('nombres', 'asc');
     	$query = $this->db->get('usuarios');
     	return $query->result();
     }
+
+//--------------------------------Actualiza la informacion del usuario web
+    function actualizar($idusuario = null, $nombre = null, $usuario = null, $email = null, $celular = null, $telefono = null,
+                        $tipodcto = null, $nrodcto = null) {
+
+        if ($email == "") {
+            $data['msj'] = 'Email borrado, Desea Borra toda la Cuenta?';
+            $data['res'] = 'wrn';
+            return $data; 
+        }
+
+        $objeto = array();
+        $objeto['nombre'] = $nombre;
+        $objeto['tipo_identidad'] = $tipodcto;
+        $objeto['nro_identidad'] = $nrodcto;
+        $objeto['correo'] = $email;
+        $objeto['usuario'] = $usuario;
+        $objeto['telefono'] = $telefono;
+        $objeto['celular'] = $celular;
+
+        $this->db->trans_start();
+            $this->db->where('id', $idusuario);
+            $this->db->update('usuarios', $objeto);
+        $this->db->trans_complete();
+
+        if ($this->db->trans_status() === FALSE) {
+            $data['msj'] = 'Error actualizando BD usuarios';
+            $data['res'] = 'bad';
+        } else { $data['res'] = 'bad'; }
+
+        $data['res'] = 'ok'; 
+        return $data; 
+    }
+
+//--------------------------------Valida campos de Producto con estado diferente de DISPONIBLE
     function editar($id = NULL, $atributo = NULL, $valor = NULL){
         if($id != NULL AND $atributo != NULL AND $valor != NULL){
             $this->db->trans_start();
@@ -44,6 +78,8 @@ class Usuarios_model extends CI_Model {
             else {return array('res'=>'ok'); }
         }
     }
+
+//--------------------------------borra un usuario por el id
     function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'Error en la inserción.'); }
@@ -52,9 +88,9 @@ class Usuarios_model extends CI_Model {
         return array('res'=>'ok');
     }
 
-
+//--------------------------------Logea un usuario web
     function web_logear($usuario = null, $clave = null) {
-        $this->db->select('clave')->from('usuarios')->where('usuario', $usuario)->limit(1, 0);
+        $this->db->select('id, clave')->from('usuarios')->where('usuario', $usuario)->limit(1, 0);
         $query = $this->db->get();
 
         if ($query->num_rows() == 0) {
@@ -64,10 +100,10 @@ class Usuarios_model extends CI_Model {
         }
         
         $row = $query->row();
-
-//        if($row->clave == sha1(sha1($usuario).'sal sanosfood'.sha1($clave))) {
-        if($row->clave == $clave) {
+        $this->load->helper('security');
+        if (verificar($clave, $row->clave)) {
             $this->session->set_userdata('logeado',true);
+            $this->session->set_userdata('idusuario',$row->id);
             $this->session->set_userdata('usuario',$usuario);
             $data['res'] = 'ok';
             return $data;
@@ -75,9 +111,9 @@ class Usuarios_model extends CI_Model {
         $data['res'] = 'bad';
         $data['msj'] = 'Usuario o Clave invalido';
         return $data;
-
     }
 
+//--------------------------------Crea un nuevo usuario web
     function crear($email = null, $usuario = null, $clave = null) {
 
         $this->db->where('usuario', $usuario);
@@ -87,7 +123,10 @@ class Usuarios_model extends CI_Model {
             return $data;
         }
 
-        $object = array('correo' => $email, 'usuario' => $usuario, 'clave' => $clave);
+        $this->load->helper('security');
+
+
+        $object = array('correo' => $email, 'usuario' => $usuario, 'clave' => encriptar($clave));
 
         $this->db->insert('usuarios', $object);
 
@@ -98,6 +137,30 @@ class Usuarios_model extends CI_Model {
         return $data;
     }
 
+//--------------------------------Crea un nuevo usuario web
+    function cambiarclave($idusuario = null, $claveactual = null, $nuevaclave = null) {
+
+        $this->db->select('clave')->from('usuarios')->where('id', $idusuario)->limit(1, 0);
+        $query = $this->db->get();
+
+        $row = $query->row();
+        $this->load->helper('security');
+        if (!verificar($claveactual, $row->clave)) {
+            $data['res'] = 'bad';
+            $data['msj'] = 'Contraseña Actual es invalida';
+            return $data;
+        }
+
+        $objeto = array('clave'=>encriptar($nuevaclave));
+        $this->db->where('id', $idusuario);
+        $this->db->update('usuarios', $objeto);
+
+        $data['res'] = 'ok';
+        $data['msj'] = 'Contraseña cambiada correctamente';
+        return $data;
+    }
+
+//--------------------------------Busca usuarios por nombre parcial para admin
     function buscar($query = ''){
         if($query ==""){ $data['usuarios'] = array(); }
         

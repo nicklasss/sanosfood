@@ -74,14 +74,14 @@ foreach ($productos as $producto) {
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="panel panel-default panel-prod-nom">
-										<a href="'.base_url().'web/producto/'.$producto->id.'"><div class="texto03" align="center"><strong>'.$producto->nombre.'</strong></div></a>
+										<a href="'.base_url().'web/producto/'.$producto->id.'" class="linkproducto"><div class="texto03" align="center"><strong>'.$producto->nombre.'</strong></div></a>
 									</div>   
 								</div>  
 							</div>
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="panel panel-default panel-prod-desc">
-										<a href="'.base_url().'web/producto/'.$producto->id.'"><h6 align="justify">'.$producto->descripcioncorta.'</h6></a>
+										<a href="'.base_url().'web/producto/'.$producto->id.'" class="linkproducto"><h6 align="justify">'.$producto->descripcioncorta.'</h6></a>
 									</div>
 								</div>   
 							</div>
@@ -312,14 +312,14 @@ function pintarproductos(data) {
 				'			<div class="row">'+
 				'				<div class="col-lg-12">'+
 				'					<div class="panel panel-default panel-prod-nom">'+
-				'						<a href="'+baseurl+'web/producto/'+data.productos[i].id+'"><div class="texto02" align="center"><strong>'+data.productos[i].nombre+'</strong></div></a>'+
+				'						<a href="'+baseurl+'web/producto/'+data.productos[i].id+'" class="linkproducto"><div class="texto02" align="center"><strong>'+data.productos[i].nombre+'</strong></div></a>'+
 				'					</div>'+
 				'				</div>'+
 				'			</div>'+
 				'			<div class="row">'+
 				'				<div class="col-lg-12">'+
 				'					<div class="panel panel-default panel-prod-desc">'+
-				'						<a href="'+baseurl+'web/producto/'+data.productos[i].id+'"><h6 align="justify">'+data.productos[i].descripcioncorta+'</h6></a>'+
+				'						<a href="'+baseurl+'web/producto/'+data.productos[i].id+'" class="linkproducto"><h6 align="justify">'+data.productos[i].descripcioncorta+'</h6></a>'+
 				'					</div>'+
 				'				</div>'+
 				'			</div>'+

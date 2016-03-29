@@ -53,14 +53,14 @@ foreach ($productos as $producto) {
                      <div class="row">
                         <div class="col-lg-12">
                            <div class="panel panel-default panel-prod-nom">
-                              <a href="'.base_url().'web/producto/'.$producto->id.'"><div class="texto02" align="center"><strong>'.$producto->nombre.'</strong></div></a>
+                              <a href="'.base_url().'web/producto/'.$producto->id.'" class="linkproducto"><div class="texto02" align="center"><strong>'.$producto->nombre.'</strong></div></a>
                            </div>   
                         </div>  
                      </div>
                      <div class="row">
                         <div class="col-lg-12">
                            <div class="panel panel-default panel-prod-desc">
-                              <a href="'.base_url().'web/producto/'.$producto->id.'"><h6 align="justify">'.$producto->descripcioncorta.'</h6></a>
+                              <a href="'.base_url().'web/producto/'.$producto->id.'" class="linkproducto"><h6 align="justify">'.$producto->descripcioncorta.'</h6></a>
                            </div>
                         </div>   
                      </div>

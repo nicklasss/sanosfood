@@ -3,10 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pedidos_model extends CI_Model {
 
-	function __construct() {
-        // Call the Model constructor
-        parent::__construct();
-    }
+	function __construct() { parent::__construct(); }
     
     function pedidosUsuario($id = null){
     	$this->db->where('idusuario', $id);
@@ -100,9 +97,8 @@ class Pedidos_model extends CI_Model {
     function cambiarEstado($id = null,$estado = null,$observacion =""){
         $this->db->where('id', $id);
         $query = $this->db->get('pedidos', 1, 0);
-        if($query->num_rows()!=1){
-            return false;
-        }
+        if($query->num_rows()!=1){ return false; }
+        
         $pedido = $query->row();
         $object = array('idPedido' => $id, 'idUsuario' =>$pedido->idusuario,'fecha' =>  date('Y-m-d H:i:s'),'accion'=>'cambiar estado de '.$pedido->idestadopedido.' a '.$estado,'observacion'=>$observacion);
         $this->db->insert('log_pedidos', $object);

@@ -4,6 +4,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Web extends CI_Controller {
 
 
+/*------------------------ solo para proceso actualiuzar base de datos
+public function encriptarclaves() {
+        $this->db->from('usuarios');
+    	$query = $this->db->get();
+		$this->load->helper('security');
+    	foreach ($query->result() as $usuario) {
+			$objeto = array('clave'=>encriptar($usuario->clave));
+			$this->db->where('id', $usuario->id);
+	        $this->db->update('usuarios', $objeto);
+	        print $usuario->correo;
+    	}
+}
+//---------------------------------- */
+
+
+//---------------------------------------------------------Index
 	public function index() {
 		$this->load->view('web/encabezado');
 		$this->load->model('Productos_model');
@@ -12,36 +28,62 @@ class Web extends CI_Controller {
 		$this->load->view('web/piedepagina');
 	}
 
+//---------------------------------------------------------Login
 	public function login() {
+		if($this->session->userdata('logeado')){
+			redirect('','refresh');
+			exit();
+		}
 		$this->load->view('web/encabezado');
 		$this->load->view('web/login');
 		$this->load->view('web/piedepagina');
 	}
 
+//---------------------------------------------------------Logout
 	public function logout() {
         $this->session->set_userdata('usuario',"");
+        $this->session->set_userdata('idusuario',"");
+        $this->session->set_userdata('logeado', FALSE);
 		redirect('','refresh');
-
 	}
 
+//---------------------------------------------------------Login
+	public function cambiarclave() {
+		if(!$this->session->userdata('logeado')){
+			redirect('','refresh');
+			exit();
+		}
+		$this->load->view('web/encabezado');
+		$this->load->view('web/cambiarclave');
+		$this->load->view('web/piedepagina');
+	}
+
+//---------------------------------------------------------Registrarse
 	public function registrarse() {
+		if($this->session->userdata('logeado')){
+			redirect('','refresh');
+			exit();
+		}
 		$this->load->view('web/encabezado');
 		$this->load->view('web/registrarse');
 		$this->load->view('web/piedepagina');
 	}
 
+//---------------------------------------------------------mostrarCarrito
 	public function mostrarCarrito() {
 		$this->load->view('web/encabezado');
 		$this->load->view('web/carrito', FALSE); 
 		$this->load->view('web/piedepagina');
 	}
     
+//---------------------------------------------------------Comprar
 	public function comprar() {
 		$this->load->view('web/encabezado');
 		$this->load->view('web/comprar');
 		$this->load->view('web/piedepagina');
 	}
 
+//---------------------------------------------------------producto
 	public function producto($id = null) {
 		if($id == null){ show_404();
 		}
@@ -54,8 +96,27 @@ class Web extends CI_Controller {
 		$this->load->view('web/piedepagina');
 	}
 
+//---------------------------------------------------------micuenta
 	public function micuenta() {
 		if(!$this->session->userdata('logeado')){
+			redirect('','refresh');
+			exit();
+		}
+	
+		$this->load->view('web/encabezado');
+		$this->load->model('Usuarios_model');
+		$data['usuario'] = $this->Usuarios_model->encontrar($this->session->userdata("usuario"));
+		$this->load->model('Direcciones_model');
+		$idusuario = $data['usuario']->id;
+		$data['direcciones'] = $this->Direcciones_model->direccionesUsuario( $idusuario );
+		$this->load->view('web/micuenta', $data, FALSE); 
+		$this->load->view('web/piedepagina');
+	}
+
+//---------------------------------------------------------mispedidos
+	public function mispedidos() {
+		if(!$this->session->userdata('logeado')){
+			redirect('','refresh');
 			exit();
 		}
 	
@@ -64,12 +125,12 @@ class Web extends CI_Controller {
 		$data['usuario'] = $this->Usuarios_model->encontrar($this->session->userdata("usuario"));
 		$this->load->model('Pedidos_model');
 		$id = $data['usuario']->id;
-//		foreach ($data['usuario'] as $usuario) { $id = $usuario->id; }
 		$data['pedidos'] = $this->Pedidos_model->pedidosUsuario( $id );
-		$this->load->view('web/micuenta', $data, FALSE); 
+		$this->load->view('web/mispedidos', $data, FALSE); 
 		$this->load->view('web/piedepagina');
 	}
 
+//---------------------------------------------------------productos
 	public function productos() {
 		$quebuscar = @$this->input->post('quebuscar');
 		if ($quebuscar == null) {$quebuscar = "*";
@@ -91,6 +152,7 @@ class Web extends CI_Controller {
 		$this->load->view('web/piedepagina');
 	}
 
+//---------------------------------------------------------productoscaracteristicas
 	public function productoscaracteristicas() {
 		$this->load->model('Productos_model');
 		$data = $this->Productos_model->listarweb();

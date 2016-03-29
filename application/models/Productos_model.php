@@ -3,11 +3,7 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Productos_model extends CI_Model {
 
-	function __construct()
-    {
-        // Call the Model constructor
-        parent::__construct();
-    }
+	function __construct() { parent::__construct(); }
 
 //--------------------------------crea un producto nuevo
     function crear( $nombre = null, $descripcion = null, $ingredientes = null){
@@ -99,7 +95,7 @@ class Productos_model extends CI_Model {
         }
         return $query->result();
     }
-    //--------------------------------Obtiene cantidad total de productos por la busqueda
+//--------------------------------Obtiene cantidad total de productos por la busqueda
     function contarProductosBuscar($quebuscar = null){
         if($quebuscar == "*"){
             $query = $this->db->query("SELECT * FROM productos 
@@ -133,7 +129,8 @@ class Productos_model extends CI_Model {
         }
         return $query->result();
     }
-    //--------------------------------Obtiene cantidad total de productos por la categoria
+
+//--------------------------------Obtiene cantidad total de productos por la categoria
     function contarProductosCategoria($cat = null){
         $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
                             WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.idestadoproducto = 1");
@@ -156,13 +153,13 @@ class Productos_model extends CI_Model {
         }
         return $query->result();
     }
-    //--------------------------------Obtiene cantidad total de productos por la marca
+
+//--------------------------------Obtiene cantidad total de productos por la marca
     function contarProductosMarca($mar = null){
         $query = $this->db->query(" SELECT * FROM productos 
                                     WHERE idmarca = $mar and idestadoproducto = 1;");
         return $query->num_rows();
     }
-
 
 //--------------------------------Obtiene un producto
     function producto($id = null){
@@ -556,8 +553,6 @@ class Productos_model extends CI_Model {
         $query = $this -> db -> get('productos');
         return $query->result();
     }
-
-
 } 
 
 /* End of file Productos_model.php */

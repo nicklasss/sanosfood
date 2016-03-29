@@ -2,11 +2,7 @@
 
 class Caracteristicas_model extends CI_Model {
 
-	function __construct()
-    {
-        // Call the Model constructor
-        parent::__construct();
-    }
+	function __construct() { parent::__construct(); }
 
     function listar(){
         $this->db->order_by('id', 'asc');

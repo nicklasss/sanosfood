@@ -62,32 +62,32 @@
  
 
 
-    <!-- Scripts y Funciones de Javascript  -->
-    <script type="text/javascript">
+<!---------------------------------------------------------------------------------------------------------------------->
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#btn-enviar').click(enviar); 
+});
+        
+//-- Funcion enviar datos del misionero al servidor al misioneros/crear.php quien los recibe
+function enviar() {
+    if($("#usuario").val()=="") { alert('Usuario no puede ser vacio');
+      $("#usuario").focus(); return false; }
+    if($("#clave").val()=="") { alert('Clave no puede ser vacia');
+      $("#clave").focus(); return false; }
 
-    //-- garantiza que el siguiente Javascript se ejecuta despues de haberse cargado completamente la pagina
-	$(document).ready(function() {$('#btn-enviar').click(enviar); });
-            
-    //-- Funcion enviar datos del misionero al servidor al misioneros/crear.php quien los recibe
-    function enviar() {
-        if($("#usuario").val()=="") { alert('Usuario no puede ser vacio');
-          $("#usuario").focus(); return false; }
-        if($("#clave").val()=="") { alert('Clave no puede ser vacia');
-          $("#clave").focus(); return false; }
+    $.ajax({                                               // envio de los datos
+      url: "<?php print base_url();?>admin/validarusuario",
+      context: document.body,
+      dataType: "json",
+      type: "POST",
+      data: {usuario  : $("#usuario").val(), clave : $("#clave").val()} })
+     .done(function(data) {                                // respuesta del servidor
+        if(data.res=="ok") {
+          window.location= "<?php print base_url();?>admin/productos/Todos";}
+        else{alert(data.msj) } })          
+     .error(function(){alert('error en el servidor'); });  // error generado
+}
 
-        $.ajax({                                               // envio de los datos
-          url: "<?php print base_url();?>admin/validarusuario",
-          context: document.body,
-          dataType: "json",
-          type: "POST",
-          data: {usuario  : $("#usuario").val(), clave : $("#clave").val()} })
-         .done(function(data) {                                // respuesta del servidor
-            if(data.res=="ok") {
-              window.location= "<?php print base_url();?>admin/productos/Todos";}
-            else{alert(data.msj) } })          
-         .error(function(){alert('error en el servidor'); });  // error generado
-    }
-    
-	</script>
+</script>
 
 </body>

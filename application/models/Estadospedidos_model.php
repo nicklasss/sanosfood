@@ -2,17 +2,14 @@
 
 class Estadospedidos_model extends CI_Model {
 
-	function __construct()
-    {
-        // Call the Model constructor
-        parent::__construct();
-    }
+	function __construct() { parent::__construct(); }
 
     function listar(){
         $this->db->order_by('nombre', 'asc');
     	$query = $this->db->get('estadospedidos');
     	return $query->result();
     }	
+    
 	function editar($id = NULL, $atributo = NULL, $valor = NULL){
          if($id != NULL AND $atributo != NULL AND $valor != NULL){
             if($atributo =="nombre"){

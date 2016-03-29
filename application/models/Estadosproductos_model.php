@@ -2,11 +2,7 @@
 
 class Estadosproductos_model extends CI_Model {
 
-	function __construct()
-    {
-        // Call the Model constructor
-        parent::__construct();
-    }
+	function __construct() { parent::__construct(); }
 
     function listar(){
         $this->db->order_by('id', 'asc');
@@ -32,6 +28,7 @@ class Estadosproductos_model extends CI_Model {
             else {return array('res'=>'ok'); }
         }
     }
+
     function crear($nombre = null, $descripcion = null){
         if($nombre == NULL OR $descripcion == null){
             return array('res'=>'bad','msj'=>'ERROR en la creación.'); }
@@ -47,6 +44,7 @@ class Estadosproductos_model extends CI_Model {
         $this->db->insert('estadosproductos', $object);
         return array('res'=>'ok','id'=>$this->db->insert_id());
     }
+    
     function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'ERROR en la inserción.'); }

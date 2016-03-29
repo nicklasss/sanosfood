@@ -2,11 +2,7 @@
 
 class Marcas_model extends CI_Model {
 
-	function __construct()
-    {
-        // Call the Model constructor
-        parent::__construct();
-    }
+	function __construct() { parent::__construct(); }
 
     function listar(){
     	$query = $this->db->get('marcas');
@@ -14,13 +10,11 @@ class Marcas_model extends CI_Model {
     }
 
     function listarConProductos() {
-    
         $query = $this->db->query(" SELECT p.idmarca, m.nombre, count(p.idmarca) as cuentas
                                     FROM productos AS p, marcas AS m   
                                     WHERE p.idestadoproducto = 1 AND p.idmarca = m.id
                                     GROUP BY m.id;");
         return $query->result();
-
     }   
   
     function editar($id = NULL, $atributo = NULL, $valor = NULL){

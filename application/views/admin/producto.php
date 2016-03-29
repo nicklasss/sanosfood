@@ -205,7 +205,7 @@ foreach ($categorias as $categoria) {
 				<tbody>
 				<tr role="row">
 					<td>
-						<button type="button" class="btn btn-lg btn-primary" id="btn-editar"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
+						<button type="button" class="btn btn-lg btn-primary" id="btn-editar">Editar</button>
 					</td>  
 					<td>
 			  			<button type="button" class="btn btn-lg btn-success" id="btn-guardar">Guardar</button>

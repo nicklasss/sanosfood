@@ -2,9 +2,9 @@
 
 class Producto extends CI_Controller {
 
-	public function index()
-	{ }
+	public function index() { }
 
+//--------------------------------Crear nuevo producto
 	public function crear(){
 		$nombre = @$this->input->post('nombre',TRUE);
 		$descripcion = @$this->input->post('descripcion',TRUE);
@@ -17,9 +17,9 @@ class Producto extends CI_Controller {
 		} else {
 			print json_encode(array('res'=>$data['res'],'id'=>$data['id']));
 		}
-//		$this->load->view('producto/crear', $data, FALSE);
 	}
 
+//-------------------------------- SUBIR IMAGENES
 	public function subirImagen(){
         $idproducto = @$this->input->post('idproducto',TRUE);
 		if((!empty($_FILES["userfile"])) && ($_FILES['userfile']['error'] == 0)) {
@@ -49,6 +49,7 @@ class Producto extends CI_Controller {
 		redirect('admin/producto/'.$idproducto,'refresh');
 	}
 
+//--------------------------------BORRAR IMAGENES
 	public function borrarImagen(){
         $idproducto = $this->input->post('numproducto',TRUE);
         $tituloimagen = $this->input->post('titimagen',TRUE);
@@ -59,7 +60,7 @@ class Producto extends CI_Controller {
 		redirect('admin/producto/'.$idproducto,'refresh');
 	}
 
-
+//--------------------------------Lista con paginacion PRODUCTOS por Categoria o por estado
 	public function listar(){
 		$cant = @$this->input->post('cant');
 		$pagina = @$this->input->post('pagina');
@@ -78,9 +79,9 @@ class Producto extends CI_Controller {
 			print json_encode(array('res'=>'bad','msj'=>'Sin resultados'));
 		}
 		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant']));
-//		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$cant));exit();
 	}
 
+//--------------------------------Lista para Web con paginacion PRODUCTOS por Categoria 
 	public function listarxCategoriaWeb(){
 		$idcategoria = @$this->input->post('idcategoria');
 		$ppp = @$this->input->post('ppp');
@@ -94,6 +95,7 @@ class Producto extends CI_Controller {
 		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant'],));exit();
 	}
 
+//--------------------------------Lista para Web con paginacion PRODUCTOS por Marca 
 	public function listarxMarcaWeb(){
 		$idmarca = @$this->input->post('idmarca');
 		$ppp = @$this->input->post('ppp');
@@ -107,6 +109,7 @@ class Producto extends CI_Controller {
 		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant'],));exit();
 	}
 
+//--------------------------------busca productos por nomre o descripcion a partir de sarta 
 	public function buscar() {
 		$quebuscar = @$this->input->post('quebuscar');
 		$ppp = @$this->input->post('ppp');
@@ -120,6 +123,7 @@ class Producto extends CI_Controller {
 		print json_encode(array('res'=>'ok','productos'=>$data['productos'],'cant'=>$data['cant']));exit();
 	}
 
+//--------------------------------Edita los campos de un producto 
 	public function editar(){
 		if(!$this->session->userdata('logeado_admin')){
 			print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));
@@ -129,6 +133,7 @@ class Producto extends CI_Controller {
 		print json_encode($this->Productos_model->editar($dataproducto));
 	}
 
+//--------------------------------Edita el estado de un producto 
 	public function editarestado(){
 		if(!$this->session->userdata('logeado_admin')){
 			print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));
@@ -137,7 +142,6 @@ class Producto extends CI_Controller {
 		$this->load->model('Productos_model');
 		print json_encode($this->Productos_model->editarestado($id));
 	}
-
 }
 
 /* End of file producto.php */

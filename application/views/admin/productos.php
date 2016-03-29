@@ -176,9 +176,13 @@ function buscar(query){
 
 //----------------------------------------------------------------------------------funcion formato_numero
 function formato_numero(texto) {
+    var cadena = "";
     var resultado = "";
-    for (var j, i = texto.length - 1, j = 0; i >= 0; i--, j++) 
-        resultado = texto.charAt(i) + ((j > 0) && (j % 3 == 0)? ".": "") + resultado; 
+    if (isNaN(texto)) { cadena = texto; }
+    else { cadena = texto.toString() }
+
+    for (var j, i = cadena.length - 1, j = 0; i >= 0; i--, j++) 
+        resultado = cadena.charAt(i) + ((j > 0) && (j % 3 == 0)? ".": "") + resultado; 
     return resultado;
 }
     

@@ -2,6 +2,9 @@ body{
    padding-top: 50px;
 }
 
+.escondido{
+  display: none;
+}
 
 /*---------------------------------------------BANERs */
 .baner01 {
@@ -300,8 +303,8 @@ span.mensajeerror {
 .placeholder-xxs::-moz-placeholder { font-size: xx-small; }
 .placeholder-xxs:-ms-input-placeholder { font-size: xx-small; }
 
-a:link {   
-	text-decoration: none;  
+a.linkproducto{   
+/*	text-decoration: none;  */
 	color: black; 
 }   
 
