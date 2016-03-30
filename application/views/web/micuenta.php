@@ -374,8 +374,6 @@ $(document).ready(function() {
 			   if(rta) {
 					$(event.target).parent().parent().parent().remove();
 					location.reload();
-					sarta = '<span><strong style="color:orange;">** Dirección Borrada OK **</strong></span>';  // Mensaje de error
-					$('#msg-error').html(sarta);		
 				} else {
 					$(event.target).parent().parent().parent().find('.btn-eliminar').attr('disabled', true); 
 				};
@@ -407,12 +405,14 @@ $(document).ready(function() {
 		eregion = $(event.target).parent().parent().parent().find('.entregion').val().trim();
 		epais = $(event.target).parent().parent().parent().find('.entpais').val().trim();
 		if (edireccion == "") {
-			alert ("el Dirección no puede estar vacia");
+			sarta = '<span><strong style="color:red;">** Dirección no puede ser vacia **</strong></span>';  // Mensaje de error
+			$('#msg-error').html(sarta);		
 			$(event.target).parent().parent().parent().find('.entdireccion').focus();
 			return false;
 		};
 		if (eciudad == "") {
-			alert ("la Ciudad no puede estar vacia");
+			sarta = '<span><strong style="color:red;">** la Ciudad no puede estar vacia **</strong></span>';  // Mensaje de error
+			$('#msg-error').html(sarta);		
 			$(event.target).parent().parent().parent().find('.entciudad').focus();
 			return false;
 		};
@@ -438,12 +438,14 @@ $(document).ready(function() {
 		eregion = $(event.target).parent().parent().parent().find('.entregion').val().trim();
 		epais = $(event.target).parent().parent().parent().find('.entpais').val().trim();
 		if (edireccion == "") {
-			alert ("el Dirección no puede estar vacia");
+			sarta = '<span><strong style="color:red;">** Dirección no puede ser vacia **</strong></span>';  // Mensaje de error
+			$('#msg-error').html(sarta);		
 			$(event.target).parent().parent().parent().find('.entdireccion').focus();
 			return false;
 		};
 		if (eciudad == "") {
-			alert ("la Ciudad no puede estar vacia");
+			sarta = '<span><strong style="color:red;">** la Ciudad no puede estar vacia **</strong></span>';  // Mensaje de error
+			$('#msg-error').html(sarta);		
 			$(event.target).parent().parent().parent().find('.entciudad').focus();
 			return false;
 		};
@@ -476,11 +478,19 @@ function guardar (callback) {
 	  dataType: "json",
 	  type: "POST",
 	  data: {id : sid, nombre : enombre, direccion : edireccion, barrio : ebarrio, ciudad : eciudad, region : eregion, pais : epais } })
-	 .done(function(data) {                               // respuesta del servidor
-	  if(data.res == "ok") {callback(true)}
-	  else {alert(data.msj);callback(false)}
-	  })
-	 .error(function(){alert('No hay conexion');callback(false);})
+	.done(function(data) {                               // respuesta del servidor
+		if(data.res == "ok") {callback(true)}
+		else {
+			sarta = '<span><strong style="color:red;">'+data.msj+'</strong></span>';  // Mensaje de error
+			$('#msg-error').html(sarta);		
+			callback(false);
+		}
+	})
+	.error(function(){
+		sarta = '<span><strong style="color:red;">== NO HAY CONEXION ==</strong></span>';  // Mensaje de error
+		$('#msg-error').html(sarta);		
+		callback(false);
+	})
 }
 
 //----------------------------------------------------------------------------------funcion eliminar
