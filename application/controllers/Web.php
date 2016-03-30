@@ -6,15 +6,15 @@ class Web extends CI_Controller {
 
 /*------------------------ solo para proceso actualiuzar base de datos
 public function encriptarclaves() {
-        $this->db->from('usuarios');
-    	$query = $this->db->get();
+		$this->db->from('usuarios');
+		$query = $this->db->get();
 		$this->load->helper('security');
-    	foreach ($query->result() as $usuario) {
+		foreach ($query->result() as $usuario) {
 			$objeto = array('clave'=>encriptar($usuario->clave));
 			$this->db->where('id', $usuario->id);
-	        $this->db->update('usuarios', $objeto);
-	        print $usuario->correo;
-    	}
+			$this->db->update('usuarios', $objeto);
+			print $usuario->correo;
+		}
 }
 //---------------------------------- */
 
@@ -41,9 +41,9 @@ public function encriptarclaves() {
 
 //---------------------------------------------------------Logout
 	public function logout() {
-        $this->session->set_userdata('usuario',"");
-        $this->session->set_userdata('idusuario',"");
-        $this->session->set_userdata('logeado', FALSE);
+		$this->session->set_userdata('usuario',"");
+		$this->session->set_userdata('idusuario',"");
+		$this->session->set_userdata('logeado', FALSE);
 		redirect('','refresh');
 	}
 
@@ -75,11 +75,20 @@ public function encriptarclaves() {
 		$this->load->view('web/carrito', FALSE); 
 		$this->load->view('web/piedepagina');
 	}
-    
+	
 //---------------------------------------------------------Comprar
 	public function comprar() {
+		if(!$this->session->userdata('logeado')){
+			redirect('','refresh');
+			exit();
+		}
 		$this->load->view('web/encabezado');
-		$this->load->view('web/comprar');
+		$this->load->model('Usuarios_model');
+		$data['usuario'] = $this->Usuarios_model->encontrar($this->session->userdata("usuario"));
+		$this->load->model('Direcciones_model');
+		$idusuario = $data['usuario']->id;
+		$data['direcciones'] = $this->Direcciones_model->direccionesUsuario( $idusuario );
+		$this->load->view('web/micuenta', $data, FALSE); 
 		$this->load->view('web/piedepagina');
 	}
 
@@ -102,7 +111,6 @@ public function encriptarclaves() {
 			redirect('','refresh');
 			exit();
 		}
-	
 		$this->load->view('web/encabezado');
 		$this->load->model('Usuarios_model');
 		$data['usuario'] = $this->Usuarios_model->encontrar($this->session->userdata("usuario"));

@@ -42,9 +42,6 @@
 						print '		<button type="button" class="btn btn-xs btn-success" id="btn-comprar" disabled="disabled">Comprar</button>';
 						}
 					}
-
-
-
 ?>					
 						</td>
 						<td class="text-right"><h5>Total:</h5></td>
@@ -54,7 +51,6 @@
 							</div>
 						</td>
 					</tr>
-
 <?php
 					if ($this->session->userdata("logeado") == false) {
 						print '	<tr>';
@@ -90,8 +86,6 @@ $(document).ready(function() {
 //		rta = comprarcarrito( function(rta){});
 		window.location = "<?php print base_url();?>web/comprar";
 	})
-
-
 })
 
 //----------------------------------------------------------------------------------funcion guardar

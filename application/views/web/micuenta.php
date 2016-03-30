@@ -101,7 +101,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div><h2>Direcciones de envio</h2></div>
-        <div class="panel panel-default">
+		<div class="panel panel-default">
 			<table class="table table-condensed table-striped table-responsive">
 				<thead>
 				<tr role="row">
@@ -121,70 +121,70 @@
 					print '
 					<tr>
 						<td>
-					    	<div class="editable escondido">
+							<div class="editable escondido">
 								<input type="text" class="form-control entid hidden" value="'.$direccion->id.'"/></input>
-					    	</div>
-					    	<div class="mostrable">
+							</div>
+							<div class="mostrable">
 								<h5 class="salid hidden">'.$direccion->id.'</h5>
-					    	</div>
+							</div>
 						</td>
 						<td>
-					    	<div class="editable escondido">
+							<div class="editable escondido">
 								<input type="text" class="form-control entnombre" value="'.$direccion->nombre.'"/></input>
-					    	</div>
-					    	<div class="mostrable">
+							</div>
+							<div class="mostrable">
 								<h5 class="salnombre mostrable"><strong>'.$direccion->nombre.'</strong></h5>
-					    	</div>
+							</div>
 						</td>
-					 	<td>
-					    	<div class="editable escondido">
+						<td>
+							<div class="editable escondido">
 								<input type="text" class="form-control entdireccion" value="'.$direccion->direccion.'"></input>
-					    	</div>
-					    	<div class="mostrable">
+							</div>
+							<div class="mostrable">
 								<h5 class="saldireccion mostrable" value="'.$direccion->direccion.'">'.$direccion->direccion.'</h5>
-					    	</div>
+							</div>
 						</td>
-					 	<td>
-					    	<div class="editable escondido">
+						<td>
+							<div class="editable escondido">
 								<input type="text" class="form-control entbarrio" value="'.$direccion->barrio.'"></input>
-					    	</div>
-					    	<div class="mostrable">
+							</div>
+							<div class="mostrable">
 								<h5 class="salbarrio mostrable" value="'.$direccion->barrio.'">'.$direccion->barrio.'</h5>
-					    	</div>
+							</div>
 						</td>
-					 	<td>
-					    	<div class="editable escondido">
+						<td>
+							<div class="editable escondido">
 								<input type="text" class="form-control entciudad" value="'.$direccion->ciudad.'"></input>
-					    	</div>
-					    	<div class="mostrable">
+							</div>
+							<div class="mostrable">
 								<h5 class="salciudad mostrable" value="'.$direccion->ciudad.'">'.$direccion->ciudad.'</h5>
-					    	</div>
+							</div>
 						</td>
-					 	<td>
-					    	<div class="editable escondido">
+						<td>
+							<div class="editable escondido">
 								<input type="text" class="form-control entregion" value="'.$direccion->region.'"></input>
-					    	</div>
-					    	<div class="mostrable">
+							</div>
+							<div class="mostrable">
 								<h5 class="salregion mostrable" value="'.$direccion->region.'">'.$direccion->region.'</h5>
-					    	</div>
+							</div>
 						</td>
-					 	<td>
-					    	<div class="editable escondido">
+						<td>
+							<div class="editable escondido">
 								<input type="text" class="form-control entpais" value="'.$direccion->pais.'"></input>
-					    	</div>
-					    	<div class="mostrable">
+							</div>
+							<div class="mostrable">
 								<h5 class="salpais mostrable" value="'.$direccion->pais.'">'.$direccion->pais.'</h5>
-					    	</div>
+							</div>
 						</td>
 						<td width="15%">
-					    	<div class="editable escondido">
-						  		<button type="button" class="btn btn-xs btn-success btn-guardar btn-editable" data-id="'.$direccion->id.'">Guardar</button>
-						  		<button type="button" class="btn btn-xs btn-warning btn-cancelar btn-editable">Cancelar</button>
-					    	</div>
-					    	<div class="mostrable">
-						   		<button type="button" class="btn btn-xs btn-info btn-editar btn-mostrable">Editar</button>
-						   		<button type="button" class="btn btn-xs btn-danger btn-eliminar btn-mostrable" data-id="'.$direccion->id.'">Eliminar</button>
-					    	</div>
+							<div class="editable escondido">
+								<button type="button" class="btn btn-xs btn-success btn-guardar btn-editable" data-id="'.$direccion->id.'">Guardar</button>
+								<button type="button" class="btn btn-xs btn-warning btn-cancelar btn-editable">Cancelar</button>
+							</div>
+							<div class="mostrable">
+								<button type="button" class="btn btn-xs btn-info btn-editar btn-mostrable">Editar</button>
+								<button type="button" class="btn btn-xs btn-danger btn-eliminar btn-mostrable" data-id="'.$direccion->id.'">Eliminar</button>
+							</div>
 						</td>	
 					</tr>';
 				}
@@ -192,48 +192,48 @@
 
 					<tr id="ultima">
 						<td>
-					    	<div>
+							<div>
 								<h5></h5>
-					    	</div>
+							</div>
 						</td>
 						<td>
-					    	<div class="editable escondido">
+							<div class="editable escondido">
 								<input type="text" class="form-control entnombre"></input>
-					    	</div>
-						</td>
-					 	<td>
-					    	<div class="editable escondido">
-								<input type="text" class="form-control entdireccion"></input>
-					    	</div>
-						</td>
-					 	<td>
-					    	<div class="editable escondido">
-								<input type="text" class="form-control entbarrio"></input>
-					    	</div>
-						</td>
-					 	<td>
-					    	<div class="editable escondido">
-								<input type="text" class="form-control entciudad"></input>
-					    	</div>
-						</td>
-					 	<td>
-					    	<div class="editable escondido">
-								<input type="text" class="form-control entregion"></input>
-					    	</div>
-						</td>
-					 	<td>
-					    	<div class="editable escondido">
-								<input type="text" class="form-control entpais"></input>
-					    	</div>
+							</div>
 						</td>
 						<td>
-					    	<div class="editable escondido">
-						  		<button type="button" class="btn btn-xs btn-success btn-agregar btn-editable" data-id="'.$direccion->id.'">Agregar</button>
-						  		<button type="button" class="btn btn-xs btn-warning btn-cancelar btn-editable">Cancelar</button>
-					    	</div>
-					    	<div class="mostrable">
-						   		<button type="button" class="btn btn-xs btn-success text-center btn-nuevo btn-mostrable"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
-					    	</div>
+							<div class="editable escondido">
+								<input type="text" class="form-control entdireccion"></input>
+							</div>
+						</td>
+						<td>
+							<div class="editable escondido">
+								<input type="text" class="form-control entbarrio"></input>
+							</div>
+						</td>
+						<td>
+							<div class="editable escondido">
+								<input type="text" class="form-control entciudad"></input>
+							</div>
+						</td>
+						<td>
+							<div class="editable escondido">
+								<input type="text" class="form-control entregion"></input>
+							</div>
+						</td>
+						<td>
+							<div class="editable escondido">
+								<input type="text" class="form-control entpais"></input>
+							</div>
+						</td>
+						<td>
+							<div class="editable escondido">
+								<button type="button" class="btn btn-xs btn-success btn-agregar btn-editable" data-id="'.$direccion->id.'">Agregar</button>
+								<button type="button" class="btn btn-xs btn-warning btn-cancelar btn-editable">Cancelar</button>
+							</div>
+							<div class="mostrable">
+								<button type="button" class="btn btn-xs btn-success text-center btn-nuevo btn-mostrable"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
+							</div>
 						</td>	
 					</tr>
 				</tbody>
@@ -502,10 +502,18 @@ function eliminar (callback) {
 	  type: "POST",
 	  data: {id : sid } })
 	 .done(function(data) {                               // respuesta del servidor
-	  if(data.res == "ok") {callback(true)}
-	  else {alert(data.msj);callback(false)}
-	  })
-	 .error(function(){alert('No hay conexion');callback(false);})
+		if(data.res == "ok") {callback(true)}
+		else {
+			sarta = '<span><strong style="color:red;">'+data.msj+'</strong></span>';  // Mensaje de error
+			$('#msg-error').html(sarta);		
+			callback(false);
+		}
+	})
+	.error(function(){
+		sarta = '<span><strong style="color:red;">== NO HAY CONEXION ==</strong></span>';  // Mensaje de error
+		$('#msg-error').html(sarta);		
+		callback(false);
+	})
 }
 
 //----------------------------------------------------------------------------------funcion crear
@@ -516,7 +524,7 @@ function crear (callback) {
 	  dataType: "json",
 	  type: "POST",
 	  data: {idusuario : <?php print $usuario->id;?>, nombre : enombre, direccion : edireccion, barrio : ebarrio, ciudad : eciudad, region : eregion, pais : epais } })
-	 .done(function(data) {                               
+	.done(function(data) {                               
 		if(data.res=="ok") {
 			callback(true);
 			sarta = 
@@ -586,11 +594,18 @@ function crear (callback) {
 				'	</td>'+	
 				'</tr>';
 			$("#ultima").before(sarta);
-
-	  }
-	  else {alert(data.msj);callback(false)}
-	  })
-	 .error(function(){alert('No hay conexion');callback(false);})
+		}
+		else {
+			sarta = '<span><strong style="color:red;">'+data.msj+'</strong></span>';  // Mensaje de error
+			$('#msg-error').html(sarta);		
+			callback(false);
+		}
+	})
+	.error(function(){
+		sarta = '<span><strong style="color:red;">== NO HAY CONEXION ==</strong></span>';  // Mensaje de error
+		$('#msg-error').html(sarta);		
+		callback(false);
+	})
 }
 
 //----------------------------------------------------------------------------------funcion eliminar
@@ -601,51 +616,57 @@ function eliminar_usuario (callback) {
 	  dataType: "json",
 	  type: "POST",
 	  data: {idusuario : <?php print $usuario->id;?> } })
-	 .done(function(data) {                               // respuesta del servidor
-	  if(data.res == "ok") {
-		window.location="<?php print base_url();?>web/logout";
-	  	callback(true)}
-	  else {alert(data.msj);callback(false)}
-	  })
-	 .error(function(){alert('No hay conexion');callback(false);})
+	.done(function(data) {                               // respuesta del servidor
+		if(data.res == "ok") {
+			window.location="<?php print base_url();?>web/logout";
+			callback(true)}
+		else {
+			sarta = '<span><strong style="color:red;">'+data.msj+'</strong></span>';  // Mensaje de error
+			$('#msg-error').html(sarta);		
+			callback(false);
+		}
+	})
+	.error(function(){
+		sarta = '<span><strong style="color:red;">== NO HAY CONEXION ==</strong></span>';  // Mensaje de error
+		$('#msg-error').html(sarta);		
+		callback(false);
+	})
 }
 
 //----------------------------------------------------------------------------------funcion guardar
 function guardar_usuario (callback) {
-  $.ajax({                                              
-	    url: "<?php print base_url();?>usuario/actualizar",
-	    context: document.body,
-	    dataType: "json",
-	    type: "POST",
-	    data: {	idusuario : <?php print $usuario->id;?>,
-	    		nombre : $('#nombreusuario').val(), email : $('#email').val(), celular : $('#celular').val(), telefono : $('#telefono').val(),
-	    		tipodcto : $('#tipodcto').val(), nrodcto : $('#nrodcto').val(), ultimadireccion : $('#ultimadireccion').val()} })
-
-   .done(function(data) {                              
+	$.ajax({                                              
+		url: "<?php print base_url();?>usuario/actualizar",
+		context: document.body,
+		dataType: "json",
+		type: "POST",
+		data: {	idusuario : <?php print $usuario->id;?>,
+				nombre : $('#nombreusuario').val(), email : $('#email').val(), celular : $('#celular').val(), telefono : $('#telefono').val(),
+				tipodcto : $('#tipodcto').val(), nrodcto : $('#nrodcto').val(), ultimadireccion : $('#ultimadireccion').val()} })
+	.done(function(data) {                              
 		switch(data.res) {
 			case "ok":
 				sarta = '<span><strong style="color:green;">** Cambios Realizados OK **</strong></span>';  // Mensaje de error
 				$('#msg-error').html(sarta);		
-	  			callback(true);
-	  			break;
-	  		case "wrn":
+				callback(true);
+				break;
+			case "wrn":
 				sarta = '<span><strong style="color:orange;">'+data.msj+'</strong></span>';  // Mensaje de error
 				$('#msg-error').html(sarta);		
-	  			callback(true);
-	  			break;
-	  		case "bad":
+				callback(true);
+				break;
+			case "bad":
 				sarta = '<span><strong style="color:red;">'+data.msj+'</strong></span>';  // Mensaje de error
 				$('#msg-error').html(sarta);		
-	  			callback(false);
-	  			break;
+				callback(false);
+				break;
 		}
-    })
-
-   .error(function(){
+	})
+	.error(function(){
 		sarta = '<span><strong style="color:red;">*** No Hay Conexion con BD</strong></span>';  // Mensaje de error
 		$('#msg-error').html(sarta);		
 			callback(false);
-   	})
+	})
 }
 
 </script>
