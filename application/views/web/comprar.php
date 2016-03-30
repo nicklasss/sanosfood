@@ -1,13 +1,12 @@
-<div class="container" style="margin-top:40px;">
+<div class="container">
 
+			<strong><h3>COMPRAR los productos del Carrito</h3></strong>
     <div class="panel panel-default">
 
 		<div class="panel-heading text-center">
-			<strong><h3>COMPRAR</h3></strong>
 		</div>
 
 		<form class="form-horizontal form-contenedor">
-			<div class="row registro"><br></div>
 			<div class="row registro">
 				<div class="col-md-3 col-md-offset-1">
 					<span>Nombres Completos *</span>

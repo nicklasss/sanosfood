@@ -33,7 +33,7 @@ class Usuarios_model extends CI_Model {
 
 //--------------------------------Actualiza la informacion del usuario web
     function actualizar($idusuario = null, $nombre = null, $usuario = null, $email = null, $celular = null, $telefono = null,
-                        $tipodcto = null, $nrodcto = null) {
+                        $tipodcto = null, $nrodcto = null, $ultimadireccion = null) {
 
         if ($email == "") {
             $data['msj'] = 'Email borrado, Desea Borra toda la Cuenta?';
@@ -49,6 +49,7 @@ class Usuarios_model extends CI_Model {
         $objeto['usuario'] = $usuario;
         $objeto['telefono'] = $telefono;
         $objeto['celular'] = $celular;
+        $objeto['ultima_direccion'] = $ultimadireccion;
 
         $this->db->trans_start();
             $this->db->where('id', $idusuario);

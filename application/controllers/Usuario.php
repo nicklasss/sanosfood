@@ -67,13 +67,15 @@ class Usuario extends CI_Controller {
         $telefono   = @$this->input->post('telefono',TRUE);
         $tipodcto   = @$this->input->post('tipodcto',TRUE);
         $nrodcto    = @$this->input->post('nrodcto',TRUE);
+        $ultimadireccion = @$this->input->post('ultimadireccion',TRUE);
         
         if(!$this->session->userdata('logeado')){
             print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));
         }
 
         $this->load->model('Usuarios_model');
-        print json_encode($this->Usuarios_model->actualizar($idusuario, $nombre, $usuario, $email, $celular, $telefono, $tipodcto, $nrodcto));
+        print json_encode($this->Usuarios_model->actualizar($idusuario, $nombre, $usuario, $email, $celular, 
+                                                            $telefono, $tipodcto, $nrodcto, $ultimadireccion));
     }
 
 //----------------------------------------------------------------------------------funcion eliminar

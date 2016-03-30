@@ -1,21 +1,29 @@
 
 <div class="container">
 <div class="row">
-	<div class="col-md-12">
-		<h2 class="text-center">Información del Usuario</h2>
+	<div class="col-md-6">
+		<h2>Información del Usuario</h2>
 	</div>
+	<div class="col-md-6 text-right" id="msg-error"></div>
+
+
+
 </div>
 <div class="row">
 	<form>
-		<div class="col-md-6">
-			<div class="form-group">
-				<span class="control-label text-right">Nombre del Usuario</span>
-				<strong><input type="text" id="nombreusuario" class="form-control editable" readonly value="<?php print $usuario->nombre;?>"/></strong>
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<span class="control-label text-right">Nombre del Usuario</span>
+						<strong><input type="text" id="nombreusuario" class="form-control editable" readonly value="<?php print $usuario->nombre;?>"/></strong>
+					</div>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
 					<div class="form-group">
-						<span class="control-label text-right">Celular:</span>
+						<span class="control-label text-right">Celular</span>
 						<input class="form-control editable" id="celular" readonly value="<?php print $usuario->celular;?>"/>
 					</div>
 				</div>
@@ -27,10 +35,14 @@
 				</div>
 			</div>
 		</div>	
-		<div class="col-md-6">
-			<div class="form-group">
-				<span class="control-label text-right">Email (usuario):</span>
-				<strong><input type="email" id="email" class="form-control editable" readonly value="<?php print $usuario->correo;?>"/></strong>
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group">
+						<span class="control-label text-right">Email (usuario)</span>
+						<strong><input type="email" id="email" class="form-control editable" readonly value="<?php print $usuario->correo;?>"/></strong>
+					</div>
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-6">
@@ -47,26 +59,53 @@
 				</div>
 			</div>
 		</div>
-	</form>
-</div>
-<div class="row">
-	<div class="form-group">
-		<div class="col-md-6 text-right" id="msg-error"></div>
-		<div class="col-md-6 text-right" id="botones">
-			<button type="button" id="btn-editar-usuario" class="btn btn-xs btn-info">Editar Información</button>
-			<button type="button" id="btn-borrar-usuario" class="btn btn-xs btn-danger">Borrar Cuenta</button>
+		<div class="col-md-4">
+			<div class="row">
+				<div class="col-md-12">
+					<span class="control-label text-right">Última dirección de envio</span>
+					<strong><select class="form-control editable" id="ultimadireccion"disabled="enabled">
+				<?php	if ($usuario->ultima_direccion == null) {
+							print '<option> </option>';}
+						foreach ($direcciones as $direccion) {
+							if ($direccion->nombre == $usuario->ultima_direccion) {
+								print '<option selected>'.$direccion->nombre.'</option>'; }
+							else {
+								print '<option>'.$direccion->nombre.'</option>'; }
+				}?>
+					</select></strong>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+			<div class="row">
+
+				<div class="col-md-12 text-right" id="botones">
+					<br><button type="button" id="btn-editar-usuario" class="btn btn-xs btn-info">Editar Información</button>
+					<button type="button" id="btn-borrar-usuario" class="btn btn-xs btn-danger">Borrar Cuenta</button>
+				</div>
+			</div>
 		</div>
-	</div>
+
+
+
+	</form>
 </div>
 <br>
 <div class="row">
 	<div class="col-md-12">
+		<div><h2>Direcciones de envio</h2></div>
         <div class="panel panel-default">
-			<div class="panel-heading text-center"><h2>Direcciones de envio</h2></div>
 			<table class="table table-condensed table-striped table-responsive">
 				<thead>
 				<tr role="row">
-					<th width="1%"></th>
+					<th width="0%"></th>
 					<th width="10%">Nombre</th>
 					<th width="25%">Dirección</th>
 					<th width="14%">Barrio</th>
@@ -81,12 +120,12 @@
 				foreach ($direcciones as $direccion) {
 					print '
 					<tr>
-					 	<td>
+						<td>
 					    	<div class="editable escondido">
 								<input type="text" class="form-control entid hidden" value="'.$direccion->id.'"/></input>
 					    	</div>
 					    	<div class="mostrable">
-								<h5 class="salid hidden" value="'.$direccion->id.'">'.$direccion->id.'</h5>
+								<h5 class="salid hidden">'.$direccion->id.'</h5>
 					    	</div>
 						</td>
 						<td>
@@ -94,7 +133,7 @@
 								<input type="text" class="form-control entnombre" value="'.$direccion->nombre.'"/></input>
 					    	</div>
 					    	<div class="mostrable">
-								<h5 class="salnombre mostrable" value="'.$direccion->nombre.'"><strong>'.$direccion->nombre.'</strong></h5>
+								<h5 class="salnombre mostrable"><strong>'.$direccion->nombre.'</strong></h5>
 					    	</div>
 						</td>
 					 	<td>
@@ -206,17 +245,17 @@
 </div><!-- Container-->
 
 
-<!---------------------------------------------------------------------------------------------------------------------->
+<!--=================================================================================================================-->
 <script type="text/javascript">
 
 $(document).ready(function() { 
 
-// ----------------------------------------------------Manejo de botones para USUARIOS
+//-------------------------------------------------------------Manejo de botones para USUARIOS
 	//---------------------------------------------------------Boton EDITAR
 	$('.container').on('click','#btn-editar-usuario',function(event){
 		sarta = '<span></span>'; $('#msg-error').html(sarta);    // Limpia mensaje de error		
 
-		sarta = '	<button type="button" id="btn-guardar-usuario" class="btn btn-xs btn-success">Guardar Cambios</button>'+
+		sarta = '	<br><button type="button" id="btn-guardar-usuario" class="btn btn-xs btn-success">Guardar Cambios</button>'+
 				'	<button type="button" id="btn-descartar-usuario" class="btn btn-xs btn-warning">Descartar Cambios</button>';
 		$('#botones').html(sarta);	
 
@@ -226,35 +265,40 @@ $(document).ready(function() {
 		otelefono = $('#telefono').val();
 		otipodcto = $('#tipodcto').val();
 		onrodcto = 	$('#nrodcto').val();
-		$('.editable').each(function() {$(this).attr('readonly', false);});
+		oultimadireccion = 	$('#ultimadireccion').val();
 
+		$('.editable').each(function() {$(this).attr('readonly', false);});
+		$('.editable').each(function() {$(this).attr('disabled', false);});
 	});
 
 	//---------------------------------------------------------Boton DESCARTAR
 	$('.container').on('click','#btn-descartar-usuario',function(event){
-		sarta = '<button type="button" id="btn-editar-usuario" class="btn btn-xs btn-info">Editar Información</button>';
+		sarta = '<br><button type="button" id="btn-editar-usuario" class="btn btn-xs btn-info">Editar Información</button>'+
+				' <button type="button" id="btn-borrar-usuario" class="btn btn-xs btn-danger">Borrar Cuenta</button>';
 		$('#botones').html(sarta);				 
 
 		sarta = '<span><strong style="color:orange;">** Cambios descartados **</strong></span>';  // Mensaje de error
 		$('#msg-error').html(sarta);		
 
 		$('.editable').each(function() {$(this).attr('readonly', true);});
+		$('.editable').each(function() {$(this).attr('disabled', true);});
 		$('#nombreusuario').val(onombreusuario);
 		$('#email').val(oemail);
 		$('#celular').val(ocelular);
 		$('#telefono').val(otelefono);
 		$('#tipodcto').val(otipodcto);
 		$('#nrodcto').val(onrodcto);
+		$('#ultimadireccion').val(oultimadireccion);
 	});
 
 	//---------------------------------------------------------Boton GUARDAR
 	$('.container').on('click','#btn-guardar-usuario',function(event){
 		sarta = '<span></span>'; $('#msg-error').html(sarta);    // Limpia mensaje de error		
 
-		sarta = '<div class="col-md-3 col-md-offset-9 text-center">'+
-				'	<button type="button" id="btn-editar-usuario" class="btn btn-xs btn-info">Editar Información</button>'+
-				' </div>';
+		sarta = '<br><button type="button" id="btn-editar-usuario" class="btn btn-xs btn-info">Editar Información</button>'+
+				' <button type="button" id="btn-borrar-usuario" class="btn btn-xs btn-danger">Borrar Cuenta</button>';
 		$('#botones').html(sarta);				 
+
 		$('.editable').each(function() {$(this).attr('readonly', true);});
 		rta = guardar_usuario(function(rta){ 
 			if(!rta) {
@@ -274,6 +318,7 @@ $(document).ready(function() {
 
 	//---------------------------------------------------------Boton BORRAR
 	$('.container').on('click','#btn-borrar-usuario',function(event){
+		sarta = '<span></span>'; $('#msg-error').html(sarta);    // Limpia mensaje de error		
 		rta = confirm("presione ACEPTAR para confirmar ELIMINAR el usuario, o CANCEL para no borrar");
 		if (rta) {
 			rta1 = eliminar_usuario(function(rta){
@@ -322,11 +367,15 @@ $(document).ready(function() {
 
 	//-------------------------------------------------ELIMINAR
 	$('.container').on('click','.btn-eliminar',function(event){
+		sid  		= $(event.target).parent().parent().parent().find('.salid').text();
 		rta = confirm("presione ACEPTAR para confirmar borrado, o CANCEL para no borrar");
 		if (rta) {
 			rta1 = eliminar(function(rta){
 			   if(rta) {
 					$(event.target).parent().parent().parent().remove();
+					location.reload();
+					sarta = '<span><strong style="color:orange;">** Dirección Borrada OK **</strong></span>';  // Mensaje de error
+					$('#msg-error').html(sarta);		
 				} else {
 					$(event.target).parent().parent().parent().find('.btn-eliminar').attr('disabled', true); 
 				};
@@ -370,6 +419,7 @@ $(document).ready(function() {
 		$('.btn-mostrable').each(function() {$(this).attr('disabled', false);});
 		rta = crear( function(rta){
 			if(rta) {
+				location.reload();
 				$(event.target).parent().parent().parent().find('.mostrable').show();
 				$(event.target).parent().parent().parent().find('.editable').hide();
 			} else {
@@ -559,7 +609,7 @@ function guardar_usuario (callback) {
 	    type: "POST",
 	    data: {	idusuario : <?php print $usuario->id;?>,
 	    		nombre : $('#nombreusuario').val(), email : $('#email').val(), celular : $('#celular').val(), telefono : $('#telefono').val(),
-	    		tipodcto : $('#tipodcto').val(), nrodcto : $('#nrodcto').val()} })
+	    		tipodcto : $('#tipodcto').val(), nrodcto : $('#nrodcto').val(), ultimadireccion : $('#ultimadireccion').val()} })
 
    .done(function(data) {                              
 		switch(data.res) {

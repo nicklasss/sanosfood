@@ -111,6 +111,10 @@ $(document).ready(function() {
 		})
 	});
 
+	$('.container').on('click','#btn-enviar-nuevo',function(event){
+		window.location= "<?php print base_url();?>web/registrarse";
+	});
+
 	$('.container').on('click','#btn-olvidoclave',function(event){
 		$('#btn-olvidoclave').attr('disabled', true);
 		$('.escondido').show(1000);
@@ -138,7 +142,7 @@ $(document).ready(function() {
           data: {usuario  : $("#usuario").val(), clave : $("#clave").val()} })
 		.done(function(data) {                                
 			if(data.res=="ok") {
-				window.location= "<?php print base_url();?>web/index";
+				window.location = "<?php print base_url();?>web/index";
 				callback(true);
 			} else {
 				sarta = '<strong style="color:red;">'+data.msj+'</strong>'; $('#msg-error').html(sarta); // Mensaje de error

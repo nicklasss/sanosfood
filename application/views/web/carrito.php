@@ -27,23 +27,42 @@
 						print '		</div>';
 						print '</tr>';
 					}
-					print '<tr>';
-					print '	<td colspan="2">';
+?>
+					<tr>
+						<td colspan="2">
+<?php						
 					if ($this->cart->total() == 0) {
 						print '		<button type="button" class="btn btn-xs btn-warning" id="btn-vaciar" disabled="disabled">Vaciar Carrito</button>';
 						print '		<button type="button" class="btn btn-xs btn-success" id="btn-comprar" disabled="disabled">Comprar</button>';
 					} else {
 						print '		<button type="button" class="btn btn-xs btn-warning" id="btn-vaciar">Vaciar Carrito</button>';
-						print '		<button type="button" class="btn btn-xs btn-success" id="btn-comprar">Comprar</button>';
+						if ($this->session->userdata("logeado") == true) {
+							print '		<button type="button" class="btn btn-xs btn-success" id="btn-comprar">Comprar</button>';
+						} else {
+						print '		<button type="button" class="btn btn-xs btn-success" id="btn-comprar" disabled="disabled">Comprar</button>';
+						}
 					}
-					print '	</td>';
-					print '	<td class="text-right"><h5>Total:</h5></td>';
-					print '	<td class="text-right">';
-					print '		<div id="valor-total">';
-					print '			<h4><strong>'.number_format($this->cart->total(),0,',','.').'</strong></h4>';
-					print '		</div>';
-					print '	</td>';
-					print '</tr>';
+
+
+
+?>					
+						</td>
+						<td class="text-right"><h5>Total:</h5></td>
+						<td class="text-right">
+							<div id="valor-total">
+								<h4><strong><?php print number_format($this->cart->total(),0,',','.')?></strong></h4>
+							</div>
+						</td>
+					</tr>
+
+<?php
+					if ($this->session->userdata("logeado") == false) {
+						print '	<tr>';
+						print '		<td colspan="4">';
+						print '			<h5>** Para comprar debe primero: <a href="'.base_url().'web/login">Iniciar Sesión</a> como usuario registrado, o <a href="'.base_url().'web/Registrarse">Registrarse</a>.</h5>';
+						print '		</td>';
+						print '	</tr>';
+					}
 ?>
 				</tbody>
 			</table>
@@ -56,26 +75,65 @@
 <!--------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
 
-	$(document).ready(function() {
-		$('#btn-vaciar').click(function(event){ 
-			window.location = "<?php print base_url();?>carrito/vaciarCarrito";
-		})
-
-		$('.input-cantidad').change(function(event){ 
-			rowid = $(event.target).attr("data-id"); 
-			cantidad = $('#id'+rowid).val();
-			rta = actualizarCarrito( rowid, cantidad, function(rta){});
-		})
+$(document).ready(function() {
+	$('#btn-vaciar').click(function(event){ 
+		window.location = "<?php print base_url();?>carrito/vaciarCarrito";
 	})
 
+	$('.input-cantidad').change(function(event){ 
+		rowid = $(event.target).attr("data-id"); 
+		cantidad = $('#id'+rowid).val();
+		rta = actualizarcarrito( rowid, cantidad, function(rta){});
+	})
+
+	$('#btn-comprar').click(function(event){ 
+//		rta = comprarcarrito( function(rta){});
+		window.location = "<?php print base_url();?>web/comprar";
+	})
+
+
+})
+
 //----------------------------------------------------------------------------------funcion guardar
-function actualizarCarrito(rowid, cantidad, callback) {
+function actualizarcarrito(rowid, cantidad, callback) {
 	$.ajax({                                              
 	  url: "<?php print base_url();?>carrito/actualizarCarrito",
 	  context: document.body,
 	  dataType: "json",
 	  type: "POST",
 	  data: { rowid : rowid, cantidad : cantidad }})
+	.done(function(data) {                              
+		if(data.res=="ok") {
+			// actualiza el valor del item cambiado
+			sarta = '<h5><strong>'+data.vlritem+'</strong></h5>';
+			$("#valor-item"+rowid).html(sarta); 
+			
+			// actualiza el valor total de la compra
+			sarta = '<h4><strong>'+data.vlrtotal+'</strong></h4>';
+			$("#valor-total").html(sarta); 
+			
+			// actualiza el carrito de la barra de navegacion
+			// si el item bajo a cero recarga la pagina para desaparecerlo
+			sarta = ' '+data.canttotal;     
+			$("#cantcart").html(sarta); 
+			if (data.canttotal == 0) { window.location="<?php print base_url();?>web/index"; }
+			else { if (cantidad == 0) { location.reload(); }}
+
+			callback(true);
+		}
+		else {alert(data.msj);callback(false);}
+	  })
+	.error(function(){alert('No hay conexion');callback(false);})
+}
+
+//----------------------------------------------------------------------------------funcion guardar
+function comprarcarrito(callback) {
+	$.ajax({                                              
+	  url: "<?php print base_url();?>carrito/comprarCarrito",
+	  context: document.body,
+	  dataType: "json",
+	  type: "POST",
+	  data: {}})
 	.done(function(data) {                              
 		if(data.res=="ok") {
 			// actualiza el valor del item cambiado

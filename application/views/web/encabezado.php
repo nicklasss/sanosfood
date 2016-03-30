@@ -65,7 +65,7 @@
 	        <div class="collapse navbar-collapse">
 	        	<ul class="nav navbar-nav navbar-right">
 					<?php
-					if ($this->session->userdata("usuario") <> "") {
+					if ($this->session->userdata("logeado") == true) {
 						print '
 			            <li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><strong><span class="glyphicon glyphicon-user"></span> '.$this->session->userdata("usuario").'</strong></a>
