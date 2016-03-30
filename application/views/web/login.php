@@ -79,7 +79,7 @@
 
 -->
 										<div class="form-group text-center">
-											<a href="#"><strong>¿Olvidaste la Contraseña?</strong></a>
+											<a href="olvidoclave"><strong>¿Olvidaste la Contraseña?</strong></a>
 										</div>
 
 

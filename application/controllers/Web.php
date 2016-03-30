@@ -58,6 +58,17 @@ public function encriptarclaves() {
 		$this->load->view('web/piedepagina');
 	}
 
+//---------------------------------------------------------Logout
+	public function olvidoclave() {
+		if($this->session->userdata('logeado')){
+			redirect('','refresh');
+			exit();
+		}
+		$this->load->view('web/encabezado');
+		$this->load->view('web/olvidoclave', FALSE); 
+		$this->load->view('web/piedepagina');
+	}
+
 //---------------------------------------------------------Registrarse
 	public function registrarse() {
 		if($this->session->userdata('logeado')){
