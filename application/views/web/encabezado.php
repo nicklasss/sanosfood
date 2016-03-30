@@ -59,7 +59,7 @@
 	                <span class="icon-bar"></span>
 	            </button>
 	            <div class="navbar-brand logo-menu">
-	            	<a href="<?= base_url();?>"><img src="http://sanosfoods.com/images/20.jpg" height="35px"/></a>
+	            	<a href="<?= base_url();?>"><img src="http://sanosfoods.com/images/20.jpg" height="30"/></a>
 	            </div>
 	        </div>
 	        <div class="collapse navbar-collapse">
@@ -123,11 +123,11 @@
                     <li class="divider-vertical"></li>
                     <li><a href="<?= base_url();?>web/productoscaracteristicas">Características</a></li>
                     <li class="divider-vertical"></li>
-                    <li><a href="#contact">it3d</a></li>
+<!--                    <li><a href="#contact">it3d</a></li>
                     <li class="divider-vertical"></li>
                     <li><a href="#contact">it4d</a></li>
                     <li class="divider-vertical"></li>
-
+-->
                 </ul>
             </div>
         </div>

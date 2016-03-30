@@ -272,7 +272,7 @@ body{
 }
 
 .navbar-cats{
-	margin-bottom: 10px !important;
+	margin-bottom: 0px !important;
 }
 
 .input-group-addon.success {
@@ -286,6 +286,10 @@ body{
 .navbar-nav>li>a {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
+}
+
+.navbar-brand{
+  padding: 10px !important;
 }
 
 span.asterisco {

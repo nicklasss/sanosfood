@@ -4,16 +4,15 @@
 		<div class="col-md-5 col-md-offset-3">
 			<div class="panel panel-default">
 				<div class="panel-heading text-center">
-					<strong>Registro (Crear una cuenta)</strong>
+					<strong><h3>Registro (Crear una cuenta)</h3></strong>
 				</div>
 				<div class="panel-body">
 					<form role="form">
 						<fieldset>
 							<div class="row">
 								<div class="col-sm-12 col-md-10  col-md-offset-1 ">
-									<div class="form-group">
+<!--									<div class="form-group">
 										<div class="input-group">
-
 											<span class="input-group-addon">
 												<i class="glyphicon glyphicon-user"></i>
 											</span><span>Nombre del Usuario (email)</span>
@@ -36,6 +35,40 @@
 											<strong><input class="form-control" placeholder="Redigite la Contraseña" id="clave2" type="password" value=""/></strong>
 										</div>
 									</div>
+-->
+
+
+										<div class="form-group">
+											<label>Nombre del Usuario (email)</label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-user"></i>
+												</span> 
+												<input class="form-control" placeholder="Usuario" id="usuario" type="text" autofocus>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label>Contraseña</label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-lock"></i>
+												</span>
+												<input class="form-control" placeholder="Contraseña" id="clave1" type="password" value="">
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label>Redigite la contraseña</label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-lock"></i>
+												</span>
+												<input class="form-control" placeholder="Contraseña" id="clave2" type="password" value="">
+											</div>
+										</div>
+
+
 
 									<div class="form-group">
 										<div class="input-group">

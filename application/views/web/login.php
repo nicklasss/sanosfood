@@ -5,14 +5,14 @@
 			<div class="col-md-5">
 				<div class="panel panel-default">
 					<div class="panel-heading text-center">
-						<strong>Clientes Registrados</strong>
+						<strong><h4>Usuarios registrados</h4></strong>
 					</div>
 					<div class="panel-body">
 						<form role="form">
 							<fieldset>
 								<div class="row">
 									<div class="col-sm-12 col-md-10  col-md-offset-1 ">
-										<div class="form-group">
+<!--										<div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-user"></i>
@@ -20,6 +20,7 @@
 												<strong><input class="form-control" placeholder="Usuario" id="usuario" type="email" autofocus/></strong>
 											</div>
 										</div>
+
 										<div class="form-group">
 											<div class="input-group">
 												<span class="input-group-addon">
@@ -29,6 +30,40 @@
 											</div>
 										</div>
 
+-->
+										<div class="form-group">
+											<label>Nombre del Usuario (email)</label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-user"></i>
+												</span> 
+												<input class="form-control" placeholder="Usuario" id="usuario" type="text" autofocus>
+											</div>
+										</div>
+
+
+
+
+
+
+										<div class="form-group">
+											<label>Contraseña</label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="glyphicon glyphicon-lock"></i>
+												</span>
+												<input class="form-control" placeholder="Contraseña" id="clave" type="password" value="">
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
 										<!-- - - - - - - Campos para mensaje de Error -->
 										<div class="form-group text-center" id="msg-error"><div class="input-group"><span> </span></div></div>
 										<!-- - - - - - - - - - - - - - - - - - - - - -->
@@ -36,10 +71,16 @@
 										<div class="form-group">
 											<button id="btn-enviar-login" type="button" class="btn btn-lg btn-primary btn-block">Iniciar Sesión</button>
 										</div>
-										<div class="form-group text-right">
+
+
+<!--										<div class="form-group text-right">
 											<button id="btn-olvidoclave" type="button" class="btn btn-sm btn-info">Olvido la Contraseña ?</button>
 										</div>
 
+-->
+										<div class="form-group text-center">
+											<a href="#"><strong>¿Olvidaste la Contraseña?</strong></a>
+										</div>
 
 
 
@@ -53,21 +94,21 @@
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading text-center">
-						<strong>Crear una cuenta</strong>
+						<strong><h4>Crear una cuenta</h4></strong>
 					</div>
 					<div class="panel-body">
 						<span>
-							Al crear una cuenta en nuestra tienda, podrá realizar el proceso de compra más rápidamente, 
-							indicar una dirección de envío, ver y hacer un seguimiento de sus Pedidos y mucho más.
+							Al crear una cuenta en nuestra tienda, podrás realizar el proceso de compra más rápidamente, 
+							indicar una dirección de envío, ver y hacer un seguimiento de tus pedidos y mucho más.
 						</span> 
 						<div class="form-group text-right">
-							<button id="btn-enviar-nuevo" type="button" class="btn btn-xs btn-info">Registrarse (Crear una cuenta)</button>
+							<button id="btn-enviar-nuevo" type="button" class="btn btn-info">Registrate</button>
 						</div>
 
 					</div>
                 </div>
 
-
+<!--
 				<div class="panel panel-default escondido">
 					<div class="panel-body">
 						<span>
@@ -81,7 +122,7 @@
 
 					</div>
                 </div>
-
+-->
 
 			</div>
 		</div>
@@ -115,7 +156,7 @@ $(document).ready(function() {
 		window.location= "<?php print base_url();?>web/registrarse";
 	});
 
-	$('.container').on('click','#btn-olvidoclave',function(event){
+/*	$('.container').on('click','#btn-olvidoclave',function(event){
 		$('#btn-olvidoclave').attr('disabled', true);
 		$('.escondido').show(1000);
 	});
@@ -129,7 +170,7 @@ $(document).ready(function() {
 		$('#btn-olvidoclave').attr('disabled', false);
 		$('.escondido').hide(1000);
 	});
-
+*/
 });
             
 //-- Funcion enviar datos del misionero al servidor al misioneros/crear.php quien los recibe
