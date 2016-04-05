@@ -10,6 +10,13 @@ class Estadospedidos_model extends CI_Model {
     	return $query->result();
     }	
     
+    function traerid($nombre = null){
+        $this->db->select('id');
+        $this->db->where('nombre', $nombre);
+        $idestado = $this->db->get('estadospedidos', 1, 0)->row()->id;
+        return $idestado;
+    }   
+
 	function editar($id = NULL, $atributo = NULL, $valor = NULL){
          if($id != NULL AND $atributo != NULL AND $valor != NULL){
             if($atributo =="nombre"){

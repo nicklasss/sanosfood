@@ -3,7 +3,7 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-4">
 			<label>Nombre del Usuario</label>
-			<input class="form-control input-lg" readonly value="<?php print $usuario->nombres." ".$usuario->apellidos;?>"/>
+			<input class="form-control input-lg" readonly value="<?php print $usuario->nombre;?>"/>
 		</div>
 		<div class="col-md-1">
 			<label>Dcto</label>
@@ -35,7 +35,7 @@
 		</div>
 		<div class="col-md-4">
 			<label>Dirección</label>
-			<input class="form-control" readonly value="<?php print $usuario->direccion;?>"/>
+			<input class="form-control" readonly value="<?php print $usuario->ultima_direccion;?>"/>
 		</div>
 	</div>
 
@@ -43,19 +43,19 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-2">
 			<label>Barrio</label>
-			<input class="form-control" readonly value="<?php print $usuario->barrio;?>"/>
+			<input class="form-control" readonly value="<?php print $usuario->ultima_direccion;?>"/>
 		</div>
 		<div class="col-md-2">
 			<label>Ciudad</label>
-			<input class="form-control" readonly value="<?php print $usuario->ciudad;?>"/>
+			<input class="form-control" readonly value="<?php print $usuario->ultima_direccion;?>"/>
 		</div>
 		<div class="col-md-3">
 			<label>Región</label>
-			<input class="form-control" readonly value="<?php print $usuario->region;?>"/>
+			<input class="form-control" readonly value="<?php print $usuario->ultima_direccion;?>"/>
 		</div>
 		<div class="col-md-3">
 			<label>País</label>
-			<input class="form-control" readonly value="<?php print $usuario->pais;?>"/>
+			<input class="form-control" readonly value="<?php print $usuario->ultima_direccion;?>"/>
 		</div>
 	</div>
 
@@ -80,7 +80,7 @@ if (isset($usuario->pedidos)) {
 		print '<tr role="row">';
 		print '<td>'.$pedido->id.'</td>';
 		print '<td><a href="../pedido/'.$pedido->id.'">'.$pedido->fecha.'</a></td>';
-		print '<td>'.$pedido->nombreestado.'</td>';
+		print '<td>'.$pedido->estado.'</td>';
 		print '</tr>';
 	};
 }

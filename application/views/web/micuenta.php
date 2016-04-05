@@ -2,13 +2,11 @@
 <div class="container">
 <div class="row">
 	<div class="col-md-6">
-		<h2>Información del Usuario</h2>
+		<h3>Información Básica del Usuario</h3>
 	</div>
 	<div class="col-md-6 text-right" id="msg-error"></div>
-
-
-
 </div>
+
 <div class="row">
 	<form>
 		<div class="col-md-4">
@@ -62,7 +60,7 @@
 		<div class="col-md-4">
 			<div class="row">
 				<div class="col-md-12">
-					<span class="control-label text-right">Última dirección de envio</span>
+					<span class="control-label text-right"><strong><i>Dirección de envio (escoja una)</i></strong></span>
 					<strong><select class="form-control editable" id="ultimadireccion"disabled="enabled">
 				<?php	if ($usuario->ultima_direccion == null) {
 							print '<option> </option>';}
@@ -75,32 +73,31 @@
 					</select></strong>
 				</div>
 			</div>
-
-
-
-
-
-
-
-
-
 			<div class="row">
-
 				<div class="col-md-12 text-right" id="botones">
 					<br><button type="button" id="btn-editar-usuario" class="btn btn-xs btn-info">Editar Información</button>
 					<button type="button" id="btn-borrar-usuario" class="btn btn-xs btn-danger">Borrar Cuenta</button>
 				</div>
 			</div>
 		</div>
-
-
-
 	</form>
 </div>
 <br>
 <div class="row">
+	<div class="col-md-8">
+		<div><h3>Direcciones de envío</h3></div>
+	</div>
+<?php
+	if ($this->session->userdata('comprando') and $this->cart->total_items() > 0) {
+		print '	<div class="col-md-4 text-right"> 
+					<h4><strong><a href="javascript:void(0)" id="continuar">¿Continuar COMPRA?</a></strong></h4>
+				</div>';
+		}		
+?>
+</div>	
+
+<div class="row">
 	<div class="col-md-12">
-		<div><h2>Direcciones de envio</h2></div>
 		<div class="panel panel-default">
 			<table class="table table-condensed table-striped table-responsive">
 				<thead>
@@ -115,7 +112,6 @@
 				</tr role="row">
 				</thead>
 				<tbody>
-
 <?php
 				foreach ($direcciones as $direccion) {
 					print '
@@ -141,7 +137,7 @@
 								<input type="text" class="form-control entdireccion" value="'.$direccion->direccion.'"></input>
 							</div>
 							<div class="mostrable">
-								<h5 class="saldireccion mostrable" value="'.$direccion->direccion.'">'.$direccion->direccion.'</h5>
+								<h5 class="saldireccion mostrable">'.$direccion->direccion.'</h5>
 							</div>
 						</td>
 						<td>
@@ -149,7 +145,7 @@
 								<input type="text" class="form-control entbarrio" value="'.$direccion->barrio.'"></input>
 							</div>
 							<div class="mostrable">
-								<h5 class="salbarrio mostrable" value="'.$direccion->barrio.'">'.$direccion->barrio.'</h5>
+								<h5 class="salbarrio mostrable">'.$direccion->barrio.'</h5>
 							</div>
 						</td>
 						<td>
@@ -157,7 +153,7 @@
 								<input type="text" class="form-control entciudad" value="'.$direccion->ciudad.'"></input>
 							</div>
 							<div class="mostrable">
-								<h5 class="salciudad mostrable" value="'.$direccion->ciudad.'">'.$direccion->ciudad.'</h5>
+								<h5 class="salciudad mostrable">'.$direccion->ciudad.'</h5>
 							</div>
 						</td>
 						<td>
@@ -165,7 +161,7 @@
 								<input type="text" class="form-control entregion" value="'.$direccion->region.'"></input>
 							</div>
 							<div class="mostrable">
-								<h5 class="salregion mostrable" value="'.$direccion->region.'">'.$direccion->region.'</h5>
+								<h5 class="salregion mostrable">'.$direccion->region.'</h5>
 							</div>
 						</td>
 						<td>
@@ -173,7 +169,7 @@
 								<input type="text" class="form-control entpais" value="'.$direccion->pais.'"></input>
 							</div>
 							<div class="mostrable">
-								<h5 class="salpais mostrable" value="'.$direccion->pais.'">'.$direccion->pais.'</h5>
+								<h5 class="salpais mostrable">'.$direccion->pais.'</h5>
 							</div>
 						</td>
 						<td width="15%">
@@ -189,7 +185,6 @@
 					</tr>';
 				}
 ?>
-
 					<tr id="ultima">
 						<td>
 							<div>
@@ -245,10 +240,19 @@
 </div><!-- Container-->
 
 
-<!--=================================================================================================================-->
+<!---------------------------------------------------------------------------------------------------------------->
 <script type="text/javascript">
 
 $(document).ready(function() { 
+
+    $(".container").on('click','#continuar',function(e){
+		alert("va al proceso de pago y continua creando el pedido en la BD");
+		rta = crearpedido(function(rta){ 
+			if(rta) {
+			}
+		})
+
+    });
 
 //-------------------------------------------------------------Manejo de botones para USUARIOS
 	//---------------------------------------------------------Boton EDITAR
@@ -312,6 +316,7 @@ $(document).ready(function() {
 				$('#telefono').val(otelefono);
 				$('#tipodcto').val(otipodcto);
 				$('#nrodcto').val(onrodcto);
+				$('#ultimadireccion').val(oultimadireccion);
 			}
 		})
 	});
@@ -321,7 +326,7 @@ $(document).ready(function() {
 		sarta = '<span></span>'; $('#msg-error').html(sarta);    // Limpia mensaje de error		
 		rta = confirm("presione ACEPTAR para confirmar ELIMINAR el usuario, o CANCEL para no borrar");
 		if (rta) {
-			rta1 = eliminar_usuario(function(rta){
+			rta1 = eliminarpedido(function(rta){
 				if(rta) {
 				};
 			});
@@ -454,12 +459,16 @@ $(document).ready(function() {
 		   eciudad !== sciudad || eregion !== sregion || epais !== spais) {
 			rta = guardar(function(rta){
 				if (rta) {
+					if(enombre !== snombre) {
+						location.reload();
+					} else {
 					$(event.target).parent().parent().parent().find('.salnombre').text(enombre);		
 					$(event.target).parent().parent().parent().find('.saldireccion').text(edireccion);		
 					$(event.target).parent().parent().parent().find('.salbarrio').text(ebarrio);		
 					$(event.target).parent().parent().parent().find('.salciudad').text(eciudad);		
 					$(event.target).parent().parent().parent().find('.salregion').text(eregion);		
-					$(event.target).parent().parent().parent().find('.salpais').text(epais);		
+					$(event.target).parent().parent().parent().find('.salpais').text(epais);
+					}
 				}
 			});
 		};
@@ -536,50 +545,50 @@ function crear (callback) {
 				'	</td>'+
 				'	<td>'+
 				'    	<div class="editable escondido">'+
-				'			<input type="text" class="form-control entnombre" value="'+ enombre +'"/></input>'+
+				'			<input type="text" class="form-control entnombre" value="'+enombre+'"/></input>'+
 				'    	</div>'+
 				'    	<div class="mostrable">'+
-				'			<h5 class="salnombre mostrable" value="'+ enombre +'"><strong>'+ enombre +'</strong></h5>'+
+				'			<h5 class="salnombre mostrable"><strong>'+enombre+'</strong></h5>'+
 				'    	</div>'+
 				'	</td>'+
 				' 	<td>'+
 				'    	<div class="editable escondido">'+
-				'			<input type="text" class="form-control entdireccion" value="'+ edireccion +'"></input>'+
+				'			<input type="text" class="form-control entdireccion" value="'+edireccion+'"></input>'+
 				'    	</div>'+
 				'    	<div class="mostrable">'+
-				'			<h5 class="saldireccion mostrable" value="'+ edireccion +'">'+ edireccion +'</h5>'+
+				'			<h5 class="saldireccion mostrable">'+edireccion+'</h5>'+
 				'    	</div>'+
 				'	</td>'+
 				' 	<td>'+
 				'    	<div class="editable escondido">'+
-				'			<input type="text" class="form-control entbarrio" value="'+ ebarrio +'"></input>'+
+				'			<input type="text" class="form-control entbarrio" value="'+ebarrio+'"></input>'+
 				'    	</div>'+
 				'    	<div class="mostrable">'+
-				'			<h5 class="salbarrio mostrable" value="'+ ebarrio +'">'+ ebarrio +'</h5>'+
+				'			<h5 class="salbarrio mostrable">'+ebarrio+'</h5>'+
 				'    	</div>'+
 				'	</td>'+
 				' 	<td>'+
 				'    	<div class="editable escondido">'+
-				'			<input type="text" class="form-control entciudad" value="'+ eciudad +'"></input>'+
+				'			<input type="text" class="form-control entciudad" value="'+eciudad+'"></input>'+
 				'    	</div>'+
 				'    	<div class="mostrable">'+
-				'			<h5 class="salciudad mostrable" value="'+ eciudad +'">'+ eciudad +'</h5>'+
+				'			<h5 class="salciudad mostrable">'+eciudad+'</h5>'+
 				'    	</div>'+
 				'	</td>'+
 				' 	<td>'+
 				'    	<div class="editable escondido">'+
-				'			<input type="text" class="form-control entregion" value="'+ eregion +'"></input>'+
+				'			<input type="text" class="form-control entregion" value="'+eregion+'"></input>'+
 				'    	</div>'+
 				'    	<div class="mostrable">'+
-				'			<h5 class="salregion mostrable" value="'+ eregion +'">'+ eregion +'</h5>'+
+				'			<h5 class="salregion mostrable">'+eregion+'</h5>'+
 				'    	</div>'+
 				'	</td>'+
 				' 	<td>'+
 				'    	<div class="editable escondido">'+
-				'			<input type="text" class="form-control entpais" value="'+ epais +'"></input>'+
+				'			<input type="text" class="form-control entpais" value="'+epais+'"></input>'+
 				'    	</div>'+
 				'    	<div class="mostrable">'+
-				'			<h5 class="salpais mostrable" value="'+ epais +'">'+ epais +'</h5>'+
+				'			<h5 class="salpais mostrable">'+epais+'</h5>'+
 				'    	</div>'+
 				'	</td>'+
 				'	<td>'+
@@ -595,6 +604,34 @@ function crear (callback) {
 				'</tr>';
 			$("#ultima").before(sarta);
 		}
+		else {
+			sarta = '<span><strong style="color:red;">'+data.msj+'</strong></span>';  // Mensaje de error
+			$('#msg-error').html(sarta);		
+			callback(false);
+		}
+	})
+	.error(function(){
+		sarta = '<span><strong style="color:red;">== NO HAY CONEXION ==</strong></span>';  // Mensaje de error
+		$('#msg-error').html(sarta);		
+		callback(false);
+	})
+}
+
+//----------------------------------------------------------------------------------funcion crearpedido
+function crearpedido (callback) {
+	$.ajax({                                              
+		url: "<?php print base_url();?>pedido/crear",
+		context: document.body,
+		dataType: "json",
+		type: "POST",
+		data: {ultimadireccion : $('#ultimadireccion').val() } })
+	.done(function(data) {                               
+		if(data.res == "ok") {
+
+			window.location="<?php print base_url();?>web/index"; 
+
+
+			callback(true)}
 		else {
 			sarta = '<span><strong style="color:red;">'+data.msj+'</strong></span>';  // Mensaje de error
 			$('#msg-error').html(sarta);		

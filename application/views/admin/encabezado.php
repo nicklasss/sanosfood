@@ -80,7 +80,9 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
                 
                   <?php
                 }
+
                 ?>
+
                 <li class="divider"></li>
                 <li><a href="<?php print base_url().'admin/pedidos/Todos';?>">Todos</a></li>
               </ul>

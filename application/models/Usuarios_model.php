@@ -104,6 +104,7 @@ class Usuarios_model extends CI_Model {
         $this->load->helper('security');
         if (verificar($clave, $row->clave)) {
             $this->session->set_userdata('logeado',true);
+            $this->session->set_userdata('comprando',false);
             $this->session->set_userdata('idusuario',$row->id);
             $this->session->set_userdata('usuario',$usuario);
             $data['res'] = 'ok';
@@ -116,25 +117,24 @@ class Usuarios_model extends CI_Model {
 
 //--------------------------------Crea un nuevo usuario web
     function crear($email = null, $usuario = null, $clave = null) {
-
         $this->db->where('usuario', $usuario);
         if($this->db->count_all_results('usuarios') > 0) {
             $data['res'] = 'bad';
-            $data['msj'] = 'Ya existe un Usuario con este nombre';
+            $data['msj'] = 'Ya existe un Usuario'.$usuario;
             return $data;
         }
 
         $this->load->helper('security');
-
-
-        $object = array('correo' => $email, 'usuario' => $usuario, 'clave' => encriptar($clave));
-
-        $this->db->insert('usuarios', $object);
+        $objecto = array('correo' => $email, 
+                         'usuario' => $usuario,
+                         'clave' => encriptar($clave));
+        $this->db->insert('usuarios', $objecto);
 
         $this->session->set_userdata('logeado',true);
         $this->session->set_userdata('usuario',$usuario);
 
         $data['res'] = 'ok';
+        $data['msj'] = '';
         return $data;
     }
 
@@ -166,7 +166,7 @@ class Usuarios_model extends CI_Model {
         if($query ==""){ $data['usuarios'] = array(); }
         
         if($query =="*") {
-            $query = $this->db->query(" SELECT id,nombres,apellidos,usuario,correo,ciudad
+            $query = $this->db->query(" SELECT id,nombre,usuario,correo,ultima_direccion
                                         FROM usuarios;");
             return $query->result();
         }
@@ -176,9 +176,9 @@ class Usuarios_model extends CI_Model {
         foreach ($palabras as $palabra) {
             $against .= $palabra.'* ';
         }
-        $query = $this->db->query(" SELECT id,nombres,apellidos,usuario,correo,ciudad
+        $query = $this->db->query(" SELECT id,nombre,usuario,correo,ultima_direccion
                                     FROM usuarios
-                                    WHERE MATCH(nombres,apellidos,usuario,correo,ciudad) AGAINST ('$against' IN BOOLEAN MODE);");
+                                    WHERE MATCH(nombre,usuario,correo,ultima_direccion) AGAINST ('$against' IN BOOLEAN MODE);");
         return $query->result();
     }
 }

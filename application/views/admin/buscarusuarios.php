@@ -24,9 +24,8 @@
 				<thead>
 				<tr role="row">
 				  <th width="25%">Nombre</th>
-				  <th width="25%">Usuario</th>
-				  <th width="20%">Email</th>
-				  <th width="25%">Ciudad</th>
+				  <th width="25%">Usuario (email)</th>
+				  <th width="25%">Dirección último envío</th>
 				</tr role="row">
 				</thead>
 				<tbody id="listausuarios">
@@ -38,6 +37,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() { 
+	$("#ecriterio").focus();
 
 	$('.container').on('click','.btn-buscar',function(event){
 		criterio = $('#ecriterio').val();
@@ -65,10 +65,9 @@ function buscar (valor, callback) {
       for (var i = 0; i < data.usuarios.length; i++) {
    		if(i == 0) { $("#listausuarios").html("<tr>"); }
          else { $("#listausuarios").append("<tr>"); }
-         $("#listausuarios").append("<td>"+data.usuarios[i].nombres+" "+data.usuarios[i].apellidos+"</td>");  
+         $("#listausuarios").append("<td>"+data.usuarios[i].nombre+"</td>");  
          $("#listausuarios").append("<td><a href='usuarios/"+data.usuarios[i].id+"'>"+data.usuarios[i].usuario+"</a></td>");  
-         $("#listausuarios").append("<td>"+data.usuarios[i].correo+"</td>");  
-         $("#listausuarios").append("<td>"+data.usuarios[i].ciudad+"</td>");  
+         $("#listausuarios").append("<td>"+data.usuarios[i].ultima_direccion+"</td>");  
          $("#listausuarios").append("</tr>");  
       } 
 	 }

@@ -6,11 +6,12 @@ class Pedidos_model extends CI_Model {
 	function __construct() { parent::__construct(); }
     
 //---------------------------------------------------------funcion crear
-    function crear($idusuario = null, $fecha = null, $idestadopedido = null, $direccion = null, $barrio = null, 
+    function crear($idusuario = null, $fecha = null, $idestadopedido = null, $ultimadireccion = null, $direccion = null, $barrio = null, 
                    $ciudad = null, $region = null, $pais = null) {
-        $objecto = array('id_usuario' => $idusuario,
+        $objecto = array('idusuario' => $idusuario,
                         'fecha' => $fecha, 
                         'idestadopedido' => $idestadopedido,
+                        'nom_direccion' => $ultimadireccion,
                         'direccion' => $direccion,
                         'barrio' => $barrio,
                         'ciudad' => $ciudad,
@@ -18,45 +19,34 @@ class Pedidos_model extends CI_Model {
                         'pais' => $pais);
 
         $this->db->insert('pedidos', $objecto);
-
-        $data['res'] = 'ok';
         $data['id'] = $this->db->insert_id();
+        $data['res'] = 'ok';
         return $data;
     }
 
+//--------------------------------borra un pedido por el id
+    function eliminar($id = null){
+        if($id == null){
+            return array('res'=>'bad','msj'=>'Error en la inserción.'); }
+        $this->db->where('id', $id);
+        $this->db->delete('pedidos');
+        return array('res'=>'ok');
+    }
 
 //---------------------------------------------------------funcion pedidosUsuario
     function pedidosUsuario($id = null){
     	$this->db->where('idusuario', $id);
     	$this->db->order_by('fecha', 'desc');
-    	$query = $this->db->get('pedidos', 50, 0);
-        foreach ($query->result() as $row) {
+    	$query = $this->db->get('pedidos');
+        foreach ($query->result() as $pedido) {
             $this->db->select('nombre');
-            $this->db->where('id', $row->idestadopedido);
-            $row->nombreestado = $this->db->get('estadospedidos', 1, 0)->row()->nombre;
+            $this->db->where('id', $pedido->idestadopedido);
+            $pedido->nombre = $this->db->get('estadospedidos', 1, 0)->row()->nombre;
         }
+
     	return $query->result();
     }
 
-//---------------------------------------------------------funcion web_itemsxPedido
-    function web_itemsxPedido($idpedido = null){
-        $this->db->where('id_pedido', $idpedido);
-//        $this->db->order_by('fecha', 'desc');
-        $query = $this->db->get('lineaspedidos');
-        foreach ($query->result() as $row) {
-            $this->db->select('nombre');
-            $this->db->where('id', $row->id_producto);
-            $row->nombreproducto = $this->db->get('productos', 1, 0)->row()->nombre;
-
-            $this->db->select('imagen');
-            $this->db->where('idproducto', $row->id_producto);
-            $row->imagenproducto = $this->db->get('imagenes', 1, 0)->row()->imagen;
-
-        }
-        $data['items'] = $query->result();
-        $data['res'] = "ok";
-        return $data;
-    }
 
 //---------------------------------------------------------funcion getPedido
     function getPedido($id = null){
@@ -66,11 +56,10 @@ class Pedidos_model extends CI_Model {
             show_404();
         }
         $pedido = $query->row();
-        $this->db->select('nombres,apellidos,usuario,correo,telefono,celular');
+        $this->db->select('nombre,usuario,correo,telefono,celular');
         $this->db->where('id', $pedido->idusuario);
         $usuario = $this->db->get('usuarios', 1, 0)->row();
-        $pedido->nombres = $usuario->nombres;
-        $pedido->apellidos = $usuario->apellidos;
+        $pedido->nombre = $usuario->nombre;
         $pedido->usuario = $usuario->usuario;
         $pedido->correo = $usuario->correo;
         $pedido->telefono = $usuario->telefono;
@@ -97,16 +86,17 @@ class Pedidos_model extends CI_Model {
         }
         if($estado != 'Todos'){
             $this->db->where('idestadopedido', $estado);
+//            $this->db->where('estado', $estado);
         }
         $this->db->order_by('id', 'desc');
         $query = $this->db->get('pedidos', 10, (($pag-1)*10));
         $resultado = array();
-        foreach ($query->result() as $row) {
-            $this->db->where('id', $row->idusuario);
+        foreach ($query->result() as $pedido) {
+            $this->db->where('id', $pedido->idusuario);
             $usuario = $this->db->get('usuarios', 1, 0)->row();
-            $row->usuario = $usuario->usuario;
-            $row->ciudad = $usuario->ciudad;
-            $resultado[] = $row;
+            $pedido->usuario = $usuario->usuario;
+//            $pedido->ciudad = $usuario->ciudad;
+            $resultado[] = $pedido;
         }
         return $resultado;
     }
@@ -115,12 +105,13 @@ class Pedidos_model extends CI_Model {
     function contarPedidos($estado = null){
         if($estado !='Todos'){
             $this->db->where('idestadopedido', $estado);
+//            $this->db->where('estado', $estado);
         }
         return $this->db->count_all_results('pedidos');
     }
     
 //---------------------------------------------------------funcion cambiarEstado
-    function cambiarEstado($id = null,$estado = null,$observacion =""){
+    function cambiarEstado($id = null, $estado = null, $observacion = ""){
         $this->db->where('id', $id);
         $query = $this->db->get('pedidos', 1, 0);
         if($query->num_rows()!=1){ return false; }

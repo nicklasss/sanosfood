@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-3">
 				<label>Nombre del Usuario</label>
-				<input class="form-control" readonly value="<?php print $pedido->nombres." ".$pedido->apellidos;?>"/>
+				<input class="form-control" readonly value="<?php print $pedido->nombre;?>"/>
 			</div>
 			<div class="col-md-2">
 				<label>Usuario</label>
@@ -103,8 +103,8 @@
 				<thead>
 				<tr role="row">
 				  <th width="50%">Producto</th>
-				  <th width="20%">Unidades</th>
-				  <th width="30%">Precio Unitario</th>
+				  <th width="20%" class="text-center">Unidades</th>
+				  <th width="30%" class="text-right">Precio Unitario</th>
 				</tr role="row">
 				</thead>
 				<tbody>
@@ -113,8 +113,8 @@ if (isset($pedido->lineas)) {
 	foreach ($pedido->lineas as $linea) {
 		print '<tr role="row">';
 		print '<td>'.$linea->nombre.'</td>';
-		print '<td>'.$linea->unidades.'</td>';
-		print '<td>'.number_format($linea->precio , 0, ",", ".").'</td>';
+		print '<td class="text-center">'.$linea->unidades.'</td>';
+		print '<td class="text-right">'.number_format($linea->precio , 0, ",", ".").'</td>';
 		print '</tr>';
 	};
 }

@@ -25,12 +25,10 @@
  </body>
 
 
-<!--------------------------------------------------------------------------------------------------------------------------> 
+<!--========================================================================================================--> 
 <script type="text/javascript">
 
-//-- garantiza que el siguiente Javascript se ejecuta despues de haberse cargado completamente la pagina
 $(document).ready(function() {
-
 
 	$('.container').on('click','#btn-enviar',function(event){
 		window.location= "index";

@@ -61,7 +61,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> <!-- panel-->
 	</div>		
 	<div class="col-md-7">
 		<h2 class="text-center">Pedidos</h2>
@@ -74,8 +74,13 @@
 				    print '	<div class="panel-heading" role="tab" id="heading'.$pedido->id.'">';
 				    print ' 	<h4 class="panel-title text-center">';
 				    print '			<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$pedido->id.'" aria-expanded="false" aria-controls="collapse'.$pedido->id.'">';
-				    print '				<small>Pedido de fecha: </small><strong>'.substr($pedido->fecha, 0,10).' '.$pedido->nombreestado.'</strong>';
+				    print '				<small>Pedido de fecha: </small><strong>'.substr($pedido->fecha, 0,10).' '.$pedido->nombre.'</strong>';
 				    print '			</a>';
+				    if ($pedido->nombre == EST_PENDIENTE) {	
+				    print '			<button type="button" class="btn btn-xs btn-success pagar" data-id="'.$pedido->id.'">Pagar</button>';
+				    print '			<button type="button" class="btn btn-xs btn-info carrito" data-id="'.$pedido->id.'">Volver al Carrito</button>';
+				    print '			<button type="button" class="btn btn-xs btn-danger eliminar" data-id="'.$pedido->id.'">Eliminar</button>';
+					}
 				    print '		</h4>';
 				    print '	</div>';
 				    print '	<div id="collapse'.$pedido->id.'" data-id="'.$pedido->id.'" data-cargado="false" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'.$pedido->id.'">';
@@ -103,6 +108,21 @@ $(document).ready(function() {
 		window.location="<?php print base_url();?>web/micuenta";
 	});
 
+	//---------------------------------------------------------Botones de PEDIDOS
+	$('.container').on('click','.pagar',function(event){
+			alert('pagar'+$(event.target).attr("data-id"));
+	});
+	$('.container').on('click','.carrito',function(event){
+			alert('carrito'+$(event.target).attr("data-id"));
+	});
+	$('.container').on('click','.eliminar',function(event){
+		rta = confirm("presione ACEPTAR para confirmar ELIMINAR el pedido, o CANCEL para no borrar");
+		if (rta) {
+			idpedido = $(event.target).attr("data-id")
+			rta1 = eliminarpedido(idpedido, function(rta){ });
+		}
+	});
+
 	//---------------------------------------------------------GUARDAR-EST
 	$('#accordion').on('show.bs.collapse', function (e) {
 		sarta = '<span></span>'; $('#msg-error').html(sarta);    // Limpia mensaje de error		
@@ -118,7 +138,7 @@ $(document).ready(function() {
 //----------------------------------------------------------------------------------funcion guardar-est
 function buscarItems (idpedido, callback) {
 	$.ajax({                                               // envio de los datos
-		url: "<?php print base_url();?>pedido/web_itemsxPedido",
+		url: "<?php print base_url();?>lineaspedidos/buscar_lineaspedido",
 	    context: document.body,
 	    dataType: "json",
 	    type: "POST",
@@ -133,13 +153,13 @@ function buscarItems (idpedido, callback) {
 							'<th class="text-center"> Cantidad </th>'+
 							'<th class="text-right"> Precio </th>'+
 						'</tr>';
-			for (var i = 0; i < data.items.length; i++) {
-				vlrpedido = vlrpedido + parseInt(data.items[i].precio);
+			for (var i = 0; i < data.lineas.length; i++) {
+				vlrpedido = vlrpedido + parseInt(data.lineas[i].precio);
 				sarta += '<tr>'+
-							 '<td><a href="<?php print base_url();?>web/producto/'+data.items[i].id+'"><img class="img-responsive img-pequenita" src="'+data.items[i].imagenproducto+'"/></a></td>'+
-							 '<td><a href="<?php print base_url();?>web/producto/'+data.items[i].id+'" class="linkproducto">'+data.items[i].nombreproducto+'</a></td>'+
-							 '<td class="text-center">'+ data.items[i].unidades+'</td>'+
-							 '<td class="text-right">'+formato_numero(data.items[i].precio)+'</td>'+
+							 '<td><a href="<?php print base_url();?>web/producto/'+data.lineas[i].id+'"><img class="img-responsive img-pequenita" src="'+data.lineas[i].imagenproducto+'"/></a></td>'+
+							 '<td><a href="<?php print base_url();?>web/producto/'+data.lineas[i].id+'" class="linkproducto">'+data.lineas[i].nombreproducto+'</a></td>'+
+							 '<td class="text-center">'+ data.lineas[i].unidades+'</td>'+
+							 '<td class="text-right">'+formato_numero(data.lineas[i].precio)+'</td>'+
 						 '</tr>';
 
 			};	
@@ -191,6 +211,30 @@ function guardar (callback) {
    	})
 }
 
+//----------------------------------------------------------------------------------funcion crearpedido
+function eliminarpedido (idpedido, callback) {
+	$.ajax({                                              
+		url: "<?php print base_url();?>pedido/eliminar",
+		context: document.body,
+		dataType: "json",
+		type: "POST",
+		data: {idpedido : idpedido} })
+	.done(function(data) {                               
+		if(data.res == "ok") {
+			location.reload();
+			callback(true)}
+		else {
+			sarta = '<span><strong style="color:red;">'+data.msj+'</strong></span>';  // Mensaje de error
+			$('#msg-error').html(sarta);		
+			callback(false);
+		}
+	})
+	.error(function(){
+		sarta = '<span><strong style="color:red;">== NO HAY CONEXION ==</strong></span>';  // Mensaje de error
+		$('#msg-error').html(sarta);		
+		callback(false);
+	})
+}
 
 //----------------------------------------------------------------------------------funcion formato_numero
 function formato_numero(texto) {

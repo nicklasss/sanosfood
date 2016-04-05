@@ -51,6 +51,15 @@ class Direcciones_model extends CI_Model {
         $query = $this->db->get('direcciones');
         return $query->result();
     }
+
+//--------------------------------Lista todos usuarios de usuarios
+    function buscarxusuarioxnombre($idusuario = null, $nombre = null){
+        $this->db->where('id_usuario', $idusuario);
+        $this->db->where('nombre', $nombre);
+        $query = $this->db->get('direcciones', 1, 0);
+
+       return $query->row();
+    }
 }
 
 /* End of file Caracteristicas_model.php */

@@ -44,6 +44,7 @@ public function encriptarclaves() {
 		$this->session->set_userdata('usuario',"");
 		$this->session->set_userdata('idusuario',"");
 		$this->session->set_userdata('logeado', FALSE);
+        $this->session->set_userdata('comprando',false);
 		redirect('','refresh');
 	}
 
@@ -99,6 +100,7 @@ public function encriptarclaves() {
 		$this->load->model('Direcciones_model');
 		$idusuario = $data['usuario']->id;
 		$data['direcciones'] = $this->Direcciones_model->direccionesUsuario( $idusuario );
+        $this->session->set_userdata('comprando',true);
 		$this->load->view('web/micuenta', $data, FALSE); 
 		$this->load->view('web/piedepagina');
 	}
@@ -146,6 +148,21 @@ public function encriptarclaves() {
 		$id = $data['usuario']->id;
 		$data['pedidos'] = $this->Pedidos_model->pedidosUsuario( $id );
 		$this->load->view('web/mispedidos', $data, FALSE); 
+		$this->load->view('web/piedepagina');
+	}
+
+//---------------------------------------------------------RECIBE CONFIRMACION PAGO
+	public function recepcionpago($idusuario = null, $idpedido = null, $valor = null) {
+		if($idusuario == null or $idpedido == null or $valor == null){
+print $idusuario.$idpedido.$valor;
+		 show_404(); }
+
+		$this->load->view('web/encabezado');
+		$this->load->model('Productos_model');
+		$data['producto'] = $this->Productos_model->producto($id);
+		$this->load->model('Caracteristicas_model');
+		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
+		$this->load->view('web/producto', $data, FALSE); 
 		$this->load->view('web/piedepagina');
 	}
 

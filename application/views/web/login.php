@@ -1,7 +1,6 @@
 <body>    
     <div class="container" style="margin-top:40px">
 		<div class="row">
-
 			<div class="col-md-5">
 				<div class="panel panel-default">
 					<div class="panel-heading text-center">
@@ -40,12 +39,6 @@
 												<input class="form-control" placeholder="Usuario" id="usuario" type="text" autofocus>
 											</div>
 										</div>
-
-
-
-
-
-
 										<div class="form-group">
 											<label>Contraseña</label>
 											<div class="input-group">
@@ -56,14 +49,6 @@
 											</div>
 										</div>
 
-
-
-
-
-
-
-
-
 										<!-- - - - - - - Campos para mensaje de Error -->
 										<div class="form-group text-center" id="msg-error"><div class="input-group"><span> </span></div></div>
 										<!-- - - - - - - - - - - - - - - - - - - - - -->
@@ -72,17 +57,13 @@
 											<button id="btn-enviar-login" type="button" class="btn btn-lg btn-primary btn-block">Iniciar Sesión</button>
 										</div>
 
-
 <!--										<div class="form-group text-right">
 											<button id="btn-olvidoclave" type="button" class="btn btn-sm btn-info">Olvido la Contraseña ?</button>
 										</div>
-
 -->
 										<div class="form-group text-center">
 											<a href="olvidoclave"><strong>¿Olvidaste la Contraseña?</strong></a>
 										</div>
-
-
 
 									</div>
 								</div>
@@ -191,8 +172,8 @@ $(document).ready(function() {
 			}
 		})          
 		.error(function(){
-				sarta = '<strong style="color:red;">** ERROR EN EL SERVIDOR **</strong>'; $('#msg-error').html(sarta); // Mensaje de error
-				callback(false);
+			sarta = '<strong style="color:red;">** ERROR EN EL SERVIDOR **</strong>'; $('#msg-error').html(sarta); // Mensaje de error
+			callback(false);
 		})  
     }
     

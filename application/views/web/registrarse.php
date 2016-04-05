@@ -44,7 +44,7 @@
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-user"></i>
 												</span> 
-												<input class="form-control" placeholder="Usuario" id="usuario" type="text" autofocus>
+												<input class="form-control" placeholder="Usuario" id="email" type="text" autofocus>
 											</div>
 										</div>
 
@@ -104,7 +104,6 @@
 		if ($("#clave1").val() !== $("#clave2").val())  { $('#mensaje').html('Las Contraseñas no coinciden'); $("#clave1").focus(); return false; } 
 		eemail = $("#email").val();
 		eclave = $("#clave1").val();
-
         $.ajax({                                               
           url: "<?php print base_url();?>usuario/crear",
           context: document.body,

@@ -31,13 +31,9 @@ class Usuario extends CI_Controller {
         $clave      = @$this->input->post('clave',TRUE);
 
  		$this->load->model('Usuarios_model');
-		$data = $this->Usuarios_model->crear($email,$usuario,$clave);
+		$data = $this->Usuarios_model->crear($email, $usuario, $clave);
 
-        if ($data['res'] == "bad") {
-            print json_encode(array('res'=>$data['res'],'msj'=>$data['msj']));
-        } else {
-            print json_encode(array('res'=>$data['res']));
-        }
+        print json_encode(array('res'=>$data['res'],'msj'=>$data['msj']));
     }
 
 //----------------------------------------------------------------------------------funcion crear
