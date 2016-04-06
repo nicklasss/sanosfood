@@ -37,7 +37,10 @@ foreach ($estadospedidos as $estado) {
 							<h5 class="saldescripcion">'.$estado->descripcion.'</h5>
 				    	</div>
 					</td>
-					<td width="15%">
+
+				</tr>';
+}
+/*					<td width="15%">
 				    	<div class="editable escondido">
 					  		<button type="button" class="btn btn-xs btn-success btn-guardar btn-editable" data-id="'.$estado->id.'">Guardar</button>
 					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar btn-editable">Cancelar</button>
@@ -47,8 +50,7 @@ foreach ($estadospedidos as $estado) {
 					   		<button type="button" class="btn btn-xs btn-danger btn-eliminar btn-mostrable" data-id="'.$estado->id.'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
 				    	</div>
 					</td>	
-				</tr>';
-}
+*/
 ?>
 
 				<tr id="ultima">
@@ -67,7 +69,7 @@ foreach ($estadospedidos as $estado) {
 							<textarea type="text" class="form-control entdescripcion">'.$estado->descripcion.'</textarea>
 				    	</div>
 					</td>
-					<td>
+<!--					<td>
 				    	<div class="editable escondido">
 					  		<button type="button" class="btn btn-xs btn-success btn-agregar btn-editable" data-id="'.$estado->id.'">Agregar</button>
 					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar btn-editable">Cancelar</button>
@@ -76,6 +78,7 @@ foreach ($estadospedidos as $estado) {
 					   		<button type="button" class="btn btn-xs btn-success text-center btn-nuevo btn-mostrable"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
 				    	</div>
 					</td>	
+-->
 				</tr>
 				</tbody>
 			</table> <!-- tabla--> 

@@ -6,7 +6,7 @@ class Estadospedidos_model extends CI_Model {
 
 //---------------------------------------------------------funcion listar
     function listar(){
-        $this->db->order_by('nombre', 'asc');
+        $this->db->order_by('nombre', 'desc');
     	$query = $this->db->get('estadospedidos');
     	return $query->result();
     }	

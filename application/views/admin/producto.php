@@ -5,26 +5,26 @@ var idproducto = <?php print $producto->id;?>;
 </script>
 
 
-<div class="panel panel-default">
+<div class="panel panel-warning">
 	<div class="panel-heading text-center"><h2>Información del Producto</h2></div>
 	<form class="form-horizontal form-contenedor">
 		<div class="row registro">
 			<div class="col-md-6">
-				<label>Nombre del Producto</label>
+				<span><strong>Nombre del Producto</strong></span>
 				<strong><input type="text" class="form-control editable" id="nombre" readonly value="<?php print $producto->nombre;?>"/></strong>
 			</div>
 			<div class="col-md-6">
-				<label>Ingredientes</label>
+				<span><strong>Ingredientes</strong></span>
 				<textarea type="text" class="form-control editable" id="ingredientes" readonly><?php print $producto->ingredientes;?></textarea>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
-				<label>Descripción</label>
+				<span><strong>Descripción</strong></span>
 				<textarea type="text" class="form-control editable" id="descripcion" readonly><?php print $producto->descripcion;?></textarea>
 			</div>
 			<div class="col-md-6">
-				<label>Descripción Corta</label>
+				<span><strong>Descripción Corta</strong></span>
 				<textarea type="text" class="form-control editable" id="descripcioncorta" readonly><?php print $producto->descripcioncorta;?></textarea>
 			</div>
 		</div>
@@ -34,28 +34,28 @@ var idproducto = <?php print $producto->id;?>;
 <div class="panel panel-default">
 	<form class="form-horizontal form-contenedor">
 		<div class="row registro">
-			<div class="col-md-1 col-md-offset-1">
-				<label>Peso</label>
-				<input type="text" class="form-control editable" id="peso" readonly value="<?php print $producto->peso;?>"/>
+			<div class="col-md-1 col-md-offset-1 text-center">
+				<span><strong>Peso</strong></span>
+				<input type="text" class="form-control editable text-center" id="peso" readonly value="<?php print $producto->peso;?>"/>
 			</div>
-			<div class="col-md-1">
-				<label>PesoNeto</label>
-				<input type="text" class="form-control editable" id="pesoneto" name="pesoneto" readonly value="<?php print $producto->pesoneto;?>"/>
+			<div class="col-md-1 text-center">
+				<span><strong>PesoNeto</strong></span>
+				<input type="text" class="form-control editable text-center" id="pesoneto" name="pesoneto" readonly value="<?php print $producto->pesoneto;?>"/>
 			</div>
-			<div class="col-md-1">
-				<label>Largo</label>
-				<input type="text" class="form-control editable" id="largo" readonly value="<?php print $producto->largo;?>"/>
+			<div class="col-md-1 text-center">
+				<span><strong>Largo</strong></span>
+				<input type="text" class="form-control editable text-center" id="largo" readonly value="<?php print $producto->largo;?>"/>
 			</div>
-			<div class="col-md-1">
-				<label>Ancho</label>
-				<input type="text" class="form-control editable" id="ancho" readonly value="<?php print $producto->ancho;?>"/>
+			<div class="col-md-1 text-center">
+				<span><strong>Ancho</strong></span>
+				<input type="text" class="form-control editable text-center" id="ancho" readonly value="<?php print $producto->ancho;?>"/>
 			</div>
-			<div class="col-md-1">
-				<label>Alto</label>
-				<input type="text" class="form-control editable" id="alto" readonly value="<?php print $producto->alto;?>"/>
+			<div class="col-md-1 text-center">
+				<span><strong>Alto</strong></span>
+				<input type="text" class="form-control editable text-center" id="alto" readonly value="<?php print $producto->alto;?>"/>
 			</div>
-			<div class="col-md-2">
-				<label>Marca</label>
+			<div class="col-md-2 text-center">
+				<span><strong>Marca</strong></span>
 				<select class="form-control editable" id="marca" disabled="disabled">
 					<?php foreach ($marcas as $marca) {
 						if ($marca->id == $producto->idmarca) {
@@ -65,12 +65,12 @@ var idproducto = <?php print $producto->id;?>;
 					}?>
 				</select>
 			</div>
-			<div class="col-md-1">
-				<label>Existencias</label>
+			<div class="col-md-1 text-center">
+				<span><strong>Existencias</strong></span>
 				<input type="text" class="form-control editable input-lg text-center" id="existencias" readonly value="<?php print $producto->existencias;?>"/>
 			</div>
-			<div class="col-md-2">
-				<label>Precio</label>
+			<div class="col-md-2 text-center">
+				<span><strong>Precio</strong></span>
 				<input type="text" class="form-control editable input-lg text-center" id="precio" readonly value="<?php print $producto->precio;?>"/>
 			</div>
 		</div>
@@ -81,7 +81,7 @@ var idproducto = <?php print $producto->id;?>;
 <!------------------------------------- edicion del campo CARACTERISTICAS --> 
 <div class="row registro">
 	<div class="col-md-4">
-        <div class="panel panel-default">
+        <div class="panel panel-warning">
 			<div class="panel-heading text-center"><h3>Características</h3></div>
 			<table class="table table-condensed table-striped">
 				<tbody>
@@ -161,7 +161,7 @@ foreach ($caracteristicas as $caracteristica) {
 
 <!----------------------------------- edicion del campo CATEGORIAS --> 
 	<div class="col-md-4">
-        <div class="panel panel-default">
+        <div class="panel panel-warning">
 			<div class="panel-heading text-center"><h3>Categorias</h3></div>
 			<table class="table table-condensed table-striped">
 				<tbody>
@@ -267,8 +267,8 @@ foreach ($categorias as $categoria) {
 
 <div class="row registro">
 	<div class="col-md-12">
-        <div class="panel panel-default">
-        	<div class="panel-heading text-center"><h4>Imágenes</h4></div>
+        <div class="panel panel-warning">
+        	<div class="panel-heading text-center"><h3>Imágenes</h3></div>
 <?php
 			$i = 0;
 			foreach ($producto->imagenes as $imagen) {
