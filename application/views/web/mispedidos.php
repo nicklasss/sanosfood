@@ -113,7 +113,11 @@ $(document).ready(function() {
 			alert('pagar'+$(event.target).attr("data-id"));
 	});
 	$('.container').on('click','.carrito',function(event){
-			alert('carrito'+$(event.target).attr("data-id"));
+		rta = confirm("presione ACEPTAR para en viar al Carrito el pedido, o CANCEL para dejar ahí");
+		if (rta) {
+			idpedido = $(event.target).attr("data-id")
+			rta1 = moveracarrito(idpedido, function(rta){ });
+		}
 	});
 	$('.container').on('click','.eliminar',function(event){
 		rta = confirm("presione ACEPTAR para confirmar ELIMINAR el pedido, o CANCEL para no borrar");
@@ -215,6 +219,31 @@ function guardar (callback) {
 function eliminarpedido (idpedido, callback) {
 	$.ajax({                                              
 		url: "<?php print base_url();?>pedido/eliminar",
+		context: document.body,
+		dataType: "json",
+		type: "POST",
+		data: {idpedido : idpedido} })
+	.done(function(data) {                               
+		if(data.res == "ok") {
+			location.reload();
+			callback(true)}
+		else {
+			sarta = '<span><strong style="color:red;">'+data.msj+'</strong></span>';  // Mensaje de error
+			$('#msg-error').html(sarta);		
+			callback(false);
+		}
+	})
+	.error(function(){
+		sarta = '<span><strong style="color:red;">== NO HAY CONEXION ==</strong></span>';  // Mensaje de error
+		$('#msg-error').html(sarta);		
+		callback(false);
+	})
+}
+
+//----------------------------------------------------------------------------------funcion crearpedido
+function moveracarrito (idpedido, callback) {
+	$.ajax({                                              
+		url: "<?php print base_url();?>pedido/moveracarrito",
 		context: document.body,
 		dataType: "json",
 		type: "POST",

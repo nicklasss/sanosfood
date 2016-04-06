@@ -83,7 +83,6 @@ $(document).ready(function() {
 	})
 
 	$('#btn-comprar').click(function(event){ 
-//		rta = comprarcarrito( function(rta){});
 		window.location = "<?php print base_url();?>web/comprar";
 	})
 })
@@ -96,38 +95,6 @@ function actualizarcarrito(rowid, cantidad, callback) {
 	  dataType: "json",
 	  type: "POST",
 	  data: { rowid : rowid, cantidad : cantidad }})
-	.done(function(data) {                              
-		if(data.res=="ok") {
-			// actualiza el valor del item cambiado
-			sarta = '<h5><strong>'+data.vlritem+'</strong></h5>';
-			$("#valor-item"+rowid).html(sarta); 
-			
-			// actualiza el valor total de la compra
-			sarta = '<h4><strong>'+data.vlrtotal+'</strong></h4>';
-			$("#valor-total").html(sarta); 
-			
-			// actualiza el carrito de la barra de navegacion
-			// si el item bajo a cero recarga la pagina para desaparecerlo
-			sarta = ' '+data.canttotal;     
-			$("#cantcart").html(sarta); 
-			if (data.canttotal == 0) { window.location="<?php print base_url();?>web/index"; }
-			else { if (cantidad == 0) { location.reload(); }}
-
-			callback(true);
-		}
-		else {alert(data.msj);callback(false);}
-	  })
-	.error(function(){alert('No hay conexion');callback(false);})
-}
-
-//----------------------------------------------------------------------------------funcion guardar
-function comprarcarrito(callback) {
-	$.ajax({                                              
-	  url: "<?php print base_url();?>carrito/comprarCarrito",
-	  context: document.body,
-	  dataType: "json",
-	  type: "POST",
-	  data: {}})
 	.done(function(data) {                              
 		if(data.res=="ok") {
 			// actualiza el valor del item cambiado

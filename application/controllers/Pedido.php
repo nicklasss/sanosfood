@@ -100,8 +100,51 @@ class Pedido extends CI_Controller {
 		$this->load->model('Log_pedidos_model');
 		$this->Log_pedidos_model->crear($idpedido, $idusuario, $fecha, EST_CANCELADO, 'Cancelado por el usuario');
 
-        print json_encode($data['resultado']);
+		print json_encode(array('res'=>'ok'));
 	}
+
+//----------------------------------------------------------------------------------funcion moveracarrito
+    public function moveracarrito(){
+        if(!$this->session->userdata('logeado')) {
+            $data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
+        }
+        
+        $idpedido = @$this->input->post('idpedido',TRUE);
+		$idusuario = $this->session->userdata("idusuario");
+		$fecha = date("Y-m-d H:i:s");
+
+		//-------------consigue las lineas del pedido y las graba en carrito
+        $this->load->model('Lineaspedidos_model');
+        $data = $this->Lineaspedidos_model->conseguirLineas($idpedido);
+        foreach($data['lineas'] as $linea) {
+			$data1 = array(
+				'id' 		=> $linea->id_producto,
+				'imagen' 	=> $linea->imagenproducto,
+				'name' 		=> $linea->nombreproducto,
+				'descripcioncorta' => $linea->descripcioncorta,
+				'qty' 		=> $linea->unidades,
+				'price' 	=> $linea->precio,
+			);
+			$this->cart->insert($data1); 
+	    }
+
+
+		//-------------borrar las lineas del pedido
+        $this->load->model('Lineaspedidos_model');
+        $data['resultado'] = $this->Lineaspedidos_model->eliminar($idpedido);
+
+		//-------------borrar el pedido
+        $this->load->model('Pedidos_model');
+        $data['resultado'] = $this->Pedidos_model->eliminar($idpedido);
+
+		//-------------crear el log de pedidos
+		$this->load->model('Log_pedidos_model');
+		$this->Log_pedidos_model->crear($idpedido, $idusuario, $fecha, EST_ACARRITO, 'Enviado al carrito por el usuario');
+
+		print json_encode(array('res'=>'ok'));
+
+	}
+
 }
 
 /* End of file Caracteristica.php */

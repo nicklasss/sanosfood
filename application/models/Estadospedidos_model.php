@@ -4,12 +4,14 @@ class Estadospedidos_model extends CI_Model {
 
 	function __construct() { parent::__construct(); }
 
+//---------------------------------------------------------funcion listar
     function listar(){
         $this->db->order_by('nombre', 'asc');
     	$query = $this->db->get('estadospedidos');
     	return $query->result();
     }	
     
+//---------------------------------------------------------funcion traerid
     function traerid($nombre = null){
         $this->db->select('id');
         $this->db->where('nombre', $nombre);
@@ -17,6 +19,7 @@ class Estadospedidos_model extends CI_Model {
         return $idestado;
     }   
 
+//---------------------------------------------------------funcion editar
 	function editar($id = NULL, $atributo = NULL, $valor = NULL){
          if($id != NULL AND $atributo != NULL AND $valor != NULL){
             if($atributo =="nombre"){
@@ -36,6 +39,7 @@ class Estadospedidos_model extends CI_Model {
         }
     }
 
+//---------------------------------------------------------funcion crear
     function crear($nombre = null, $descripcion = null){
         if($nombre == NULL OR $descripcion == null){
             return array('res'=>'bad','msj'=>'ERROR en la creación.'); }
@@ -52,7 +56,8 @@ class Estadospedidos_model extends CI_Model {
         return array('res'=>'ok','id'=>$this->db->insert_id());
     }
 
-    function eliminar($id = null){
+//---------------------------------------------------------funcion eliminar
+   function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'ERROR en la inserción.'); }
         $this->db->where('idestadopedido', $id);

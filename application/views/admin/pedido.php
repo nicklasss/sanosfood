@@ -1,25 +1,26 @@
+	<div class="text-center"><h2>Pedido Id: <mark><?php print $pedido->id;?></mark> del <mark><?php print date("Y-m-d", strtotime($pedido->fecha));?></mark></h2></div>
 <div class="panel panel-default">
-	<div class="panel-heading text-center"><h2>Pedido Id: <mark><?php print $pedido->id;?></mark> del <mark><?php print date("Y-m-d", strtotime($pedido->fecha));?></mark></h2></div>
+<!--	<div class="panel-heading text-center"><h2>Pedido Id: <mark><?php print $pedido->id;?></mark> del <mark><?php print date("Y-m-d", strtotime($pedido->fecha));?></mark></h2></div> -->
 	<form class="form-horizontal form-contenedor">
 		<div class="row">
 			<div class="col-md-3">
-				<label>Nombre del Usuario</label>
+				<strong><span>Nombre del Usuario</strong></span>
 				<input class="form-control" readonly value="<?php print $pedido->nombre;?>"/>
 			</div>
 			<div class="col-md-2">
-				<label>Usuario</label>
+				<strong><span>Usuario</strong></span>
 				<input class="form-control" readonly value="<?php print $pedido->usuario;?>"/>
 			</div>
 			<div class="col-md-3">
-				<label>Correo</label>
+				<strong><span>Correo</strong></span>
 				<input class="form-control" readonly value="<?php print $pedido->correo;?>"/>
 			</div>
 			<div class="col-md-2">
-				<label>Teléfono</label>
+				<strong><span>Teléfono</strong></span>
 				<input class="form-control" readonly value="<?php print $pedido->telefono;?>"/>
 			</div>
 			<div class="col-md-2">
-				<label>Celular</label>
+				<strong><span>Celular</strong></span>
 				<input class="form-control" readonly value="<?php print $pedido->celular;?>"/>
 			</div>
 		</div>
@@ -30,24 +31,28 @@
 	<div class="panel-heading text-center"><h3>Dirección de Envio</h3></div>
 	<form class="form-horizontal form-contenedor">
 		<div class="row">
-			<div class="col-md-3">
-				<label>Dirección</label>
+			<div class="col-md-2">
+				<strong><span>Nombre</strong></span>
+				<input class="form-control" readonly value="<?php print $pedido->nom_direccion;?>"/>
+			</div>
+			<div class="col-md-2">
+				<strong><span>Dirección</strong></span>
 				<input class="form-control" readonly value="<?php print $pedido->direccion;?>"/>
 			</div>
-			<div class="col-md-3">
-				<label>Barrio</label>
+			<div class="col-md-2">
+				<strong><span>Barrio</strong></span>
 				<input class="form-control" readonly value="<?php print $pedido->barrio;?>"/>
 			</div>
 			<div class="col-md-2">
-				<label>Ciudad</label>
+				<strong><span>Ciudad</strong></span>
 				<input class="form-control" readonly value="<?php print $pedido->ciudad;?>"/>
 			</div>
 			<div class="col-md-2">
-				<label>Región</label>
+				<strong><span>Región</strong></span>
 				<input class="form-control" readonly value="<?php print $pedido->region;?>"/>
 			</div>
 			<div class="col-md-2">
-				<label>País</label>
+				<strong><span>País</strong></span>
 				<input class="form-control" readonly value="<?php print $pedido->pais;?>"/>
 			</div>
 		</div>	
@@ -57,7 +62,6 @@
 
 <div class="row registro">
 	<div class="col-md-10 col-md-offset-1">
-
 		<div class="panel panel-default">
 			<div class="panel-heading text-center"><h4>Cambio del estado del pedido</h4></div>
 			<form class="form-horizontal form-contenedor">
@@ -66,12 +70,13 @@
 					<div class="col-md-3">
 						<label>Estado</label>
 						<select class="form-control estado" disabled="disabled">
-							<?php foreach ($estadospedidos as $estado) {
+<?php 						foreach ($estadospedidos as $estado) {
 								if ($estado->id == $pedido->idestadopedido) {
 									print '<option value="'.$estado->id.'" selected>'.$estado->nombre.'</option>'; }
 								else {
 									print '<option value="'.$estado->id.'">'.$estado->nombre.'</option>'; }
-							}?>
+							}
+?>
 						</select>    		
 			    	</div>
 					<div class="col-md-6">
@@ -162,6 +167,7 @@ $(document).ready(function() {
 	});
 });
 
+//---------------------------------------------------------funcion guardar
 function guardar (estado, observacion, callback) {
   $.ajax({                                               // envio de los datos
 	    url: "<?php print base_url();?>pedido/cambiarestado",

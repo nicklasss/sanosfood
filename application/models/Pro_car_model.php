@@ -4,6 +4,7 @@ class Pro_car_model extends CI_Model {
 
 	function __construct() {parent::__construct(); }
 
+//---------------------------------------------------------funcion listar
     function listar(){
     	$query = $this->db->get('pro_car');
     	return $query->result();

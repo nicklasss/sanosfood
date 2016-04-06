@@ -5,7 +5,7 @@ class Direcciones_model extends CI_Model {
 	function __construct() { parent::__construct(); }
 
 
-//----------------------------------------------------------------------------------funcion actualizar
+//---------------------------------------------------------funcion actualizar
     function actualizar($id = NULL, $nombre = NULL, $direccion = NULL, $barrio = NULL, $ciudad = NULL, $region = NULL, $pais = NULL){
         $this->db->trans_start();
         $object = array("nombre"=>$nombre, "direccion"=>$direccion, "barrio"=>$barrio, "ciudad"=>$ciudad, "region"=>$region, "pais"=>$pais);
@@ -18,7 +18,7 @@ class Direcciones_model extends CI_Model {
         else {return array('res'=>'ok'); }
     }
 
-//--------------------------------borra un usuario por el id
+//---------------------------------------------------------funcion eliminar
     function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'Error en la inserción.'); }
@@ -27,7 +27,7 @@ class Direcciones_model extends CI_Model {
         return array('res'=>'ok');
     }   
 
-//--------------------------------Crea una nueva Direccion
+//---------------------------------------------------------funcion crear
     function crear($idusuario = null, $nombre = null, $direccion = null, $barrio = null, $ciudad = null, $region = null, $pais = null) {
         $object = array('id_usuario' => $idusuario,
         				'nombre' => $nombre, 
@@ -44,7 +44,7 @@ class Direcciones_model extends CI_Model {
         return $data;
     }
 
-//--------------------------------Lista todos usuarios de usuarios
+//---------------------------------------------------------funcion direccionesUsuario
     function direccionesUsuario($idusuario = null){
         $this->db->where('id_usuario', $idusuario);
         $this->db->order_by('nombre', 'asc');
@@ -52,7 +52,7 @@ class Direcciones_model extends CI_Model {
         return $query->result();
     }
 
-//--------------------------------Lista todos usuarios de usuarios
+//---------------------------------------------------------funcion buscarxusuarioxnombre
     function buscarxusuarioxnombre($idusuario = null, $nombre = null){
         $this->db->where('id_usuario', $idusuario);
         $this->db->where('nombre', $nombre);

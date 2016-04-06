@@ -24,7 +24,7 @@ class Pedidos_model extends CI_Model {
         return $data;
     }
 
-//--------------------------------borra un pedido por el id
+//---------------------------------------------------------funcion eliminar
     function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'Error en la inserción.'); }
@@ -47,15 +47,16 @@ class Pedidos_model extends CI_Model {
     	return $query->result();
     }
 
-
-//---------------------------------------------------------funcion getPedido
+//---------------------------------------------------------funcion conseguirPedido
     function getPedido($id = null){
         $this->db->where('id', $id);
         $query = $this->db->get('pedidos', 1, 0);
-        if($query->num_rows()==0){
+        if($query->num_rows() == 0){
             show_404();
         }
         $pedido = $query->row();
+
+
         $this->db->select('nombre,usuario,correo,telefono,celular');
         $this->db->where('id', $pedido->idusuario);
         $usuario = $this->db->get('usuarios', 1, 0)->row();
@@ -77,6 +78,7 @@ class Pedidos_model extends CI_Model {
         $pedido->lineas = $lineasarr;
         return $pedido;
     }
+
 
 //---------------------------------------------------------funcion getPedidosPorEstado
     function getPedidosPorEstado($estado = null, $pag = 1){
@@ -114,14 +116,19 @@ class Pedidos_model extends CI_Model {
     function cambiarEstado($id = null, $estado = null, $observacion = ""){
         $this->db->where('id', $id);
         $query = $this->db->get('pedidos', 1, 0);
-        if($query->num_rows()!=1){ return false; }
+        if($query->num_rows() != 1){ return false; }
         
         $pedido = $query->row();
-        $object = array('idPedido' => $id, 'idUsuario' =>$pedido->idusuario,'fecha' =>  date('Y-m-d H:i:s'),'accion'=>'cambiar estado de '.$pedido->idestadopedido.' a '.$estado,'observacion'=>$observacion);
-        $this->db->insert('log_pedidos', $object);
-        $object = array('idestadopedido' => $estado );
+        $objecto = array('id_pedido'     => $id, 
+                         'id_usuario'    =>$pedido->idusuario,
+                         'fecha'        =>  date('Y-m-d H:i:s'),
+                         'estado'       => $estado,
+                         'observacion'  =>'(ADMIN) '.$observacion);
+        $this->db->insert('log_pedidos', $objecto);
+
+        $objecto = array('idestadopedido' => $estado );
         $this->db->where('id', $id);
-        $this->db->update('pedidos', $object);
+        $this->db->update('pedidos', $objecto);
         return true;
     }
 }

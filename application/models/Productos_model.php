@@ -5,7 +5,7 @@ class Productos_model extends CI_Model {
 
 	function __construct() { parent::__construct(); }
 
-//--------------------------------crea un producto nuevo
+//---------------------------------------------------------funcion crear
     function crear( $nombre = null, $descripcion = null, $ingredientes = null){
         if(strlen($nombre) < 5){
             $data['res'] = 'bad';
@@ -46,7 +46,7 @@ class Productos_model extends CI_Model {
         return $data;
     }
 
-//--------------------------------devuelve todos los productos con un estado especifico
+//---------------------------------------------------------devuelve todos los productos con un estado especifico
     function getProductosPorEstado($estadopro = null, $cant = 10, $pag = 1, $cat = null, $car = null){
         $this->db->where('idestadoproducto', $estadopro);
         $data['cant'] = $this->db->count_all_results('productos');
@@ -69,7 +69,7 @@ class Productos_model extends CI_Model {
         return $data;
     }
 
-//--------------------------------devuelve todos los productos con palabra buscada
+//---------------------------------------------------------devuelve todos los productos con palabra buscada
     function buscarProductosWeb($quebuscar = null, $pag = 1, $ppp = 3){
         $pagina = $ppp * ($pag - 1);
         if($quebuscar == "*"){
@@ -95,7 +95,7 @@ class Productos_model extends CI_Model {
         }
         return $query->result();
     }
-//--------------------------------Obtiene cantidad total de productos por la busqueda
+//---------------------------------------------------------Obtiene cantidad total de productos por la busqueda
     function contarProductosBuscar($quebuscar = null){
         if($quebuscar == "*"){
             $query = $this->db->query("SELECT * FROM productos 
@@ -113,7 +113,7 @@ class Productos_model extends CI_Model {
         return $query->num_rows();
     }
 
-//--------------------------------ListarxCategoriaWeb
+//---------------------------------------------------------ListarxCategoriaWeb
     function listarxCategoriaWeb($cat = null, $pag = 1, $ppp = 1){
         $pagina = $ppp * ($pag - 1);
         $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
@@ -130,14 +130,14 @@ class Productos_model extends CI_Model {
         return $query->result();
     }
 
-//--------------------------------Obtiene cantidad total de productos por la categoria
+//---------------------------------------------------------Obtiene cantidad total de productos por la categoria
     function contarProductosCategoria($cat = null){
         $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
                             WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.idestadoproducto = 1");
         return $query->num_rows();
     }
 
-//--------------------------------ListarxMarcaiaWeb
+//---------------------------------------------------------ListarxMarcaiaWeb
     function listarxMarcaWeb($mar = null, $pag = 1, $ppp = 1){
         $pagina = $ppp * ($pag - 1);
         $query = $this->db->query(" SELECT * FROM productos 
@@ -154,14 +154,14 @@ class Productos_model extends CI_Model {
         return $query->result();
     }
 
-//--------------------------------Obtiene cantidad total de productos por la marca
+//---------------------------------------------------------Obtiene cantidad total de productos por la marca
     function contarProductosMarca($mar = null){
         $query = $this->db->query(" SELECT * FROM productos 
                                     WHERE idmarca = $mar and idestadoproducto = 1;");
         return $query->num_rows();
     }
 
-//--------------------------------Obtiene un producto
+//---------------------------------------------------------Obtiene un producto
     function producto($id = null){
         $this->db->where('id', $id);
         $query = $this->db->get('productos', 1, 0);
@@ -179,7 +179,7 @@ class Productos_model extends CI_Model {
         return $producto;
     }
     
-//--------------------------------ListarWeb
+//---------------------------------------------------------ListarWeb
     function listar($cant = 10, $pag = 1, $cat = null, $mar = null){
         $data['cant'] = $this->db->count_all_results('productos');
         
@@ -257,7 +257,7 @@ class Productos_model extends CI_Model {
         return $data;
     }
 
-//--------------------------------Valida campos de Producto con estado diferente de DISPONIBLE
+//---------------------------------------------------------Valida campos de Producto con estado diferente de DISPONIBLE
     function editar($dataproducto = null){
         if(json_decode($dataproducto) == null && json_last_error() !== JSON_ERROR_NONE){
             $data['res'] = 'bad';
@@ -407,7 +407,7 @@ class Productos_model extends CI_Model {
 
     }
 
-//--------------------------------Valida campos de Producto con estado DISPONIBLE
+//---------------------------------------------------------Valida campos de Producto con estado DISPONIBLE
     function editarestado( $id = null){
         $this->db->where('id', $id);
         $query = $this->db->get('productos', 1, 0);
@@ -489,7 +489,7 @@ class Productos_model extends CI_Model {
         return $data; 
     }
 
-//--------------------------------Guardar Imagen
+//---------------------------------------------------------GuardarImagen
     function guardarImagen($idproducto = null, $extencion = null){
         if($idproducto == null){
             $data['res'] = 'bad';
@@ -517,7 +517,7 @@ class Productos_model extends CI_Model {
         return $data; 
     }
 
-//--------------------------------Guardar Imagen
+//---------------------------------------------------------borrarImagen
     function borrarImagen($tituloimagen = null){
         if($tituloimagen == null){
             $data['res'] = 'bad';
@@ -539,13 +539,14 @@ class Productos_model extends CI_Model {
         return $data; 
     }
 
-//--------------------------------reemplaza caracteres raros
+//---------------------------------------------------------reemplaza caracteres raros
     function buscar($query=null){
-        $unwanted_array = array(    'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
-                            'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
-                            'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'B', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
-                            'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
-                            'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y','"'=>'',"'"=>"","¿"=>"" );
+        $unwanted_array = array('Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 
+                                'È'=>'E', 'É'=>'E', 'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 
+                                'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U', 'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'B', 'à'=>'a', 'á'=>'a', 
+                                'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 
+                                'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 
+                                'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y','"'=>'',"'"=>"","¿"=>"" );
         $query_filtrado = strtr( $queryInput, $unwanted_array );
         $query_filtrado = trim(preg_replace("/\b[^\s]{1,2}\b/", "", $query_filtrado));
 

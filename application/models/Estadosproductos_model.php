@@ -4,12 +4,14 @@ class Estadosproductos_model extends CI_Model {
 
 	function __construct() { parent::__construct(); }
 
+//---------------------------------------------------------funcion listar
     function listar(){
         $this->db->order_by('id', 'asc');
     	$query = $this->db->get('estadosproductos');
     	return $query->result();
     }	
 
+//---------------------------------------------------------funcion editar
 	function editar($id = NULL, $atributo = NULL, $valor = NULL){
         if($id != NULL AND $atributo != NULL AND $valor != NULL){
             if($atributo =="nombre"){
@@ -29,6 +31,7 @@ class Estadosproductos_model extends CI_Model {
         }
     }
 
+//---------------------------------------------------------funcion crear
     function crear($nombre = null, $descripcion = null){
         if($nombre == NULL OR $descripcion == null){
             return array('res'=>'bad','msj'=>'ERROR en la creación.'); }
@@ -45,6 +48,7 @@ class Estadosproductos_model extends CI_Model {
         return array('res'=>'ok','id'=>$this->db->insert_id());
     }
     
+//---------------------------------------------------------funcion eliminar
     function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'ERROR en la inserción.'); }

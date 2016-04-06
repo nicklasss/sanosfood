@@ -44,7 +44,7 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<?php print base_url().'admin/productos/Todos';?>">SanosFoods</a>
+          <a class="navbar-brand" href="<?php print base_url().'admin/productos/Todos';?>"><mark>SanosFoods</mark></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
