@@ -184,9 +184,9 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/piedepagina');
 	}
 
-	public function pedidos($estado = null,$pag = 1){
-		if($estado==null){ show_404();
-		}
+	public function pedidos($estado = null, $pag = 1){
+		if($estado==null){ show_404();}
+
 		$this->load->model('Estadospedidos_model');
 		$dataencabezado['estadospedidos'] = $this->Estadospedidos_model->listar();
 		$this->load->model('Estadosproductos_model');

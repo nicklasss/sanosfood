@@ -19,6 +19,8 @@ public function encriptarclaves() {
 //---------------------------------- */
 
 
+
+
 //---------------------------------------------------------Index
 	public function index() {
 		$this->load->view('web/encabezado');

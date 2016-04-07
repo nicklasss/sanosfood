@@ -2,36 +2,17 @@
     <div class="container" style="margin-top:40px">
 		<div class="row">
 			<div class="col-md-5">
-				<div class="panel panel-default">
+				<div class="panel panel-warning">
 					<div class="panel-heading text-center">
-						<strong><h4>Usuarios registrados</h4></strong>
+						<strong><h3>Usuarios registrados</h3></strong>
 					</div>
 					<div class="panel-body">
 						<form role="form">
 							<fieldset>
 								<div class="row">
 									<div class="col-sm-12 col-md-10  col-md-offset-1 ">
-<!--										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon">
-													<i class="glyphicon glyphicon-user"></i>
-												</span><span> Nombre del Usuario (email)</span>
-												<strong><input class="form-control" placeholder="Usuario" id="usuario" type="email" autofocus/></strong>
-											</div>
-										</div>
-
 										<div class="form-group">
-											<div class="input-group">
-												<span class="input-group-addon">
-													<i class="glyphicon glyphicon-lock"></i>
-												</span><span> Contraseña</span>
-												<strong><input class="form-control" placeholder="Clave" id="clave" type="password" value=""/></strong>
-											</div>
-										</div>
-
--->
-										<div class="form-group">
-											<label>Nombre del Usuario (email)</label>
+											<label>Correo electrónico (<small>Nombre del Usuario</small>)</label>
 											<div class="input-group">
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-user"></i>
@@ -56,15 +37,9 @@
 										<div class="form-group">
 											<button id="btn-enviar-login" type="button" class="btn btn-lg btn-primary btn-block">Iniciar Sesión</button>
 										</div>
-
-<!--										<div class="form-group text-right">
-											<button id="btn-olvidoclave" type="button" class="btn btn-sm btn-info">Olvido la Contraseña ?</button>
-										</div>
--->
 										<div class="form-group text-center">
 											<a href="olvidoclave"><strong>¿Olvidaste la Contraseña?</strong></a>
 										</div>
-
 									</div>
 								</div>
 							</fieldset>
@@ -88,23 +63,6 @@
 
 					</div>
                 </div>
-
-<!--
-				<div class="panel panel-default escondido">
-					<div class="panel-body">
-						<span>
-							Usted recibirá un email en el buzon de correo que lo identifica como usuario de Sanosfood's, 
-							debe dar click en el enlace que allí aparece que lo lleva a poder cambiar su clave por una nueva.
-						</span> 
-						<div class="form-group text-right">
-							<button id="btn-confirma" type="button" class="btn btn-xs btn-primary">Ok ?</button>
-							<button id="btn-cancela" type="button" class="btn btn-xs btn-warning">Cancelar</button>
-						</div>
-
-					</div>
-                </div>
--->
-
 			</div>
 		</div>
 	</div>
@@ -114,7 +72,6 @@
 <!--------------------------------------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
 
-//-- garantiza que el siguiente Javascript se ejecuta despues de haberse cargado completamente la pagina
 $(document).ready(function() {
 
 	$('.container').on('click','#btn-enviar-login',function(event){
@@ -137,24 +94,9 @@ $(document).ready(function() {
 		window.location= "<?php print base_url();?>web/registrarse";
 	});
 
-/*	$('.container').on('click','#btn-olvidoclave',function(event){
-		$('#btn-olvidoclave').attr('disabled', true);
-		$('.escondido').show(1000);
-	});
-
-	$('.container').on('click','#btn-confirma',function(event){
-		alert("aqui se envia email con el enlace");
-		window.location= "<?php print base_url();?>web/index";
-	});
-
-	$('.container').on('click','#btn-cancela',function(event){
-		$('#btn-olvidoclave').attr('disabled', false);
-		$('.escondido').hide(1000);
-	});
-*/
 });
             
-//-- Funcion enviar datos del misionero al servidor al misioneros/crear.php quien los recibe
+//---------------------------------------------------------enviar_login
     function enviar_login(callback) {
         $.ajax({                                             
           url: "<?php print base_url();?>usuario/web_logear",

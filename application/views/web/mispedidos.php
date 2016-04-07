@@ -74,9 +74,9 @@
 				    print '	<div class="panel-heading" role="tab" id="heading'.$pedido->id.'">';
 				    print ' 	<h4 class="panel-title text-center">';
 				    print '			<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$pedido->id.'" aria-expanded="false" aria-controls="collapse'.$pedido->id.'">';
-				    print '				<small>Pedido de fecha: </small><strong>'.substr($pedido->fecha, 0,10).' '.$pedido->nombre.'</strong>';
+				    print '				<small>Pedido de fecha: </small><strong>'.substr($pedido->fecha, 0,10).' '.$pedido->estado.'</strong>';
 				    print '			</a>';
-				    if ($pedido->nombre == EST_PENDIENTE) {	
+				    if ($pedido->estado == EST_PENDIENTE) {	
 				    print '			<button type="button" class="btn btn-xs btn-success pagar" data-id="'.$pedido->id.'">Pagar</button>';
 				    print '			<button type="button" class="btn btn-xs btn-info carrito" data-id="'.$pedido->id.'">Volver al Carrito</button>';
 				    print '			<button type="button" class="btn btn-xs btn-danger eliminar" data-id="'.$pedido->id.'">Eliminar</button>';

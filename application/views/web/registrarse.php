@@ -2,7 +2,7 @@
 
 	<div class="row">
 		<div class="col-md-5 col-md-offset-3">
-			<div class="panel panel-default">
+			<div class="panel panel-warning">
 				<div class="panel-heading text-center">
 					<strong><h3>Registro (Crear una cuenta)</h3></strong>
 				</div>
@@ -39,7 +39,7 @@
 
 
 										<div class="form-group">
-											<label>Nombre del Usuario (email)</label>
+											<label>Correo electrónico (<small>Nombre del Usuario</small>)</label>
 											<div class="input-group">
 												<span class="input-group-addon">
 													<i class="glyphicon glyphicon-user"></i>

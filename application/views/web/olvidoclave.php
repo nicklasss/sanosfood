@@ -31,9 +31,30 @@
 $(document).ready(function() {
 
 	$('.container').on('click','#btn-enviar',function(event){
+		rta = enviarEmail(function(rta) { });
 		window.location= "index";
 	})
 })
-    
+
+
+//----------------------------------------------------------------------------------funcion enviarEmail
+function enviarEmail (callback) {
+alert("entro");
+	$.ajax({                                               // envio de los datos
+	  url: "<?php print base_url();?>email/correoOlvidoClave",
+	  context: document.body,
+	  dataType: "json",
+	  type: "POST",
+	  data: {} })
+	.done(function(data) {                               // respuesta del servidor
+		if(data.res == "ok") {alert("mando OK"); callback(true);}
+		else {alert(data.msj); callback(false);}
+	})
+	.error(function(){
+		alert('Error en el servidor'); 
+		callback(false);
+	})
+} 
+
 </script>
 

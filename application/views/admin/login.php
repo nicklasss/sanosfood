@@ -75,13 +75,13 @@ function enviar() {
     if($("#clave").val()=="") { alert('Clave no puede ser vacia');
       $("#clave").focus(); return false; }
 
-    $.ajax({                                               // envio de los datos
+    $.ajax({                                               
       url: "<?php print base_url();?>admin/validarusuario",
       context: document.body,
       dataType: "json",
       type: "POST",
       data: {usuario  : $("#usuario").val(), clave : $("#clave").val()} })
-     .done(function(data) {                                // respuesta del servidor
+     .done(function(data) {                               
         if(data.res=="ok") {
           window.location= "<?php print base_url();?>admin/productos/Todos";}
         else{alert(data.msj) } })          

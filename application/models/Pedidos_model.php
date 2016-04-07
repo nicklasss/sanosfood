@@ -40,8 +40,8 @@ class Pedidos_model extends CI_Model {
     	$query = $this->db->get('pedidos');
         foreach ($query->result() as $pedido) {
             $this->db->select('nombre');
-            $this->db->where('id', $pedido->idestadopedido);
-            $pedido->nombre = $this->db->get('estadospedidos', 1, 0)->row()->nombre;
+//            $this->db->where('id', $pedido->idestadopedido);
+//            $pedido->nombre = $this->db->get('estadospedidos', 1, 0)->row()->nombre;
         }
 
     	return $query->result();
@@ -82,13 +82,12 @@ class Pedidos_model extends CI_Model {
 
 //---------------------------------------------------------funcion getPedidosPorEstado
     function getPedidosPorEstado($estado = null, $pag = 1){
-        $this->db->where('id', $estado);
-        if($this->db->count_all_results('estadospedidos')==0 AND $estado != 'Todos'){
+        $this->db->where('nombre', $estado);
+        if($this->db->count_all_results('estadospedidos') == 0 AND $estado != 'Todos'){
             show_404();
         }
         if($estado != 'Todos'){
-            $this->db->where('idestadopedido', $estado);
-//            $this->db->where('estado', $estado);
+            $this->db->where('estado', $estado);
         }
         $this->db->order_by('id', 'desc');
         $query = $this->db->get('pedidos', 10, (($pag-1)*10));
@@ -96,7 +95,7 @@ class Pedidos_model extends CI_Model {
         foreach ($query->result() as $pedido) {
             $this->db->where('id', $pedido->idusuario);
             $usuario = $this->db->get('usuarios', 1, 0)->row();
-            $pedido->usuario = $usuario->usuario;
+            $pedido->usuario = $usuario->correo;
 //            $pedido->ciudad = $usuario->ciudad;
             $resultado[] = $pedido;
         }
@@ -106,7 +105,7 @@ class Pedidos_model extends CI_Model {
 //---------------------------------------------------------funcion contarPedidos
     function contarPedidos($estado = null){
         if($estado !='Todos'){
-            $this->db->where('idestadopedido', $estado);
+            $this->db->where('estado', $estado);
 //            $this->db->where('estado', $estado);
         }
         return $this->db->count_all_results('pedidos');
@@ -126,7 +125,7 @@ class Pedidos_model extends CI_Model {
                          'observacion'  =>'(ADMIN) '.$observacion);
         $this->db->insert('log_pedidos', $objecto);
 
-        $objecto = array('idestadopedido' => $estado );
+        $objecto = array('estado' => $estado );
         $this->db->where('id', $id);
         $this->db->update('pedidos', $objecto);
         return true;
