@@ -9,20 +9,26 @@ class Email extends CI_Controller {
 //---------------------------------------------------------CORREO olvido clave
 	public function correoOlvidoClave() {
 
+		$correo = @$this->input->post('correo',TRUE);
+
+		$this->load->model('Usuarios_model');
+		$data = $this->Productos_model->listarWeb(8);
+
+
 		$this->load->library('email');
 
-$this->email->from('hlduran@hotamil.com', 'Humberto Luis Duran');
-$this->email->to('shlduran.hotmail@gmail.com'); 
-//$this->email->cc('another@another-example.com'); 
-//$this->email->bcc('them@their-example.com'); 
+		$this->email->from('hlduran@hotamil.com', 'Humberto Luis Duran');
+		$this->email->to('hlduran.hotmail@gmail.com'); 
+		//$this->email->cc('another@another-example.com'); 
+		//$this->email->bcc('them@their-example.com'); 
 
-$this->email->subject('Email Test');
-$this->email->message('mensaje de prueba para olvido clave');	
+		$this->email->subject('Pruebas de envio de emails');
+		$this->email->message('mensaje de prueba para olvido clave');	
 
-$this->email->send();
+		if ($this->email->send()) {print json_encode(array('res'=>'ok'));exit();} 
+		else {print json_encode(array('res'=>'bad','msj'=>'Ha ocurrido un error.'));exit();}
 
-echo $this->email->print_debugger();
-
+//		md5(‘sanossalt’.$hash.$usuario)
 
 /*		$destinatario 	= "hlduran.hotmail@gmail.com"; 
 		$asunto 		= "Este mensaje es de prueba"; 

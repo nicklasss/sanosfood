@@ -42,6 +42,14 @@ class Pedido extends CI_Controller {
 
  //       $this->db->trans_start();
 
+
+// descargar de productos los que estan pedidos 
+// crontab para borarr el pedido por tiempo y reintegrar los productos al stock
+		
+
+
+
+
 		//-------------crear el pedido
 		$direccion = $data['direccion']->direccion;
 		$barrio = 	$data['direccion']->barrio;

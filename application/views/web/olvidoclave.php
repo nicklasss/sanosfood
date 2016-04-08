@@ -39,14 +39,13 @@ $(document).ready(function() {
 
 //----------------------------------------------------------------------------------funcion enviarEmail
 function enviarEmail (callback) {
-alert("entro");
-	$.ajax({                                               // envio de los datos
+	$.ajax({                                               
 	  url: "<?php print base_url();?>email/correoOlvidoClave",
 	  context: document.body,
 	  dataType: "json",
 	  type: "POST",
-	  data: {} })
-	.done(function(data) {                               // respuesta del servidor
+	  data: { correo : correo,} })
+	.done(function(data) {                              
 		if(data.res == "ok") {alert("mando OK"); callback(true);}
 		else {alert(data.msj); callback(false);}
 	})
