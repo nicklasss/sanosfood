@@ -32,23 +32,22 @@ class Pedido extends CI_Controller {
 		$idusuario = $this->session->userdata("idusuario");
 		$fecha = date("Y-m-d H:i:s");
 
-		//-------------buscar id de estadospedidos
-		$this->load->model('Estadospedidos_model');
-		$idestadopedido = $this->Estadospedidos_model->traerid(EST_PENDIENTE);
 
-		//-------------buscar la direccion de envio
-		$this->load->model('Direcciones_model');
-		$data['direccion'] = $this->Direcciones_model->buscarxusuarioxnombre($idusuario, $ultimadireccion);
 
- //       $this->db->trans_start();
+//			$this->db->trans_begin();
+//          $this->db->trans_start();
+//		if ($this->db->trans_status() === FALSE)
+//			$this->db->trans_rollback();
+//			$this->db->trans_commit();
+
 
 
 // descargar de productos los que estan pedidos 
 // crontab para borarr el pedido por tiempo y reintegrar los productos al stock
-		
 
-
-
+		//-------------buscar la direccion de envio
+		$this->load->model('Direcciones_model');
+		$data['direccion'] = $this->Direcciones_model->buscarxusuarioxnombre($idusuario, $ultimadireccion);
 
 		//-------------crear el pedido
 		$direccion = $data['direccion']->direccion;
@@ -57,30 +56,39 @@ class Pedido extends CI_Controller {
 		$region = 	$data['direccion']->region;
 		$pais = 	$data['direccion']->pais;
 		$this->load->model('Pedidos_model');
-		$data = $this->Pedidos_model->crear($idusuario, $fecha, $idestadopedido, $ultimadireccion, $direccion, $barrio, $ciudad, $region, $pais);
-
-		//-------------crear el log de pedidos
+		$data = $this->Pedidos_model->crear($idusuario, $fecha, EST_PENDIENTE, $ultimadireccion, $direccion, $barrio, $ciudad, $region, $pais);
 		$idpedido = $data['id'];
-		$this->load->model('Log_pedidos_model');
-		$this->Log_pedidos_model->crear($idpedido, $idusuario, $fecha, EST_PENDIENTE, 'Creado inicial por el sistema');
 
-		//-------------crear las lineas de pedidos
+		//------------- actualizar stock y crear las lineas de pedidos
 		foreach ($this->cart->contents() as $item) {
 			$idproducto = $item['id'];
 			$unidades = $item['qty'];
 			$precio = $item['price'];
+
+			//----- descontar cantidad del stock de productos
+			$this->load->model('Productos_model');
+			$this->Productos_model->modificarStocK($idproducto, $unidades);
+
+			//----- crear lineaspedidos
 			$this->load->model('Lineaspedidos_model');
 			$this->Lineaspedidos_model->crear($idpedido, $idproducto, $unidades, $precio);
 		}
 
+		//-------------crear el log de pedidos
+		$this->load->model('Log_pedidos_model');
+		$this->Log_pedidos_model->crear($idpedido, $idusuario, $fecha, EST_PENDIENTE, 'Creado inicial por el sistema');
+
+
 //        $this->db->trans_complete();
 //        print $this->db->trans_status();
         if ($this->db->trans_status() === FALSE) {
+//			$this->db->trans_rollback();
             print json_encode(array('res'=>'bad', 'msj'=>'hay errores no se completó la transacción.'));exit();
         } else {
 			//-------------borrar el carrito
 			$this->cart->destroy();
 	        $this->session->set_userdata('comprando',false);
+//			$this->db->trans_commit();
 			print json_encode(array('res'=>'ok'));exit();
 		}
 
@@ -95,6 +103,15 @@ class Pedido extends CI_Controller {
         $idpedido = @$this->input->post('idpedido',TRUE);
 		$idusuario = $this->session->userdata("idusuario");
 		$fecha = date("Y-m-d H:i:s");
+
+
+		//----- agregar los eliminados al stock del producto
+		$this->load->model('Lineaspedidos_model');
+		$data = $this->Lineaspedidos_model->listar($idpedido);
+		foreach($data['lineas'] as $linea) {
+			$this->load->model('Productos_model');
+			$this->Productos_model->modificarStocK($idproducto, -$lineas->unidades);
+		}
 
 		//-------------borrar el pedido
         $this->load->model('Pedidos_model');

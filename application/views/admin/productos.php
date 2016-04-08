@@ -1,16 +1,7 @@
 <div class="row">
-   <div class="col-lg-12">
-      <h2 class="pagne-header">
-<?php
-if ($nombreestado == "Todos") {
-    print "(".$cant.") Todos los Productos"; }
-else {
-    print "(".$cant.") Productos en estado <mark>".$nombreestado."</mark>";
-}
-?>          
-
-      </h2>
-   </div>
+    <div class="col-lg-12">
+        <h1 class="page-header">Productos</h1>
+    </div>
 </div>
 
 <div class="row">
@@ -76,7 +67,7 @@ else {
                                     
                                                         <td width="40%"><strong><a href="'.base_url().'admin/producto/'.$producto->id.'">'.$producto->nombre.'</a></strong></td>
                                                         <td width="20%">'.$producto->existencias.'</td>
-                                                        <td width="20%">'.$producto->nombreestado.'</td>
+                                                        <td width="20%">'.$producto->estado.'</td>
                                                         <td class="center">'.number_format($producto->precio , 0, ",", ".").'</td> 
                                                     </tr>';
                                         }

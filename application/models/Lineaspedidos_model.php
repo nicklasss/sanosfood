@@ -5,6 +5,22 @@ class Lineaspedidos_model extends CI_Model {
 	function __construct() { parent::__construct(); }
 
 
+//---------------------------------------------------------funcion listar
+    function listar($idpedido = null){
+        $this->db->where('id_pedido', $idpedido);
+        $query = $this->db->get('lineaspedidos');
+        if($query->num_rows() < 1){
+            $data['lineas'] = "";
+            $data['msj'] = 'el pedido no tiene lineas de productos';
+            $data['res'] = "bad";
+            return $data;
+        }
+
+        $data['lineas'] = $query->result();
+        $data['res'] = "ok";
+        $data['msj'] = '';
+        return $data;
+    }
 
 //---------------------------------------------------------funcion crear
     function crear($idpedido = null, $idproducto = null, $unidades = null, $precio = null) {

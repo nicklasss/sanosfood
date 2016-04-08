@@ -139,8 +139,9 @@ class Producto extends CI_Controller {
 			print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));
 		}
 		$id = @$this->input->post('id',TRUE);
+		$estado = @$this->input->post('estado',TRUE);
 		$this->load->model('Productos_model');
-		print json_encode($this->Productos_model->editarestado($id));
+		print json_encode($this->Productos_model->editarestado($id, $estado));
 	}
 }
 

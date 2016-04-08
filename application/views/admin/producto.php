@@ -226,10 +226,10 @@ foreach ($categorias as $categoria) {
 					<td width="50%">
 			    		<strong><select class="form-control input-lg" id="estado" disabled="disabled">
 							<?php foreach ($estados as $estado) {
-								if ($estado->id == $producto->idestadoproducto) {
-									print '<option value="'.$estado->id.'" selected>'.$estado->nombre.'</option>'; }
+								if ($estado->nombre == $producto->estado) {
+									print '<option value="'.$estado->nombre.'" selected>'.$estado->nombre.'</option>'; }
 								else {
-									print '<option value="'.$estado->id.'">'.$estado->nombre.'</option>'; }
+									print '<option value="'.$estado->nombre.'">'.$estado->nombre.'</option>'; }
 							}?>
 						</select></strong>
 					</td>  
@@ -410,7 +410,7 @@ $(document).ready(function() {
 
 		$('#estado').attr('disabled', true);
 		if (eestado == sestado) {return;}
-		rta = guardarest(function(rta){
+		rta = guardarest(eestado, function(rta){
 			if(rta) {
 				$('#btn-editar-est').show();
 				$('#btn-guardar-est').hide();
@@ -518,7 +518,6 @@ $(document).ready(function() {
 		eprecio = 		$('#precio').val();
 		eexistencias = $('#existencias').val();
 		eestado = 		$('#estado').val();
-
 		rta = guardar(function(rta){
 			if(rta) {
 				$('#btn-editar').show();
@@ -611,13 +610,13 @@ function guardar (callback) {
 }
 
 //----------------------------------------------------------------------------------funcion guardar-est
-function guardarest (callback) {
+function guardarest (estado, callback) {
   $.ajax({                                               // envio de los datos
 	    url: "<?php print base_url();?>producto/editarestado",
 	    context: document.body,
 	    dataType: "json",
 	    type: "POST",
-	    data: {id : <?php print $this->uri->segment(3);?>} })
+	    data: {id : <?php print $this->uri->segment(3);?>, estado : estado} })
    .done(function(data) {                               // respuesta del servidor
 		if(data.res == "ok") {callback(true);}
 		else {alert(data.msj);callback(false)}

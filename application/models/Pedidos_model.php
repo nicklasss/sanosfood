@@ -6,11 +6,11 @@ class Pedidos_model extends CI_Model {
 	function __construct() { parent::__construct(); }
     
 //---------------------------------------------------------funcion crear
-    function crear($idusuario = null, $fecha = null, $idestadopedido = null, $ultimadireccion = null, $direccion = null, $barrio = null, 
+    function crear($idusuario = null, $fecha = null, $estado = null, $ultimadireccion = null, $direccion = null, $barrio = null, 
                    $ciudad = null, $region = null, $pais = null) {
         $objecto = array('idusuario' => $idusuario,
                         'fecha' => $fecha, 
-                        'idestadopedido' => $idestadopedido,
+                        'estado' => $estado,
                         'nom_direccion' => $ultimadireccion,
                         'direccion' => $direccion,
                         'barrio' => $barrio,

@@ -37,49 +37,9 @@ foreach ($estadosproductos as $estado) {
 							<h5 class="saldescripcion">'.$estado->descripcion.'</h5>
 				    	</div>
 					</td>
-					<td width="15%">
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-guardar btn-editable" data-id="'.$estado->id.'">Guardar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar btn-editable">Cancelar</button>
-				    	</div>';
-	if ($estado->id != 1 && $estado->id != 2) {				    	
-		print '
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-primary btn-editar btn-mostrable"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Editar</button>
-					   		<button type="button" class="btn btn-xs btn-danger btn-eliminar btn-mostrable" data-id="'.$estado->id.'"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Eliminar</button>
-				    	</div>';}
-	print '	
-					</td>	
 				</tr>';
 }
 ?>
-
-				<tr id="ultima">
-					<td>
-				    	<div>
-							<h5></h5>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-							<input type="text" class="form-control entnombre" value="'.$estado->nombre.'"/>
-				    	</div>
-					</td>
-				 	<td>
-				    	<div class="editable escondido">
-							<textarea type="text" class="form-control entdescripcion">'.$estado->descripcion.'</textarea>
-				    	</div>
-					</td>
-					<td>
-				    	<div class="editable escondido">
-					  		<button type="button" class="btn btn-xs btn-success btn-agregar btn-editable" data-id="'.$estado->id.'">Agregar</button>
-					  		<button type="button" class="btn btn-xs btn-warning btn-cancelar btn-editable">Cancelar</button>
-				    	</div>
-				    	<div class="mostrable">
-					   		<button type="button" class="btn btn-xs btn-success text-center btn-nuevo btn-mostrable"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo</button>
-				    	</div>
-					</td>	
-				</tr>
 				</tbody>
 			</table> <!-- tabla--> 
 		</div> <!-- Panel-->

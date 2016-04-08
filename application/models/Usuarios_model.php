@@ -178,7 +178,7 @@ class Usuarios_model extends CI_Model {
         }
         $query = $this->db->query(" SELECT id,nombre,usuario,correo,ultima_direccion
                                     FROM usuarios
-                                    WHERE MATCH(nombre,usuario,correo,ultima_direccion) AGAINST ('$against' IN BOOLEAN MODE);");
+                                    WHERE MATCH(nombre,correo,ultima_direccion) AGAINST ('$against' IN BOOLEAN MODE);");
         return $query->result();
     }
 }

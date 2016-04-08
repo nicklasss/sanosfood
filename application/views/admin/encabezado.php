@@ -54,7 +54,7 @@ if( @$this->session->userdata( 'usuario' ) =="" ){ redirect('admin/login'); }
 				  <ul class="dropdown-menu" role="menu">
 					 <?php
 					 foreach ($estadosproductos as $estadosprod) { ?>
-						<li><a href="<?php print base_url().'admin/productos/'.$estadosprod->id;?>"><?php print $estadosprod->nombre; ?></a></li>
+						<li><a href="<?php print base_url().'admin/productos/'.$estadosprod->nombre;?>"><?php print $estadosprod->nombre; ?></a></li>
 					 
 						<?php
 					 }
