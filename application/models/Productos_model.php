@@ -73,10 +73,11 @@ class Productos_model extends CI_Model {
 
 //---------------------------------------------------------devuelve todos los productos con palabra buscada
     function buscarProductosWeb($quebuscar = null, $pag = 1, $ppp = 3){
+        $estado = PRODUCTO_DISPONIBLE;
         $pagina = $ppp * ($pag - 1);
         if($quebuscar == "*"){
             $query = $this->db->query("SELECT * FROM productos 
-                                        WHERE estado = 'PRODUCTO_DISPONIBLE' 
+                                        WHERE estado = '$estado' 
                                         LIMIT $ppp offset $pagina");
         }
         else {
@@ -87,7 +88,7 @@ class Productos_model extends CI_Model {
             }
 
             $query = $this->db->query("SELECT * FROM productos 
-                        WHERE MATCH (nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE) and estado = 'PRODUCTO_DISPONIBLE' 
+                        WHERE MATCH (nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE) and estado = '$estado' 
                         LIMIT $ppp offset $pagina");
         }
         
@@ -100,9 +101,10 @@ class Productos_model extends CI_Model {
     }
 //---------------------------------------------------------Obtiene cantidad total de productos por la busqueda
     function contarProductosBuscar($quebuscar = null){
+        $estado = PRODUCTO_DISPONIBLE;
         if($quebuscar == "*"){
             $query = $this->db->query("SELECT * FROM productos 
-                        WHERE estado = 'PRODUCTO_DISPONIBLE';");
+                        WHERE estado = '$estado';");
         }
         else {
             $palabras = preg_split("/ (.| ) /", $quebuscar);
@@ -111,16 +113,17 @@ class Productos_model extends CI_Model {
                 $against .= $palabra.'* ';
             }
             $query = $this->db->query("SELECT * FROM productos 
-                        WHERE MATCH (nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE) and estado = 'PRODUCTO_DISPONIBLE';");
+                        WHERE MATCH (nombre,descripcion,ingredientes) AGAINST ('$against' IN BOOLEAN MODE) and estado = '$estado';");
         }
         return $query->num_rows();
     }
 
 //---------------------------------------------------------ListarxCategoriaWeb
     function listarxCategoriaWeb($cat = null, $pag = 1, $ppp = 1){
+        $estado = PRODUCTO_DISPONIBLE;
         $pagina = $ppp * ($pag - 1);
         $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
-                            WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.estado = 'PRODUCTO_DISPONIBLE'
+                            WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.estado = '$estado'
                             LIMIT $ppp OFFSET $pagina;");
         foreach ($query->result() as $row) {
 //            $this->db->select('nombre');
@@ -135,16 +138,18 @@ class Productos_model extends CI_Model {
 
 //---------------------------------------------------------Obtiene cantidad total de productos por la categoria
     function contarProductosCategoria($cat = null){
+        $estado = PRODUCTO_DISPONIBLE;
         $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
-                            WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.estado = 'PRODUCTO_DISPONIBLE'");
+                            WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.estado = '$estado'");
         return $query->num_rows();
     }
 
 //---------------------------------------------------------ListarxMarcaiaWeb
     function listarxMarcaWeb($mar = null, $pag = 1, $ppp = 1){
+        $estado = PRODUCTO_DISPONIBLE;
         $pagina = $ppp * ($pag - 1);
         $query = $this->db->query(" SELECT * FROM productos 
-                                    WHERE idmarca = $mar and estado = 'PRODUCTO_DISPONIBLE' 
+                                    WHERE idmarca = $mar and estado = '$estado' 
                                     LIMIT $ppp OFFSET $pagina;");
         foreach ($query->result() as $row) {
 //            $this->db->select('nombre');
@@ -159,8 +164,9 @@ class Productos_model extends CI_Model {
 
 //---------------------------------------------------------Obtiene cantidad total de productos por la marca
     function contarProductosMarca($mar = null){
+        $estado = PRODUCTO_DISPONIBLE;
         $query = $this->db->query(" SELECT * FROM productos 
-                                    WHERE idmarca = $mar and estado = 'PRODUCTO_DISPONIBLE';");
+                                    WHERE idmarca = $mar and estado = '$estado';");
         return $query->num_rows();
     }
 
@@ -223,20 +229,21 @@ class Productos_model extends CI_Model {
 
 //--------------------------------ListarWeb----------------OBSOLETA
     function listarWeb($cant = 10, $pag = 1, $cat = null, $mar = null){
+        $estado = PRODUCTO_DISPONIBLE;
         $data['cant'] = $this->db->count_all_results('productos');
         
         $pagina = $cant * ($pag - 1);
         if($cat!= null && $mar != null){
             $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
-                                        WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.idmarca = $mar and p.estado = 'PRODUCTO_DISPONIBLE'
+                                        WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.idmarca = $mar and p.estado = '$estado'
                                         LIMIT $cant OFFSET $pagina;");
         } else { 
             if($mar != null){
-                $query = $this->db->query(" SELECT * FROM productos WHERE idmarca = $mar and estado = 'PRODUCTO_DISPONIBLE' LIMIT $cant OFFSET $pagina;");
+                $query = $this->db->query(" SELECT * FROM productos WHERE idmarca = $mar and estado = '$estado' LIMIT $cant OFFSET $pagina;");
             } else { 
                 if($cat != null){
                     $query = $this->db->query(" SELECT * FROM pro_cat AS pc, productos AS p 
-                                        WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.estado = 'PRODUCTO_DISPONIBLE'
+                                        WHERE pc.idcategoria = $cat and pc.idproducto = p.id and p.estado = '$estado'
                                         LIMIT $cant OFFSET $pagina;");
                 } else {
                     $this->db->from('productos');

@@ -12,7 +12,12 @@ var proceso = "busqueda";
 <!--<div class="row" style="background: #cccccc;">   -->
 <div class="row">
    <div class="col-lg-10 col-lg-offset-2 text-center" id="titulo">
-		<h4>Busqueda de: <strong><?php if ($quebuscar == "*") {print "TODOS LOS PRODUCTOS ($cant)";} else {print "$quebuscar ($cant)";} ?></strong></h4>
+		<h4>Busqueda de: <strong>
+			<?php
+			 	if ($quebuscar == "*") {print 'TODOS LOS PRODUCTOS <span class="badge">'.$cant.'</span>';} 
+				else {print $quebuscar.' <span class="badge"> '.$cant.'</span>';} 
+			?>
+		</strong></h4>
 	</div>
 </div>
 <div class="row">
@@ -24,7 +29,7 @@ var proceso = "busqueda";
 					<?php 
 					foreach ($categorias as $categoria) {
 						print '	<a href="javascript:void(0)" class="list-group-item categ" data-id="'.$categoria->id.'" id="cat'.$categoria->id.'">
-								'.$categoria->nombre.'<span class="badge">'.$categoria->cuentas.'</span></a>';
+								'.$categoria->nombre.' <span class="badge">'.$categoria->cuentas.'</span></a>';
 					}
 					?>
 				</div> <!-- list-group--> 
@@ -37,7 +42,7 @@ var proceso = "busqueda";
 					<?php 
 					foreach ($marcas as $marca) {
 						print '	<a href="javascript:void(0)" class="list-group-item marca" data-id="'.$marca->idmarca.'" id="mar'.$marca->idmarca.'">
-								'.$marca->nombre.'<span class="badge">'.$marca->cuentas.'</span></a>';
+								'.$marca->nombre.' <span class="badge">'.$marca->cuentas.'</span></a>';
 					}
 					?>
 				</div> <!-- list-group--> 
@@ -177,7 +182,7 @@ $(document).ready(function(){
 		idcategoria = $(event.target).attr("data-id");
 		proceso = "categoria";
 		pag = 1;
-		$("#titulo").html('<h4><strong>'+$(event.target).html()+'</strong></h4>');
+		$("#titulo").html('<h4><strong>'+$(event.target).html()+' </strong></h4>');
 		rta = buscarxcategoria(idcategoria, function(rta){
 			if(!rta) {  }
 		})

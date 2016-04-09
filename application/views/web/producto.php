@@ -38,12 +38,12 @@ foreach ($producto->imagenes as $imagen) {
 	</div>
 	<div class="col-lg-7">
 		<div class="row">
-			<div class="col-lg-12" align="left">
+			<div class="col-lg-12 text-center">
 			  <h3><strong><?php print $producto->nombre;?></strong></h3>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-12 textos05" align="left">
+			<div class="col-lg-12 textos05 text-left">
 			  <h4><?php print $producto->descripcion;?></h4>
 			</div>
 		</div>

@@ -12,10 +12,12 @@ class Marcas_model extends CI_Model {
 
 //---------------------------------------------------------funcion listarConProductos
     function listarConProductos() {
-        $query = $this->db->query(" SELECT p.idmarca, m.nombre, count(p.idmarca) 
+        $estado = PRODUCTO_DISPONIBLE;
+        $query = $this->db->query(" SELECT p.idmarca, m.nombre, count(p.idmarca) as cuentas
                                     FROM productos AS p, marcas AS m   
-                                    WHERE p.estado = 'PRODUCTO_DISPONIBLE' and p.idmarca = m.id
+                                    WHERE  p.estado = '$estado' and p.idmarca = m.id  
                                     GROUP BY m.id;");
+
         return $query->result();
     }   
   

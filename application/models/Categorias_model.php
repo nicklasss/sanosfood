@@ -13,9 +13,10 @@ class Categorias_model extends CI_Model {
 
 //---------------------------------------------------------funcion listarConProductos
     function listarConProductos() {
+        $estado = PRODUCTO_DISPONIBLE;
         $query = $this->db->query(" SELECT pc.idcategoria as id, c.nombre, count(pc.idcategoria) as cuentas
                                     FROM pro_cat AS pc, productos AS p, categorias AS c   
-                                    WHERE p.estado = 'PRODUCTO_DISPONIBLE' AND p.id = pc.idproducto AND pc.idcategoria = c.id
+                                    WHERE p.estado = '$estado' AND p.id = pc.idproducto AND pc.idcategoria = c.id
                                     GROUP BY pc.idcategoria;");
         return $query->result();
     }   
