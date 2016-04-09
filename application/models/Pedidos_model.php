@@ -56,7 +56,6 @@ class Pedidos_model extends CI_Model {
         }
         $pedido = $query->row();
 
-
         $this->db->select('nombre,usuario,correo,telefono,celular');
         $this->db->where('id', $pedido->idusuario);
         $usuario = $this->db->get('usuarios', 1, 0)->row();
@@ -79,6 +78,22 @@ class Pedidos_model extends CI_Model {
         return $pedido;
     }
 
+//---------------------------------------------------------funcion pedidosPendientesBorrables
+    function pedidosPendientesBorrables(){
+        $estado = EST_PENDIENTE;
+        $tiempolimite = strtotime(date('Y-m-d H:i:s'))-TIEMPO_PENDIENTE;
+
+        $this->db->where('estado', EST_PENDIENTE);
+        $query = $this->db->get('pedidos');
+        $resultado = array();
+
+        foreach ($query->result() as $pedido) {
+            if (strtotime($pedido->fecha) < $tiempolimite) {
+                $resultado[] = $pedido;
+            }
+        }
+        return $resultado;
+    }
 
 //---------------------------------------------------------funcion getPedidosPorEstado
     function getPedidosPorEstado($estado = null, $pag = 1){
@@ -96,7 +111,6 @@ class Pedidos_model extends CI_Model {
             $this->db->where('id', $pedido->idusuario);
             $usuario = $this->db->get('usuarios', 1, 0)->row();
             $pedido->usuario = $usuario->correo;
-//            $pedido->ciudad = $usuario->ciudad;
             $resultado[] = $pedido;
         }
         return $resultado;

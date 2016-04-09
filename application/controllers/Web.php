@@ -153,21 +153,6 @@ public function encriptarclaves() {
 		$this->load->view('web/piedepagina');
 	}
 
-//---------------------------------------------------------RECIBE CONFIRMACION PAGO
-	public function recepcionpago($idusuario = null, $idpedido = null, $valor = null) {
-		if($idusuario == null or $idpedido == null or $valor == null){
-print $idusuario.$idpedido.$valor;
-		 show_404(); }
-
-		$this->load->view('web/encabezado');
-		$this->load->model('Productos_model');
-		$data['producto'] = $this->Productos_model->producto($id);
-		$this->load->model('Caracteristicas_model');
-		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
-		$this->load->view('web/producto', $data, FALSE); 
-		$this->load->view('web/piedepagina');
-	}
-
 //---------------------------------------------------------productos
 	public function productos() {
 		$quebuscar = @$this->input->post('quebuscar');

@@ -65,7 +65,7 @@ class Pedido extends CI_Controller {
 
 		//-------------crear el log de pedidos
 		$this->load->model('Log_pedidos_model');
-		$this->Log_pedidos_model->crear($idpedido, $idusuario, $fecha, EST_PENDIENTE, 'Creado inicial por el sistema');
+		$this->Log_pedidos_model->crear($idpedido, $idusuario, $fecha, EST_PENDIENTE, 'Creado inicial por el Usuario');
 
         $this->db->trans_complete();   //======================== TERMINA TRANSACCION
 
@@ -118,7 +118,6 @@ class Pedido extends CI_Controller {
         if ($this->db->trans_status() === FALSE) {
             print json_encode(array('res'=>'bad', 'msj'=>'hay errores no se completó la transacción.'));
         } else {
-			//-------------borrar el carrito
 			print json_encode(array('res'=>'ok'));
 		}
 	}
