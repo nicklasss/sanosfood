@@ -20,6 +20,13 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/login');
 	}
 
+	public function logout() {
+        $this->session->set_userdata('logeado_admin',false);
+        $this->session->set_userdata('usuario',"");
+        $this->session->set_userdata('tipo',"");
+		$this->load->view('admin/login');
+	}
+
 	public function validarusuario() {
 		$this->load->model('Admin_model');
 		$this->load->view('admin/validarusuario', array('resultado'=>$this->Admin_model->validarUsuario()), FALSE);
