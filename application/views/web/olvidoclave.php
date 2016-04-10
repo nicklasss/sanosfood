@@ -48,7 +48,7 @@ $(document).ready(function() {
 function enviarEmail (callback) {
 alert(correo);
 	$.ajax({                                               
-	  url: "<?php print base_url();?>email/correoOlvidoClave",
+	  url: "<?php print base_url();?>email/envioCorreoOlvidoClave",
 	  context: document.body,
 	  dataType: "json",
 	  type: "POST",
