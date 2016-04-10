@@ -37,8 +37,8 @@
 										<div class="form-group">
 											<button id="btn-enviar-login" type="button" class="btn btn-lg btn-primary btn-block">Iniciar Sesión</button>
 										</div>
-										<div class="form-group text-center">
-											<a href="olvidoclave"><strong>¿Olvidaste la Contraseña?</strong></a>
+										<div class="form-group text-center escondido" id="olvidoclave">
+											<a href="javascript:void(0)" class="linkpagina"><strong>¿Olvidaste la Contraseña?</strong></a>
 										</div>
 									</div>
 								</div>
@@ -74,6 +74,10 @@
 
 $(document).ready(function() {
 
+    $('.container').on('click','.linkpagina',function(event){
+        window.location="<?php print base_url();?>web/olvidoclave/"+$("#usuario").val().replace("@", "---");
+    });
+
 	$('.container').on('click','#btn-enviar-login',function(event){
 		if ($("#usuario").val() == "") { 
 			sarta = '<strong style="color:red;">** Usuario no puede ser vacio **</strong>'; $('#msg-error').html(sarta);  // Mensaje de error
@@ -87,6 +91,7 @@ $(document).ready(function() {
 		}
 		sarta = ' '; $('#msg-error').html(sarta);    // Limpia mensaje de error		
 		rta = enviar_login(function(rta){ 
+
 		})
 	});
 
@@ -110,6 +115,8 @@ $(document).ready(function() {
 				callback(true);
 			} else {
 				sarta = '<strong style="color:red;">'+data.msj+'</strong>'; $('#msg-error').html(sarta); // Mensaje de error
+				if(data.err == "2") { $('#olvidoclave').show(); } 
+				else { $('#olvidoclave').hide(); }
 				callback(false);
 			}
 		})          

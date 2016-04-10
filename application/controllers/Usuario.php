@@ -100,7 +100,7 @@ class Usuario extends CI_Controller {
         $data = $this->Usuarios_model->web_logear($usuario,$clave);
 
         if ($data['res'] == "bad") {
-            print json_encode(array('res'=>$data['res'],'msj'=>$data['msj']));
+            print json_encode(array('res'=>$data['res'],'msj'=>$data['msj'], 'err'=>$data['err']));
         } else {
             print json_encode(array('res'=>$data['res']));
         }

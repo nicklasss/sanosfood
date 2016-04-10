@@ -8,13 +8,14 @@
 					</div>
 					<div class="panel-body text-center">
 						<h4>
-							Recibirás un email en el buzón de correo que te identifica como usuario de Sanosfood's, 
+							<strong><?php print str_replace("---","@",$this->uri->segment(3));?></strong> Recibirás un email en el buzón de correo que te identifica como usuario de Sanosfood's, 
 							debes dar click en el enlace que allí aparece, este te lleva a una página donde puedes 
 							cambiar tu clave por una nueva.
-							<strong>Da click en enviar esta solicitud</strong>.
+							<strong><br>Da click en enviar esta solicitud</strong>.
 						</h4> 
 						<div class="form-group text-right">
-							<button id="btn-enviar" type="button" class="btn btn-warning">Enviar</button>
+							<button id="btn-cancelar" type="button" class="btn btn-warning">Cancelar</button>
+							<button id="btn-enviar" type="button" class="btn btn-success">Enviar</button>
 						</div>
 
 					</div>
@@ -27,18 +28,25 @@
 
 <!--========================================================================================================--> 
 <script type="text/javascript">
+	correo = '<?php print str_replace("---","@",$this->uri->segment(3));?>';
 
 $(document).ready(function() {
 
+	$('.container').on('click','#btn-cancelar',function(event){
+		window.location = "<?php print base_url();?>web/index";
+	})
+
 	$('.container').on('click','#btn-enviar',function(event){
 		rta = enviarEmail(function(rta) { });
-		window.location= "index";
+		window.location = "<?php print base_url();?>web/index";
 	})
+
 })
 
 
 //----------------------------------------------------------------------------------funcion enviarEmail
 function enviarEmail (callback) {
+alert(correo);
 	$.ajax({                                               
 	  url: "<?php print base_url();?>email/correoOlvidoClave",
 	  context: document.body,

@@ -11,14 +11,14 @@ class Email extends CI_Controller {
 
 		$correo = @$this->input->post('correo',TRUE);
 
-		$this->load->model('Usuarios_model');
-		$data = $this->Productos_model->listarWeb(8);
+//		$this->load->model('Usuarios_model');
+//		$data = $this->Usuarios_model->encontrar($correo);
 
 
 		$this->load->library('email');
 
-		$this->email->from('hlduran@hotamil.com', 'Humberto Luis Duran');
-		$this->email->to('hlduran.hotmail@gmail.com'); 
+		$this->email->from('hlduran.hotmail@gmail.com', 'Humberto Luis Duran');
+		$this->email->to($correo); 
 		//$this->email->cc('another@another-example.com'); 
 		//$this->email->bcc('them@their-example.com'); 
 

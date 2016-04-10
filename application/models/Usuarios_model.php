@@ -96,6 +96,7 @@ class Usuarios_model extends CI_Model {
 
         if ($query->num_rows() == 0) {
             $data['res'] = 'bad';
+            $data['err'] = '1';
             $data['msj'] = 'No existe este nombre de usuario';
             return $data;
         }
@@ -111,6 +112,7 @@ class Usuarios_model extends CI_Model {
             return $data;
         }
         $data['res'] = 'bad';
+        $data['err'] = '2';
         $data['msj'] = 'Usuario o Clave invalido';
         return $data;
     }
