@@ -40,6 +40,10 @@ class Email extends CI_Controller {
 
 		$this->email->subject('Pruebas de envio de emails');
 		$this->email->message('<h2>mensaje de prueba para olvido clave</h2>');	
+		$this->email->send();
+		//con esto podemos ver el resultado
+		var_dump($this->email->print_debugger());
+
 
 		if ($this->email->send()) {print json_encode(array('res'=>'ok'));exit();} 
 		else {print json_encode(array('res'=>'bad','msj'=>'Ha ocurrido un error.'));exit();}
