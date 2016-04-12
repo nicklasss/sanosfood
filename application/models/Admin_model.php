@@ -3,12 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin_model extends CI_Model {
 
-    function __construct()
-    {
-        // Call the Model constructor
-        parent::__construct();
-    }
+    function __construct() { parent::__construct(); }
     
+//---------------------------------------------------------validarUsuario
     function validarUsuario() {
         $usuario = @$this->input->post('usuario',TRUE);
         $clave = @$this->input->post('clave',TRUE);
@@ -31,5 +28,7 @@ class Admin_model extends CI_Model {
 
         return false;
     }
-
 }
+
+// End of file Admin_model.php 
+// Location: ./application/models/Admin_model.php

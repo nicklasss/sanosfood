@@ -1,11 +1,10 @@
-<?php
-if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Productos_model extends CI_Model {
 
 	function __construct() { parent::__construct(); }
 
-//---------------------------------------------------------funcion crear
+//---------------------------------------------------------crear
     function crear( $nombre = null, $descripcion = null, $ingredientes = null){
         if(strlen($nombre) < 5){
             $data['res'] = 'bad';
@@ -152,9 +151,6 @@ class Productos_model extends CI_Model {
                                     WHERE idmarca = $mar and estado = '$estado' 
                                     LIMIT $ppp OFFSET $pagina;");
         foreach ($query->result() as $row) {
-//            $this->db->select('nombre');
-//            $this->db->where('id', $row->idestadoproducto);
-//            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
             $this->db->select('imagen');
             $this->db->where('idproducto', $row->id);
             $row->imagen = @$this->db->get('imagenes', 1, 0)->row()->imagen;
@@ -164,9 +160,11 @@ class Productos_model extends CI_Model {
 
 //---------------------------------------------------------Obtiene cantidad total de productos por la marca
     function contarProductosMarca($mar = null){
-        $estado = PRODUCTO_DISPONIBLE;
-        $query = $this->db->query(" SELECT * FROM productos 
-                                    WHERE idmarca = $mar and estado = '$estado';");
+        $this->db->where('idmarca', $mar);
+        $this->db->where('estado', PRODUCTO_DISPONIBLE);    
+        $query = $this->db->get('productos');
+//        $query = $this->db->query(" SELECT * FROM productos 
+//                                    WHERE idmarca = $mar and estado = '$estado';");
         return $query->num_rows();
     }
 
@@ -213,9 +211,6 @@ class Productos_model extends CI_Model {
             } 
         }
         foreach ($query->result() as $row) {
-//            $this->db->select('nombre');
-//            $this->db->where('id', $row->idestadoproducto);
-//            $row->nombreestado = $this->db->get('estadosproductos', 1, 0)->row()->nombre;
             $this->db->select('imagen');
             $this->db->where('idproducto', $row->id);
             $row->imagen = @$this->db->get('imagenes', 1, 0)->row()->imagen;
@@ -588,5 +583,5 @@ class Productos_model extends CI_Model {
     }
 } 
 
-/* End of file Productos_model.php */
-/* Location: ./application/models/Productos_model.php */
+// End of file Productos_model.php 
+// Location: ./application/models/Productos_model.php

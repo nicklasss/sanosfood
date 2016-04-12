@@ -5,7 +5,7 @@ class Lineaspedidos_model extends CI_Model {
 	function __construct() { parent::__construct(); }
 
 
-//---------------------------------------------------------funcion listar
+//---------------------------------------------------------listar
     function listar($idpedido = null){
         $this->db->where('id_pedido', $idpedido);
         $query = $this->db->get('lineaspedidos');
@@ -22,7 +22,7 @@ class Lineaspedidos_model extends CI_Model {
         return $data;
     }
 
-//---------------------------------------------------------funcion crear
+//---------------------------------------------------------crear
     function crear($idpedido = null, $idproducto = null, $unidades = null, $precio = null) {
         $objecto = array('id_pedido' => $idpedido,
         				'id_producto' => $idproducto, 
@@ -36,7 +36,7 @@ class Lineaspedidos_model extends CI_Model {
         return $data;
     }
 
-//---------------------------------------------------------funcion eliminar
+//---------------------------------------------------------eliminar
     function eliminar($idpedido = null){
         if($idpedido == null){
             return array('res'=>'bad','msj'=>'Error en la inserción.'); }
@@ -45,7 +45,7 @@ class Lineaspedidos_model extends CI_Model {
         return array('res'=>'ok');
     }
 
-//---------------------------------------------------------funcion buscar_lineaspedido
+//---------------------------------------------------------buscar_lineaspedido
     function buscar_lineaspedido($idpedido = null){
         $this->db->where('id_pedido', $idpedido);
         $query = $this->db->get('lineaspedidos');
@@ -71,7 +71,7 @@ class Lineaspedidos_model extends CI_Model {
         return $data;
     }
 
-//---------------------------------------------------------funcion conseguirLineas
+//---------------------------------------------------------conseguirLineas
     function conseguirLineas($idpedido = null){
         $this->db->where('id_pedido', $idpedido);
         $query = $this->db->get('lineaspedidos');
@@ -102,9 +102,7 @@ class Lineaspedidos_model extends CI_Model {
         $data['msj'] = '';
         return $data;
     }
-
-
 }
 
-/* End of file Caracteristicas_model.php */
-/* Location: ./application/models/Caracteristicas_model.php */
+// End of file Lineaspedidos_model.php 
+// Location: ./application/models/Lineaspedidos_model.php

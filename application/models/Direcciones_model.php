@@ -5,8 +5,8 @@ class Direcciones_model extends CI_Model {
 	function __construct() { parent::__construct(); }
 
 
-//---------------------------------------------------------funcion actualizar
-    function actualizar($id = NULL, $nombre = NULL, $direccion = NULL, $barrio = NULL, $ciudad = NULL, $region = NULL, $pais = NULL){
+//---------------------------------------------------------actualizar
+    function actualizar($id = null, $nombre = null, $direccion = null, $barrio = null, $ciudad = null, $region = null, $pais = null){
         $this->db->trans_start();
         $object = array("nombre"=>$nombre, "direccion"=>$direccion, "barrio"=>$barrio, "ciudad"=>$ciudad, "region"=>$region, "pais"=>$pais);
         $this->db->where('id', $id);
@@ -18,7 +18,7 @@ class Direcciones_model extends CI_Model {
         else {return array('res'=>'ok'); }
     }
 
-//---------------------------------------------------------funcion eliminar
+//---------------------------------------------------------eliminar
     function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'Error en la inserción.'); }
@@ -27,7 +27,7 @@ class Direcciones_model extends CI_Model {
         return array('res'=>'ok');
     }   
 
-//---------------------------------------------------------funcion crear
+//---------------------------------------------------------crear
     function crear($idusuario = null, $nombre = null, $direccion = null, $barrio = null, $ciudad = null, $region = null, $pais = null) {
         $object = array('id_usuario' => $idusuario,
         				'nombre' => $nombre, 
@@ -44,7 +44,7 @@ class Direcciones_model extends CI_Model {
         return $data;
     }
 
-//---------------------------------------------------------funcion direccionesUsuario
+//---------------------------------------------------------direccionesUsuario
     function direccionesUsuario($idusuario = null){
         $this->db->where('id_usuario', $idusuario);
         $this->db->order_by('nombre', 'asc');
@@ -52,7 +52,7 @@ class Direcciones_model extends CI_Model {
         return $query->result();
     }
 
-//---------------------------------------------------------funcion buscarxusuarioxnombre
+//---------------------------------------------------------buscarxusuarioxnombre
     function buscarxusuarioxnombre($idusuario = null, $nombre = null){
         $this->db->where('id_usuario', $idusuario);
         $this->db->where('nombre', $nombre);
@@ -62,5 +62,5 @@ class Direcciones_model extends CI_Model {
     }
 }
 
-/* End of file Caracteristicas_model.php */
-/* Location: ./application/models/Caracteristicas_model.php */
+// End of file Direcciones_model.php 
+// Location: ./application/models/Direcciones_model.php

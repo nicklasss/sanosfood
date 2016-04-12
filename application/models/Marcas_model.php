@@ -4,13 +4,13 @@ class Marcas_model extends CI_Model {
 
 	function __construct() { parent::__construct(); }
 
-//---------------------------------------------------------funcion listar
+//---------------------------------------------------------listar
     function listar(){
     	$query = $this->db->get('marcas');
     	return $query->result();
     }
 
-//---------------------------------------------------------funcion listarConProductos
+//---------------------------------------------------------listarConProductos
     function listarConProductos() {
         $estado = PRODUCTO_DISPONIBLE;
         $query = $this->db->query(" SELECT p.idmarca, m.nombre, count(p.idmarca) as cuentas
@@ -21,9 +21,9 @@ class Marcas_model extends CI_Model {
         return $query->result();
     }   
   
-//---------------------------------------------------------funcion editar
-    function editar($id = NULL, $atributo = NULL, $valor = NULL){
-        if($id != NULL AND $atributo != NULL AND $valor != NULL){
+//---------------------------------------------------------editar
+    function editar($id = null, $atributo = null, $valor = null){
+        if($id != null AND $atributo != null AND $valor != null){
             if($atributo =="nombre"){
                 $this->db->where('nombre', $valor);
                 if($this->db->count_all_results('marcas')>0){
@@ -41,7 +41,7 @@ class Marcas_model extends CI_Model {
         }
     }
     
-//---------------------------------------------------------funcion crear
+//---------------------------------------------------------crear
     function crear($nombre = null, $descripcion = null){
         if($nombre == NULL OR $descripcion == null){
             return array('res'=>'bad','msj'=>'ERROR en creación.'); }
@@ -58,7 +58,7 @@ class Marcas_model extends CI_Model {
         return array('res'=>'ok','id'=>$this->db->insert_id());
     }
     
-//---------------------------------------------------------funcion eliminar
+//---------------------------------------------------------eliminar
     function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'ERROR en eliminación.'); }
@@ -71,5 +71,5 @@ class Marcas_model extends CI_Model {
     }
 }
 
-/* End of file Caracteristicas_model.php */
-/* Location: ./application/models/Caracteristicas_model.php */
+// End of file Marcas_model.php 
+// Location: ./application/models/Marcas_model.php

@@ -76,7 +76,7 @@ $(document).ready(function() {
 
     $('.container').on('click','.linkpagina',function(event){
         window.location="<?php print base_url();?>web/olvidoclave/"+$("#usuario").val().replace("@", "---");
-    });
+    })
 
 	$('.container').on('click','#btn-enviar-login',function(event){
 		if ($("#usuario").val() == "") { 
@@ -93,38 +93,38 @@ $(document).ready(function() {
 		rta = enviar_login(function(rta){ 
 
 		})
-	});
+	})
 
 	$('.container').on('click','#btn-enviar-nuevo',function(event){
 		window.location= "<?php print base_url();?>web/registrarse";
-	});
+	})
 
 });
             
 //---------------------------------------------------------enviar_login
-    function enviar_login(callback) {
-        $.ajax({                                             
-          url: "<?php print base_url();?>usuario/web_logear",
-          context: document.body,
-          dataType: "json",
-          type: "POST",
-          data: {usuario  : $("#usuario").val(), clave : $("#clave").val()} })
-		.done(function(data) {                                
-			if(data.res=="ok") {
-				window.location = "<?php print base_url();?>web/index";
-				callback(true);
-			} else {
-				sarta = '<strong style="color:red;">'+data.msj+'</strong>'; $('#msg-error').html(sarta); // Mensaje de error
-				if(data.err == "2") { $('#olvidoclave').show(); } 
-				else { $('#olvidoclave').hide(); }
-				callback(false);
-			}
-		})          
-		.error(function(){
-			sarta = '<strong style="color:red;">** ERROR EN EL SERVIDOR **</strong>'; $('#msg-error').html(sarta); // Mensaje de error
+function enviar_login(callback) {
+    $.ajax({                                             
+      url: "<?php print base_url();?>usuario/web_logear",
+      context: document.body,
+      dataType: "json",
+      type: "POST",
+      data: {usuario  : $("#usuario").val(), clave : $("#clave").val()} })
+	.done(function(data) {                                
+		if(data.res=="ok") {
+			window.location = "<?php print base_url();?>web/index";
+			callback(true);
+		} else {
+			sarta = '<strong style="color:red;">'+data.msj+'</strong>'; $('#msg-error').html(sarta); // Mensaje de error
+			if(data.err == "2") { $('#olvidoclave').show(); } 
+			else { $('#olvidoclave').hide(); }
 			callback(false);
-		})  
-    }
+		}
+	})          
+	.error(function(){
+		sarta = '<strong style="color:red;">** ERROR EN EL SERVIDOR **</strong>'; $('#msg-error').html(sarta); // Mensaje de error
+		callback(false);
+	})  
+}
     
 </script>
 

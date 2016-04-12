@@ -17,16 +17,15 @@
 							<button id="btn-cancelar" type="button" class="btn btn-warning">Cancelar</button>
 							<button id="btn-enviar" type="button" class="btn btn-success">Enviar</button>
 						</div>
-
 					</div>
                 </div>
 			</div>
 		</div>
 	</div>
- </body>
+</body>
 
 
-<!--========================================================================================================--> 
+<!------------------------------------------------------------------------------------------> 
 <script type="text/javascript">
 	correo = '<?php print str_replace("---","@",$this->uri->segment(3));?>';
 
@@ -37,28 +36,27 @@ $(document).ready(function() {
 	})
 
 	$('.container').on('click','#btn-enviar',function(event){
-		rta = enviarEmail(function(rta) { });
+		rta = enviarEmail(function(rta){ });
 		window.location = "<?php print base_url();?>web/index";
 	})
 
 })
 
-
 //----------------------------------------------------------------------------------funcion enviarEmail
 function enviarEmail (callback) {
-alert(correo);
 	$.ajax({                                               
-	  url: "<?php print base_url();?>email/envioCorreoOlvidoClave",
-	  context: document.body,
-	  dataType: "json",
-	  type: "POST",
-	  data: { correo : correo,} })
+		url: "<?php print base_url();?>interfases/envioCorreo",
+		context: document.body,
+		dataType: "json",
+		type: "POST",
+		data: {correo : correo} 
+	})
 	.done(function(data) {                              
-		if(data.res == "ok") {alert("mando OK"); callback(true);}
+		if(data.res == "ok") {callback(true);}
 		else {alert(data.msj); callback(false);}
 	})
 	.error(function(){
-		alert('Error en el servidor'); 
+		alert('Error en el servidor de envioCorreoOlvidoClave'); 
 		callback(false);
 	})
 } 

@@ -2,10 +2,10 @@
 
 class Estadopedido extends CI_Controller {
 
-	public function index()
-	{
-		
-	}
+	public function index() { }
+
+
+//---------------------------------------------------------editar
 	public function editar() {
 		if(!$this->session->userdata('logeado_admin')){
 			$data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
@@ -17,8 +17,9 @@ class Estadopedido extends CI_Controller {
 		$this->load->model('Estadospedidos_model');
 		$data['resultado'] = $this->Estadospedidos_model->editar($id,$atributo,$valor);
 		print json_encode($data['resultado']);
-//		$this->load->view('estadopedido/editar', $data, FALSE);
 	}
+
+//---------------------------------------------------------crear
 	public function crear(){
 		if(!$this->session->userdata('logeado_admin')) {
 			$data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
@@ -29,8 +30,9 @@ class Estadopedido extends CI_Controller {
 		$this->load->model('Estadospedidos_model');
 		$data['resultado'] = $this->Estadospedidos_model->crear($nombre,$descripcion);
 		print json_encode($data['resultado']);
-//		$this->load->view('estadopedido/crear', $data, FALSE);
 	}
+
+//---------------------------------------------------------eliminar
 	public function eliminar(){
 		if(!$this->session->userdata('logeado_admin')) {
 			$data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
@@ -40,10 +42,9 @@ class Estadopedido extends CI_Controller {
 		$this->load->model('Estadospedidos_model');
 		$data['resultado'] = $this->Estadospedidos_model->eliminar($id);
 		print json_encode($data['resultado']);
-//		$this->load->view('estadopedido/eliminar', $data, FALSE);
 	}
 
 }
 
-/* End of file Caracteristica.php */
-/* Location: ./application/controllers/Caracteristica.php */
+/* End of file Estadopedido.php */
+/* Location: ./application/controllers/Estadopedido.php */

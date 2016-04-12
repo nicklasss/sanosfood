@@ -1,5 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Lineaspedidos extends CI_Controller {
 
@@ -19,5 +18,5 @@ class Lineaspedidos extends CI_Controller {
 
 }
 
-/* End of file usuario.php */
-/* Location: ./application/controllers/usuario.php */
+/* End of file Lineaspedido.php */
+/* Location: ./application/controllers/Lineaspedido.php */

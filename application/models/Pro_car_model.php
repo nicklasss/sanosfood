@@ -2,13 +2,14 @@
 
 class Pro_car_model extends CI_Model {
 
-	function __construct() {parent::__construct(); }
+	function __construct() { parent::__construct(); }
 
-//---------------------------------------------------------funcion listar
+//---------------------------------------------------------listar
     function listar(){
     	$query = $this->db->get('pro_car');
     	return $query->result();
     }
 }
-/* End of file Caracteristicas_model.php */
-/* Location: ./application/models/Caracteristicas_model.php */
+
+// End of file Pro_car_model.php 
+// Location: ./application/models/Pro_car_model.php

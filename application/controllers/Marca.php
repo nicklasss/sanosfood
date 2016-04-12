@@ -2,10 +2,10 @@
 
 class Marca extends CI_Controller {
 
-	public function index()
-	{
-		
-	}
+	public function index() { }
+
+
+//---------------------------------------------------------editar
 	public function editar() {
 		if(!$this->session->userdata('logeado_admin')){
 			$data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
@@ -17,8 +17,9 @@ class Marca extends CI_Controller {
 		$this->load->model('Marcas_model');
 		$data['resultado'] = $this->Marcas_model->editar($id,$atributo,$valor);
 		print json_encode($data['resultado']);
-//		$this->load->view('marca/editar', $data, FALSE);
 	}
+
+//---------------------------------------------------------crear
 	public function crear(){
 		if(!$this->session->userdata('logeado_admin')) {
 			$data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
@@ -29,8 +30,9 @@ class Marca extends CI_Controller {
 		$this->load->model('Marcas_model');
 		$data['resultado'] = $this->Marcas_model->crear($nombre,$descripcion);
 		print json_encode($data['resultado']);
-//		$this->load->view('marca/crear', $data, FALSE);
 	}
+
+//---------------------------------------------------------eliminar
 	public function eliminar(){
 		if(!$this->session->userdata('logeado_admin')) {
 			$data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
@@ -40,10 +42,8 @@ class Marca extends CI_Controller {
 		$this->load->model('Marcas_model');
 		$data['resultado'] = $this->Marcas_model->eliminar($id);
 		print json_encode($data['resultado']);
-//		$this->load->view('marca/eliminar', $data, FALSE);
 	}
-
 }
 
-/* End of file Caracteristica.php */
-/* Location: ./application/controllers/Caracteristica.php */
+/* End of file Marca.php */
+/* Location: ./application/controllers/Marca.php */

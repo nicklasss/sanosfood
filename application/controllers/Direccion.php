@@ -5,7 +5,7 @@ class Direccion extends CI_Controller {
 
 	public function index() {}
 
-//----------------------------------------------------------------------------------funcion crear
+//---------------------------------------------------------funcion crear
     function crear() {
         $idusuario		= @$this->input->post('idusuario',TRUE);
         $nombre			= @$this->input->post('nombre',TRUE);
@@ -25,7 +25,7 @@ class Direccion extends CI_Controller {
         }
     }
 
-//----------------------------------------------------------------------------------funcion actualizar
+//---------------------------------------------------------funcion actualizar
     function actualizar() {
         $id  			= @$this->input->post('id',TRUE);
         $nombre			= @$this->input->post('nombre',TRUE);
@@ -43,7 +43,7 @@ class Direccion extends CI_Controller {
         print json_encode($this->Direcciones_model->actualizar($id, $nombre, $direccion, $barrio, $ciudad, $region, $pais));
     }
 
-//----------------------------------------------------------------------------------funcion eliminar
+//---------------------------------------------------------funcion eliminar
 	public function eliminar(){
 		if(!$this->session->userdata('logeado')) {
 			$data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
@@ -53,9 +53,8 @@ class Direccion extends CI_Controller {
 		$this->load->model('Direcciones_model');
 		$data['resultado'] = $this->Direcciones_model->eliminar($id);
 		print json_encode($data['resultado']);
-//		$this->load->view('marca/eliminar', $data, FALSE);
 	}
 }
 
-/* End of file usuario.php */
-/* Location: ./application/controllers/usuario.php */
+/* End of file Direccion.php */
+/* Location: ./application/controllers/Direccion.php */

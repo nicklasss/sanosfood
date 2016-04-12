@@ -19,8 +19,6 @@ public function encriptarclaves() {
 //---------------------------------- */
 
 
-
-
 //---------------------------------------------------------Index
 	public function index() {
 		$this->load->view('web/encabezado');
@@ -50,7 +48,7 @@ public function encriptarclaves() {
 		redirect('','refresh');
 	}
 
-//---------------------------------------------------------Login
+//---------------------------------------------------------cambiarclave
 	public function cambiarclave() {
 		if(!$this->session->userdata('logeado')){
 			redirect('','refresh');
@@ -61,14 +59,14 @@ public function encriptarclaves() {
 		$this->load->view('web/piedepagina');
 	}
 
-//---------------------------------------------------------Logout
+//---------------------------------------------------------olvidoclave
 	public function olvidoclave() {
 		if($this->session->userdata('logeado')){
 			redirect('','refresh');
 			exit();
 		}
 		$this->load->view('web/encabezado');
-		$this->load->view('web/olvidoclave', FALSE); 
+		$this->load->view('web/olvidoclave'); 
 		$this->load->view('web/piedepagina');
 	}
 
@@ -189,3 +187,6 @@ public function encriptarclaves() {
 	}
 
 }
+
+// End of file Web.php 
+// Location: ./application/controllers/Web.php

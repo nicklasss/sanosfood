@@ -5,7 +5,7 @@ class Usuario extends CI_Controller {
 
 	public function index() {}
 
-//----------------------------------------------------------------------------------funcion buscar
+//---------------------------------------------------------buscar
 	public function buscar(){
 		$query = $this->input->post('query',TRUE);
 		
@@ -15,7 +15,7 @@ class Usuario extends CI_Controller {
 		print json_encode(array('res'=>'ok','usuarios'=>$data['usuarios']));
 	}
 
-//----------------------------------------------------------------------------------funcion encontrar
+//---------------------------------------------------------buscar
     public function encontrar(){
         $usuario = $this->input->post('usuario',TRUE);
         
@@ -24,8 +24,8 @@ class Usuario extends CI_Controller {
         print json_encode(array('res'=>'ok','usuario'=>$data['usuario']));
     }
 
-//----------------------------------------------------------------------------------funcion crear
-    function crear() {
+//---------------------------------------------------------buscar
+    public function crear() {
         $email      = @$this->input->post('email',TRUE);
         $usuario    = $email;
         $clave      = @$this->input->post('clave',TRUE);
@@ -36,8 +36,8 @@ class Usuario extends CI_Controller {
         print json_encode(array('res'=>$data['res'],'msj'=>$data['msj']));
     }
 
-//----------------------------------------------------------------------------------funcion crear
-    function cambiarclave() {
+//---------------------------------------------------------buscar
+    public function cambiarclave() {
         $idusuario    = @$this->input->post('idusuario',TRUE);
         $claveactual  = @$this->input->post('claveactual',TRUE);
         $nuevaclave   = @$this->input->post('nuevaclave',TRUE);
@@ -52,9 +52,23 @@ class Usuario extends CI_Controller {
         }
     }
 
+//---------------------------------------------------------buscar
+    public function cambiarclaveolvido() {
+        $llave   = @$this->input->post('llave',TRUE);
+        $nuevaclave   = @$this->input->post('nuevaclave',TRUE);
 
-//----------------------------------------------------------------------------------funcion actualizar
-    function actualizar() {
+        $this->load->model('Usuarios_model');
+        $data = $this->Usuarios_model->cambiarclaveolvido($llave, $nuevaclave);
+
+        if ($data['res'] == "bad") {
+            print json_encode(array('res'=>$data['res'],'msj'=>$data['msj']));
+        } else {
+            print json_encode(array('res'=>$data['res']));
+        }
+    }
+
+//---------------------------------------------------------buscar
+    public function actualizar() {
         $idusuario  = @$this->input->post('idusuario',TRUE);
         $nombre     = @$this->input->post('nombre',TRUE);
         $email      = @$this->input->post('email',TRUE);
@@ -74,7 +88,7 @@ class Usuario extends CI_Controller {
                                                             $telefono, $tipodcto, $nrodcto, $ultimadireccion));
     }
 
-//----------------------------------------------------------------------------------funcion eliminar
+//---------------------------------------------------------buscar
     public function eliminar(){
         if(!$this->session->userdata('logeado')) {
             $data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
@@ -87,12 +101,10 @@ class Usuario extends CI_Controller {
 
                 $this->session->set_userdata('usuario',"");
         redirect('','refresh');
-
-//      $this->load->view('marca/eliminar', $data, FALSE);
     }
 
-//----------------------------------------------------------------------------------funcion logear
-    function web_logear() {
+//---------------------------------------------------------buscar
+    public function web_logear() {
         $usuario = @$this->input->post('usuario',TRUE);
         $clave = @$this->input->post('clave',TRUE);
 
@@ -104,10 +116,8 @@ class Usuario extends CI_Controller {
         } else {
             print json_encode(array('res'=>$data['res']));
         }
-
     }
-
 }
 
-/* End of file usuario.php */
-/* Location: ./application/controllers/usuario.php */
+/* End of file Usuario.php */
+/* Location: ./application/controllers/Usuario.php */

@@ -4,14 +4,14 @@ class Estadospedidos_model extends CI_Model {
 
 	function __construct() { parent::__construct(); }
 
-//---------------------------------------------------------funcion listar
+//---------------------------------------------------------listar
     function listar(){
         $this->db->order_by('id', 'asc');
     	$query = $this->db->get('estadospedidos');
     	return $query->result();
     }	
     
-//---------------------------------------------------------funcion traerid
+//---------------------------------------------------------traerid
     function traerid($nombre = null){
         $this->db->select('id');
         $this->db->where('nombre', $nombre);
@@ -19,9 +19,9 @@ class Estadospedidos_model extends CI_Model {
         return $idestado;
     }   
 
-//---------------------------------------------------------funcion editar
-	function editar($id = NULL, $atributo = NULL, $valor = NULL){
-         if($id != NULL AND $atributo != NULL AND $valor != NULL){
+//---------------------------------------------------------editar
+	function editar($id = null, $atributo = null, $valor = null){
+         if($id != null AND $atributo != null AND $valor != null){
             if($atributo =="nombre"){
                 $this->db->where('nombre', $valor);
                 if($this->db->count_all_results('estadospedidos')>0){
@@ -39,9 +39,9 @@ class Estadospedidos_model extends CI_Model {
         }
     }
 
-//---------------------------------------------------------funcion crear
+//---------------------------------------------------------crear
     function crear($nombre = null, $descripcion = null){
-        if($nombre == NULL OR $descripcion == null){
+        if($nombre == null OR $descripcion == null){
             return array('res'=>'bad','msj'=>'ERROR en la creación.'); }
 
         if(strlen($nombre)<3){
@@ -56,7 +56,7 @@ class Estadospedidos_model extends CI_Model {
         return array('res'=>'ok','id'=>$this->db->insert_id());
     }
 
-//---------------------------------------------------------funcion eliminar
+//---------------------------------------------------------eliminar
    function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'ERROR en la inserción.'); }
@@ -70,5 +70,5 @@ class Estadospedidos_model extends CI_Model {
 }
 
 
-/* End of file Estados_model.php */
-/* Location: ./application/models/Estados_model.php */
+// End of file Estadospedidos_model.php 
+// Location: ./application/models/Estadospedidos_model.php

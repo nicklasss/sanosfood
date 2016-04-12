@@ -4,7 +4,7 @@ class Usuarios_model extends CI_Model {
 
 	function __construct() { parent::__construct(); }
 
-//---------------------------------------------------------Encuentra un usuario por el id
+//---------------------------------------------------------get
     function get($id=null){
         $this->db->where('id', $id);
         $query = $this->db->get('usuarios', 1, 0);
@@ -14,7 +14,7 @@ class Usuarios_model extends CI_Model {
         return $query->row();
     }
 
-//---------------------------------------------------------Busca un usuarios por el usuario o email
+//---------------------------------------------------------encontrar
     function encontrar($usuario = null){
         $this->db->where('usuario', $usuario);
         $query = $this->db->get('usuarios', 1, 0);
@@ -24,14 +24,14 @@ class Usuarios_model extends CI_Model {
         return $query->row();
     }
 
-//---------------------------------------------------------Lista todos usuarios de usuarios
+//---------------------------------------------------------listar
     function listar(){
         $this->db->order_by('nombres', 'asc');
     	$query = $this->db->get('usuarios');
     	return $query->result();
     }
 
-//---------------------------------------------------------Actualiza la informacion del usuario web
+//---------------------------------------------------------actualizar
     function actualizar($idusuario = null, $nombre = null, $usuario = null, $email = null, $celular = null, $telefono = null,
                         $tipodcto = null, $nrodcto = null, $ultimadireccion = null) {
 
@@ -65,9 +65,9 @@ class Usuarios_model extends CI_Model {
         return $data; 
     }
 
-//---------------------------------------------------------Valida campos de Producto con estado diferente de DISPONIBLE
-    function editar($id = NULL, $atributo = NULL, $valor = NULL){
-        if($id != NULL AND $atributo != NULL AND $valor != NULL){
+//---------------------------------------------------------editar
+    function editar($id = null, $atributo = null, $valor = null){
+        if($id != null AND $atributo != null AND $valor != null){
             $this->db->trans_start();
             $object = array($atributo => $valor);
             $this->db->where('id', $id);
@@ -80,7 +80,7 @@ class Usuarios_model extends CI_Model {
         }
     }
 
-//---------------------------------------------------------borra un usuario por el id
+//---------------------------------------------------------eliminar
     function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'Error en la inserción.'); }
@@ -89,7 +89,7 @@ class Usuarios_model extends CI_Model {
         return array('res'=>'ok');
     }
 
-//---------------------------------------------------------Logea un usuario web
+//---------------------------------------------------------web_logear
     function web_logear($usuario = null, $clave = null) {
         $this->db->select('id, clave')->from('usuarios')->where('usuario', $usuario)->limit(1, 0);
         $query = $this->db->get();
@@ -117,7 +117,7 @@ class Usuarios_model extends CI_Model {
         return $data;
     }
 
-//---------------------------------------------------------Crea un nuevo usuario web
+//---------------------------------------------------------crear
     function crear($email = null, $usuario = null, $clave = null) {
         $this->db->where('usuario', $usuario);
         if($this->db->count_all_results('usuarios') > 0) {
@@ -140,9 +140,8 @@ class Usuarios_model extends CI_Model {
         return $data;
     }
 
-//---------------------------------------------------------Crea un nuevo usuario web
+//---------------------------------------------------------cambiarclave
     function cambiarclave($idusuario = null, $claveactual = null, $nuevaclave = null) {
-
         $this->db->select('clave')->from('usuarios')->where('id', $idusuario)->limit(1, 0);
         $query = $this->db->get();
 
@@ -153,9 +152,29 @@ class Usuarios_model extends CI_Model {
             $data['msj'] = 'Contraseña Actual es invalida';
             return $data;
         }
-
         $objeto = array('clave'=>encriptar($nuevaclave));
         $this->db->where('id', $idusuario);
+        $this->db->update('usuarios', $objeto);
+        $data['res'] = 'ok';
+        $data['msj'] = 'Contraseña cambiada correctamente';
+        return $data;
+    }
+
+//---------------------------------------------------------cambiarclaveolvido
+    function cambiarclaveolvido($llave = null, $nuevaclave = null) {
+        $this->db->select('correo')->from('recuperaclave')->where('llave_enviada', $llave)->limit(1, 0);
+        $query = $this->db->get();
+
+        if ($query->num_rows() == 0) {
+            $data['res'] = 'bad';
+            $data['msj'] = 'Llave enviada no coincide en la BD';
+            return $data;
+        }
+
+        $row = $query->row();
+        $this->load->helper('security');
+        $objeto = array('clave'=>encriptar($nuevaclave));
+        $this->db->where('correo', $row->correo);
         $this->db->update('usuarios', $objeto);
 
         $data['res'] = 'ok';
@@ -163,7 +182,7 @@ class Usuarios_model extends CI_Model {
         return $data;
     }
 
-//---------------------------------------------------------Busca usuarios por nombre parcial para admin
+//---------------------------------------------------------buscar
     function buscar($query = ''){
         if($query ==""){ $data['usuarios'] = array(); }
         
@@ -185,5 +204,5 @@ class Usuarios_model extends CI_Model {
     }
 }
 
-/* End of file Caracteristicas_model.php */
-/* Location: ./application/models/Caracteristicas_model.php */
+// End of file Usuarios_model.php 
+// Location: ./application/models/Usuarios_model.php

@@ -32,7 +32,7 @@ class Pedido extends CI_Controller {
 		$idusuario = $this->session->userdata("idusuario");
 		$fecha = date("Y-m-d H:i:s");
 
-        $this->db->trans_start();      //======================== INICIA TRANSACCIONJ
+        $this->db->trans_start();      //======================== INICIA TRANSACCION
 
 		//-------------buscar la direccion de envio
 		$this->load->model('Direcciones_model');
@@ -80,7 +80,7 @@ class Pedido extends CI_Controller {
 
     }
 
-//----------------------------------------------------------------------------------funcion eliminar
+//---------------------------------------------------------eliminar
     public function eliminar(){
         if(!$this->session->userdata('logeado')) {
             $data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
@@ -122,7 +122,7 @@ class Pedido extends CI_Controller {
 		}
 	}
 
-//----------------------------------------------------------------------------------funcion moveracarrito
+//---------------------------------------------------------moveracarrito
     public function moveracarrito(){
         if(!$this->session->userdata('logeado')) {
             $data['resultado'] = array('res'=>'bad','msj'=>'No autorizado.');
@@ -131,8 +131,6 @@ class Pedido extends CI_Controller {
         $idpedido = @$this->input->post('idpedido',TRUE);
 		$idusuario = $this->session->userdata("idusuario");
 		$fecha = date("Y-m-d H:i:s");
-
-
 
 		//-------------consigue las lineas del pedido y las graba en carrito
         $this->load->model('Lineaspedidos_model');
@@ -171,5 +169,5 @@ class Pedido extends CI_Controller {
 
 }
 
-/* End of file Caracteristica.php */
-/* Location: ./application/controllers/Caracteristica.php */
+/* End of file Pedido.php */
+/* Location: ./application/controllers/Pedido.php */

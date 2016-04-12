@@ -1,11 +1,10 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pedidos_model extends CI_Model {
 
 	function __construct() { parent::__construct(); }
     
-//---------------------------------------------------------funcion crear
+//---------------------------------------------------------crear
     function crear($idusuario = null, $fecha = null, $estado = null, $ultimadireccion = null, $direccion = null, $barrio = null, 
                    $ciudad = null, $region = null, $pais = null) {
         $objecto = array('idusuario' => $idusuario,
@@ -24,7 +23,7 @@ class Pedidos_model extends CI_Model {
         return $data;
     }
 
-//---------------------------------------------------------funcion eliminar
+//---------------------------------------------------------eliminar
     function eliminar($id = null){
         if($id == null){
             return array('res'=>'bad','msj'=>'Error en la inserción.'); }
@@ -33,7 +32,7 @@ class Pedidos_model extends CI_Model {
         return array('res'=>'ok');
     }
 
-//---------------------------------------------------------funcion pedidosUsuario
+//---------------------------------------------------------pedidosUsuario
     function pedidosUsuario($id = null){
     	$this->db->where('idusuario', $id);
     	$this->db->order_by('fecha', 'desc');
@@ -47,7 +46,7 @@ class Pedidos_model extends CI_Model {
     	return $query->result();
     }
 
-//---------------------------------------------------------funcion conseguirPedido
+//---------------------------------------------------------getPedido
     function getPedido($id = null){
         $this->db->where('id', $id);
         $query = $this->db->get('pedidos', 1, 0);
@@ -78,7 +77,7 @@ class Pedidos_model extends CI_Model {
         return $pedido;
     }
 
-//---------------------------------------------------------funcion pedidosPendientesBorrables
+//---------------------------------------------------------pedidosPendientesBorrables
     function pedidosPendientesBorrables(){
         $estado = EST_PENDIENTE;
         $tiempolimite = strtotime(date('Y-m-d H:i:s'))-TIEMPO_PENDIENTE;
@@ -95,7 +94,7 @@ class Pedidos_model extends CI_Model {
         return $resultado;
     }
 
-//---------------------------------------------------------funcion getPedidosPorEstado
+//---------------------------------------------------------getPedidosPorEstado
     function getPedidosPorEstado($estado = null, $pag = 1){
         $this->db->where('nombre', $estado);
         if($this->db->count_all_results('estadospedidos') == 0 AND $estado != 'Todos'){
@@ -116,7 +115,7 @@ class Pedidos_model extends CI_Model {
         return $resultado;
     }
 
-//---------------------------------------------------------funcion contarPedidos
+//---------------------------------------------------------contarPedidos
     function contarPedidos($estado = null){
         if($estado !='Todos'){
             $this->db->where('estado', $estado);
@@ -125,7 +124,7 @@ class Pedidos_model extends CI_Model {
         return $this->db->count_all_results('pedidos');
     }
     
-//---------------------------------------------------------funcion cambiarEstado
+//---------------------------------------------------------cambiarEstado
     function cambiarEstado($id = null, $estado = null, $observacion = ""){
         $this->db->where('id', $id);
         $query = $this->db->get('pedidos', 1, 0);
@@ -146,5 +145,5 @@ class Pedidos_model extends CI_Model {
     }
 }
 
-/* End of file pedidos_model.php */
-/* Location: ./application/models/pedidos_model.php */
+// End of file Pedidos_model.php 
+// Location: ./application/models/Pedidos_model.php
