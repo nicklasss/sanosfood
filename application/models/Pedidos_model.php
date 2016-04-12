@@ -128,20 +128,26 @@ class Pedidos_model extends CI_Model {
     function cambiarEstado($id = null, $estado = null, $observacion = ""){
         $this->db->where('id', $id);
         $query = $this->db->get('pedidos', 1, 0);
-        if($query->num_rows() != 1){ return false; }
+        if($query->num_rows() != 1){ 
+            $data['msj'] = "No se encontró el pedido";
+            $data['res'] = 'bad';
+            return $data;
+        }
         
         $pedido = $query->row();
-        $objecto = array('id_pedido'     => $id, 
-                         'id_usuario'    =>$pedido->idusuario,
+        $objecto = array('id_pedido'    => $id, 
+                         'id_usuario'   =>$pedido->idusuario,
                          'fecha'        =>  date('Y-m-d H:i:s'),
                          'estado'       => $estado,
-                         'observacion'  =>'(ADMIN) '.$observacion);
+                         'observacion'  => $observacion);
         $this->db->insert('log_pedidos', $objecto);
 
         $objecto = array('estado' => $estado );
         $this->db->where('id', $id);
         $this->db->update('pedidos', $objecto);
-        return true;
+        $data['msj'] = "";
+        $data['res'] = 'ok';
+        return $data;
     }
 }
 

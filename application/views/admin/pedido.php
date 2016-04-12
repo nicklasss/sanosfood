@@ -67,7 +67,7 @@
 						<label>Estado</label>
 						<select class="form-control estado" disabled="disabled">
 <?php 						foreach ($estadospedidos as $estado) {
-								if ($estado->nombre == $pedido->nom_estado) {
+								if ($estado->nombre == $pedido->estado) {
 									print '<option value="'.$estado->nombre.'" selected>'.$estado->nombre.'</option>'; }
 								else {
 									print '<option value="'.$estado->nombre.'">'.$estado->nombre.'</option>'; }
@@ -165,17 +165,18 @@ $(document).ready(function() {
 
 //---------------------------------------------------------funcion guardar
 function guardar (estado, observacion, callback) {
-  $.ajax({                                               // envio de los datos
-	    url: "<?php print base_url();?>pedido/cambiarestado",
-	    context: document.body,
-	    dataType: "json",
-	    type: "POST",
-	    data: {id : <?php print $pedido->id;?>, idestadopedido : estado, observacion : observacion } })
-   .done(function(data) {                               // respuesta del servidor
-    if(data.res=="ok") {callback(true)}
-    else {alert(data.msj);callback(false)}
-    })
-   .error(function(){alert('No hay conexion');callback(false);})
+  	observacion = '(ADMIN) '+ observacion;
+	$.ajax({                                               // envio de los datos
+		url: "<?php print base_url();?>pedido/cambiarestado",
+		context: document.body,
+		dataType: "json",
+		type: "POST",
+		data: {id : <?php print $pedido->id;?>, idestadopedido : estado, observacion : observacion } })
+	.done(function(data) {                               // respuesta del servidor
+		if(data.res=="ok") {callback(true)}
+		else {alert(data.msj);callback(false)}
+		})
+	.error(function(){alert('No hay conexion');callback(false);})
 }
 
 </script>

@@ -1,15 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Interfase extends CI_Controller {
+class Interfases extends CI_Controller {
 
 	public function index() { }
 
 //---------------------------------------------------------prueba
 // funcion para pruebas de cosas para mostrar en el navegador	
 	public function prueba() {
-		$clave = $this->uri->segment(3);
+		$clave = $this->uri->segment(1);
 		$correo = "hlduran@hotmail.com";
-		print(md5('sanossalt'.date('Y-m-d H:i:s').$correo));
+		print($clave);
 	}
 
 //---------------------------------------------------------(CRON) cada1minuto
@@ -108,7 +108,7 @@ class Interfase extends CI_Controller {
 	}
 
 //---------------------------------------------------------(PAGOS) recepcionpago
-	public function recepcionpago($idusuario = null, $idpedido = null, $valor = null) {
+	public function solicitudpago($idusuario = null, $idpedido = null, $valor = null) {
 
 //		verificar quien ejecuta para estar seguro que es de pagos reales
 
@@ -119,8 +119,24 @@ class Interfase extends CI_Controller {
 		$this->load->view('web/piedepagina');
 	}
 
+//---------------------------------------------------------(PAGOS) recepcionpago
+	public function recepcionpago() {
+
+//		verificar quien ejecuta para estar seguro que es de pagos reales
+		$idpedido = $this->uri->segment(3);
+		$aprobado = $this->uri->segment(4);
+		if($idpedido == null OR $aprobado == null OR $aprobado == "no") { 
+			print("datos de url mal o negados");
+			exit();
+		}
+	
+		//-------------cambia estado en pedidos y crear el log
+		$this->load->model('Pedidos_model');
+		$this->Pedidos_model->cambiarestado($idpedido, EST_PAGADO, "Autorizacion recibida por url");
+
+	}
 
 }
 
-/* End of file Cron.php */
-/* Location: ./application/controllers/Cron.php */
+// End of file Interfases.php
+// Location: ./application/controllers/Interfases.php

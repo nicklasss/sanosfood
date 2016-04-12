@@ -64,7 +64,9 @@
 		</div> <!-- panel-->
 	</div>		
 	<div class="col-md-7">
-		<h2 class="text-center">Pedidos</h2>
+<?php 
+	print '<h2 class="text-center">Pedidos <span class="badge">'.count($pedidos).'</span></h2>';
+?>
 		<div class="row">
 			<div class="col-md-11 col-md-offset-1 panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<?php 	
@@ -76,11 +78,11 @@
 				    print '			<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$pedido->id.'" aria-expanded="false" aria-controls="collapse'.$pedido->id.'">';
 				    print '				<small>Pedido de fecha: </small><strong>'.substr($pedido->fecha, 0,10).' '.$pedido->estado.'</strong>';
 				    print '			</a>';
-				    if ($pedido->estado == EST_PENDIENTE) {	
+				    	if ($pedido->estado == EST_PENDIENTE) {	
 				    print '			<button type="button" class="btn btn-xs btn-success pagar" data-id="'.$pedido->id.'">Pagar</button>';
 				    print '			<button type="button" class="btn btn-xs btn-info carrito" data-id="'.$pedido->id.'">Volver al Carrito</button>';
 				    print '			<button type="button" class="btn btn-xs btn-danger eliminar" data-id="'.$pedido->id.'">Eliminar</button>';
-					}
+						}
 				    print '		</h4>';
 				    print '	</div>';
 				    print '	<div id="collapse'.$pedido->id.'" data-id="'.$pedido->id.'" data-cargado="false" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'.$pedido->id.'">';
@@ -110,7 +112,7 @@ $(document).ready(function() {
 
 	//---------------------------------------------------------Botones de PEDIDOS
 	$('.container').on('click','.pagar',function(event){
-			alert('pagar'+$(event.target).attr("data-id"));
+			alert('va al proceso de pagar el pedido: '+$(event.target).attr("data-id"));
 	});
 	$('.container').on('click','.carrito',function(event){
 		rta = confirm("presione ACEPTAR para en viar al Carrito el pedido, o CANCEL para dejar ahí");

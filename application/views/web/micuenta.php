@@ -246,9 +246,8 @@
 $(document).ready(function() { 
 
     $(".container").on('click','#continuar',function(e){
-		alert("va al proceso de pago y continua creando el pedido en la BD");
 		rta = crearpedido(function(rta) { })
-
+		alert("El pedido ha sido creado como 'pendiente' ahora va al proceso de pago");
     });
 
 //-------------------------------------------------------------Manejo de botones para USUARIOS

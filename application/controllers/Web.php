@@ -28,6 +28,17 @@ public function encriptarclaves() {
 		$this->load->view('web/piedepagina');
 	}
 
+//---------------------------------------------------------cambiarclave
+	public function cambiarclave() {
+		if(!$this->session->userdata('logeado')){
+			redirect('','refresh');
+			exit();
+		}
+		$this->load->view('web/encabezado');
+		$this->load->view('web/cambiarclave');
+		$this->load->view('web/piedepagina');
+	}
+
 //---------------------------------------------------------Login
 	public function login() {
 		if($this->session->userdata('logeado')){
@@ -48,76 +59,6 @@ public function encriptarclaves() {
 		redirect('','refresh');
 	}
 
-//---------------------------------------------------------cambiarclave
-	public function cambiarclave() {
-		if(!$this->session->userdata('logeado')){
-			redirect('','refresh');
-			exit();
-		}
-		$this->load->view('web/encabezado');
-		$this->load->view('web/cambiarclave');
-		$this->load->view('web/piedepagina');
-	}
-
-//---------------------------------------------------------olvidoclave
-	public function olvidoclave() {
-		if($this->session->userdata('logeado')){
-			redirect('','refresh');
-			exit();
-		}
-		$this->load->view('web/encabezado');
-		$this->load->view('web/olvidoclave'); 
-		$this->load->view('web/piedepagina');
-	}
-
-//---------------------------------------------------------Registrarse
-	public function registrarse() {
-		if($this->session->userdata('logeado')){
-			redirect('','refresh');
-			exit();
-		}
-		$this->load->view('web/encabezado');
-		$this->load->view('web/registrarse');
-		$this->load->view('web/piedepagina');
-	}
-
-//---------------------------------------------------------mostrarCarrito
-	public function mostrarCarrito() {
-		$this->load->view('web/encabezado');
-		$this->load->view('web/carrito', FALSE); 
-		$this->load->view('web/piedepagina');
-	}
-	
-//---------------------------------------------------------Comprar
-	public function comprar() {
-		if(!$this->session->userdata('logeado')){
-			redirect('','refresh');
-			exit();
-		}
-		$this->load->view('web/encabezado');
-		$this->load->model('Usuarios_model');
-		$data['usuario'] = $this->Usuarios_model->encontrar($this->session->userdata("usuario"));
-		$this->load->model('Direcciones_model');
-		$idusuario = $data['usuario']->id;
-		$data['direcciones'] = $this->Direcciones_model->direccionesUsuario( $idusuario );
-        $this->session->set_userdata('comprando',true);
-		$this->load->view('web/micuenta', $data, FALSE); 
-		$this->load->view('web/piedepagina');
-	}
-
-//---------------------------------------------------------producto
-	public function producto($id = null) {
-		if($id == null){ show_404();
-		}
-		$this->load->view('web/encabezado');
-		$this->load->model('Productos_model');
-		$data['producto'] = $this->Productos_model->producto($id);
-		$this->load->model('Caracteristicas_model');
-		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
-		$this->load->view('web/producto', $data, FALSE); 
-		$this->load->view('web/piedepagina');
-	}
-
 //---------------------------------------------------------micuenta
 	public function micuenta() {
 		if(!$this->session->userdata('logeado')){
@@ -130,6 +71,7 @@ public function encriptarclaves() {
 		$this->load->model('Direcciones_model');
 		$idusuario = $data['usuario']->id;
 		$data['direcciones'] = $this->Direcciones_model->direccionesUsuario( $idusuario );
+        $this->session->set_userdata('comprando',true);
 		$this->load->view('web/micuenta', $data, FALSE); 
 		$this->load->view('web/piedepagina');
 	}
@@ -148,6 +90,37 @@ public function encriptarclaves() {
 		$id = $data['usuario']->id;
 		$data['pedidos'] = $this->Pedidos_model->pedidosUsuario( $id );
 		$this->load->view('web/mispedidos', $data, FALSE); 
+		$this->load->view('web/piedepagina');
+	}
+
+//---------------------------------------------------------mostrarCarrito
+	public function mostrarCarrito() {
+		$this->load->view('web/encabezado');
+		$this->load->view('web/carrito', FALSE); 
+		$this->load->view('web/piedepagina');
+	}
+	
+//---------------------------------------------------------olvidoclave
+	public function olvidoclave() {
+		if($this->session->userdata('logeado')){
+			redirect('','refresh');
+			exit();
+		}
+		$this->load->view('web/encabezado');
+		$this->load->view('web/olvidoclave'); 
+		$this->load->view('web/piedepagina');
+	}
+
+//---------------------------------------------------------producto
+	public function producto($id = null) {
+		if($id == null){ show_404();
+		}
+		$this->load->view('web/encabezado');
+		$this->load->model('Productos_model');
+		$data['producto'] = $this->Productos_model->producto($id);
+		$this->load->model('Caracteristicas_model');
+		$data['caracteristicas'] = $this->Caracteristicas_model->listar();
+		$this->load->view('web/producto', $data, FALSE); 
 		$this->load->view('web/piedepagina');
 	}
 
@@ -183,6 +156,17 @@ public function encriptarclaves() {
 		$data['pro_car'] = $this->Pro_car_model->listar();
 		$this->load->view('web/encabezado');
 		$this->load->view('web/productoscaracteristicas', $data, FALSE); 
+		$this->load->view('web/piedepagina');
+	}
+
+//---------------------------------------------------------Registrarse
+	public function registrarse() {
+		if($this->session->userdata('logeado')){
+			redirect('','refresh');
+			exit();
+		}
+		$this->load->view('web/encabezado');
+		$this->load->view('web/registrarse');
 		$this->load->view('web/piedepagina');
 	}
 
