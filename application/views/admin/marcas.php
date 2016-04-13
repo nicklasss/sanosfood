@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-        <div class="panel panel-default">
+        <div class="panel panel-success">
 			<div class="panel-heading text-center"><h2>Marcas</h2></div>
 			<table class="table table-condensed table-striped" id="tabla-car">
 				<thead>

@@ -5,7 +5,7 @@ var idproducto = <?php print $producto->id;?>;
 </script>
 
 
-<div class="panel panel-warning">
+<div class="panel panel-success">
 	<div class="panel-heading text-center"><h2>Información del Producto</h2></div>
 	<form class="form-horizontal form-contenedor">
 		<div class="row registro">
@@ -81,7 +81,7 @@ var idproducto = <?php print $producto->id;?>;
 <!------------------------------------- edicion del campo CARACTERISTICAS --> 
 <div class="row registro">
 	<div class="col-md-4">
-        <div class="panel panel-warning">
+        <div class="panel panel-success">
 			<div class="panel-heading text-center"><h3>Características</h3></div>
 			<table class="table table-condensed table-striped">
 				<tbody>
@@ -161,7 +161,7 @@ foreach ($caracteristicas as $caracteristica) {
 
 <!----------------------------------- edicion del campo CATEGORIAS --> 
 	<div class="col-md-4">
-        <div class="panel panel-warning">
+        <div class="panel panel-success">
 			<div class="panel-heading text-center"><h3>Categorias</h3></div>
 			<table class="table table-condensed table-striped">
 				<tbody>
@@ -267,7 +267,7 @@ foreach ($categorias as $categoria) {
 
 <div class="row registro">
 	<div class="col-md-12">
-        <div class="panel panel-warning">
+        <div class="panel panel-success">
         	<div class="panel-heading text-center"><h3>Imágenes</h3></div>
 <?php
 			$i = 0;

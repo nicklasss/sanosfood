@@ -67,7 +67,7 @@ class Usuario extends CI_Controller {
         }
     }
 
-//---------------------------------------------------------buscar
+//---------------------------------------------------------actualizar
     public function actualizar() {
         $idusuario  = @$this->input->post('idusuario',TRUE);
         $nombre     = @$this->input->post('nombre',TRUE);
@@ -80,6 +80,27 @@ class Usuario extends CI_Controller {
         $ultimadireccion = @$this->input->post('ultimadireccion',TRUE);
         
         if(!$this->session->userdata('logeado')){
+            print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));
+        }
+
+        $this->load->model('Usuarios_model');
+        print json_encode($this->Usuarios_model->actualizar($idusuario, $nombre, $usuario, $email, $celular, 
+                                                            $telefono, $tipodcto, $nrodcto, $ultimadireccion));
+    }
+
+//---------------------------------------------------------web_actualizar
+    public function admin_actualizar() {
+        $idusuario  = @$this->input->post('idusuario',TRUE);
+        $nombre     = @$this->input->post('nombre',TRUE);
+        $email      = @$this->input->post('email',TRUE);
+        $usuario    = $email;
+        $celular    = @$this->input->post('celular',TRUE);
+        $telefono   = @$this->input->post('telefono',TRUE);
+        $tipodcto   = @$this->input->post('tipodcto',TRUE);
+        $nrodcto    = @$this->input->post('nrodcto',TRUE);
+        $ultimadireccion = @$this->input->post('ultimadireccion',TRUE);
+        
+        if(!$this->session->userdata('logeado_admin')){
             print json_encode(array('res'=>'bad','msj'=>'No autorizado.'));
         }
 

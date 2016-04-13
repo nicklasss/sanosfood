@@ -13,7 +13,7 @@
 		</div>
 	</div>
 	<div class="col-md-2">
-  		<button type="button" class="btn btn-sm btn-primary btn-buscar">Buscar</button>
+  		<button type="button" class="btn btn-lg btn-primary btn-buscar">Buscar</button>
 	</div>
 </div>
 
@@ -23,9 +23,10 @@
 			<table class="table table-condensed table-striped">
 				<thead>
 				<tr role="row">
-				  <th width="25%">Nombre</th>
+				  <th width="40%">Nombre</th>
 				  <th width="25%">Usuario (email)</th>
-				  <th width="25%">Dirección último envío</th>
+				  <th width="10%" class="text-center">Teléfono</th>
+				  <th width="25%" class="text-center">Dirección último envío</th>
 				</tr role="row">
 				</thead>
 				<tbody id="listausuarios">
@@ -35,6 +36,7 @@
 	</div>
 </div>
 
+<!-------------------------------------------------------------------------------------------------------------------------------------->
 <script type="text/javascript">
 $(document).ready(function() { 
 	$("#ecriterio").focus();
@@ -51,29 +53,31 @@ $(document).ready(function() {
 	})
 })
 
+//----------------------------------------------------------------------------------funcion guardar
 function buscar (valor, callback) {
-  $.ajax({                                               
-	    url: "<?php print base_url();?>usuario/buscar",
-	    context: document.body,
-	    dataType: "json",
-	    type: "POST",
-	    data: {query : valor} })
-   .done(function(data) {                           
-    if(data.res=="ok") {
-    	callback(true);
-    	if(data.usuarios.length == 0) {alert("No se encuentra ninguna coincidencia");}
-      for (var i = 0; i < data.usuarios.length; i++) {
-   		if(i == 0) { $("#listausuarios").html("<tr>"); }
-         else { $("#listausuarios").append("<tr>"); }
-         $("#listausuarios").append("<td>"+data.usuarios[i].nombre+"</td>");  
-         $("#listausuarios").append("<td><a href='usuarios/"+data.usuarios[i].id+"'>"+data.usuarios[i].usuario+"</a></td>");  
-         $("#listausuarios").append("<td>"+data.usuarios[i].ultima_direccion+"</td>");  
-         $("#listausuarios").append("</tr>");  
-      } 
+	$.ajax({                                               
+		url: "<?php print base_url();?>usuario/buscar",
+		context: document.body,
+		dataType: "json",
+		type: "POST",
+		data: {query : valor} })
+	.done(function(data) {                           
+	if(data.res=="ok") {
+		callback(true);
+		if(data.usuarios.length == 0) {alert("No se encuentra ninguna coincidencia");}
+	  for (var i = 0; i < data.usuarios.length; i++) {
+			if(i == 0) { $("#listausuarios").html("<tr>"); }
+	     else { $("#listausuarios").append("<tr>"); }
+	     $("#listausuarios").append("<td>"+data.usuarios[i].nombre+"</td>");  
+	     $("#listausuarios").append("<td><a href='usuarios/"+data.usuarios[i].id+"'>"+data.usuarios[i].usuario+"</a></td>");  
+	     $("#listausuarios").append('<td class="text-center">'+data.usuarios[i].celular+'</td>');  
+	     $("#listausuarios").append('<td class="text-center">'+data.usuarios[i].ultima_direccion+'</td>');  
+	     $("#listausuarios").append("</tr>");  
+	  } 
 	 }
 	 else {alert(data.msj);callback(false)}
-    })
-   .error(function(){alert('No hay conexion');callback(false);})
+	})
+	.error(function(){alert('No hay conexion');callback(false);})
 }
 
 </script>

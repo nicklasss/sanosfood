@@ -15,10 +15,10 @@
                                 <div class="dataTables_length">
                                 <label>Mostrar 
                                     <select id="select-cant" aria-controls="dataTables-example" class="form-control input-sm">
-                                        <option value="10">10</option>
+                                        <option value="5">5</option>
+                                        <option value="10" selected>10</option>
                                         <option value="25">25</option>
                                         <option value="50">50</option>
-                                        <option value="100">100</option>
                                     </select> productos</label>
                                 </div>
                             </div>
@@ -54,24 +54,25 @@
                                 <table class="table table-striped table-bordered table-condensed table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
                                     <thead>
                                         <tr role="row">
-                                            <th class="sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" >Nombre</th>
-                                            <th class="sorting" tabindex="0" rowspan="1" colspan="1" >Existencias</th>
-                                            <th class="sorting" tabindex="0" rowspan="1" colspan="1" >Estado</th>
-                                            <th class="sorting" tabindex="0" rowspan="1" colspan="1" >Precio</th>
+                                            <th width="10%" class="sorting_asc text-center" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" >Id</th>
+                                            <th width="50%" class="sorting" tabindex="0" rowspan="1" colspan="1" >Nombre</th>
+                                            <th width="15%" class="sorting text-center" tabindex="0" rowspan="1" colspan="1" >Existencias</th>
+                                            <th width="15%" class="sorting text-center" tabindex="0" rowspan="1" colspan="1" >Estado</th>
+                                            <th class="sorting text-right" tabindex="0" rowspan="1" colspan="1" >Precio</th>
                                         </tr>
                                     </thead>
                                     <tbody id="lista">
-                                        <?php
-                                        foreach ($productos as $producto) {
-                                            print ' <tr role="row">
-                                    
-                                                        <td width="40%"><strong><a href="'.base_url().'admin/producto/'.$producto->id.'">'.$producto->nombre.'</a></strong></td>
-                                                        <td width="20%">'.$producto->existencias.'</td>
-                                                        <td width="20%">'.$producto->estado.'</td>
-                                                        <td class="center">'.number_format($producto->precio , 0, ",", ".").'</td> 
-                                                    </tr>';
-                                        }
-                                        ?>
+<?php
+                            foreach ($productos as $producto) {
+                                print ' <tr role="row">
+                                            <td class="text-center">'.$producto->id.'</td>
+                                            <td><strong><a href="'.base_url().'admin/producto/'.$producto->id.'">'.$producto->nombre.'</a></strong></td>
+                                            <td class="text-center">'.$producto->existencias.'</td>
+                                            <td class="text-center">'.$producto->estado.'</td>
+                                            <td class="text-right">'.number_format($producto->precio , 0, ",", ".").'</td> 
+                                        </tr>';
+                            }
+?>
                                     </tbody>
                                 </table>
                             </div>
@@ -112,39 +113,41 @@
 
 //----------------------------------------------------------------------------------funcion LISTAR
 function listar(){
-    $.ajax({                                               // envio de los datos
+    $.ajax({                                              
         url: "<?php print base_url();?>producto/listar",
         context: document.body,
         dataType: "json",
         type: "POST",
         data: { cant : cant, pagina : pagina, nomestado : "<?php print $this->uri->segment(3);?>"  }
         })
-     .done(function(data) {                                // respuesta del servidor
+    .done(function(data) {                                
         if(data.res == "ok") {
             resultado = '';
             for (var i = 0; i < data.productos.length; i++) {
-                resultado += ' <tr role="row">'+
-                    '<td width="40%"><strong><a href="<?php print base_url();?>admin/producto/'+data.productos[i].id+'">'+data.productos[i].nombre+'</a></strong></td>'+
-                    '<td width="20%">'+data.productos[i].existencias+'</td>'+
-                    '<td width="20%">'+data.productos[i].nombreestado+'</td>'+
-                    '<td width="20%">'+formato_numero(data.productos[i].precio)+'</td>'+
-                    '</tr>';
-                $("#lista").html(resultado);
-            };
+                resultado +=
+                '<tr role="row">'+
+                    '<td class="text-center">'+data.productos[i].id+'</td>'+
+                    '<td><strong><a href="<?php print base_url();?>admin/producto/'+data.productos[i].id+'">'+data.productos[i].nombre+'</a></strong></td>'+
+                    '<td class="text-center">'+data.productos[i].existencias+'</td>'+
+                    '<td class="text-center">'+data.productos[i].estado+'</td>'+
+                    '<td class="text-right">'+formato_numero(data.productos[i].precio)+'</td>'+
+                '</tr>';
+            }
+            $("#lista").html(resultado);
             resultado = '';
             for (var i = 0; i < Math.floor((data.cant-1)/cant)+1; i++) {
                 resultado += '  <li class="paginate_button ';
-                if((i+1)==pagina){
+                if((i+1) == pagina){ 
                     resultado+= ' active';
                 }
                 resultado += '" aria-controls="dataTables-example" tabindex="0">'+
                                     '<a data-pag="'+(i+1)+'" class="link-a-pagina" href="javascript:void(0)">'+(i+1)+'</a>'+
                                 '</li>';
-            };
+            }
             $("#paginas").html(resultado);
         }
         else{alert(data.msj) } })          
-     .error(function(){alert('error en el servidor'); });  // error generado
+    .error(function(){alert('error en el servidor'); });  // error generado
 }
 
 //----------------------------------------------------------------------------------funcion BUSCAR

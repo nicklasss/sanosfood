@@ -12,16 +12,8 @@ if( @$this->session->userdata( 'usuario' ) == "" ){ redirect('admin/login'); }
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<link rel="icon" href="../../favicon.ico">
+	<title>Sanosfoods Admin</title>
 
-	<title>Fixed Top Navbar Example for Bootstrap</title>
-
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-	<![endif]
-	<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script> -->
 	<script src="//code.jquery.com/jquery-2.0.2.min.js"></script>  
 	<link rel="stylesheet" href="<?php print base_url();?>css/admin.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -50,7 +42,7 @@ if( @$this->session->userdata( 'usuario' ) == "" ){ redirect('admin/login'); }
 						<ul class="dropdown-menu" role="menu">
 <?php
                 foreach ($estadosproductos as $estadosprod) { ?>
-							<li><a href="<?php print base_url().'admin/productos/'.$estadosprod->id;?>"><?php print $estadosprod->nombre; ?></a></li>
+							<li><a href="<?php print base_url().'admin/productos/'.$estadosprod->nombre;?>"><?php print $estadosprod->nombre; ?></a></li>
                 
 <?php
                 }
@@ -71,7 +63,7 @@ if( @$this->session->userdata( 'usuario' ) == "" ){ redirect('admin/login'); }
 						<ul class="dropdown-menu" role="menu">
 <?php
 						foreach ($estadospedidos as $estados) { ?>
-							<li><a href="<?php print base_url().'admin/pedidos/'.$estados->id;?>"><?php print $estados->nombre; ?></a></li>
+							<li><a href="<?php print base_url().'admin/pedidos/'.$estados->nombre;?>"><?php print $estados->nombre; ?></a></li>
 						 
 <?php
 						}

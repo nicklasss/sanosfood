@@ -1,7 +1,7 @@
 <div class="text-center">
 	<h2>Pedido Id: <mark><?php print $pedido->id;?></mark> del <mark><?php print date("Y-m-d", strtotime($pedido->fecha));?></mark></h2>
 </div>
-<div class="panel panel-info">
+<div class="panel panel-success">
 	<div class="panel-heading"><h3>Información del Usuario y dirección de envío</h3></div>
 	<form class="form-horizontal form-contenedor">
 		<div class="row">
@@ -58,7 +58,7 @@
 
 <div class="row registro">
 	<div class="col-md-10 col-md-offset-1">
-		<div class="panel panel-info">
+		<div class="panel panel-success">
 			<div class="panel-heading"><h3>Cambio del estado del pedido</h3></div>
 			<form class="form-horizontal form-contenedor">
 				<div class="row">
@@ -98,7 +98,7 @@
 
 <div class="row registro">
 	<div class="col-md-6 col-md-offset-3">
-        <div class="panel panel-info">
+        <div class="panel panel-success">
 			<div class="panel-heading"><h3>Productos del Pedido</h3></div>
 			<table class="table table-condensed table-striped" id="tabla-car">
 				<thead>

@@ -187,8 +187,7 @@ class Usuarios_model extends CI_Model {
         if($query ==""){ $data['usuarios'] = array(); }
         
         if($query =="*") {
-            $query = $this->db->query(" SELECT id,nombre,usuario,correo,ultima_direccion
-                                        FROM usuarios;");
+            $query = $this->db->query(" SELECT * FROM usuarios;");
             return $query->result();
         }
 
@@ -197,8 +196,7 @@ class Usuarios_model extends CI_Model {
         foreach ($palabras as $palabra) {
             $against .= $palabra.'* ';
         }
-        $query = $this->db->query(" SELECT id,nombre,usuario,correo,ultima_direccion
-                                    FROM usuarios
+        $query = $this->db->query(" SELECT * FROM usuarios
                                     WHERE MATCH(nombre,correo,ultima_direccion) AGAINST ('$against' IN BOOLEAN MODE);");
         return $query->result();
     }
