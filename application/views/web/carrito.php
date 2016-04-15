@@ -6,42 +6,44 @@
 		<div class="panel panel-default">
 			<table class="table table-condensed table-striped">
 				<thead>
-				<tr role="row">
-					<th width="15%"></th>
-					<th width="50%">Producto</th>
-					<th width="10%">Cantidad</th>
-					<th width="10%">Subtotal</th>
-				</tr role="row">
+					<tr role="row">
+						<th width="15%" class="text-center">Imagen</th>
+						<th width="50%" class="text-center">Producto</th>
+						<th width="10%" class="text-center">Cantidad</th>
+						<th width="10%" class="text-center">Subtotal</th>
+					</tr role="row">
 				</thead>
 				<tbody>
 <?php
-					foreach ($this->cart->contents() as $item) {
-						print '<tr>';
-						print ' <td><img class="img-responsive img-pequena" src="'.$item['imagen'].'"/></td>';
-						print '	<td><h5 class="nombre"><strong>'.$item['name'].'</strong></h5>';
-						print '	<h6><small>'.$item['descripcioncorta'].'</small></h6></td>';
-						print '	<td><h5><input type="number" class="form-control input-cantidad" id="id'.$item['rowid'].'" min="0" value="'.$item['qty'].'" data-id="'.$item['rowid'].'"></h5></td>';
-						print '	<td id="valor'.$item['id'].'" class="text-right">';
-						print '		<div id="valor-item'.$item['rowid'].'">';
-						print '			<h5><strong>'.number_format($item['subtotal'],0,',','.').'</strong></h5>';
-						print '		</div>';
-						print '</tr>';
-					}
-?>
-					<tr>
-						<td colspan="2">
-<?php						
-					if ($this->cart->total() == 0) {
-						print '		<button type="button" class="btn btn-xs btn-warning" id="btn-vaciar" disabled="disabled">Vaciar Carrito</button>';
-						print '		<button type="button" class="btn btn-xs btn-success" id="btn-comprar" disabled="disabled">Comprar</button>';
-					} else {
-						print '		<button type="button" class="btn btn-xs btn-warning" id="btn-vaciar">Vaciar Carrito</button>';
-						if ($this->session->userdata("logeado") == true) {
-							print '		<button type="button" class="btn btn-xs btn-success" id="btn-comprar">Comprar</button>';
-						} else {
-						print '		<button type="button" class="btn btn-xs btn-success" id="btn-comprar" disabled="disabled">Comprar</button>';
-						}
-					}
+foreach ($this->cart->contents() as $item) {
+	print 			'<tr>';
+	print 			' 	<td><img class="img-responsive img-pequena" src="'.$item['imagen'].'"/></td>';
+	print 			'	<td>';
+	print 			'		<h5 class="nombre"><strong>'.$item['name'].'</strong></h5>';
+	print 			'		<h6><small>'.$item['descripcioncorta'].'</small></h6>';
+	print 			'	</td>';
+	print 			'	<td><h5><input type="number" class="form-control input-cantidad" id="id'.$item['rowid'].'" min="0" value="'.$item['qty'].'" data-id="'.$item['rowid'].'"></h5></td>';
+	print 			'	<td id="valor'.$item['id'].'" class="text-right">';
+	print 			'		<div id="valor-item'.$item['rowid'].'">';
+	print 			'			<h5><strong>'.number_format($item['subtotal'],0,',','.').'</strong></h5>';
+	print 			'		</div>';
+	print 			'	</td>';
+	print 			'</tr>';
+}
+print				'<tr>';
+print				'	<td colspan="2">';
+						
+if ($this->cart->total() == 0) {
+	print 			'		<button type="button" class="btn btn-xs btn-warning" id="btn-vaciar" disabled="disabled">Vaciar Carrito</button>';
+	print 			'		<button type="button" class="btn btn-xs btn-success" id="btn-comprar" disabled="disabled">Comprar</button>';
+} else {
+		print 		'		<button type="button" class="btn btn-xs btn-warning" id="btn-vaciar">Vaciar Carrito</button>';
+	if ($this->session->userdata("logeado") == true) {
+		print '				<button type="button" class="btn btn-xs btn-success" id="btn-comprar">Comprar</button>';
+	} else {
+		print '				<button type="button" class="btn btn-xs btn-success" id="btn-comprar" disabled="disabled">Comprar</button>';
+	}
+}
 ?>					
 						</td>
 						<td class="text-right"><h5>Total:</h5></td>
@@ -52,13 +54,13 @@
 						</td>
 					</tr>
 <?php
-					if ($this->session->userdata("logeado") == false) {
-						print '	<tr>';
-						print '		<td colspan="4">';
-						print '			<h5>** Para comprar debe primero: <a href="'.base_url().'web/login">Iniciar Sesión</a> como usuario registrado, o <a href="'.base_url().'web/Registrarse">Registrarse</a>.</h5>';
-						print '		</td>';
-						print '	</tr>';
-					}
+if ($this->session->userdata("logeado") == false) {
+	print 		'	<tr>';
+	print 		'		<td colspan="4">';
+	print 		'			<h5>** Para comprar debe primero: <a href="'.base_url().'web/login">Iniciar Sesión</a> como usuario registrado, o <a href="'.base_url().'web/Registrarse">Registrarse</a>.</h5>';
+	print 		'		</td>';
+	print 		'	</tr>';
+}
 ?>
 				</tbody>
 			</table>

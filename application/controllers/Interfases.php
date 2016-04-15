@@ -39,14 +39,15 @@ class Interfases extends CI_Controller {
 
 			//-------------crear el log de pedidos
 			$this->load->model('Log_pedidos_model');
-			$this->Log_pedidos_model->crear($pedido->id, $pedido->idusuario, $fecha, EST_CANCELADO, 'Cancelado por Tiempo excedido');
+			$this->Log_pedidos_model->crear($pedido->id, $pedido->idusuario, $fecha, EST_CANCELADO, '(crontab) Cancelado por Tiempo excedido');
+			print("pedido borrado");
 		}
 
         $this->db->trans_complete();   //======================== TERMINA TRANSACCION
     }
 
 //---------------------------------------------------------(EMAIL) envioCorreo
-	public function envioCorreo() {
+	public function envioCorreo() {)
 		$correo = @$this->input->post('correo',TRUE);
 		$clave = md5('sanossalt'.date('Y-m-d H:i:s').$correo);
 		$urlenviada = base_url().'interfases/reciboCorreoOlvidoClave/'.$clave;

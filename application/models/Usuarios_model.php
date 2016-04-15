@@ -82,8 +82,9 @@ class Usuarios_model extends CI_Model {
 
 //---------------------------------------------------------eliminar
     function eliminar($id = null){
-        if($id == null){
-            return array('res'=>'bad','msj'=>'Error en la inserción.'); }
+        if($id == null) {
+            return array('res'=>'bad','msj'=>'Error en la inserción.');
+        }
         $this->db->where('id', $id);
         $this->db->delete('usuarios');
         return array('res'=>'ok');
