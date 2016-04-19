@@ -75,18 +75,15 @@
 if (isset($pedidos)) {
 	foreach ($pedidos as $pedido) {
 		print '	<div class="panel panel-default">';
-//	    print '		<div class="panel-heading" role="tab" id="heading'.$pedido->id.'">';
-//	    print '			<h4 class="panel-title text-center"></tr>';
 	    print '				<table class="table table-condensed">';
 	    if ($pedido->estado == EST_PENDIENTE) {
 	    print '					<tr class="warning">';
 		} else {
 	    print '					<tr>';
 		}
-	    print '						<td width="20%"><strong><h4>'.$pedido->estado.'</h4></strong></td>';
-//	    print '						<td width="30%">Pedido de fecha: </td>';
-	    print '						<td width="30%"><h4><strong><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$pedido->id.'" aria-expanded="false" aria-controls="collapse'.$pedido->id.'">';
-	    print '							'.substr($pedido->fecha, 0,10).' '.substr($pedido->fecha, 12,8).'</a></strong></h4>';
+	    print '						<td width="17%"><strong><h4>'.$pedido->estado.'</h4></strong></td>';
+	    print '						<td width="33%"><h4><strong><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$pedido->id.'" aria-expanded="false" aria-controls="collapse'.$pedido->id.'">';
+	    print '							'.substr($pedido->fecha, 0,10).' '.substr($pedido->fecha, 11,8).'</a></strong></h4>';
 	    print '						</td>';
 		print '						<td  width="50%"class="text-right">';	
 		if ($pedido->estado == EST_PENDIENTE) {	
@@ -97,8 +94,6 @@ if (isset($pedidos)) {
 		print '						</td>';
 	    print '					</tr>';
 	    print '				</table>';
-//	    print '			</h4>';
-//	    print '		</div>';
 	    print '		<div id="collapse'.$pedido->id.'" data-id="'.$pedido->id.'" data-cargado="false" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading'.$pedido->id.'">';
 		print '			<div class="panel-body" id="items'.$pedido->id.'"></div>';
 	    print ' 	</div>';
