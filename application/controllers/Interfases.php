@@ -47,7 +47,7 @@ class Interfases extends CI_Controller {
     }
 
 //---------------------------------------------------------(EMAIL) envioCorreo
-	public function envioCorreo() {)
+	public function envioCorreo() {
 		$correo = @$this->input->post('correo',TRUE);
 		$clave = md5('sanossalt'.date('Y-m-d H:i:s').$correo);
 		$urlenviada = base_url().'interfases/reciboCorreoOlvidoClave/'.$clave;
