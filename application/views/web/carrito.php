@@ -85,7 +85,7 @@ $(document).ready(function() {
 	})
 
 	$('#btn-comprar').click(function(event){ 
-		window.location = "<?php print base_url();?>web/micuenta";
+		window.location = "<?php print base_url();?>web/comprar";
 	})
 })
 

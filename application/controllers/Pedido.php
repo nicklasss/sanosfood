@@ -28,8 +28,11 @@ class Pedido extends CI_Controller {
 			exit();
 		}
 
-		$ultimadireccion = @$this->input->post('ultimadireccion',TRUE);
 		$idusuario = $this->session->userdata("idusuario");
+		//-------------buscar el usuario
+		$this->load->model('Usuarios_model');
+		$data['usuario'] = $this->Usuarios_model->get($idusuario);
+		$ultimadireccion = $data['usuario']->ultima_direccion;
 		$fecha = date("Y-m-d H:i:s");
 
         $this->db->trans_start();      //======================== INICIA TRANSACCION

@@ -52,6 +52,15 @@ class Direcciones_model extends CI_Model {
         return $query->result();
     }
 
+//---------------------------------------------------------direccionesUsuario
+    function direccionUsuario($idusuario = null, $ultimadireccion = null){
+
+        $this->db->where('id_usuario', $idusuario);
+        $this->db->where('nombre', $ultimadireccion);
+        $query = $this->db->get('direcciones', 0, 1);
+        return $query->row();
+    }
+
 //---------------------------------------------------------buscarxusuarioxnombre
     function buscarxusuarioxnombre($idusuario = null, $nombre = null){
         $this->db->where('id_usuario', $idusuario);

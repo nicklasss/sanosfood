@@ -245,12 +245,10 @@
 
 $(document).ready(function() { 
 
-    $(".container").on('click','#continuar',function(e){
-		rta = crearpedido(function(rta) { })
-		alert("El pedido ha sido creado como 'pendiente' ahora va al proceso de pago");
-    });
-
 //-------------------------------------------------------------Manejo de botones para USUARIOS
+    $(".container").on('click','#continuar',function(e){
+		window.location="<?php print base_url();?>web/comprar";
+    });
 	//---------------------------------------------------------Boton EDITAR
 	$('.container').on('click','#btn-editar-usuario',function(event){
 		sarta = '<span></span>'; $('#msg-error').html(sarta);    // Limpia mensaje de error		
@@ -328,7 +326,6 @@ $(document).ready(function() {
 			});
 		}
 	});
-
 
 // ----------------------------------------------------Manejo de botones para DIRECCIONES
 	//-------------------------------------------------EDITAR
@@ -600,34 +597,6 @@ function crear (callback) {
 				'</tr>';
 			$("#ultima").before(sarta);
 		}
-		else {
-			sarta = '<span><strong style="color:red;">'+data.msj+'</strong></span>';  // Mensaje de error
-			$('#msg-error').html(sarta);		
-			callback(false);
-		}
-	})
-	.error(function(){
-		sarta = '<span><strong style="color:red;">== NO HAY CONEXION ==</strong></span>';  // Mensaje de error
-		$('#msg-error').html(sarta);		
-		callback(false);
-	})
-}
-
-//----------------------------------------------------------------------------------funcion crearpedido
-function crearpedido (callback) {
-	$.ajax({                                              
-		url: "<?php print base_url();?>pedido/crear",
-		context: document.body,
-		dataType: "json",
-		type: "POST",
-		data: {ultimadireccion : $('#ultimadireccion').val() } })
-	.done(function(data) {                               
-		if(data.res == "ok") {
-
-			window.location="<?php print base_url();?>web/index"; 
-
-
-			callback(true)}
 		else {
 			sarta = '<span><strong style="color:red;">'+data.msj+'</strong></span>';  // Mensaje de error
 			$('#msg-error').html(sarta);		

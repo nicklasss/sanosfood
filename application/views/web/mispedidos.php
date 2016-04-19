@@ -68,7 +68,7 @@
 		</blockquote>
 	</div>		
 	<div class="col-md-7">
-		<h2 class="text-center">Pedidos <span class="badge"><?php print count($pedidos)?></span></h2>
+		<h2 class="text-center">Pedidos <small><span class="label label-default"><?php print count($pedidos)?></span></small></h2>
 		<div class="row">
 			<div class="col-md-11 col-md-offset-1 panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 <?php 	

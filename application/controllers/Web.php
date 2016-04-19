@@ -76,6 +76,24 @@ public function encriptarclaves() {
 		$this->load->view('web/piedepagina');
 	}
 
+//---------------------------------------------------------micuenta
+	public function comprar() {
+		if(!$this->session->userdata('logeado')){
+			redirect('','refresh');
+			exit();
+		}
+		$this->load->view('web/encabezado');
+		$this->load->model('Usuarios_model');
+		$data['usuario'] = $this->Usuarios_model->encontrar($this->session->userdata("usuario"));
+		$this->load->model('Direcciones_model');
+		$idusuario = $data['usuario']->id;
+		$ultimadireccion = $data['usuario']->ultima_direccion;
+		$data['direccion'] = $this->Direcciones_model->direccionUsuario( $idusuario, $ultimadireccion );
+        $this->session->set_userdata('comprando',true);
+		$this->load->view('web/comprar', $data, FALSE); 
+		$this->load->view('web/piedepagina');
+	}
+
 //---------------------------------------------------------mispedidos
 	public function mispedidos() {
 		if(!$this->session->userdata('logeado')){
