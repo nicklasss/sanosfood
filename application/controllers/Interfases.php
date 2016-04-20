@@ -92,8 +92,9 @@ class Interfases extends CI_Controller {
 		$asunto = @$this->input->post('asunto',TRUE);
 		$mensaje = @$this->input->post('mensaje',TRUE);
 
-		$this->email->to(CORREO_CONTACTENOS, 'Sanoosfoods');
+		$this->load->library('email');
 		$this->email->from($correo); 
+		$this->email->to(CORREO_CONTACTENOS, 'Sanoosfoods');
 		$this->email->subject($asunto);
 		$this->email->message($mensaje);	
 
