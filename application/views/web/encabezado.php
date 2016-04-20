@@ -123,8 +123,8 @@
                     <li class="divider-vertical"></li>
                     <li><a href="<?= base_url();?>web/productoscaracteristicas">Características</a></li>
                     <li class="divider-vertical"></li>
-<!--                    <li><a href="#contact">it3d</a></li>
-                    <li class="divider-vertical"></li>
+                    <li><a href="<?= base_url();?>web/contactenos">Contactenos</a></li>
+<!--                    <li class="divider-vertical"></li>
                     <li><a href="#contact">it4d</a></li>
                     <li class="divider-vertical"></li>
 -->

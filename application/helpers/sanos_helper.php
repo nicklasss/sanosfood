@@ -1,4 +1,5 @@
 <?php
+//----------------------------------------------------------------------------------funcion validarEmail
 if(!function_exists('limpiarString')) {
 
 	function limpiarString($string) {
@@ -12,3 +13,4 @@ if(!function_exists('limpiarString')) {
 	return strtr( $string, $unwanted_array );
 	}
 }
+

@@ -39,6 +39,13 @@ public function encriptarclaves() {
 		$this->load->view('web/piedepagina');
 	}
 
+//---------------------------------------------------------cambiarclave
+	public function contactenos() {
+		$this->load->view('web/encabezado');
+		$this->load->view('web/contactenos');
+		$this->load->view('web/piedepagina');
+	}
+
 //---------------------------------------------------------Login
 	public function login() {
 		if($this->session->userdata('logeado')){

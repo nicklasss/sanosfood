@@ -86,6 +86,50 @@ class Interfases extends CI_Controller {
 
 	}
 
+//---------------------------------------------------------(EMAIL) envioCorreo
+	public function contactenos() {
+		$correo = @$this->input->post('correo',TRUE);
+		$asunto = @$this->input->post('asunto',TRUE);
+		$mensaje = @$this->input->post('mensaje',TRUE);
+
+		$this->email->to(CORREO_CONTACTENOS, 'Sanoosfoods');
+		$this->email->from($correo); 
+		$this->email->subject($asunto);
+		$this->email->message($mensaje);	
+
+		if ($this->email->send()) {print json_encode(array('res'=>'ok'));exit();} 
+		else {print json_encode(array('res'=>'bad','msj'=>'Error enviando email'));exit();}
+
+/*
+		//cargamos la libreria email de Codeigniter
+		$this->load->library('email');
+
+		//configuracion para gmail
+		$configGmail = array(
+			'protocol' => 'smtp',
+			'smtp_host' => 'ssl://smtp.gmail.com',
+			'smtp_port' => 465,
+			'smtp_user' => 'hlduran.hotmail@gmail.com',
+			'smtp_pass' => 'htoluis1957',
+//			'smtp_user' => 'correo_gmail',
+//			'smtp_pass' => 'password',
+			'mailtype' => 'html',
+			'charset' => 'utf-8',
+			'newline' => "\r\n"	);    
+		$this->email->initialize($configGmail);		
+
+		$this->email->from('hlduran.hotmail@gmail.com', 'Humberto Luis Duran');
+		$this->email->to($correo); 
+		$this->email->subject('Solicitud de cambio de clave por olvido');
+		$this->email->message('<h2>mensaje de prueba para olvido clave</h2><br>'.$urlenviada);	
+		$this->email->send();
+
+		if ($this->email->send()) {print json_encode(array('res'=>'ok'));exit();} 
+		else {print json_encode(array('res'=>'bad','msj'=>'Error enviando email'));exit();}
+*/
+
+	}
+
 //---------------------------------------------------------(EMAIL) reciboCorreoOlvidoClave
 	public function reciboCorreoOlvidoClave() {
 		$claverecibida = $this->uri->segment(3);
